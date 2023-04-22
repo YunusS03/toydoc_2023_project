@@ -1,9 +1,6 @@
 package be.thomasmore.toydoc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 
@@ -21,5 +18,10 @@ public class Client {
     private String city;
     private String postalCode;
     private String country;
+    @ManyToMany(mappedBy = "clients")
     private Collection<Toy> toys;
+    @OneToMany(mappedBy = "client")
+    private Collection<Appointment> appointments;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Doctor doctor;
 }
