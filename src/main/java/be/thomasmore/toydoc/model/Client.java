@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class Client {
+public class Client extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,7 +18,7 @@ public class Client {
     private String city;
     private String postalCode;
     private String country;
-    @ManyToMany(mappedBy = "clients")
+    @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
     @OneToMany(mappedBy = "client")
     private Collection<Appointment> appointments;
@@ -28,13 +28,13 @@ public class Client {
     public Client() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getFirstName() {
         return firstName;
