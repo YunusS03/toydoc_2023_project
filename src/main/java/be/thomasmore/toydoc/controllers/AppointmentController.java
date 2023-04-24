@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AppointmentController {
-    @GetMapping("/appointment")
+    @GetMapping("/")
     public String appointment() {
         return "appointment";
     }
