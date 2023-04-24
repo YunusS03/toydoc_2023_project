@@ -3,6 +3,7 @@ package be.thomasmore.toydoc.model;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Toy {
@@ -11,12 +12,11 @@ public class Toy {
     private Integer id;
     private String name;
     private String type;
-    @ManyToMany(mappedBy = "toys")
-    private Collection<Doctor> doctors;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Client clients;
-    @OneToOne(mappedBy = "toy")
+    @OneToOne
     private Appointment appointment;
+    @ManyToOne
+    private Client client;
+
 
     public Toy() {
     }
@@ -45,27 +45,19 @@ public class Toy {
         this.type = type;
     }
 
-    public Collection<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(Collection<Doctor> doctors) {
-        this.doctors = doctors;
-    }
-
-    public Client getClients() {
-        return clients;
-    }
-
-    public void setClients(Client clients) {
-        this.clients = clients;
-    }
-
     public Appointment getAppointment() {
         return appointment;
     }
 
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

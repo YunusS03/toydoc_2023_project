@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Appointment {
@@ -23,9 +24,9 @@ public class Appointment {
     private Date time;
     @OneToOne
     private Toy toy;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Client client;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Doctor doctor;
 
     public Appointment() {

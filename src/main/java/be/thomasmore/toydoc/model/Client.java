@@ -3,9 +3,11 @@ package be.thomasmore.toydoc.model;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class Client extends User {
+
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,23 +20,48 @@ public class Client extends User {
     private String city;
     private String postalCode;
     private String country;
-    @OneToMany(mappedBy = "client")
-    private Collection<Toy> toys;
+    @OneToOne
+    private AppUser appUser;
+    @ManyToMany
+    private Collection<Doctor> doctors;
     @OneToMany(mappedBy = "client")
     private Collection<Appointment> appointments;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Doctor doctor;
-
+    @OneToMany(mappedBy = "client")
+    private Collection<Toy> toys;
     public Client() {
     }
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Collection<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(Collection<Doctor> doctors) {
+        this.doctors = doctors;
+    }
+
+    public Collection<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Collection<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public Collection<Toy> getToys() {
+        return toys;
+    }
+
+    public void setToys(Collection<Toy> toys) {
+        this.toys = toys;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -108,27 +135,5 @@ public class Client extends User {
         this.country = country;
     }
 
-    public Collection<Toy> getToys() {
-        return toys;
-    }
 
-    public void setToys(Collection<Toy> toys) {
-        this.toys = toys;
-    }
-
-    public Collection<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(Collection<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
 }

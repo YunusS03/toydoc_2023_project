@@ -2,10 +2,13 @@ package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class Doctor extends User {
+
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,24 +16,38 @@ public class Doctor extends User {
     private String lastName;
     private String speciality;
     private String email;
-
+    @OneToOne
+    private AppUser appUser;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
-    @ManyToMany
-    private Collection<Toy> toys;
-    @OneToMany(mappedBy = "doctor")
+    @ManyToMany(mappedBy = "doctors")
     private Collection<Client> clients;
-
     public Doctor() {
     }
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Collection<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Collection<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public Collection<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Collection<Client> clients) {
+        this.clients = clients;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -63,28 +80,26 @@ public class Doctor extends User {
     public void setEmail(String email) {
         this.email = email;
     }
+  
 
-    public Collection<Appointment> getAppointments() {
-        return appointments;
-    }
 
-    public void setAppointments(Collection<Appointment> appointments) {
-        this.appointments = appointments;
-    }
 
-    public Collection<Toy> getToys() {
-        return toys;
-    }
 
-    public void setToys(Collection<Toy> toys) {
-        this.toys = toys;
-    }
 
-    public Collection<Client> getClients() {
-        return clients;
-    }
 
-    public void setClients(Collection<Client> clients) {
-        this.clients = clients;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

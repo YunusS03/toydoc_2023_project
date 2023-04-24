@@ -1,26 +1,18 @@
 package be.thomasmore.toydoc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class User {
+//@MappedSuperclass
+public class AppUser {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
     private String role;
 
-    public User() {
-    }
-
-    public User(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    public AppUser() {
     }
 
     public Integer getId() {
@@ -29,6 +21,12 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public AppUser(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public String getUsername() {
