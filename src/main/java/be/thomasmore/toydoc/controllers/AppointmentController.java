@@ -9,4 +9,9 @@ public class AppointmentController {
     public String appointment() {
         return "appointment";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "appointment";
+    }
 }
