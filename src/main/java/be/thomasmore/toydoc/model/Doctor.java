@@ -13,6 +13,7 @@ public class Doctor {
     private String lastName;
     private String speciality;
     private String email;
+
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
     @ManyToMany
