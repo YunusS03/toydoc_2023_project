@@ -10,9 +10,20 @@ public class AppUser {
     private Integer id;
     private String username;
     private String password;
-    private String role;
+    private String firstName;
+    private String lastName;
+    private Role role;
 
     public AppUser() {
+    }
+
+    public AppUser(Integer id, String username, String password, String firstName, String lastName, Role role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -23,10 +34,26 @@ public class AppUser {
         this.id = id;
     }
 
-    public AppUser(Integer id, String username, String password, String role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -46,11 +73,5 @@ public class AppUser {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
