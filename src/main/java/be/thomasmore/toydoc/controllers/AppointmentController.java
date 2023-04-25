@@ -14,6 +14,8 @@ import java.security.Principal;
 
 @Controller
 public class AppointmentController {
+
+
     private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
     @Autowired
     private AppUserRepository appUserRepository;

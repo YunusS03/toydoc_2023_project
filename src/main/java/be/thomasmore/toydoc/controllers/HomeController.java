@@ -14,16 +14,28 @@ import java.security.Principal;
 
 @Controller
 public class HomeController {
+
+
     private Logger logger = LoggerFactory.getLogger(HomeController.class);
+
     @Autowired
     private AppUserRepository appUserRepository;
+
     @GetMapping({"/" , "/home"})
     public String home(Model model, Principal principal) {
+        // Bepaal de naam van de ingelogde gebruiker
         final String loginName = principal==null ? "NOBODY" : principal.getName();
+
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName",loginName);
+
+        // Log de naam van de ingelogde gebruiker
         logger.info(loginName);
+
+        // Laad de "home" pagina
         return "home";
     }
+
 
 
 
