@@ -13,17 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 @Controller
-public class AppointmentController {
-    private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+public class HomeController {
+    private Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Autowired
     private AppUserRepository appUserRepository;
-    @GetMapping("/appointment")
-    public String appointment(Model model, Principal principal) {
+    @GetMapping({"/" , "/home"})
+    public String home(Model model, Principal principal) {
         final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
         logger.info(loginName);
-        AppUser appUser = new AppUser(0, "test", "test", "test", "test", Role.CLIENT);
-        appUserRepository.save(appUser);
-        return "appointment";
+        return "home";
     }
 
 

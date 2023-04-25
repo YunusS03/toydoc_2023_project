@@ -10,10 +10,10 @@
     <title>fakeloginpage</title>
 <body>
 <h1>Login Page</h1>
-<form th:action="@{/fakeloginpage}" method="post">
+<form th:action="@{/user/login}" method="post">
     <div>
-        <label>Email:
-        <input type="email" name="email" required="required"/>
+        <label>Username:
+        <input type="text" name="username" required="required"/>
         </label>
     </div>
     <div>

@@ -14,9 +14,6 @@ public class AppUser {
     private String lastName;
     private Role role;
 
-    public AppUser() {
-    }
-
     public AppUser(Integer id, String username, String password, String firstName, String lastName, Role role) {
         this.id = id;
         this.username = username;
@@ -24,6 +21,10 @@ public class AppUser {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+    }
+
+    public AppUser() {
+
     }
 
     public Integer getId() {
