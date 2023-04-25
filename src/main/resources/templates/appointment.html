@@ -2,18 +2,30 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<!--    Bootstrap CSS Link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<!--    Bootstrap JS Link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
+<!--    CSS Link-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="/css/party.css" />
+<!--    Google Fonts Link of Navbar-Brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+
     <title>Speelgoedokter</title>
     <!-- Bootstrap CSS -->
 </head>
 <body>
 
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+</div>
 <div class="container mt-5">
-    <h1>Welkom bij de Speelgoedokter!</h1>
+    <h1>Welkom bij de Speelgoedokter!!!</h1>
     <p>Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
     <button type="button" class="btn btn-primary btn-lg d-block mx-auto my-5">Maak een afspraak</button>
 </div>
