@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 
 public class Doctor {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
@@ -23,6 +23,14 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors")
     private Collection<Client> clients;
     public Doctor() {
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Integer getId() {

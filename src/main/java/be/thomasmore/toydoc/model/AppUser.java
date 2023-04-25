@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 @Entity
 //@MappedSuperclass
 public class AppUser {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Integer id;
     private String username;
     private String password;
@@ -23,7 +23,8 @@ public class AppUser {
         this.id = id;
     }
 
-    public AppUser(String username, String password, String role) {
+    public AppUser(Integer id, String username, String password, String role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;

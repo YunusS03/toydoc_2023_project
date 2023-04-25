@@ -7,8 +7,8 @@ import java.util.List;
 
 @Entity
 public class Toy {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Integer id;
     private String name;
     private String type;

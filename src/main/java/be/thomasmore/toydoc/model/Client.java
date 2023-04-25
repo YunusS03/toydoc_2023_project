@@ -8,8 +8,8 @@ import java.util.List;
 @Entity
 
 public class Client {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
@@ -29,6 +29,14 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
     public Client() {
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Integer getId() {

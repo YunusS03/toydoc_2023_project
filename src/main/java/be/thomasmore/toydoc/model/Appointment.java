@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 public class Appointment {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Integer id;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
