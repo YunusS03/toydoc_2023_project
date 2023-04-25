@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+
+}
+
+.navbar{
+    /*background-color: #8B74AB;*/
+    /*background-color: #5179AB;*/
+    background-color: #7D86AD;
+    padding: 15px;
+}
+
+.navigation-list li,.navigation-list a,.navigation-list button{
+    padding: 3px;
+    margin: 5px;
+}
+.navbar-brand{
+    color: #412A55;
+    font-family: 'Lato', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+}
+
+.navigation-list li a,.navigation-list li button{
+    font-size: 19px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.navigation-list li a:hover{
+    color: #412A55;
+}
+.navigation-list li button:hover{
+    background-color: #412A55;
+}

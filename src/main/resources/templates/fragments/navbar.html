@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+</head>
+<body>
+
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-md navbar-dark ">
+        <div class="container-fluid">
+            <a class="navbar-brand d-md-none" href="#">
+                Speelgoed Dokter
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto navigation-list">
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Doctors</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Repair</a>
+                    </li>
+
+                    <a class="navbar-brand d-none d-md-block" href="#">
+                        SPEELGOED DOKTER
+                    </a>
+
+                    <li class="nav-item">
+                        <a class="nav-link">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link">Donate</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <button type="button" class="nav-link btn btn-outline-light">Login</button>
+                    </li>
+
+                    <li class="nav-item ">
+                        <button type="button" class="nav-link btn btn-outline-primary">Register</button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
