@@ -7,6 +7,8 @@ body{
 
 }
 
+/*Navbar CSS*/
+
 .navbar{
     /*background-color: #8B74AB;*/
     /*background-color: #5179AB;*/
@@ -36,4 +38,13 @@ body{
 }
 .navigation-list li button:hover{
     background-color: #412A55;
+}
+
+/*Footer CSS*/
+
+.footer-header{
+    color: #412A55;
+}
+footer{
+    background-color: #d5daec;
 }
