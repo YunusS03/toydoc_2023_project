@@ -8,6 +8,8 @@ body{
     background-size: cover;
 }
 
+/*Navbar CSS*/
+
 .navbar{
     /*background-color: #8B74AB;*/
     /*background-color: #5179AB;*/
@@ -25,7 +27,6 @@ body{
     font-size: 28px;
     letter-spacing: 3px;
     font-weight: bolder;
-
 }
 
 .navigation-list li a,.navigation-list li button{
@@ -52,4 +53,14 @@ body{
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #412A55 !important;
     border-color: #7D86AD;
+}
+
+
+/*Footer CSS*/
+
+.footer-header{
+    color: #412A55;
+}
+footer{
+    background-color: #d5daec;
 }
