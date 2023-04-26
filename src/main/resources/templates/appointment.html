@@ -28,7 +28,34 @@
 <div class="container mt-5">
     <h1>Welkom bij de Speelgoedokter!!!</h1>
     <p>Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
-    <button type="button" class="btn btn-primary btn-lg d-block mx-auto my-5">Maak een afspraak</button>
+    <p>U kan hieronder een afspraak maken.</p>
+    <form action="">
+        <div>
+            <label for="firstName">Voornaam</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Naam">
+        </div>
+        <div>
+            <label for="lastName">Achternaam</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Achternaam">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+        <div>
+            <label for="phone">Telefoonnummer</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Telefoonnummer">
+        </div>
+        <div>
+            <label for="date">Datum</label>
+            <input type="date" class="form-control" id="date" placeholder="Datum">
+        </div>
+        <div>
+            <label for="time">Tijd</label>
+            <input type="time" class="form-control" id="time" placeholder="Tijd">
+        </div>
+    </form>
+    <button type="button" class="btn btn-primary btn-lg d-block mx-auto my-5">Bevestig</button>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

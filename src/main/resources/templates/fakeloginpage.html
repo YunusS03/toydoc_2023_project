@@ -7,22 +7,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
-    <title>Error</title>
-    <!-- Bootstrap CSS -->
-</head>
-
-
+    <title>fakeloginpage</title>
 <body>
-<div class="container text-center">
-    <h1>Oops!</h1>
-    <p class="lead">We're sorry, something went wrong.</p>
-    <p th:text="${error}"></p>
-    <p th:text="${status}"></p>
-    <a href="/home" class="btn btn-primary">Go back to homepage</a>
-</div>
-
-
+<h1>Login Page</h1>
+<form th:action="@{/user/login}" method="post">
+    <div>
+        <label>Username:
+        <input type="text" name="username" required="required"/>
+        </label>
+    </div>
+    <div>
+        <label>Password:
+        <input type="password" name="password" required="required"/>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
 </body>
-
-
 </html>
