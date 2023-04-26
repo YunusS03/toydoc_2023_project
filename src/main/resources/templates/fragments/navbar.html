@@ -48,13 +48,30 @@
                         <a class="nav-link">Donate</a>
                     </li>
 
-                    <li class="nav-item ">
-                        <button type="button" class="nav-link btn btn-outline-light">Login</button>
-                    </li>
 
-                    <li class="nav-item ">
-                        <button type="button" class="nav-link btn btn-outline-light">Register</button>
-                    </li>
+                      <div th:if="${loginName == 'NOBODY'}" class="d-flex">
+                          <li class="nav-item"  >
+                              <form th:action="@{/user/login}" method="post">
+                                  <button  class="nav-link btn btn-outline-light" type="submit">Login</button>
+                              </form>
+                          </li>
+                          <li class="nav-item ">
+                              <button type="button" class="nav-link btn btn-outline-light">Register</button>
+                          </li>
+                      </div>
+
+
+                    <div th:if="${loginName != 'NOBODY'}" class="d-flex">
+                        <li class="nav-item">
+                            <p th:text="'Hello, ' + ${loginName}" class="nav-link"></p>
+                        </li>
+
+                        <li class="nav-item" >
+                            <form th:action="@{/user/logout}" method="post">
+                                <button  class="nav-link btn btn-outline-light" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </div>
 
                 </ul>
             </div>

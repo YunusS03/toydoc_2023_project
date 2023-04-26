@@ -28,7 +28,7 @@ body{
     font-weight: bolder;
 }
 
-.navigation-list li a,.navigation-list li button{
+.navigation-list li a,.navigation-list li button,.navigation-list li p{
     font-size: 19px;
     letter-spacing: 1px;
     font-weight: bold;
