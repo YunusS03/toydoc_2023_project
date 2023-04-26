@@ -45,16 +45,18 @@ body{
     border-color: #7D86AD;
 }
 .card-body h1{
-    padding-top: 40px;
+    padding-top: 90px;
     color: #412A55;
     font-family: 'Lato', sans-serif;
-    font-size: 45px;
+    font-size: 35px;
 }
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #412A55 !important;
     border-color: #7D86AD;
 }
-
+.container{
+    padding-bottom: 40px;
+}
 
 /*Footer CSS*/
 
