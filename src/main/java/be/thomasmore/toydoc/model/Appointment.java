@@ -13,21 +13,32 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
+
+
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @NotNull
     private Date date;
+
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm")
     @NotNull
     private Date time;
+
+
     @OneToOne
     private Toy toy;
+
+
     @ManyToOne
     private Client client;
+
+
     @ManyToOne
     private Doctor doctor;
+
+
 
     public Appointment() {
     }

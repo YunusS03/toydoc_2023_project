@@ -22,46 +22,38 @@
     <title>ToyDoc</title>
 
 <body>
-<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+
+
 
 
 
 
 <div class="container mt-5">
-    <div class="container">
-        <div class="card">
-            <div class="row">
-                <div class="col-md-8">
-                    <h2>Welkom bij de Speelgoedokter!!</h2>
-                    <p>Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-body">
-                        <img src="/css/toydoc.png" class="textballoon-one img-fluid" alt="tekstballon">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="card">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/css/toydoc.png" class="textballoon-one img-fluid" alt="tekstballon">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h1> Would you like to repair your toys <br> &nbsp; &nbsp;with our expert doctors?</h1>
-                        <button type="button" class="btn btn-primary btn-lg d-block mx-auto">Make a reservation</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered table-striped bg-light">
+        <thead class="thead-dark">
+        <tr>
+            <th>Time</th>
+            <th th:each="day : ${calendar}" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="timeSlot : ${calendar[0].hours}">
+            <td th:text="${timeSlot.hour} + ':00'"></td>
+            <td th:each="day : ${calendar}">
+                <span th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}" class="badge badge-primary mr-1 cell-available bg-primary">Available</span>
+                <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}" class="badge badge-secondary mr-1 cell-occupied bg-secondary">Occupied</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+
+
 
 
 
