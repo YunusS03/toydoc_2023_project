@@ -25,6 +25,7 @@ public class AppointmentController {
         logger.info(loginName);
         AppUser appUser = new AppUser(0, "test", "test", "test", "test", Role.CLIENT);
         appUserRepository.save(appUser);
+        model.addAttribute("loginName",loginName);
         return "appointment";
     }
 
