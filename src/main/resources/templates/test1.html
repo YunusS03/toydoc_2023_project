@@ -26,10 +26,27 @@
 
 
 
-
-
-
 <div class="container mt-5">
+    <div class="row justify-content-between align-items-center mb-3">
+        <div class="col-auto">
+            <form method="post" th:action="@{/previousWeek}" th:object="${calendarForm}">
+                <input type="hidden" name="count" th:value="${count - 1}"/>
+                <button type="submit" class="btn btn-outline-secondary">&lt;&lt; Previous Week</button>
+            </form>
+        </div>
+
+        <div class="col-auto">
+            <h3 class="m-0">Week of <span th:text="${#dates.format(calendar[0].date, 'dd MMMM yyyy')}"></span></h3>
+        </div>
+
+        <div class="col-auto">
+            <form method="post" th:action="@{/nextWeek}" th:object="${calendarForm}">
+                <input type="hidden" name="count" th:value="${count + 1}"/>
+                <button type="submit" class="btn btn-outline-secondary">Next Week &gt;&gt;</button>
+            </form>
+        </div>
+    </div>
+
     <table class="table table-bordered table-striped bg-light">
         <thead class="thead-dark">
         <tr>
@@ -44,25 +61,15 @@
                 <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
                     <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
                     <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
-                    <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}" class="badge badge-primary mr-1 cell-available bg-primary" style="display: inline-block; width: 100%;">Available</button>
-                    <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}" class="badge badge-secondary mr-1 cell-occupied bg-secondary" style="display: inline-block; width: 100%;">Occupied</span>
+                    <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}" class="btn btn-primary cell-available" style="width: 100%;">Available</button>
+                    <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}" class="btn btn-secondary cell-occupied" style="width: 100%;">Occupied</span>
                 </form>
             </td>
         </tr>
         </tbody>
-
     </table>
+</div>
 
-    <form method="post" th:action="@{/nextWeek}" th:object="${calendarForm}">
-        <input type="hidden" name="count" th:value="${count}"/>
-        <button type="submit">Next Week</button>
-    </form>
-
-
-    <form method="post" th:action="@{/previousWeek}" th:object="${calendarForm}">
-        <input type="hidden" name="count" th:value="${count}"/>
-        <button type="submit">Previous Week</button>
-    </form>
 
 
 

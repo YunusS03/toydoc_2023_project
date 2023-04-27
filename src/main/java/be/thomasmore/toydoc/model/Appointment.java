@@ -43,6 +43,12 @@ public class Appointment {
     public Appointment() {
     }
 
+
+    public int getClientId(){
+        return client.getId();
+    }
+
+
     public Integer getId() {
         return id;
     }
