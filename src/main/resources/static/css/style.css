@@ -1,0 +1,69 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url(background.jpg);
+    background-size: cover;
+
+}
+
+/*Navbar CSS*/
+
+.navbar{
+    /*background-color: #8B74AB;*/
+    /*background-color: #5179AB;*/
+    background-color: #7D86AD;
+    padding: 15px;
+}
+
+.navigation-list li,.navigation-list a,.navigation-list button{
+    padding: 3px;
+    margin: 5px;
+}
+.navbar-brand{
+    color: #412A55;
+    font-family: 'Lato', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+}
+
+.navigation-list li a,.navigation-list li button,.navigation-list li p{
+    font-size: 19px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.navigation-list li a:hover{
+    color: #412A55;
+}
+.navigation-list li button:hover{
+    background-color: #412A55;
+}
+.card{
+    background: #7D86AD;
+    border-color: #7D86AD;
+}
+.card-body h1{
+    padding-top: 90px;
+    color: #412A55;
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #412A55 !important;
+    border-color: #7D86AD;
+}
+.container{
+    padding-bottom: 40px;
+}
+
+/*Footer CSS*/
+
+.footer-header{
+    color: #412A55;
+}
+footer{
+    background-color: #d5daec;
+}
