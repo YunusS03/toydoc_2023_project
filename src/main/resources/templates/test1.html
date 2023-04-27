@@ -33,7 +33,7 @@
     <div class="row justify-content-between align-items-center mb-3">
         <div class="col-auto">
             <form method="post" th:action="@{/previousWeek}" th:object="${calendarForm}">
-                <input type="hidden" name="count" th:value="${count - 1}"/>
+                <input type="hidden" name="count" th:value="${count }"/>
                 <button type="submit" class="btn btn-outline-secondary">&lt;&lt; Previous Week</button>
             </form>
         </div>
@@ -44,7 +44,7 @@
 
         <div class="col-auto">
             <form method="post" th:action="@{/nextWeek}" th:object="${calendarForm}">
-                <input type="hidden" name="count" th:value="${count + 1}"/>
+                <input type="hidden" name="count" th:value="${count }"/>
                 <button type="submit" class="btn btn-outline-secondary">Next Week &gt;&gt;</button>
             </form>
         </div>
