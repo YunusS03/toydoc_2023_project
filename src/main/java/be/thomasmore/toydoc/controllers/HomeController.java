@@ -13,20 +13,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 @Controller
-public class AppointmentController {
+public class HomeController {
 
 
-    private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+    private Logger logger = LoggerFactory.getLogger(HomeController.class);
+
     @Autowired
     private AppUserRepository appUserRepository;
-    @GetMapping("/appointment")
-    public String appointment(Model model, Principal principal) {
+
+    @GetMapping({"/" , "/home"})
+    public String home(Model model, Principal principal) {
+        // Bepaal de naam van de ingelogde gebruiker
         final String loginName = principal==null ? "NOBODY" : principal.getName();
+
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
+        model.addAttribute("loginName",loginName);
+
+        // Log de naam van de ingelogde gebruiker
         logger.info(loginName);
-        AppUser appUser = new AppUser(0, "test", "test", "test", "test", Role.CLIENT);
-        appUserRepository.save(appUser);
-        return "appointment";
+
+        // Laad de "home" pagina
+        return "home";
     }
+
 
 
 

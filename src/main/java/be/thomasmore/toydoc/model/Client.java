@@ -3,14 +3,16 @@ package be.thomasmore.toydoc.model;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String firstName;
-    private String lastName;
+
+public class Client extends AppUser {
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    private Integer id;
+//    private String firstName;
+//    private String lastName;
     private Integer age;
     private String email;
     private String phone;
@@ -18,39 +20,72 @@ public class Client {
     private String city;
     private String postalCode;
     private String country;
-    @ManyToMany(mappedBy = "clients")
-    private Collection<Toy> toys;
+//    @OneToOne
+//    private AppUser appUser;
+//    @ManyToMany
+//    private Collection<Doctor> doctors;
     @OneToMany(mappedBy = "client")
     private Collection<Appointment> appointments;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Doctor doctor;
-
+    @OneToMany(mappedBy = "client")
+    private Collection<Toy> toys;
     public Client() {
     }
 
-    public Integer getId() {
-        return id;
+//    public AppUser getAppUser() {
+//        return appUser;
+//    }
+//
+//    public void setAppUser(AppUser appUser) {
+//        this.appUser = appUser;
+//    }
+
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
+
+//    public Collection<Doctor> getDoctors() {
+//        return doctors;
+//    }
+//
+//    public void setDoctors(Collection<Doctor> doctors) {
+//        this.doctors = doctors;
+//    }
+
+    public Collection<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAppointments(Collection<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Collection<Toy> getToys() {
+        return toys;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setToys(Collection<Toy> toys) {
+        this.toys = toys;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
+//
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
     public Integer getAge() {
         return age;
@@ -108,27 +143,5 @@ public class Client {
         this.country = country;
     }
 
-    public Collection<Toy> getToys() {
-        return toys;
-    }
 
-    public void setToys(Collection<Toy> toys) {
-        this.toys = toys;
-    }
-
-    public Collection<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(Collection<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
 }
