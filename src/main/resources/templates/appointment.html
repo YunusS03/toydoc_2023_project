@@ -25,39 +25,58 @@
 
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-</div>
 <div class="container mt-5">
-    <h1>Welkom bij de Speelgoedokter!!!</h1>
-    <p>Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
-    <p>U kan hieronder een afspraak maken.</p>
-    <form action="">
-        <div>
-            <label for="firstName">Voornaam</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Naam">
+    <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
+    <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
+    <p class="lead">U kunt hieronder een afspraak maken.</p>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">Voornaam</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Voornaam" required>
         </div>
-        <div>
-            <label for="lastName">Achternaam</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Achternaam">
+        <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Achternaam</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Achternaam" required>
         </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
+        <div class="col-md-6 mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" required>
         </div>
-        <div>
-            <label for="phone">Telefoonnummer</label>
-            <input type="tel" class="form-control" id="phone" placeholder="Telefoonnummer">
+        <div class="col-md-6 mb-3">
+            <label for="phone" class="form-label">Telefoonnummer</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Telefoonnummer" required>
         </div>
-        <div>
-            <label for="date">Datum</label>
-            <input type="date" class="form-control" id="date" placeholder="Datum">
+    </div>
+    <div class="col-md-6 offset-md-3">
+        <div class="card text-center mb-5">
+            <div class="card-body">
+                <h4 class="card-title">Datum en tijd</h4>
+                <p class="card-text lead mb-0" th:text="${date}"></p>
+                <p class="card-text lead mb-0" th:text="${#strings.concat(hour, ':00')}"></p>
+            </div>
         </div>
-        <div>
-            <label for="hour">Tijd</label>
-            <input type="time" class="form-control" id="hour" placeholder="Tijd">
-        </div>
-    </form>
-    <button type="button" class="btn btn-primary btn-lg d-block mx-auto my-5">Bevestig</button>
+    </div>
+
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Maak afspraak</button>
+    </div>
 </div>
+
+
+<style>
+    .datetime-display {
+        background: black;
+        color: white;
+        font-weight: bolder;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 24px;
+    }
+</style>
+
+
+
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <!-- Bootstrap JS -->

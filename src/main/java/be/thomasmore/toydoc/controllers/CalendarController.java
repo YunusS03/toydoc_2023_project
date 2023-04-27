@@ -9,11 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Controller
 public class CalendarController {
     private CalendarService calendarService;
+
 
 
     public CalendarController(CalendarService calendarService) {
@@ -24,6 +28,12 @@ public class CalendarController {
     public String getCalendar(Model model) {
         CalendarService calendarService = new CalendarService();
         List<Day> calendar = calendarService.getCurrentWeek();
+
+
+        Date date1 = new GregorianCalendar(2023, Calendar.MAY, 1).getTime();
+        calendarService.setOccupiedOnCalender(date1,9);
+
+
         model.addAttribute("calendar", calendar);
         return "test1";
     }
@@ -55,6 +65,19 @@ public class CalendarController {
         return "test1";
     }
 
+
+
+    @PostMapping("/bookSlot")
+    public String bookSlot(Model model,@RequestParam("date") String date, @RequestParam("hour") int hour) {
+        // code to book the time slot for the given date and hour
+
+        System.out.println(date);
+        System.out.println(hour);
+        model.addAttribute("date",date);
+        model.addAttribute("hour",hour);
+
+        return "appointment";
+    }
 
 
 

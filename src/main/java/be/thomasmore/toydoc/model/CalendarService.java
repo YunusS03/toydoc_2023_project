@@ -1,6 +1,8 @@
 package be.thomasmore.toydoc.model;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.*;
 import java.util.ArrayList;
@@ -22,15 +24,28 @@ public class CalendarService {
         dateOfArray = LocalDate.now();
     }
 
-//    public void setOccupiedOnCalender(Date date, TimeSlot hour, Calendar calendar){
-//        for (Calendar cal: calendar) {
-//
-//
-//        }
-//
-//
-//
-//    }
+    public void setOccupiedOnCalender(Date date, int hour){
+
+        Calendar kalender = Calendar.getInstance();
+        kalender.setTime(date);
+        int date2 = kalender.get(Calendar.DAY_OF_YEAR);
+
+        for (Day days: calendar) {
+            System.out.println("doy " + days.getDayOfYear());
+            System.out.println("date " + date2);
+
+            if (days.getDayOfYear() == date2){
+                System.out.println("EQUAL OK");
+                for (TimeSlot time: days.getHours()) {
+                    if (time.getHour() == hour) {
+                        time.setOccupied(true);
+                    }
+                    }
+                }
+            }
+        }
+
+
 
 
     public List<Day> getCurrentWeek() {
@@ -83,6 +98,11 @@ public class CalendarService {
         System.out.println(""+ dateOfArray);
         return getCurrentWeek();
     }
+
+
+
+
+
 
 
 

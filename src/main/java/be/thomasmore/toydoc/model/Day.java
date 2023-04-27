@@ -26,6 +26,13 @@ public class Day {
         }
     }
 
+    public int getDayOfYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.date);
+        return cal.get(Calendar.DAY_OF_YEAR);
+    }
+
+
     public Day(Date date) {
         this.date = date;
     }
