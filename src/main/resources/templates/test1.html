@@ -12,18 +12,21 @@
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
     <!--    CSS Link-->
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
     <!--    Google Fonts Link of Navbar-Brand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
     <!--Font Awesome Link    -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>ToyDoc</title>
 
 <body>
 
 
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
 
 <div class="container mt-5">
@@ -61,8 +64,11 @@
                 <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
                     <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
                     <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
-                    <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}" class="btn btn-primary cell-available" style="width: 100%;">Available</button>
-                    <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}" class="btn btn-secondary cell-occupied" style="width: 100%;">Occupied</span>
+                    <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}"
+                            class="btn btn-primary cell-available" style="width: 100%;">Available
+                    </button>
+                    <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}"
+                          class="btn btn-secondary cell-occupied" style="width: 100%;">Occupied</span>
                 </form>
             </td>
         </tr>
@@ -71,17 +77,7 @@
 </div>
 
 
-
-
-</div>
-
-
-
-
-
-
-
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 
 <!-- jQuery library -->
