@@ -13,9 +13,7 @@ import java.util.List;
 
 @Service
 public class CalendarService {
-    private int numHoursInDay = 24;
-    private int numDaysInMonth = 30; // Change this to the number of days in the desired month
-    private int numDaysInWeek = 7; // Change this to the number of days in the desired month
+
     private LocalDate dateOfArray;
     List<Day> calendar = new ArrayList<>();
 
@@ -61,7 +59,7 @@ public class CalendarService {
             ZonedDateTime zonedDateTime = date0.atStartOfDay(ZoneId.systemDefault());
             Date date = Date.from(zonedDateTime.toInstant());
 
-            Day day = new Day(numHoursInDay, date);
+            Day day = new Day(date);
 
             // If the current day is before today, set all hours to occupied
             if (dateOfArray.isBefore(LocalDate.now())) {
@@ -77,6 +75,8 @@ public class CalendarService {
                     }
                 }
             }
+
+
             calendar.add(day);
            dateOfArray = dateOfArray.plusDays(1);
         }

@@ -58,7 +58,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="timeSlot : ${calendar[0].hours}">
+        <tbody>
+        <tr th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}">
             <td th:text="${timeSlot.hour} + ':00'"></td>
             <td th:each="day : ${calendar}">
                 <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
@@ -73,6 +74,7 @@
             </td>
         </tr>
         </tbody>
+
     </table>
 </div>
 

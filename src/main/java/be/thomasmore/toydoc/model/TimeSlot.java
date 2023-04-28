@@ -8,23 +8,8 @@ import jakarta.persistence.Id;
 
 
 public class TimeSlot {
-
-    private int id;
     private int hour; // the hour of the time slot
     private boolean isOccupied; // whether the time slot is occupied or not
-    private String test;
-
-    public TimeSlot() {
-        isOccupied = false;
-    }
-
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
-    }
 
     public TimeSlot(int hour) {
         this.hour = hour;

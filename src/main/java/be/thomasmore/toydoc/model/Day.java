@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -19,12 +20,7 @@ public class Day {
 
     DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
-    public Day(int numHours) {
-        this.hours = new TimeSlot[numHours];
-        for (int i = 0; i < numHours; i++) {
-            this.hours[i] = new TimeSlot(i); // create a new TimeSlot object for each hour and add it to the array
-        }
-    }
+
 
     public int getDayOfYear() {
         Calendar cal = Calendar.getInstance();
@@ -33,19 +29,24 @@ public class Day {
     }
 
 
-    public Day(Date date) {
-        this.date = date;
-    }
 
-    public Day(int numHours, Date date) {
-        this.hours = new TimeSlot[numHours];
-        for (int i = 0; i < numHours; i++) {
-            this.hours[i] = new TimeSlot(i); // create a new TimeSlot object for each hour and add it to the array
-        }
+
+    public Day(Date date) {
+        generateTimeSlots();
         this.date = date;
         setDayOfWeek();
     }
 
+
+    private void generateTimeSlots(){
+        this.hours = new TimeSlot[24];
+
+        for (int i = 0; i < 24; i++) {
+            this.hours[i] = new TimeSlot(i); // create a new TimeSlot object for each hour and add it to the array
+            System.out.println(i);
+        }
+
+    }
 
 
     public void setDayOfWeek() {
