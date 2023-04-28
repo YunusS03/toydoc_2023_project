@@ -40,12 +40,9 @@ public class Day {
 
     private void generateTimeSlots(){
         this.hours = new TimeSlot[24];
-
         for (int i = 0; i < 24; i++) {
             this.hours[i] = new TimeSlot(i); // create a new TimeSlot object for each hour and add it to the array
-            System.out.println(i);
         }
-
     }
 
 

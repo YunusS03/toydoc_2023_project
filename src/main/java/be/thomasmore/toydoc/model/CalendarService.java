@@ -29,13 +29,10 @@ public class CalendarService {
         int date2 = kalender.get(Calendar.DAY_OF_YEAR);
 
         for (Day days: calendar) {
-            System.out.println("doy " + days.getDayOfYear());
-            System.out.println("date " + date2);
-
             if (days.getDayOfYear() == date2){
-                System.out.println("EQUAL OK");
                 for (TimeSlot time: days.getHours()) {
                     if (time.getHour() == hour) {
+                        System.out.println("Found Occupied slot at "+days.getDate() + " Time: " + hour + ":00"  );
                         time.setOccupied(true);
                     }
                     }

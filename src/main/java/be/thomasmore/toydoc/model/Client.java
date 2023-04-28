@@ -8,11 +8,11 @@ import java.util.List;
 @Entity
 
 public class Client extends AppUser {
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Id
 //    private Integer id;
-//    private String firstName;
-//    private String lastName;
+    private String firstName;
+    private String lastName;
     private Integer age;
     private String email;
     private String phone;
@@ -20,7 +20,7 @@ public class Client extends AppUser {
     private String city;
     private String postalCode;
     private String country;
-//    @OneToOne
+    //    @OneToOne
 //    private AppUser appUser;
 //    @ManyToMany
 //    private Collection<Doctor> doctors;
@@ -28,10 +28,27 @@ public class Client extends AppUser {
     private Collection<Appointment> appointments;
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
+
     public Client() {
     }
 
-//    public AppUser getAppUser() {
+    public Client(String username, String password, String firstName, String lastName, Role role, String email, String phone) {
+        super(firstName, lastName, role);
+        this.email = email;
+        this.phone = phone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+    }
+
+    public Client(String fname, String lname,String phone,String email) {
+        this.firstName = fname;
+        this.lastName = lname;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    //    public AppUser getAppUser() {
 //        return appUser;
 //    }
 //

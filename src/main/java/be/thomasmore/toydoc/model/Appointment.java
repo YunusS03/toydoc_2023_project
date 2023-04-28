@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +42,21 @@ public class Appointment {
 
 
     public Appointment() {
+    }
+
+    public void createAppointmentNonUser(Date date, int time,String firstname,String lastname,String phone,String email,Doctor doctor) {
+        this.date = date;
+        this.time = hoursToDate(time);
+    }
+
+
+    public static Date hoursToDate(int hours) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hours);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
     }
 
 

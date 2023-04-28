@@ -27,6 +27,12 @@ public class AppUser {
 
     }
 
+    public AppUser(String username, String password, String firstName, String lastName, Role role) {
+    }
+
+    public AppUser(String firstName, String lastName, Role role) {
+    }
+
     public Integer getId() {
         return id;
     }
