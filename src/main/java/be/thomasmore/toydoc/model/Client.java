@@ -8,9 +8,9 @@ import java.util.List;
 @Entity
 
 public class Client extends AppUser {
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Id
-//    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Integer id;
     private String firstName;
     private String lastName;
     private Integer age;
@@ -20,8 +20,8 @@ public class Client extends AppUser {
     private String city;
     private String postalCode;
     private String country;
-    //    @OneToOne
-//    private AppUser appUser;
+        @OneToOne
+    private AppUser appUser;
 //    @ManyToMany
 //    private Collection<Doctor> doctors;
     @OneToMany(mappedBy = "client")
@@ -30,6 +30,9 @@ public class Client extends AppUser {
     private Collection<Toy> toys;
 
     public Client() {
+    }
+    public Client(Integer Id) {
+        this.setId(Id);
     }
 
     public Client(String username, String password, String firstName, String lastName, Role role, String email, String phone) {

@@ -48,6 +48,19 @@ public class Appointment {
         this.date = date;
         this.time = hoursToDate(time);
     }
+    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor) {
+        this.date = date;
+        this.time = hoursToDate(time);
+        this.client = client;
+        this.doctor = doctor;
+    }
+//    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
+//        this.date = date;
+//        this.time = hoursToDate(time);
+//        this.client = client;
+//        this.doctor = doctor;
+//        this.toy = toy;
+//    }
 
 
     public static Date hoursToDate(int hours) {
