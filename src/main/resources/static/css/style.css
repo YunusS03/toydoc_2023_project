@@ -67,3 +67,72 @@ body{
 footer{
     background-color: #d5daec;
 }
+
+/*Donation CSS*/
+.donate-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.donate-text{
+    align-items: center;
+    color:antiquewhite ;
+}
+.form{
+    background-color: white;
+}
+.radio {
+    background: black;
+    padding: 4px;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 3px rgba(98, 79, 222, 0.3),
+    0 0 0 3px rgba(64, 84, 196, 0.3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+.radio input {
+    width: 50%;
+    height: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 4px 8px;
+    background: white;
+    color: black;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    transition: all 100ms linear;
+
+}
+
+.radio input:checked {
+    background-image: linear-gradient(180deg, #7D86AD, #7D86AD);
+    color: #fff;
+    box-shadow: 0 1px 1px #0000002e;
+    text-shadow: 0 1px 0px #79485f7a;
+}
+
+.radio input:before {
+    content: attr(label);
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.btn-donate{
+    background-color: #7D86AD;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
