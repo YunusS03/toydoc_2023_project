@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Hours</title>
+</head>
+<body>
+<h1>Available Hours for [[${dayOfWeek}]]</h1>
+<ul>
+    <li th:each="hour : ${availableHours}" th:text="${hour}"></li>
+</ul>
+<form method="post" th:action="@{/book}">
+    <label for="hour">Book Hour:</label>
+    <select name="hour" id="hour">
+        <option th:each="hour : ${availableHours}" th:value="${hour}" th:text="${hour}"></option>
+    </select>
+    <button type="submit">Book</button>
+</form>
+</body>
+</html>
