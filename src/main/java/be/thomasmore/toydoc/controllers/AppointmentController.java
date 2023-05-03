@@ -97,7 +97,10 @@ public class AppointmentController {
             logger.info("========= > CLIENT id is > "+client.getId() + " name: " +client.getFirstName());
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
         } else {
-            appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
+            AppUser client = new AppUser(firstName, lastName, email, phone);
+            appUserRepository.save(client);
+//            appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
+            appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
         }
         appointmentRepository.save(appointment);
 
