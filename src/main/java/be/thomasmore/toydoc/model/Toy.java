@@ -15,7 +15,7 @@ public class Toy {
     @OneToOne
     private Appointment appointment;
     @ManyToOne
-    private Client client;
+    private AppUser client;
 
 
     public Toy() {
@@ -53,11 +53,11 @@ public class Toy {
         this.appointment = appointment;
     }
 
-    public Client getClient() {
+    public AppUser getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(AppUser client) {
         this.client = client;
     }
 }

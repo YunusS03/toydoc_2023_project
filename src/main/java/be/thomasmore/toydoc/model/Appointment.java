@@ -33,21 +33,34 @@ public class Appointment {
 
 
     @ManyToOne
-    private Client client;
+    private AppUser doctor;
 
 
     @ManyToOne
-    private Doctor doctor;
+    private AppUser client;
 
 
 
     public Appointment() {
     }
 
-    public void createAppointmentNonUser(Date date, int time,String firstname,String lastname,String phone,String email,Doctor doctor) {
+    public void createAppointmentNonUser(Date date, int time,String firstname,String lastname,String phone,String email,AppUser doctor) {
         this.date = date;
         this.time = hoursToDate(time);
     }
+    public void createAppointmentUser(Date date, int time,AppUser client, AppUser doctor) {
+        this.date = date;
+        this.time = hoursToDate(time);
+        this.client = client;
+        this.doctor = doctor;
+    }
+//    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
+//        this.date = date;
+//        this.time = hoursToDate(time);
+//        this.client = client;
+//        this.doctor = doctor;
+//        this.toy = toy;
+//    }
 
 
     public static Date hoursToDate(int hours) {
@@ -97,19 +110,19 @@ public class Appointment {
         this.toy = toy;
     }
 
-    public Client getClient() {
+    public AppUser getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(AppUser client) {
         this.client = client;
     }
 
-    public Doctor getDoctor() {
+    public AppUser getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(AppUser doctor) {
         this.doctor = doctor;
     }
 }
