@@ -47,6 +47,7 @@ public class Appointment {
     public void createAppointmentNonUser(Date date, int time,String firstname,String lastname,String phone,String email,AppUser doctor) {
         this.date = date;
         this.time = hoursToDate(time);
+        this.doctor = doctor;
     }
     public void createAppointmentUser(Date date, int time,AppUser client, AppUser doctor) {
         this.date = date;
