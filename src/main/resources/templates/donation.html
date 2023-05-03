@@ -88,12 +88,12 @@
 
         <div class="mt-3">
           <label for="first-name">First Name</label>
-          <input id="first-name" type="text" name="firstName" class="form-control">
+          <input id="first-name" type="text" name="firstName" class="form-control" >
         </div>
 
         <div class="mt-3">
           <label for="last-name">Last Name</label>
-          <input id="last-name" type="text" name="lastName" class="form-control">
+          <input id="last-name" type="text" name="lastName" class="form-control" >
         </div>
 
         <div class="mt-3">
@@ -150,17 +150,24 @@
       </form>
     </div>
 
-    <div class="form col-5" th:if="${openSave}">
-      <form th:action="@{/donation/save}">
+    <div class="form col-5" th:if="${openSave}" th:object="${donation}">
+      <form th:action="@{/donation/save}" method="post">
         <div>
           <a th:href="@{/donation}"  class="btn btn-donate mt-4 btn-lg btn-block"><- Edit donation Information</a>
         </div>
         <h3 class="mt-3">Summary of Donation Information</h3>
-        <p th:text="${plan}"></p>
-        <p th:text="| &euro; ${amount}|"></p>
-        <p th:text="| ${firstName} ${lastName}| "></p>
-        <p th:text="${email}"></p>
-        <p th:text="${securityCardNumber}"></p>
+        <p th:text="${localPlan}"></p>
+        <p th:text="${localAmount}"></p>
+        <p th:text="| ${localFirstName} ${localLastName}|"></p>
+        <p th:text="${localEmail}"></p>
+        <p th:text="${localSecurityCardNumber}"></p>
+
+
+
+
+
+
+
         <div>
           <input  type="submit" value="Donate Now" class="btn btn-donate mt-4 btn-lg btn-block">
         </div>
