@@ -3,7 +3,7 @@ package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.*;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
-import be.thomasmore.toydoc.repositories.ClientRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -25,8 +25,8 @@ public class CalendarController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-    @Autowired
-    private ClientRepository clientRepository;
+//    @Autowired
+//    private ClientRepository clientRepository;
     @Autowired
     private AppUserRepository appUserRepository;
 
@@ -104,8 +104,8 @@ public class CalendarController {
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
         if (principal != null) {
-            AppUser appUser = appUserRepository.findByUsername(principal.getName());
-            Client client = clientRepository.findByAppUser(appUser);
+//            AppUser appUser = appUserRepository.findByUsername(principal.getName());
+            AppUser client = appUserRepository.findByRole(Role.CLIENT);
             model.addAttribute("client", client);
         }
         LocalDate selectedDate = LocalDate.parse(date);
