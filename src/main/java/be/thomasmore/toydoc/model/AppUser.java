@@ -38,6 +38,13 @@ public class AppUser {
 
     public AppUser(String firstName, String lastName, Role role) {
     }
+    public AppUser(String firstName,String lastName,String email,String phone){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhone(phone);
+        role=Role.CLIENT;
+    }
 
     public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
         setEmail(email);

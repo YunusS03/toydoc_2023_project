@@ -1,6 +1,6 @@
 -- Inserts for app_user
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality)
-VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 1, 'dummy1', '123 Main St', 30, 'New York', 'USA', 'john.doe@email.com', '555-123-4567', '10001', NULL);
+VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'dummy1', '123 Main St', 30, 'New York', 'USA', 'john.doe@email.com', '555-123-4567', '10001', NULL);
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality)
 VALUES ('Jane', 'Smith', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dummy2', '456 Second St', 40, 'Los Angeles', 'USA', 'jane.smith@email.com', '555-987-6543', '90001', 'Pediatrics');
