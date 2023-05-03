@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     private String title;
 
@@ -17,7 +18,7 @@ public class Post {
 
     private LocalDateTime createdAt;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
