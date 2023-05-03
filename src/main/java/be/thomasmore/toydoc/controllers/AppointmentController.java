@@ -91,8 +91,10 @@ public class AppointmentController {
 
         Appointment appointment = new Appointment();
         AppUser doc = appUserRepository.findByRole(Role.DOCTOR);
+        logger.info("========= > doctor id is > "+doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
-            AppUser client = appUserRepository.findByRole(Role.CLIENT);
+            AppUser client = appUserRepository.findByUsername(principal.getName());
+            logger.info("========= > CLIENT id is > "+client.getId() + " name: " +client.getFirstName());
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
         } else {
             appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
