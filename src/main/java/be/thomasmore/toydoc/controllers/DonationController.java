@@ -139,12 +139,12 @@ public class DonationController {
     }
 
     @GetMapping("donation/save")
-        public String donationSave(Model model){
+        public String donationSave(Model model,Principal principal){
         return "donation";
     }
 
     @PostMapping("donation/save")
-    public String newDonate(Model model, Donation donation) {
+    public String newDonate(Model model, Donation donation,Principal principal) {
         donation.setPlan(localPlan);
         donation.setAmount(localAmount);
 
@@ -170,6 +170,13 @@ public class DonationController {
         donation.setCvv(localCvv);
         donation.setCardNumber(localSecurityCardNumber);
         donationRepository.save(donation);
-        return "donation";
+        return "/thankyou";
+    }
+
+
+
+    @GetMapping("/thankyou")
+    public String thankyou(Model model,Principal principal){
+        return "thankyou";
     }
 }
