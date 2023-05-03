@@ -13,7 +13,7 @@ public class Donation {
 
     String plan;
     int amount;
-    String anonymous;
+    Boolean anonymous;
     String title;
     String firstName;
     String lastName;
@@ -52,11 +52,11 @@ public class Donation {
         this.amount = amount;
     }
 
-    public String getAnonymous() {
+    public Boolean getAnonymous() {
         return anonymous;
     }
 
-    public void setAnonymous(String anonymous) {
+    public void setAnonymous(Boolean anonymous) {
         this.anonymous = anonymous;
     }
 
