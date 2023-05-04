@@ -136,7 +136,7 @@ public class AppointmentController {
         return date;
     }
 
-
+//==================================EMAIL SENDER============================================
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -144,7 +144,7 @@ public class AppointmentController {
     public String sendEmail() {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(mailCurrent);
-        msg.setSubject("AFspraak test Yunus");
+        msg.setSubject("Appointment " + dateCurrent + " at " + hourCurrent);
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(firstNameCurrent).append(" ").append(lastnameCurrent).append(",\n\n")
                 .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
@@ -152,10 +152,11 @@ public class AppointmentController {
                 .append("+3200000000").append(".\n\n")
                 .append("We look forward to seeing you soon!\n\n")
                 .append("Best regards,\n")
-                .append("Your appointment team aka Yunus & Robin");
+                .append("Your ToyDoc appointment team aka Yunus & Robin");
         msg.setText(sb.toString());
         logger.info("MAIL SENT TO : " + mailCurrent);
         javaMailSender.send(msg);
         return "/home";
     }
+    //=============================EMAIL SENDER==============================================
 }
