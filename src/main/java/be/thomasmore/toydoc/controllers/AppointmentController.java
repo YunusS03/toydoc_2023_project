@@ -141,7 +141,11 @@ public class AppointmentController {
     private JavaMailSender javaMailSender;
 
     @GetMapping("/sendEmail")
-    public String sendEmail() {
+    public String sendEmail(Model model, Principal principal) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
+        model.addAttribute("loginName", loginName);
+
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(mailCurrent);
         msg.setSubject("Appointment " + dateCurrent + " at " + hourCurrent);
