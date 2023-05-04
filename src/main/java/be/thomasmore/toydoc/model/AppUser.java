@@ -23,6 +23,9 @@ public class AppUser {
     private String country;
     private String speciality;
     private Role role;
+
+    @Column(length=50000)
+    private String profileImage;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
     @OneToMany(mappedBy = "client")
@@ -190,5 +193,13 @@ public class AppUser {
 
     public void setToys(Collection<Toy> toys) {
         this.toys = toys;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }
