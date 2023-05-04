@@ -1,25 +1,28 @@
 package be.thomasmore.toydoc.controllers;
 
-import be.thomasmore.toydoc.resource.EmailMessage;
-import be.thomasmore.toydoc.service.EmailSenderService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/email")
+
+
+@RestController
 public class EmailController {
 
-    private final EmailSenderService emailSenderService;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
-    public EmailController(EmailSenderService emailSenderService) {
-        this.emailSenderService = emailSenderService;
-    }
+    @GetMapping("/sendEmail")
+    public String sendEmail() {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo("janssensrobin@live.be");
+        msg.setSubject("Success!");
+        msg.setText("Your controller was accessed successfully.");
 
-    @PostMapping("/send-email")
-    public ResponseEntity sendEmail(@RequestBody EmailMessage emailMessage) {
-        this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
-        return ResponseEntity.ok("Success");
+        javaMailSender.send(msg);
+
+        return "Email sent successfully!";
     }
 }

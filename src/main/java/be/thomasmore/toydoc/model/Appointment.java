@@ -1,8 +1,10 @@
 package be.thomasmore.toydoc.model;
 
+import be.thomasmore.toydoc.service.impl.EmailSenderServiceImpl;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Collection;
@@ -126,4 +128,28 @@ public class Appointment {
     public void setDoctor(AppUser doctor) {
         this.doctor = doctor;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
