@@ -25,45 +25,90 @@
 
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
-    <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
-    <p class="lead">U kunt hieronder een afspraak maken.</p>
-    <form th:action="@{/create-appointment}" method="post">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="firstName" class="form-label">Voornaam</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="lastName" class="form-label">Achternaam</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Achternaam" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="phone" class="form-label">Telefoonnummer</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefoonnummer" required>
-            </div>
-        </div>
-        <div class="col-md-6 offset-md-3">
-            <div class="card text-center mb-5">
-                <div class="card-body">
-                    <h4 class="card-title">Datum en tijd</h4>
-                    <p class="card-text lead mb-0" th:text="${date}" style="color: white; font-weight: bold;"></p>
-                    <p class="card-text lead mb-0" th:text="${#strings.concat(hour, ':00')}" style="color: white; font-weight: bold;"></p>
-                    <input type="hidden" name="date" th:value="${date}"/>
-                    <input type="hidden" name="hour" th:value="${hour}"/>
+
+
+
+
+<th:block th:if="${loginName == 'NOBODY'}">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
+        <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
+        <p class="lead">U kunt hieronder een afspraak maken.</p>
+        <form th:action="@{/create-appointment}" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName" class="form-label">Voornaam</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName" class="form-label">Achternaam</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Achternaam" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="phone" class="form-label">Telefoonnummer</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefoonnummer" required>
                 </div>
             </div>
+            <div class="col-md-6 offset-md-3">
+                <div class="card text-center mb-5">
+                    <div class="card-body">
+                        <h4 class="card-title">Datum en tijd</h4>
+                        <p class="card-text lead mb-0" th:text="${date}" style="color: white; font-weight: bold;"></p>
+                        <p class="card-text lead mb-0" th:text="${#strings.concat(hour, ':00')}" style="color: white; font-weight: bold;"></p>
+                        <input type="hidden" name="date" th:value="${date}"/>
+                        <input type="hidden" name="hour" th:value="${hour}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg mt-4">Maak afspraak</button>
+            </div>
+        </form>
+    </div>
+</th:block>
+
+<th:block th:if="${loginName != 'NOBODY'}">
+<div class="container mt-5">
+<form th:action="@{/create-appointment}" th:object="${client}" method="post">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">Voornaam</label>
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Voornaam" required>
         </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg mt-4">Maak afspraak</button>
+        <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Achternaam</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Achternaam" required>
         </div>
-    </form>
+        <div class="col-md-6 mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="phone" class="form-label">Telefoonnummer</label>
+            <input type="tel" class="form-control" id="phone" th:field="*{phone}" placeholder="Telefoonnummer" required>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3">
+        <div class="card text-center mb-5">
+            <div class="card-body">
+                <h4 class="card-title">Datum en tijd</h4>
+                <p class="card-text lead mb-0" th:text="${date}" style="color: white; font-weight: bold;"></p>
+                <p class="card-text lead mb-0" th:text="${#strings.concat(hour, ':00')}" style="color: white; font-weight: bold;"></p>
+                <input type="hidden" name="date" th:value="${date}"/>
+                <input type="hidden" name="hour" th:value="${hour}"/>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Maak afspraak</button>
+    </div>
+</form>
 </div>
+</th:block>
 
 
 
