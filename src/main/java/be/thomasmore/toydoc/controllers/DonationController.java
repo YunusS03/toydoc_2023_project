@@ -4,11 +4,13 @@ import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Donation;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.DonationRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -43,6 +45,7 @@ public class DonationController {
     private String localSecurityCardNumber;
 
     private Boolean isAnoniem = false;
+    private  Boolean inValidCard = false;
 
 
 
@@ -86,10 +89,14 @@ public class DonationController {
             AppUser appuser = appUserRepository.findByUsername(principal.getName());
             localFirstName = appuser.getFirstName();
             localLastName = appuser.getLastName();
+            localEmail = appuser.getEmail();
+            localPhoneNumber = appuser.getPhone();
         }
 
         model.addAttribute("localFirstName",localFirstName);
         model.addAttribute("localLastName",localLastName);
+        model.addAttribute("localEmail",localEmail);
+        model.addAttribute("localPhoneNumber",localPhoneNumber);
         return "donation";
     }
 
@@ -115,11 +122,18 @@ public class DonationController {
         localExpiry = expiry;
         localCvv = cvv;
 
-        String securityCardNumber = "*******" + cardNumber.substring(12,15) ;
-        localSecurityCardNumber = securityCardNumber;
+        if(cardNumber.length()==15 && expiry.length() == 5 && cvv.length()==3){
+            String securityCardNumber = "*******" + cardNumber.substring(12,15) ;
+            localSecurityCardNumber = securityCardNumber;
+        }else{
+            inValidCard = true;
+            System.out.println("hata");
+        }
+
 
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
+        model.addAttribute("invalidCard",inValidCard);
 
         model.addAttribute("openSave",true);
         model.addAttribute("localPlan",localPlan);
@@ -144,7 +158,7 @@ public class DonationController {
     }
 
     @PostMapping("donation/save")
-    public String newDonate(Model model, Donation donation,Principal principal) {
+    public String newDonate(Model model, @Valid Donation donation, Principal principal, BindingResult bindingResult) {
         donation.setPlan(localPlan);
         donation.setAmount(localAmount);
 
@@ -165,10 +179,16 @@ public class DonationController {
         }
 
 
+
+
         donation.setCardHolder(localCardHolder);
         donation.setExpiry(localExpiry);
         donation.setCvv(localCvv);
         donation.setCardNumber(localSecurityCardNumber);
+
+        if (bindingResult.hasErrors()) {
+            return "donation";
+        }
         donationRepository.save(donation);
         return "/thankyou";
     }

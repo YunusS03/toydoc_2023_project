@@ -41,7 +41,7 @@
     </div>
     <!--  Form 1-->
     <div class="form col-5" th:if="${planForm}">
-      <form th:action="@{/donation/plan}">
+      <form th:action="@{/donation/plan}" >
         <h3 class="mt-3">How would you like to donate?</h3>
 
         <div class="radio mt-4">
@@ -56,28 +56,25 @@
         </div>
 
         <div class="number mt-4">
-          <label for="other-amount" >Choose your own amount(&euro;)</label><br>
+          <label for="other-amount" class="form-label " >Choose your own amount(&euro;)</label><br>
           <input id="other-amount" class="form-control" name="ownAmount" type="number" placeholder="Choose your own amount">
         </div>
 
         <div class="mt-3 form-check">
           <input class="form-check-input" type="checkbox" value="true" name="anonymous" id="anonymousCheck">
-          <label class="form-check-label" for="defaultCheck1">Donate with anonymous
-          </label>
+          <label for="anonymousCheck">Donate with anonymous</label>
         </div>
-
-
         <div>
           <input type="submit"  value="Donate"  class="btn btn-donate mt-4 btn-lg btn-block">
         </div>
       </form>
     </div>
 
-    <div class="form col-5" th:if="${openContactInfo}">
+    <div class="form col-5" th:if="${openContactInfo}" >
       <h3 class="mt-3">Personal Info</h3>
-      <form th:action="@{/donation/info}">
+      <form th:action="@{/donation/info}" class="needs-validation"  novalidate >
         <div class="mt-3">
-          <label for="select-title">Title</label>
+          <label for="select-title" class="form-label">Title</label>
           <select id="select-title" class="form-control">
             <option selected>-Select-</option>
             <option value="miss" >-Miss-</option>
@@ -87,30 +84,48 @@
         </div>
 
         <div class="mt-3">
-          <label for="first-name">First Name</label>
-          <input id="first-name" type="text" name="firstName" class="form-control" th:value="${localFirstName}">
+          <label for="first-name" class="form-label">First Name</label>
+          <input id="first-name" type="text" name="firstName" class="form-control " th:value="${localFirstName}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+
         </div>
 
         <div class="mt-3">
-          <label for="last-name">Last Name</label>
-          <input id="last-name" type="text" name="lastName" class="form-control" th:value="${localLastName}" >
+          <label for="last-name" class="form-label">Last Name</label>
+          <input id="last-name" type="text" name="lastName" class="form-control " th:value="${localLastName}" required >
+          <div class="valid-feedback">
+            Looks good!
+          </div>
         </div>
 
         <div class="mt-3">
-          <label for="mail">Email</label>
-          <input id="mail" type="email" name="email" class="form-control" >
+          <label for="mail" class="form-label">Email</label>
+          <input id="mail" type="email" name="email" class="form-control  " th:value="${localEmail}" required>
+          <div class="invalid-feedback">
+            Please provide a valid username.
+          </div>
+
         </div>
 
         <div class="mt-3">
-          <label for="phone">Phone Number</label>
-          <input id="phone" type="text" class="form-control" name="phoneNumber" placeholder="+32 999-999-999">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input id="phone" type="text" class="form-control " name="phoneNumber" placeholder="+32 999-999-999" th:value="${localPhoneNumber}">
+
+          <div class="invalid-feedback">
+            Please provide a valid phone number.
+          </div>
         </div>
 
         <div class="mt-3 form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
+          <input class="form-check-input " type="checkbox" value="" id="invalidCheck2" required>
+          <label class="form-check-label" for="invalidCheck2" >
             By submitting this form, you acknowledge you are aware that your personal data will be used in line with our Privacy Policy. You have the right to withdraw your consent at any time by contacting us.
           </label>
+          <div class="invalid-feedback">
+            You must agree before submitting.
+          </div>
         </div>
 
         <div>
@@ -122,51 +137,76 @@
 
     <div class="form col-5" th:if="${openCheckout}">
       <h3 class="mt-3">Card Details</h3>
-      <form th:action="@{/donation/checkout}">
+      <form th:action="@{/donation/checkout}" class="needs-validation" novalidate >
         <div class="mt-3">
-          <label for="card-holder">Card Holder</label>
-          <input id="card-holder" type="text" class="form-control" name="cardHolder"  placeholder="Barry Alleen">
+          <label for="card-holder" class="form-label">Card Holder</label>
+          <input id="card-holder" type="text" class="form-control" name="cardHolder"  placeholder="Barry Alleen" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
         </div>
 
         <div class="mt-3">
-          <label for="card-number">Card Number</label>
-          <input id="card-number" type="text" class="form-control" name="cardNumber" placeholder="1234 56789 435678">
+          <label for="card-number" class="form-label">Card Number</label>
+          <input id="card-number" type="text" class="form-control" name="cardNumber" placeholder="1234 56789 435678" required>
+          <p><small>It must contain 12 digits</small></p>
+          <div class="invalid-feedback">
+            Please provide a valid card number.It must contain 15 digits .
+          </div>
         </div>
 
         <div class="d-flex">
           <div class="mt-3">
-            <label for="expiry">Expiry</label>
-            <input id="expiry" type="text" class="form-control" name="expiry" placeholder="Expiry">
+            <label for="expiry" class="form-label">Expiry</label>
+            <input id="expiry" type="text" class="form-control" name="expiry" placeholder="MM/YY" required>
+
+            <div class="valid-feedback">
+              Looks good!
+            </div>
           </div>
+
           <div class="mt-3">
-            <label for="cvv">CVV</label>
-            <input id="cvv" type="password" class="form-control" name="cvv" placeholder="***">
+            <label for="cvv" class="form-label">CVV</label>
+            <input id="cvv" type="password" class="form-control " name="cvv" placeholder="***" required>
+            <p><small>It must contain 3 digits</small></p>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
           </div>
         </div>
 
         <div>
           <input  type="submit" value="Donate" class="btn btn-donate mt-4 btn-lg btn-block">
         </div>
+
+
       </form>
+
+
     </div>
 
     <div class="form col-5" th:if="${openSave}" th:object="${donation}">
       <form th:action="@{/donation/save}" method="post">
-        <div>
-          <a th:href="@{/donation}"  class="btn btn-donate mt-4 btn-lg btn-block"><- Edit donation Information</a>
+
+        <div th:if="${invalidCard}" class="mt-3">
+          <p>There is no credit/debit card like this. Please make sure that you write correct card details</p>
+          <div>
+            <a th:href="@{/donation}"  class="btn btn-donate mt-4 btn-lg btn-block"><- Edit donation Information</a>
+          </div>
         </div>
-        <h3 class="mt-3">Summary of Donation Information</h3>
-        <p th:text="${localPlan}"></p>
-        <p th:text="${localAmount}"></p>
-        <p th:text="${!isAnoniem} ? ${localFirstName + '' +  localLastName}  : 'Anoniem' "></p>
 
-
-
-        <p th:text="${localEmail}"></p>
-        <p th:text="${localSecurityCardNumber}"></p>
-        <div>
-          <input  type="submit" value="Donate Now" class="btn btn-donate mt-4 btn-lg btn-block">
+        <div th:unless="${invalidCard}">
+          <h3 class="mt-3">Summary of Donation Information</h3>
+          <p th:text="${localPlan}"></p>
+          <p th:text="${localAmount}"></p>
+          <p th:text="${!isAnoniem} ? ${localFirstName + '' +  localLastName}  : 'Anoniem' "></p>
+          <p th:text="${!isAnoniem} ? ${localEmail}  : 'Anoniem' "></p>
+          <p th:text="${localSecurityCardNumber}"></p>
+          <div>
+            <input  type="submit" value="Donate Now" class="btn btn-donate mt-4 btn-lg btn-block">
+          </div>
         </div>
+
       </form>
     </div>
 
@@ -175,6 +215,29 @@
 
 
 <div th:replace="~{fragments/footer :: footer}"></div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+  })()
+</script>
 
 </body>
 </html>
