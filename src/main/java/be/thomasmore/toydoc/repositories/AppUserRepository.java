@@ -24,6 +24,6 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     @Query("SELECT u FROM AppUser u WHERE u.role = :role ORDER BY u.id ASC")
     List<AppUser> findByRoleList(@Param("role") Role role);
 
-
-
+    @Query("SELECT u FROM AppUser u WHERE u.role = :role AND u.username = :username")
+    AppUser findByRoleAndUsername(@Param("role") Role role, @Param("username") String username);
 }

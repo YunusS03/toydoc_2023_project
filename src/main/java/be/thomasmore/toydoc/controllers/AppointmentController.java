@@ -90,7 +90,8 @@ public class AppointmentController {
         model.addAttribute("loginName", loginName);
 
         Appointment appointment = new Appointment();
-        AppUser doc = appUserRepository.findByRole(Role.DOCTOR);
+        //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
+        AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
         logger.info("========= > doctor id is > "+doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
             AppUser client = appUserRepository.findByUsername(principal.getName());
