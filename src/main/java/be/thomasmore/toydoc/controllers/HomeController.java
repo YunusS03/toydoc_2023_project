@@ -54,13 +54,6 @@ public class HomeController {
         // Laad de "home" pagina
         return "repair";
     }
-    @GetMapping({"/post"})
-    public String post(Model model){
-        List<Post> posts = postService.getAll();
-        model.addAttribute("posts", posts);
-        return "post";
-    }
-
 
 
 }
