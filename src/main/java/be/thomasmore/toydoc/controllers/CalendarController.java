@@ -105,9 +105,8 @@ public class CalendarController {
         model.addAttribute("loginName", loginName);
 
         if (principal != null) {
-//            AppUser appUser = appUserRepository.findByUsername(principal.getName());
-            AppUser client = appUserRepository.findByRole(Role.CLIENT);
-            model.addAttribute("client", client);
+            AppUser appUser = appUserRepository.findByUsername(principal.getName());
+            model.addAttribute("client", appUser);
         }
         LocalDate selectedDate = LocalDate.parse(date);
         CalendarService calendarService = new CalendarService();

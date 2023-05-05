@@ -55,40 +55,6 @@ public class AppointmentController {
         return "appointment";
     }
 
-
-    //    @PostMapping("/create-appointment")
-//    public String createAppointment(Model model, Principal principal,
-//                                    @RequestParam("firstName") String firstName,
-//                                    @RequestParam("lastName") String lastName,
-//                                    @RequestParam("email") String email,
-//                                    @RequestParam("phone") String phone,
-//                                    @RequestParam("date") String date,
-//                                    @RequestParam("hour") int hour) throws ParseException {
-//        final String loginName = principal == null ? "NOBODY" : principal.getName();
-//        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-//        model.addAttribute("loginName", loginName);
-////        Doctor doc = new Doctor();  //momenteel nog geen selectie doctor dus ik genereer een lege doctor voor test doeleinden;
-////        doctorRepository.save(doc);
-////        Optional<AppUser> optionaldoc = appUserRepository.findByRole(Role.DOCTOR);
-////        if (optionaldoc.isPresent()) {
-////            optionaldoc.get().getId();
-////        }
-////        Doctor doc = doctorRepository.findById(1).get();
-//        Appointment appointment = new Appointment();
-////        appointment.setDoctor(doc);
-//        if (principal != null) {
-//            AppUser appUser = appUserRepository.findByUsername(principal.getName());
-////            Client client = new Client(appUser.getId());
-////            appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
-////            System.out.println("APPOINTMENT = " + client.getFirstName());
-//        } else appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
-//        //appointment.createAppointmentNonUser(stringToDate(date),hour,firstName,lastName,phone,email,doc);
-//        appointmentRepository.save(appointment);
-//
-//        return "redirect:/test1";
-//    }
-
-
     @PostMapping("/create-appointment")
     public String createAppointment(Model model, Principal principal,
                                     @RequestParam("firstName") String firstName,
