@@ -52,32 +52,27 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="text-center mb-4">Credentials</h2>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>role</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>dummy1</td>
-                            <td>test</td>
-                            <td>doctor</td>
-                        </tr>
-                        <tr>
-                            <td>dummy2</td>
-                            <td>test</td>
-                            <td>client</td>
-                        </tr>
-                        <tr>
-                            <td>dummy3</td>
-                            <td>test</td>
-                            <td>client</td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    <div style="height: 300px; overflow-y: scroll;">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Password</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user : ${APPUSERS}">
+                                <td th:text="${user.username}"></td>
+                                <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>
+                                <td>test</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
                     <p class="text-center mt-3">Note: These are dummy credentials, provided for testing purposes only.</p>
                 </div>
             </div>

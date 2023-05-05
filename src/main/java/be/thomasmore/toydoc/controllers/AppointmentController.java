@@ -7,11 +7,14 @@ import be.thomasmore.toydoc.repositories.AppointmentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -21,6 +24,13 @@ import java.util.Optional;
 
 @Controller
 public class AppointmentController {
+
+
+    String mailCurrent;
+    String dateCurrent;
+    String firstNameCurrent;
+    String lastnameCurrent;
+    int hourCurrent;
 
 
     private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
@@ -77,6 +87,8 @@ public class AppointmentController {
 //
 //        return "redirect:/test1";
 //    }
+
+
     @PostMapping("/create-appointment")
     public String createAppointment(Model model, Principal principal,
                                     @RequestParam("firstName") String firstName,
@@ -97,15 +109,26 @@ public class AppointmentController {
             AppUser client = appUserRepository.findByUsername(principal.getName());
             logger.info("========= > CLIENT id is > "+client.getId() + " name: " +client.getFirstName());
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
+            mailCurrent = client.getEmail();
+            dateCurrent = date;
+            hourCurrent = hour;
+            firstNameCurrent = client.getFirstName();
+            lastnameCurrent = client.getLastName();
+
+
         } else {
             AppUser client = new AppUser(firstName, lastName, email, phone);
             appUserRepository.save(client);
 //            appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
+            mailCurrent = client.getEmail();
+            dateCurrent = date;
+            hourCurrent = hour;
+            firstNameCurrent = firstName;
+            lastnameCurrent = lastName;
         }
         appointmentRepository.save(appointment);
-
-        return "redirect:/test1";
+        return "redirect:/sendEmail";
     }
 
 
@@ -117,5 +140,31 @@ public class AppointmentController {
         return date;
     }
 
+//==================================EMAIL SENDER============================================
+    @Autowired
+    private JavaMailSender javaMailSender;
 
+    @GetMapping("/sendEmail")
+    public String sendEmail(Model model, Principal principal) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
+        model.addAttribute("loginName", loginName);
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(mailCurrent);
+        msg.setSubject("Appointment " + dateCurrent + " at " + hourCurrent);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(firstNameCurrent).append(" ").append(lastnameCurrent).append(",\n\n")
+                .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
+                .append(dateCurrent).append(" at ").append(hourCurrent).append(":00. If you need to reschedule or cancel your appointment, please call us at ")
+                .append("+3200000000").append(".\n\n")
+                .append("We look forward to seeing you soon!\n\n")
+                .append("Best regards,\n")
+                .append("Your ToyDoc appointment team aka Yunus & Robin");
+        msg.setText(sb.toString());
+        logger.info("MAIL SENT TO : " + mailCurrent);
+        javaMailSender.send(msg);
+        return "/home";
+    }
+    //=============================EMAIL SENDER==============================================
 }

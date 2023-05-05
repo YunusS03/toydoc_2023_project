@@ -103,6 +103,7 @@ public class CalendarController {
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
+
         if (principal != null) {
 //            AppUser appUser = appUserRepository.findByUsername(principal.getName());
             AppUser client = appUserRepository.findByRole(Role.CLIENT);
