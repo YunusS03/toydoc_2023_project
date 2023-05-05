@@ -28,10 +28,17 @@ public class UserController {
     @GetMapping("/login")
     public String login(Principal principal, Model model) {
 
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+
+
+        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
         List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
         AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
-
         model.addAttribute("APPUSERS",userArray);
+        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
+
+
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
@@ -41,6 +48,9 @@ public class UserController {
     // Uitloggen van gebruiker
     @GetMapping("/logout")
     public String logout(Principal principal, Model model) {
+
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
         // Als er geen gebruiker ingelogd is, ga dan naar home pagina
         if (principal == null) return "redirect:/home";
         // Toon home pagina
