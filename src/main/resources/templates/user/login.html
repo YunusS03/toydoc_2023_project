@@ -58,12 +58,14 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Username</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Password</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="user : ${APPUSERS}">
                                 <td th:text="${user.username}"></td>
+                                <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>
                                 <td>test</td>
                             </tr>
                             </tbody>
