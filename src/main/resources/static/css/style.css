@@ -1,3 +1,49 @@
+/*//============ACHTERGROND SPEELGOED//============//============*/
+body {
+    overflow-x: hidden;
+}
+
+
+.toy {
+    /*position: absolute;*/
+    opacity: 0.5;
+    display: block;
+    width: 200px;
+    height: 200px;
+    /*background-size: contain;*/
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1; /* Set z-index lower than other elements */
+
+
+    position: fixed;
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5px, 30px);
+
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/*//============*//*//============*//*//============*/
+
+
+
+
+
+
 *{
     margin: 0;
     padding: 0;

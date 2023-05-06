@@ -13,6 +13,9 @@
 
 
 <body>
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+
 <div class="container text-center">
     <h1>Oops!</h1>
     <p class="lead">We're sorry, something went wrong.</p>
@@ -21,7 +24,7 @@
     <a href="/home" class="btn btn-primary">Go back to homepage</a>
 </div>
 
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
 
