@@ -3,6 +3,7 @@ package be.thomasmore.toydoc.model;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 //@MappedSuperclass

@@ -2,27 +2,32 @@ package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Post {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String title;
 
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    private LocalDateTime createdAt;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull
+    private Date date;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,11 +47,11 @@ public class Post {
         this.body = body;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

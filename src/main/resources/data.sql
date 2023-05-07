@@ -107,3 +107,9 @@ VALUES
     ('2023-04-29', '11:00:00', 1, 2, 1),
     ('2023-04-29', '12:00:00', 1, 2, 1),
     ('2023-04-29', '13:00:00', 1, 2, 1);
+
+INSERT INTO post  (id, body, date, title )
+VALUES (1,'people chlodu lof me less','2023-04-28', 'I cant handle peifnksdgfb');
+
+INSERT INTO post (id, body, date, title )
+VALUES (2,'life is like a aclipo','2023-05-28', 'dhdsdsfsauifhfgh');
