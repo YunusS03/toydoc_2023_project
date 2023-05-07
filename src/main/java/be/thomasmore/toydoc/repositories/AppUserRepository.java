@@ -33,4 +33,12 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
     @Query("SELECT u FROM AppUser u WHERE u.role = :role AND u.username = :username")
     AppUser findByRoleAndUsername(@Param("role") Role role, @Param("username") String username);
+
+    Optional<AppUser> findFirstByIdLessThanOrderByIdDesc(Integer id);
+
+    Optional<AppUser> findFirstByIdGreaterThanOrderById(Integer id);
+
+    Optional<AppUser> findFirstByOrderByIdDesc();
+
+    Optional<AppUser> findFirstByOrderByIdAsc();
 }
