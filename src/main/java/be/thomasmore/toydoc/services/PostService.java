@@ -14,11 +14,8 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public Optional<Post> getById(Long id){
+    public Optional<Post> getById(Integer id){
         return postRepository.findById(id);
-    }
-    public List<Post> getAll(){
-        return postRepository.findAll();
     }
     public Post save (Post post){
         return postRepository.save(post);

@@ -32,6 +32,8 @@ public class AppUser {
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
 
+    @OneToMany
+    List<Post> post;
 
     // Constructors
     public AppUser() {

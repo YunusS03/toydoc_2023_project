@@ -23,6 +23,7 @@ public class Post {
     @NotNull
     private Date date;
 
+
     public Integer getId() {
         return id;
     }

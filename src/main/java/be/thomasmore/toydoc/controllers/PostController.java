@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.Post;
+import be.thomasmore.toydoc.repositories.PostRepository;
 import be.thomasmore.toydoc.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,25 +17,20 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private PostRepository postRepository;
 
-    @GetMapping({"/post-home"})
-    public String post(Model model){
-        List<Post> posts = postService.getAll();
+    @GetMapping("/post-home")
+    public String postList(Model model) {
+        Iterable<Post>  posts = postRepository.findAll();
         model.addAttribute("posts", posts);
         return "post-home";
     }
 
-    @GetMapping("/posts/{id}")
-    public String getPost(@PathVariable Long id, Model model){
-        //find post by id
-        Optional<Post> optionalPost = postService.getById(id);
-        //if the post exists, then shove it into the model
-        if(optionalPost.isPresent()){
-            Post post = optionalPost.get();
-            model.addAttribute("post", post);
-            return "post";
-        }else{
-            return "error";
-        }
+    @GetMapping("/post/{id}")
+    public String postDetails(Model model, @PathVariable(required = false) Integer id) {
+        if (id==null) return "post";
+        Optional<Post> optionalArtist = postRepository.findById(id);
+        return "post";
     }
 }

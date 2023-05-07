@@ -26,7 +26,7 @@
     <h1>Blog</h1>
 <div class="container">
     <div class="post" th:each="post : ${posts}">
-        <h2> <a th:href="@{'/posts/' + ${post.id}}"
+        <h2> <a th:href="@{'/post/' + ${post.id}}"
                 th:text="${post.title}">Title</a>
         </h2>
         <h5 th:text="'Published on' + ${post.date}"> Created At</h5>
