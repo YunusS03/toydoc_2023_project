@@ -44,32 +44,33 @@
                 <img th:src="${doctor.getProfileImage()}" class="img-fluid rounded-start" alt="" style="height: 300px;">
             </div>
             <div class="col-md-8">
-                <div class="card-body">
-                    <p class="card-text" th:text="|First Name: ${doctor.getFirstName()}|"></p>
-                    <p class="card-text" th:text="|Last Name:${doctor.getLastName()}|" ></p>
-                    <p class="card-text" th:text="|Age:${doctor.getAge()}|"> </p>
-                    <p class="card-text" th:text="|Speciality: ${doctor.getSpeciality()}|"></p>
+                <div class="card-body text-left ">
+                    <p class="card-text doctor-info-label">First Name: <span class="doctor-info" th:text="|${doctor.getFirstName()}|"> </span></p>
+                    <p class="card-text doctor-info-label">Last Name:  <span class="doctor-info" th:text="|${doctor.getLastName()}|" ></span></p>
+                    <p class="card-text doctor-info-label">Age: <span class="doctor-info" th:text="|${doctor.getAge()}|"> </span></p>
+                    <p class="card-text doctor-info-label">Speciality: <span class="doctor-info" th:text="|${doctor.getSpeciality()}|"></span></p>
+                    <a class="text-decoration-none" th:href="@{/test1}"><button type="button" class="btn btn-primary d-block mx-auto">Make a reservation</button></a>
+
                 </div>
             </div>
         </div>
     </div>
 
-<!--    <div class="card mb-3 p-1" id="contact"  >-->
-<!--        <div class="row g-0">-->
-<!--            <div class="col-md-4">-->
-<!--                <img th:src="${doctor.getProfileImage()}" class="img-fluid rounded-start" alt="" style="height: 300px;">-->
-<!--            </div>-->
-<!--            <div class="col-md-8">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text" th:text="|Email: ${doctor.getEmail()}|"></p>-->
-<!--                    <p class="card-text" th:text="|Phone Number:${doctor.getPhone()}|" ></p>-->
-<!--                    <p class="card-text" th:text="|Address: ${doctor.getAddress()} / ${doctor.getPostalCode()} ${doctor.getCity()} / ${doctor.getCountry()}|"> </p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-    <p class="card mb-3 p-1" id="contact"  >
-        </p>
+    <div class="card mb-3 p-1 d-none" id="contact"  >
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img th:src="${doctor.getProfileImage()}" class="img-fluid rounded-start" alt="" style="height: 300px;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text doctor-info-label"> Email:  <a class="doctor-info"  th:href="${doctor.getEmail()}"  th:text="|${doctor.getEmail()}|"></a>    </p>
+                    <p class="card-text doctor-info-label">Phone Number: <span class="doctor-info" th:text="|${doctor.getPhone()}|" ></span></p>
+                    <p class="card-text doctor-info-label"> Address: <span class="doctor-info" th:text="|${doctor.getAddress()}  ${doctor.getPostalCode()} ${doctor.getCity()} / ${doctor.getCountry()}|"> </span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 </div>
@@ -78,23 +79,19 @@
 
 <script>
 
-
-   function showInfo(){
-       const info = document.getElementById("info");
-       info.style.display = "block"
-   }
-</script>
-
-<script>
-    function showContact(){
-    const contact = document.getElementById("document");
     const info = document.getElementById("info");
+    const contact = document.querySelector("#contact");
+   function showInfo(){
+       info.style.display = "block";
+       contact.classList.replace("d-block","d-none");
+   }
 
-    info.style.display = "none";
-    console.log("jeeet");
-    contact.innerHTML = "heeeey";
 
-}
+
+    function showContact(){
+       info.style.display = "none";
+    contact.classList.replace("d-none","d-block");
+    }
     </script>
 
 
