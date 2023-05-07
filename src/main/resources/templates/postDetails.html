@@ -24,12 +24,11 @@
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-<div class="container">
-    <div class="post">
-        <h2 th:text="${post.title}">Title</h2>
-        <h5 th:text="'Published on' + ${post.createdAt}"> Created At</h5>
+    <div th:if="${post}" >
+        <h1 th:text="${post.title}">Title</h1><br>
+        <h5 th:text="'Published on' + ${post.date}"> date of post</h5>
         <p th:text="${post.body}"> body text</p>
     </div>
-</div>
+
 </body>
 </html>

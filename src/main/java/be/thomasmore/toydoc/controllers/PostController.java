@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,10 +26,13 @@ public class PostController {
         return "post-home";
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/postDetails/{id}")
     public String postDetails(Model model, @PathVariable(required = false) Integer id) {
-        if (id==null) return "post";
-        Optional<Post> optionalArtist = postRepository.findById(id);
-        return "post";
+        if (id==null) return "postDetails";
+        Optional<Post> optionalPost = postRepository.findById(id);
+        if (optionalPost.isPresent()) {
+            model.addAttribute("post", optionalPost.get());
+        }
+        return "postDetails";
     }
 }
