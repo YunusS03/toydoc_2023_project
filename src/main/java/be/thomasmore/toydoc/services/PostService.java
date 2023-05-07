@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.services;
 
+import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Post;
 import be.thomasmore.toydoc.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;

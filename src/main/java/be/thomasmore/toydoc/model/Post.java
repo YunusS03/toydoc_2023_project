@@ -23,6 +23,10 @@ public class Post {
     @NotNull
     private Date date;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private AppUser appUser;
 
     public Integer getId() {
         return id;
@@ -54,5 +58,13 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

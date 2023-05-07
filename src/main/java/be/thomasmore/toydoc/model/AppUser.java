@@ -32,7 +32,7 @@ public class AppUser {
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
 
-    @OneToMany
+    @OneToMany(mappedBy = "appUser")
     List<Post> post;
 
     // Constructors
