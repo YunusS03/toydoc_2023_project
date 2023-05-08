@@ -12,4 +12,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 //    Optional<Appointment> findFirstByOrderByIdDesc();
 //    Optional<Appointment> findFirstByOrderByIdAsc();
     List<Appointment> findAllBy();
+    Appointment findBySecretKey(String secretKey);
 }

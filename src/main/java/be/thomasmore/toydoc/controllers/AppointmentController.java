@@ -12,10 +12,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -24,6 +21,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/appointment")
 public class AppointmentController {
 
     private final EmailService emailService;
@@ -35,11 +33,12 @@ public class AppointmentController {
     }
 
 
-    String mailCurrent;
-    String dateCurrent;
-    String firstNameCurrent;
-    String lastnameCurrent;
-    int hourCurrent;
+    private String mailCurrent;
+    private String dateCurrent;
+    private String firstNameCurrent;
+    private String lastnameCurrent;
+    private String secretKey;
+    private int hourCurrent;
 
 
     private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
@@ -53,7 +52,7 @@ public class AppointmentController {
 //    private DoctorRepository doctorRepository;
 
 
-    @GetMapping("/appointment")
+    @GetMapping("/")
     public String appointment(Model model, Principal principal) {
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         logger.info(loginName);
@@ -72,6 +71,8 @@ public class AppointmentController {
                                     @RequestParam("phone") String phone,
                                     @RequestParam("date") String date,
                                     @RequestParam("hour") int hour) throws ParseException {
+
+
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
@@ -89,6 +90,7 @@ public class AppointmentController {
             hourCurrent = hour;
             firstNameCurrent = client.getFirstName();
             lastnameCurrent = client.getLastName();
+            secretKey = appointment.getSecretKey();
 
 
         } else {
@@ -101,14 +103,36 @@ public class AppointmentController {
             hourCurrent = hour;
             firstNameCurrent = firstName;
             lastnameCurrent = lastName;
+            secretKey = appointment.getSecretKey();
         }
         appointmentRepository.save(appointment);
         System.out.println("SECRET KEY  ::   " + appointment.getSecretKey());
 
 
-        emailService.sendAppointmentConfirmation(mailCurrent, dateCurrent, hourCurrent, firstNameCurrent, lastnameCurrent);
+        emailService.sendAppointmentConfirmation(mailCurrent, dateCurrent, hourCurrent, firstNameCurrent, lastnameCurrent, secretKey);
 
         return "redirect:/home";
+    }
+
+
+    @GetMapping("/email/{secretKey}")
+    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+        // Check if the secretKey exists and is valid
+        System.out.println("SECRET KEY I GOT : " + secretKey);
+        if (isValidSecretKey(secretKey)) {
+            Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
+            model.addAttribute("appointment", appointment);
+            return "manage_appointment"; // Return the appropriate view
+        } else {
+            return "home";
+        }
+    }
+
+
+    private boolean isValidSecretKey(String secretKey) {
+        Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
+        logger.info("SECRET KEY BESTAAT");
+        return appointment != null;
     }
 
 

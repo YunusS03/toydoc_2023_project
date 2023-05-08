@@ -34,7 +34,7 @@
         <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
         <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
         <p class="lead">U kunt hieronder een afspraak maken.</p>
-        <form th:action="@{/create-appointment}" method="post">
+        <form th:action="@{/appointment/create-appointment}" method="post">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="firstName" class="form-label">Voornaam</label>
@@ -73,7 +73,7 @@
 
 <th:block th:if="${loginName != 'NOBODY'}">
 <div class="container mt-5">
-<form th:action="@{/create-appointment}" th:object="${client}" method="post">
+<form th:action="@{/appointment/create-appointment}" th:object="${client}" method="post">
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="firstName" class="form-label">Voornaam</label>

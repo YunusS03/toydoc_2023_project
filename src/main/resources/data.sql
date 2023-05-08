@@ -107,3 +107,8 @@ VALUES
     ('2023-04-29', '11:00:00', 1, 2, 1),
     ('2023-04-29', '12:00:00', 1, 2, 1),
     ('2023-04-29', '13:00:00', 1, 2, 1);
+
+
+
+INSERT INTO appointment (secret_key , date, time, client_id, doctor_id, toy_id)
+VALUES( 'testkey','2023-04-29', '13:00:00', 3, 2, 1)

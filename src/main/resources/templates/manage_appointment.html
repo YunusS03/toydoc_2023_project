@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--    Bootstrap CSS Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!--    Bootstrap JS Link-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--    CSS Link-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <!--    Google Fonts Link of Navbar-Brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <!--Font Awesome Link    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Manage appointment</title>
+    <!-- Bootstrap CSS -->
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+
+
+
+<div class="container">
+    <h1 class="my-4">Appointment Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Appointment Information</h5>
+            <p class="card-text">Date: <span th:text="${appointment.date}"></span></p>
+            <p class="card-text">Time: <span th:text="${appointment.time}"></span></p>
+            <p class="card-text">Client: <span th:text="${appointment.client.firstName}"></span> <span th:text="${appointment.client.lastName}"></span></p>
+            <p class="card-text">Doctor: <span th:text="${appointment.doctor.firstName}"></span> <span th:text="${appointment.doctor.lastName}"></span></p>
+
+            <a class="btn btn-danger mt-3" href="#" role="button">Cancel Appointment</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<!-- Bootstrap JS -->
+
+
+
+<script th:src="@{/webjars/bootstrap/5.4.1/js/bootstrap.bundle.min.js}"></script>
+<script src="/JS/toys.js"></script>
+</body>
+</html>

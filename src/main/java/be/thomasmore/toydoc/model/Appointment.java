@@ -13,7 +13,7 @@ public class Appointment {
     @Id
     private Integer id;
 
-    private String SecretKey;
+    private String secretKey;
 
 
     @Temporal(TemporalType.DATE)
@@ -54,7 +54,7 @@ public class Appointment {
         this.time = hoursToDate(time);
         this.client = client;
         this.doctor = doctor;
-        this.SecretKey = generateSecretKey();
+        this.secretKey = generateSecretKey();
     }
 //    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
 //        this.date = date;
@@ -129,7 +129,7 @@ public class Appointment {
     }
 
     public String getSecretKey() {
-        return SecretKey;
+        return secretKey;
     }
 
     public static String generateSecretKey() {
