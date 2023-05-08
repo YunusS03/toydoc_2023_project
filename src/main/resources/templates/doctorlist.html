@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
   <!--Font Awesome Link    -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>ToyDoc</title>
+  <title>Doctors</title>
 
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
@@ -45,10 +45,10 @@
 
       <div class="mt-3">
         <label for="select-speciality" class="form-label">Speciality</label>
-        <select id="select-speciality" class="custom-select form-control">
-          <option selected>-Select-</option>
+        <select id="select-speciality" class="custom-select form-control" th:name="speciality">
+          <option selected th:text="${speciality}" ></option>
           <option value="Cuddly toys" >Cuddly toys</option>
-          <option value="cars">Cars</option>
+          <option value="Cars">Cars</option>
           <option value="Action Figures">Action Figures</option>
           <option value="Wooden toy">Wooden toy</option>
           <option value="Board games">Board games</option>
@@ -66,7 +66,7 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="card col-xl-3 col-md-6 col-sm-12 m-3 p-0" th:each=" doctor: ${doctors}" >
+    <div class="card col-xl-3 col-lg-5 col-sm-12 m-xl-3 m-lg-1 mb-sm-2 p-0" th:each=" doctor: ${doctors}" >
       <div class="card-body">
         <a th:href="@{'/doctordetail/' + ${doctor.getId()}}" class="text-decoration-none" >
           <img class="card-img-top" th:src="${doctor.getProfileImage()}"  alt="profile_image" style="height: 300px;">

@@ -41,28 +41,34 @@
     </div>
     <!--  Form 1-->
     <div class="form col-5" th:if="${planForm}">
-      <form th:action="@{/donation/plan}" >
+      <form th:action="@{/donation/plan}" class="needs-validation" name="myForm"  novalidate  onsubmit="requiredFunction()">
         <h3 class="mt-3">How would you like to donate?</h3>
 
         <div class="radio mt-4">
           <input label="Monthly" type="radio" id="monthly" name="plan" value="Monthly" th:checked="${plan}">
-          <input label="One-off" type="radio" id="yearly" name="plan" value="One-off">
+          <input label="One-off" type="radio" id="yearly" name="plan" value="One-off" >
         </div>
 
         <div class="radio mt-4">
-          <input label="25 &euro;" type="radio" id="25" name="amount" value="25" >
-          <input label="50 &euro;" type="radio" id="50" name="amount" value="50">
-          <input label="100 &euro;" type="radio" id="100" name="amount" value="100" th:checked="${amount}">
+          <input label="25 &euro;" type="radio" id="25" name="amount" value="25" class="amount">
+          <input label="50 &euro;" type="radio" id="50" name="amount" value="50" class="amount">
+          <input label="100 &euro;" type="radio" id="100" name="amount" value="100" th:checked="${amount}"   >
         </div>
+
+
 
         <div class="number mt-4">
           <label for="other-amount" class="form-label " >Choose your own amount(&euro;)</label><br>
-          <input id="other-amount" class="form-control" name="ownAmount" type="number" placeholder="Choose your own amount">
+          <input id="other-amount" class="form-control" name="ownAmount" type="number" placeholder="Choose your own amount" >
         </div>
 
         <div class="mt-3 form-check">
           <input class="form-check-input" type="checkbox" value="true" name="anonymous" id="anonymousCheck">
           <label for="anonymousCheck">Donate with anonymous</label>
+        </div>
+
+        <div id="amount-feedback" class="text-danger">
+
         </div>
         <div>
           <input type="submit"  value="Donate"  class="btn btn-donate mt-4 btn-lg btn-block">
@@ -103,7 +109,7 @@
         <div class="mt-3">
           <label for="mail" class="form-label">Email</label>
           <input id="mail" type="email" name="email" class="form-control  " th:value="${localEmail}" required>
-          <div class="invalid-feedback">
+          <div class="invalid-feedback" >
             Please provide a valid username.
           </div>
 
@@ -148,10 +154,10 @@
 
         <div class="mt-3">
           <label for="card-number" class="form-label">Card Number</label>
-          <input id="card-number" type="text" class="form-control" name="cardNumber" placeholder="1234 56789 435678" required>
-          <p><small>It must contain 12 digits</small></p>
+          <input id="card-number" type="text" class="form-control" name="cardNumber" placeholder="1234 5678 9435 1678" maxlength="16" required>
+          <p><small>It must contain 16 digits</small></p>
           <div class="invalid-feedback">
-            Please provide a valid card number.It must contain 15 digits .
+            Please provide a valid card number.It must contain 16 digits .
           </div>
         </div>
 
@@ -167,7 +173,7 @@
 
           <div class="mt-3">
             <label for="cvv" class="form-label">CVV</label>
-            <input id="cvv" type="password" class="form-control " name="cvv" placeholder="***" required>
+            <input id="cvv" type="password" class="form-control " name="cvv" placeholder="***" maxlength="3" required>
             <p><small>It must contain 3 digits</small></p>
             <div class="valid-feedback">
               Looks good!
@@ -239,5 +245,20 @@
   })()
 </script>
 <script src="/JS/toys.js"></script>
+
+<script>
+  function requiredFunction(){
+    let x = document.getElementById("other-amount").value;
+    let z = document.getElementById("100").value;
+    let y = document.getElementById("100");
+    if((x == "")){
+      y.setAttribute('required','');
+      document.getElementById("amount-feedback").innerHTML = 'Please choose a amount or enter your own amount';
+    }else{
+      y.removeAttribute('required','');
+    }
+  }
+</script>
+
 </body>
 </html>

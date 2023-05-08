@@ -12,7 +12,7 @@ INSERT INTO app_user (first_name, last_name, password, role, username, address, 
 VALUES ('Alice', 'Lee', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'alee', '789 Third Ave', 45, 'Amsterdam', 'Nederland', 'alice.lee@email.com', '555-234-5678', '1012', 'Cars', 'https://www.shape.com/thmb/q-mU0BCcgv9JhCkETuSILva8yfg=/1500x0/filters:no_upscale():max_bytes(200000):strip_icc()/black-female-doctor-6d6a6c2ec3ae48ceaeeae61f78b7038e.jpg');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,profile_image)
-VALUES ('Michael', 'Chen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'mchen', '456 Fourth St', 35, 'Antwerp', 'Belgium', 'michael.chen@email.com', '555-345-6789', '2000', 'Wooden toy ','https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg');
+VALUES ('Michael', 'Chen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'mchen', '456 Fourth St', 35, 'Antwerp', 'Belgium', 'michael.chen@email.com', '555-345-6789', '2000', 'Wooden toy','https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,profile_image)
 VALUES ('Sarah', 'Wong', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'swong', '567 Fifth Ave', 50, 'Rotterdam', 'Nederland', 'sarah.wong@email.com', '555-456-7890', '3012', 'Cuddly toys','https://img.freepik.com/free-photo/content-young-female-doctor-posing-camera_1262-18213.jpg');
@@ -21,7 +21,7 @@ INSERT INTO app_user (first_name, last_name, password, role, username, address, 
 VALUES ('David', 'Kim', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dkim', '234 First St', 28, 'Brussels', 'Belgium', 'david.kim@email.com', '555-567-8901', '1000', 'Action Figures', 'https://media.istockphoto.com/id/1346124900/photo/confident-successful-mature-doctor-at-hospital.jpg?b=1&s=170667a&w=0&k=20&c=vUq0J-LgD4FPEV1Ua_0NeQBcJ2xb8EjGe5fdcR1K2x0=');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,profile_image)
-VALUES ('Daniel', 'Nguyen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dnguyen', '678 Sixth St', 42, 'Amsterdam', 'Nederland', 'daniel.nguyen@email.com', '555-678-9012', '1012', 'Wooden toy ','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvYZGAy-gS7jCxv9lhYs7ciMD94Z4nfo_6HEeILCh62IrGUOmBTNa5UXxpZZ8d1WZCmBo&usqp=CAU');
+VALUES ('Daniel', 'Nguyen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dnguyen', '678 Sixth St', 42, 'Amsterdam', 'Nederland', 'daniel.nguyen@email.com', '555-678-9012', '1012', 'Wooden Toy','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvYZGAy-gS7jCxv9lhYs7ciMD94Z4nfo_6HEeILCh62IrGUOmBTNa5UXxpZZ8d1WZCmBo&usqp=CAU');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,profile_image)
 VALUES ('Jennifer', 'Liu', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'jliu', '789 Seventh Ave', 33, 'Brussels', 'Belgium', 'jennifer.liu@email.com', '555-789-0123', '1000', 'Cars','https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip');

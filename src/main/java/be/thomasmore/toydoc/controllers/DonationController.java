@@ -122,7 +122,7 @@ public class DonationController {
         localExpiry = expiry;
         localCvv = cvv;
 
-        if(cardNumber.length()==15 && expiry.length() == 5 && cvv.length()==3){
+        if(cardNumber.length()==16 && expiry.length() == 5 && cvv.length()==3){
             String securityCardNumber = "*******" + cardNumber.substring(12,15) ;
             localSecurityCardNumber = securityCardNumber;
         }else{

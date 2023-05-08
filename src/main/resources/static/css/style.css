@@ -229,3 +229,12 @@ footer{
     margin-right: auto;
     width: 100%;
 }
+
+.doctor-info{
+    color: #412A55;
+    font-size: 24px;
+}
+.doctor-info-label{
+    color: black;
+    font-size: 22px;
+}
