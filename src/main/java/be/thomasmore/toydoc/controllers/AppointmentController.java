@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -150,7 +151,7 @@ public class AppointmentController {
 
 
     @GetMapping("/confirm/{appointmentId}")
-    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId) {
+    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId, RedirectAttributes redirectAttributes) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
 
         if (optionalAppointment.isPresent()) {
@@ -161,8 +162,12 @@ public class AppointmentController {
             System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
         }
 
-        return "redirect:/appointment/{appointmentId}";
+        redirectAttributes.addAttribute("secretKey", optionalAppointment.get().getSecretKey());
+        return "redirect:/appointment/email/{secretKey}";
     }
+
+
+
 
 
 
