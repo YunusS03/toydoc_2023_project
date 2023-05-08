@@ -39,7 +39,9 @@
             <p class="card-text">Client: <span th:text="${appointment.client.firstName}"></span> <span th:text="${appointment.client.lastName}"></span></p>
             <p class="card-text">Doctor: <span th:text="${appointment.doctor.firstName}"></span> <span th:text="${appointment.doctor.lastName}"></span></p>
 
-            <a class="btn btn-danger mt-3" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}" role="button">Cancel Appointment</a>
+            <a class="btn btn-danger mt-3" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}"
+               role="button" onclick="return confirm('Are you sure you want to cancel this appointment?');">Cancel Appointment</a>
+
             <a class="btn btn-primary mt-3" th:if="${not appointment.confirmed}" th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}" role="button">Confirm Appointment</a>
             <span th:if="${appointment != null}">
                     <span th:if="${appointment.confirmed}" class="text-success">Confirmed</span>

@@ -151,9 +151,14 @@ public class AppointmentController {
 
 
     @GetMapping("/confirm/{appointmentId}")
-    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId, RedirectAttributes redirectAttributes) {
-        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model, Principal principal,RedirectAttributes redirectAttributes) {
 
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+
+
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
         if (optionalAppointment.isPresent()) {
             Appointment appointment = optionalAppointment.get();
             appointment.setConfirmed(true);
@@ -167,6 +172,18 @@ public class AppointmentController {
     }
 
 
+    @GetMapping("/cancel/{appointmentId}")
+    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Principal principal, Model model) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        AppUser appUser = optionalAppointment.get().getClient();
+        appointmentRepository.deleteById(appointmentId);
+        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+        //mailcurrent is fout hier!! als de email is veranderd wordt deze nergens opgeslagen dus word de oude mail gebruikt voor de cancelbericht
+        //voor nu test purposes is dit OK maar de moment dat 2 achter elkaar doen zullen er foute mails naar foute maileinden gestuurd worden
+        return "redirect:/home";
+    }
 
 
 

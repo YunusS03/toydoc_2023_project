@@ -43,14 +43,13 @@ public class EmailService {
 
 
 
-    public void sendAppointmentCancellation(String recipientEmail, String date, int hour, String firstName, String lastName) {
+    public void sendAppointmentCancellation(String recipientEmail, String firstName, String lastName) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
-        message.setSubject("Appointment Cancellation: " + date + " at " + hour);
+        message.setSubject("Appointment Cancelled");
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(firstName).append(" ").append(lastName).append(",\n\n")
-                .append("We regret to inform you that your appointment scheduled for ")
-                .append(date).append(" at ").append(hour).append(":00 has been cancelled. If you have any questions or need further assistance, please contact us at ")
+                .append("We regret to inform you that your appointment has been cancelled. If you have any questions or need further assistance, please contact us at ")
                 .append("+3200000000").append(".\n\n")
                 .append("We apologize for any inconvenience caused.\n\n")
                 .append("Best regards,\n")
@@ -58,6 +57,7 @@ public class EmailService {
         message.setText(sb.toString());
         mailSender.send(message);
     }
+
 
 
     public void sendAppointmentReminder(String recipientEmail, String date, int hour, String firstName, String lastName) {
