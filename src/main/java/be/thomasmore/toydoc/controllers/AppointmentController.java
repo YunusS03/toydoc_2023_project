@@ -117,6 +117,9 @@ public class AppointmentController {
 
     @GetMapping("/email/{secretKey}")
     public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+
         // Check if the secretKey exists and is valid
         System.out.println("SECRET KEY I GOT : " + secretKey);
         if (isValidSecretKey(secretKey)) {

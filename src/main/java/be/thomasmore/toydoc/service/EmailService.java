@@ -26,15 +26,13 @@ public class EmailService {
         message.setSubject("Appointment " + date + " at " + hour);
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(firstName).append(" ").append(lastName).append(",\n\n")
-                .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
-                .append(date).append(" at ").append(hour).append(":00. If you need to reschedule or cancel your appointment, please call us at ")
+                .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for")
+                .append(date).append(" at ").append(hour).append(":00. \n If you need to reschedule or cancel your appointment, please call us at ")
                 .append("+3200000000").append(".\n\n")
                 .append("Or click on the following link to manage your appointment:\n" + generateAppointmentUrl(secretKey) + "\n")
                 .append("We look forward to seeing you soon!\n\n")
                 .append("Best regards,\n")
                 .append("Your ToyDoc appointment team");
-
-
         message.setText(sb.toString());
         mailSender.send(message);
     }
