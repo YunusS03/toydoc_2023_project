@@ -4,6 +4,7 @@ import be.thomasmore.toydoc.model.*;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
 
+import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,14 @@ import java.util.Optional;
 
 @Controller
 public class AppointmentController {
+
+    private final EmailService emailService;
+
+    //constructor voor controller blijkbaar
+    @Autowired
+    public AppointmentController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
 
     String mailCurrent;
@@ -70,10 +79,10 @@ public class AppointmentController {
         Appointment appointment = new Appointment();
         //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
         AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
-        logger.info("========= > doctor id is > "+doc.getId() + " name: " + doc.getFirstName());
+        logger.info("========= > doctor id is > " + doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
             AppUser client = appUserRepository.findByUsername(principal.getName());
-            logger.info("========= > CLIENT id is > "+client.getId() + " name: " +client.getFirstName());
+            logger.info("========= > CLIENT id is > " + client.getId() + " name: " + client.getFirstName());
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
             mailCurrent = client.getEmail();
             dateCurrent = date;
@@ -94,7 +103,12 @@ public class AppointmentController {
             lastnameCurrent = lastName;
         }
         appointmentRepository.save(appointment);
-        return "redirect:/sendEmail";
+        System.out.println("SECRET KEY  ::   " + appointment.getSecretKey());
+
+
+        emailService.sendAppointmentConfirmation(mailCurrent, dateCurrent, hourCurrent, firstNameCurrent, lastnameCurrent);
+
+        return "redirect:/home";
     }
 
 
@@ -106,31 +120,5 @@ public class AppointmentController {
         return date;
     }
 
-//==================================EMAIL SENDER============================================
-    @Autowired
-    private JavaMailSender javaMailSender;
 
-    @GetMapping("/sendEmail")
-    public String sendEmail(Model model, Principal principal) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(mailCurrent);
-        msg.setSubject("Appointment " + dateCurrent + " at " + hourCurrent);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Dear ").append(firstNameCurrent).append(" ").append(lastnameCurrent).append(",\n\n")
-                .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
-                .append(dateCurrent).append(" at ").append(hourCurrent).append(":00. If you need to reschedule or cancel your appointment, please call us at ")
-                .append("+3200000000").append(".\n\n")
-                .append("We look forward to seeing you soon!\n\n")
-                .append("Best regards,\n")
-                .append("Your ToyDoc appointment team aka Yunus & Robin");
-        msg.setText(sb.toString());
-        logger.info("MAIL SENT TO : " + mailCurrent);
-        javaMailSender.send(msg);
-        return "/home";
-    }
-    //=============================EMAIL SENDER==============================================
 }

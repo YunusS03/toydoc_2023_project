@@ -1,21 +1,19 @@
 package be.thomasmore.toydoc.model;
 
-import be.thomasmore.toydoc.service.impl.EmailSenderServiceImpl;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.security.SecureRandom;
+import java.util.*;
 
 @Entity
 public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
+
+    private String SecretKey;
 
 
     @Temporal(TemporalType.DATE)
@@ -56,6 +54,7 @@ public class Appointment {
         this.time = hoursToDate(time);
         this.client = client;
         this.doctor = doctor;
+        this.SecretKey = generateSecretKey();
     }
 //    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
 //        this.date = date;
@@ -129,14 +128,20 @@ public class Appointment {
         this.doctor = doctor;
     }
 
+    public String getSecretKey() {
+        return SecretKey;
+    }
 
+    public static String generateSecretKey() {
+        // Generate random bytes
+        byte[] keyBytes = new byte[16];
+        new SecureRandom().nextBytes(keyBytes);
 
+        // Encode the bytes as a Base64 string
+        String secretKey = Base64.getUrlEncoder().withoutPadding().encodeToString(keyBytes);
 
-
-
-
-
-
+        return secretKey;
+    }
 
 
 
