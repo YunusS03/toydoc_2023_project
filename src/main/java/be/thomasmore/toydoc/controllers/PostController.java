@@ -46,13 +46,13 @@ public class PostController {
 
     @GetMapping("/posts/new")
     public String createNewPost(Model model) {
-        Optional<AppUser> optionalAppUser = appUserService.findByEmail("justine.dor@hotmail.be");
-        if (optionalAppUser.isPresent()) {
-            Post post = new Post();
-            post.setAppUser(optionalAppUser.get());
-            model.addAttribute("post", post);
-        }
+        model.addAttribute("post", new Post());
         return "post_new";
+    }
+    @PostMapping("/posts/new")
+    public String saveNewPost(@ModelAttribute Post post){
+        postService.save(post);
+        return "redirect:/posts/" + post.getId();
     }
 
 }

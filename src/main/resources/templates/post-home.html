@@ -24,6 +24,9 @@
 <body>
     <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
     <h1>Blog</h1>
+    <ul>
+        <li><a th:href="@{'/posts/new'}">New Post</a></li>
+    </ul>
 <div class="container">
     <div class="post" th:each="post : ${posts}">
         <h2> <a th:href="@{'/postDetails/' + ${post.id}}"
