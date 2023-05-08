@@ -4,6 +4,8 @@ import be.thomasmore.toydoc.model.Appointment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
@@ -13,4 +15,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 //    Optional<Appointment> findFirstByOrderByIdAsc();
     List<Appointment> findAllBy();
     Appointment findBySecretKey(String secretKey);
+    List<Appointment> findByDate(Date date);
 }
