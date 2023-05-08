@@ -82,14 +82,20 @@ public class AppointmentController {
         AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
         logger.info("========= > doctor id is > " + doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
+            //client bestaat
             AppUser client = appUserRepository.findByUsername(principal.getName());
-            logger.info("========= > CLIENT id is > " + client.getId() + " name: " + client.getFirstName());
+            //client gevonden
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
-            mailCurrent = client.getEmail();
+            //maak appointment op client
+            //
+            // Mogelijk probleem --> client wil andere gegevens invullen ookal is ze ingelogd. waar salgen we dit op??? appointment extra velden??
+            // of Toch new user maken??
+            //
+            mailCurrent = email;
             dateCurrent = date;
             hourCurrent = hour;
-            firstNameCurrent = client.getFirstName();
-            lastnameCurrent = client.getLastName();
+            firstNameCurrent =firstName;
+            lastnameCurrent = lastName;
             secretKey = appointment.getSecretKey();
 
 
@@ -106,9 +112,6 @@ public class AppointmentController {
             secretKey = appointment.getSecretKey();
         }
         appointmentRepository.save(appointment);
-        System.out.println("SECRET KEY  ::   " + appointment.getSecretKey());
-
-
         emailService.sendAppointmentConfirmation(mailCurrent, dateCurrent, hourCurrent, firstNameCurrent, lastnameCurrent, secretKey);
 
         return "redirect:/home";

@@ -40,21 +40,21 @@ public class Appointment {
     private AppUser client;
 
 
-
     public Appointment() {
     }
 
-    public void createAppointmentNonUser(Date date, int time,String firstname,String lastname,String phone,String email,AppUser doctor) {
+    public void createAppointmentNonUser(Date date, int time, String firstname, String lastname, String phone, String email, AppUser doctor) {
         this.date = date;
         this.time = hoursToDate(time);
         this.doctor = doctor;
     }
-    public void createAppointmentUser(Date date, int time,AppUser client, AppUser doctor) {
+
+    public void createAppointmentUser(Date date, int time, AppUser client, AppUser doctor) {
         this.date = date;
         this.time = hoursToDate(time);
         this.client = client;
         this.doctor = doctor;
-        this.secretKey = generateSecretKey();
+        generateSecretKey(client.getId().toString());
     }
 //    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
 //        this.date = date;
@@ -75,7 +75,7 @@ public class Appointment {
     }
 
 
-    public int getClientId(){
+    public int getClientId() {
         return client.getId();
     }
 
@@ -132,29 +132,23 @@ public class Appointment {
         return secretKey;
     }
 
-    public static String generateSecretKey() {
-        // Generate random bytes
+    private void generateSecretKey(String userId) {
+
+        // Genereer een array van 16 bytes voor de secretkey
         byte[] keyBytes = new byte[16];
         new SecureRandom().nextBytes(keyBytes);
 
-        // Encode the bytes as a Base64 string
-        String secretKey = Base64.getUrlEncoder().withoutPadding().encodeToString(keyBytes);
+        // Combineer de secretkey met de bytes van de gebruikers-ID
+        byte[] combinedBytes = new byte[keyBytes.length + userId.getBytes().length];
+        System.arraycopy(userId.getBytes(), 0, combinedBytes, 0, userId.getBytes().length);
+        System.arraycopy(keyBytes, 0, combinedBytes, userId.getBytes().length, keyBytes.length);
 
-        return secretKey;
+        // Encodeer de gecombineerde bytes naar een secretkey in Base64-formaat
+        String secretKey = Base64.getUrlEncoder().withoutPadding().encodeToString(combinedBytes);
+
+        // Wijs de secretkey toe aan het huidige object
+        this.secretKey = secretKey;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
