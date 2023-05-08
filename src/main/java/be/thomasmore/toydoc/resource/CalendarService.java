@@ -1,5 +1,7 @@
-package be.thomasmore.toydoc.model;
+package be.thomasmore.toydoc.resource;
 
+import be.thomasmore.toydoc.model.Day;
+import be.thomasmore.toydoc.model.TimeSlot;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

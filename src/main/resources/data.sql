@@ -110,5 +110,5 @@ VALUES
 
 
 
-INSERT INTO appointment (secret_key , date, time, client_id, doctor_id, toy_id)
-VALUES( 'testkey','2023-04-29', '13:00:00', 3, 2, 1)
+INSERT INTO appointment (confirmed ,secret_key , date, time, client_id, doctor_id, toy_id)
+VALUES(false, 'testkey','2023-04-29', '13:00:00', 3, 2, 1)

@@ -8,8 +8,6 @@ import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -71,8 +69,6 @@ public class AppointmentController {
                                     @RequestParam("phone") String phone,
                                     @RequestParam("date") String date,
                                     @RequestParam("hour") int hour) throws ParseException {
-
-
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
@@ -128,9 +124,11 @@ public class AppointmentController {
         if (isValidSecretKey(secretKey)) {
             Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
             model.addAttribute("appointment", appointment);
-            return "manage_appointment"; // Return the appropriate view
+            return "manage_appointment";
         } else {
-            return "home";
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
         }
     }
 
@@ -149,6 +147,26 @@ public class AppointmentController {
         System.out.println("GECONVERT NAAR = " + date);
         return date;
     }
+
+
+    @GetMapping("/confirm/{appointmentId}")
+    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId) {
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+        if (optionalAppointment.isPresent()) {
+            Appointment appointment = optionalAppointment.get();
+            appointment.setConfirmed(true);
+            appointmentRepository.save(appointment);
+
+            System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
+        }
+
+        return "redirect:/appointment/{appointmentId}";
+    }
+
+
+
+
 
 
 }
