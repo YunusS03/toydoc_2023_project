@@ -9,6 +9,7 @@
             crossorigin="anonymous"></script>
     <!--    CSS Link-->
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/login.css}" />
     <!--    Google Fonts Link of Navbar-Brand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,75 +18,161 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>login</title>
 
-    <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
-<body class="bg-light">
-<div class="container-fluid">
-    <div class="row justify-content-center align-items-center min-vh-100">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center mb-4">Login Page</h1>
-                    <div class="form-container sign-in-container">
-                        <form th:action="@{/user/login}" method="post">
-                            <h2 class="text-center mb-4">Sign in</h2>
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                            </div>
-                            <div th:if="${param.error}">
-                                <p class="error mb-3">Invalid username or password. Please try again.</p>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-primary" type="submit">Sign In</button>
-                            </div>
-                            <a href="#" class="mt-3">Forgot your password?</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mt-5 mt-md-0">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center mb-4">Credentials</h2>
-
-                    <div style="height: 300px; overflow-y: scroll;">
-                        <table class="table table-striped table-hover">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Password</th>
-                                <th scope="col">FirstName</th>
-                                <th scope="col">LastName</th>
-                                <th scope="col">Role</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="user : ${APPUSERS}">
-                                <td th:text="${user.id}"></td>
-                                <td th:text="${user.username}"></td>
-                                <td>test</td>
-                                <td th:text="${user.firstName}"></td>
-                                <td th:text="${user.lastName}"></td>
-                                <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
 
-                    <p class="text-center mt-3">Note: These are dummy credentials, provided for testing purposes only.</p>
-                </div>
-            </div>
-        </div>
+
+<!--<body class="bg-light">-->
+<!--    <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>-->
+<!--<div class="container-fluid">-->
+<!--    <div class="row justify-content-center align-items-center min-vh-100">-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h1 class="text-center mb-4">Login Page</h1>-->
+<!--                    <div class="form-container sign-in-container">-->
+<!--                        <form th:action="@{/user/login}" method="post">-->
+<!--                            <h2 class="text-center mb-4">Sign in</h2>-->
+<!--                            <div class="mb-3">-->
+<!--                                <label for="username" class="form-label">Username</label>-->
+<!--                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>-->
+<!--                            </div>-->
+<!--                            <div class="mb-3">-->
+<!--                                <label for="password" class="form-label">Password</label>-->
+<!--                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>-->
+<!--                            </div>-->
+<!--                            <div th:if="${param.error}">-->
+<!--                                <p class="error mb-3">Invalid username or password. Please try again.</p>-->
+<!--                            </div>-->
+<!--                            <div class="d-grid gap-2">-->
+<!--                                <button class="btn btn-primary" type="submit">Sign In</button>-->
+<!--                            </div>-->
+<!--                            <a href="#" class="mt-3">Forgot your password?</a>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 mt-5 mt-md-0">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h2 class="text-center mb-4">Credentials</h2>-->
+
+<!--                    <div style="height: 300px; overflow-y: scroll;">-->
+<!--                        <table class="table table-striped table-hover">-->
+<!--                            <thead class="thead-dark">-->
+<!--                            <tr>-->
+<!--                                <th scope="col">ID</th>-->
+<!--                                <th scope="col">Username</th>-->
+<!--                                <th scope="col">Password</th>-->
+<!--                                <th scope="col">FirstName</th>-->
+<!--                                <th scope="col">LastName</th>-->
+<!--                                <th scope="col">Role</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="user : ${APPUSERS}">-->
+<!--                                <td th:text="${user.id}"></td>-->
+<!--                                <td th:text="${user.username}"></td>-->
+<!--                                <td>test</td>-->
+<!--                                <td th:text="${user.firstName}"></td>-->
+<!--                                <td th:text="${user.lastName}"></td>-->
+<!--                                <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+
+
+<!--                    <p class="text-center mt-3">Note: These are dummy credentials, provided for testing purposes only.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+
+
+
+
+<body>
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+<section class="body2">
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+
+    <div class="signup">
+        <form th:action="@{/user/login}" method="post">
+
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <button class="buttonLogin" type="submit">Sign In</button>
+        </form>
+    </div>
+
+
+    <div class="login">
+        <form th:action="@{/user/signup-user}" method="post">
+
+
+            <label for="chk" aria-hidden="true">sign up</label>
+            <input type="text" class="form-control" name="username"  placeholder="username" required>
+            <input type="text" class="form-control" name="firstName"  placeholder="firstname" required>
+            <input type="text" class="form-control" name="lastName" placeholder="lastname" required>
+            <input type="email" class="form-control" name="email" placeholder="email" required>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <button class="buttonLogin" type="submit">Sign up</button>
+
+        </form>
     </div>
 
 </div>
+    <div class="col-md-6 mt-5 mt-md-0">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Credentials</h2>
+
+                <div style="height: 300px; overflow-y: scroll;">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${APPUSERS}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.username}"></td>
+                            <td>test</td>
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <p class="text-center mt-3">Note: These are dummy credentials, provided for testing purposes only.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
     <div th:replace="~{fragments/footer :: footer}"></div>
 
 

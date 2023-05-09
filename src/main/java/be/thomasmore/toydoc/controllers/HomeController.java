@@ -50,6 +50,14 @@ public class HomeController {
         return "repair";
     }
 
+    @GetMapping({"/about"})
+    public String about(Model model, Principal principal) {
+
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+        return "about";
+    }
+
 
 
 

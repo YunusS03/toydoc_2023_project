@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
 /*//============ACHTERGROND SPEELGOED//============//============*/
 body {
     overflow-x: hidden;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
 }
 
 
@@ -50,8 +55,8 @@ body {
 }
 
 body{
-    background-image: url(background.jpg);
-    background-size: cover;
+    /*background-image: url(background.jpg);*/
+    /*background-size: cover;*/
 }
 div {
     display: block;
@@ -62,21 +67,59 @@ div {
 .navbar{
     /*background-color: #8B74AB;*/
     /*background-color: #5179AB;*/
-    background-color: #7D86AD;
+    /*background-color: #7D86AD;*/
     padding: 15px;
+
 }
+
+
+/**{*/
+/*    outline: 1px dashed black*/
+/*}*/
+
+
 
 .navigation-list li,.navigation-list a,.navigation-list button{
     padding: 3px;
     margin: 5px;
 }
+
 .navbar-brand{
     color: #412A55;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Darumadrop One', sans-serif;
     font-size: 28px;
     letter-spacing: 3px;
     font-weight: bolder;
 }
+
+
+.navbar-brand {
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-brand::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0);
+    transition: transform 0.5s ease-in-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.navbar-brand:hover::before {
+    transform: scale(1);
+}
+
+
+
+
 
 .navigation-list li a,.navigation-list li button,.navigation-list li p{
     font-size: 19px;
@@ -90,9 +133,12 @@ div {
     background-color: #412A55;
 }
 .card{
-    background: #7D86AD;
-    border-color: #7D86AD;
+    background: #8489d3;
+    border-color: #6a84ff;
+    opacity: 0.8;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
+
 .card-body h2{
     padding-top: 20px;
     color: #412A55;
@@ -158,8 +204,9 @@ article {
     color: #412A55;
 }
 footer{
-    background-color: #d5daec;
+    background: linear-gradient(181deg, rgba(137,206,221,0) 0%, rgba(179,206,252,1) 45%);
 }
+
 
 /*Donation CSS*/
 .donate-img{

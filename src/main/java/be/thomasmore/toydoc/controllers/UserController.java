@@ -4,9 +4,11 @@ import be.thomasmore.toydoc.repositories.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -24,10 +26,8 @@ public class UserController {
     @Autowired
     AppUserRepository appUserRepository;
 
-    // Tonen van login pagina
     @GetMapping("/login")
-    public String login(Principal principal, Model model) {
-
+    public String register(Principal principal, Model model) {
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
 
@@ -36,14 +36,47 @@ public class UserController {
         List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
         AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
         model.addAttribute("APPUSERS",userArray);
+
+
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
-
-
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
+        model.addAttribute("user",new AppUser());
         return "user/login";
     }
+
+    @GetMapping("/signup")
+    public String loginReversed(Principal principal, Model model) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
+        List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
+        AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
+        model.addAttribute("APPUSERS",userArray);
+        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
+        // Als er al een gebruiker ingelogd is, ga dan naar home pagina
+        if (principal != null) return "redirect:/home";
+        // Toon de login pagina
+        model.addAttribute("user",new AppUser());
+        return "user/signup";
+    }
+
+
+
+    @PostMapping("/signup-user")
+    public String signUp(AppUser user,Principal principal,Model model) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+        appUserRepository.save(user);
+        return "/home";
+    }
+
+
+
+
 
     // Uitloggen van gebruiker
     @GetMapping("/logout")
