@@ -4,7 +4,7 @@ import be.thomasmore.toydoc.model.*;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
 
-import be.thomasmore.toydoc.resource.CalendarService;
+import be.thomasmore.toydoc.service.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

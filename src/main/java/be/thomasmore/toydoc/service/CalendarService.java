@@ -1,4 +1,4 @@
-package be.thomasmore.toydoc.resource;
+package be.thomasmore.toydoc.service;
 
 import be.thomasmore.toydoc.model.Day;
 import be.thomasmore.toydoc.model.TimeSlot;
