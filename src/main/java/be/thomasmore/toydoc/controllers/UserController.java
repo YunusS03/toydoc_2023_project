@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,9 +37,9 @@ public class UserController {
         List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
         AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
         model.addAttribute("APPUSERS",userArray);
-
-
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
+
+
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
@@ -50,11 +51,8 @@ public class UserController {
     public String loginReversed(Principal principal, Model model) {
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
-        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
-        List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
-        AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
-        model.addAttribute("APPUSERS",userArray);
-        //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
+
+
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
@@ -70,6 +68,7 @@ public class UserController {
         model.addAttribute("loginName",loginName);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setRole(Role.CLIENT);
         appUserRepository.save(user);
         return "/home";
     }
