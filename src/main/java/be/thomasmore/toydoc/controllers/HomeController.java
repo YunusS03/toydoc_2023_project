@@ -25,9 +25,14 @@ public class HomeController {
     public String home(Model model, Principal principal) {
         // Bepaal de naam van de ingelogde gebruiker
         final String loginName = principal==null ? "NOBODY" : principal.getName();
+//        final String firstName =  appUserRepository.findByUsername(loginName).getFirstName();
+//        final String lastName =  appUserRepository.findByUsername(loginName).getLastName();
 
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName",loginName);
+//        model.addAttribute("firstName",firstName);
+//        model.addAttribute("lastName",lastName);
+
 
         // Log de naam van de ingelogde gebruiker
         logger.info(loginName);

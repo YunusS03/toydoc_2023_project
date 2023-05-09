@@ -86,7 +86,7 @@ div {
 .navigation-list li a:hover{
     color: #412A55;
 }
-.navigation-list li button:hover{
+.login-btn:hover, .register-btn:hover{
     background-color: #412A55;
 }
 .card{
@@ -151,6 +151,18 @@ article {
     min-width: 100%;
     padding-top: 25px;
 }
+.dropdown-menu{
+    background-color: #7D86AD;
+}
+.dropdown-toggle,.my-profile,.logout-btn{
+    color: #DDE0EA;
+}
+.dropdown-toggle:hover, .my-profile:hover,.logout-btn:hover{
+    color: #412A55;
+
+}
+
+
 
 /*Footer CSS*/
 
