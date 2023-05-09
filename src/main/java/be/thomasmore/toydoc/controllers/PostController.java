@@ -8,11 +8,11 @@ import be.thomasmore.toydoc.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -50,9 +50,17 @@ public class PostController {
         return "post_new";
     }
     @PostMapping("/posts/new")
-    public String saveNewPost(@ModelAttribute Post post){
-        postService.save(post);
-        return "redirect:/posts/" + post.getId();
+    public String saveNewPost(Model model, Principal principal,
+                              @RequestParam("title") String title,
+                              @RequestParam("body") String body,
+                              @RequestParam("date") Date date,
+                              @RequestParam("appuser") AppUser appUser) throws ParseException {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
+        model.addAttribute("loginName", loginName);
+        Post post = new Post();
+        postRepository.save(post);
+        return "redirect:/sendEmail";
     }
 
 }
