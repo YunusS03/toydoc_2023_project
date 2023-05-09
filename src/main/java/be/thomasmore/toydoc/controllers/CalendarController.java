@@ -14,10 +14,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class CalendarController {
@@ -50,6 +47,7 @@ public class CalendarController {
         calendarService.setOccupiedOnCalender(date1, 9);
 
         model.addAttribute("calendar", calendar);
+
         return "test1";
     }
 

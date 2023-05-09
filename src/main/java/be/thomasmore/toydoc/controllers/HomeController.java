@@ -30,8 +30,7 @@ public class HomeController {
 
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName",loginName);
-//        model.addAttribute("firstName",firstName);
-//        model.addAttribute("lastName",lastName);
+       model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
 
 
         // Log de naam van de ingelogde gebruiker

@@ -67,7 +67,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|${loginName}|"></button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="my-profile text-decoration-none" href="#">My Profile</a>
+                                    <a class="my-profile text-decoration-none" th:href="@{'user/dashboard/' + ${id}}">My Profile</a>
                                     <form th:action="@{/user/logout}" method="post">
                                         <button  class="btn  logout-btn" type="submit">Logout</button></form>
                                 </div>
