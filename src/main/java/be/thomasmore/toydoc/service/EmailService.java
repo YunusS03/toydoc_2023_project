@@ -27,19 +27,22 @@ public class EmailService {
     public void sendAppointmentConfirmation(String recipientEmail, String date, int hour, String firstName, String lastName, String secretKey) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
-        message.setSubject("Appointment Confirmation" + date + " at " + hour);
+        message.setSubject("Appointment Confirmation for " + date + " at " + hour + ":00");
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(firstName).append(" ").append(lastName).append(",\n\n")
                 .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
                 .append(date).append(" at ").append(hour).append(":00. \n")
-                .append("To confirm your appointment, please click on the following link:\n")
+                .append("To confirm your appointment, please click on the following link within 24 hours:\n")
                 .append(generateAppointmentUrl(secretKey)).append("\n\n")
+                .append("Please note that your appointment will only be valid once confirmed within 24 hours.\n")
+                .append("If you fail to confirm within the specified time, your appointment may be canceled.\n\n")
                 .append("We look forward to seeing you soon!\n\n")
                 .append("Best regards,\n")
                 .append("Your ToyDoc appointment team");
         message.setText(sb.toString());
         mailSender.send(message);
     }
+
 
 
 
@@ -50,6 +53,22 @@ public class EmailService {
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(firstName).append(" ").append(lastName).append(",\n\n")
                 .append("We regret to inform you that your appointment has been cancelled. If you have any questions or need further assistance, please contact us at ")
+                .append("+3200000000").append(".\n\n")
+                .append("We apologize for any inconvenience caused.\n\n")
+                .append("Best regards,\n")
+                .append("Your ToyDoc appointment team");
+        message.setText(sb.toString());
+        mailSender.send(message);
+    }
+
+
+    public void sendAutoCanceledAppointmentNotification(String recipientEmail, String firstName, String lastName) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Appointment Cancelled");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(firstName).append(" ").append(lastName).append(",\n\n")
+                .append("We regret to inform you that your appointment has been cancelled as it was not confirmed within 24 hours. If you have any questions or need further assistance, please contact us at ")
                 .append("+3200000000").append(".\n\n")
                 .append("We apologize for any inconvenience caused.\n\n")
                 .append("Best regards,\n")

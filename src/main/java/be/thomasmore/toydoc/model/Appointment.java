@@ -15,6 +15,7 @@ public class Appointment {
 
     private String secretKey;
     private Boolean confirmed;
+    private Date creationTime;
 
 
     @Temporal(TemporalType.DATE)
@@ -44,12 +45,6 @@ public class Appointment {
     public Appointment() {
     }
 
-    public void createAppointmentNonUser(Date date, int time, String firstname, String lastname, String phone, String email, AppUser doctor) {
-        this.date = date;
-        this.time = hoursToDate(time);
-        this.doctor = doctor;
-        this.confirmed = false;
-    }
 
     public void createAppointmentUser(Date date, int time, AppUser client, AppUser doctor) {
         this.date = date;
@@ -58,6 +53,7 @@ public class Appointment {
         this.doctor = doctor;
         generateSecretKey(client.getId().toString());
         this.confirmed = false;
+        this.creationTime = new Date();
     }
 //    public void createAppointmentUser(Date date, int time,Client client,Doctor doctor,Toy toy) {
 //        this.date = date;
@@ -135,7 +131,9 @@ public class Appointment {
         return secretKey;
     }
 
-
+    public Date getCreationTime() {
+        return this.creationTime;
+    }
 
     public Boolean getConfirmed() {
         return confirmed;

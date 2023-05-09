@@ -16,4 +16,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     List<Appointment> findAllBy();
     Appointment findBySecretKey(String secretKey);
     List<Appointment> findByDate(Date date);
+
+    List<Appointment> findByConfirmedFalse();
 }

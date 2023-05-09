@@ -23,4 +23,10 @@ public class TestingController {
         appointmentReminder.sendAppointmentReminders();
         return "test/test_reminders"; // Return the appropriate view
     }
+
+    @GetMapping("/test-confirm")
+    public String testconfirm() {
+        appointmentReminder.checkUnconfirmedAppointments();
+        return "test/test_reminders"; // Return the appropriate view
+    }
 }
