@@ -285,3 +285,85 @@ footer{
     color: black;
     font-size: 22px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.calendar {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.table {
+    border: none;
+    border-collapse: separate;
+}
+
+.table thead th {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    border: none;
+    padding: 0;
+}
+
+.time-slot {
+    font-weight: bold;
+    color: #333;
+    padding: 8px;
+}
+
+.cell-wrapper {
+    position: relative;
+    padding: 8px;
+}
+
+.btn {
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.cell-available {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.cell-available:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.cell-occupied {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.btn:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
