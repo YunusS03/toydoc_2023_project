@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Collection;
 
@@ -24,12 +25,14 @@ public class AppUser {
     private String speciality;
     private Role role;
 
-    @Column(length=50000)
+    @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String profileImage;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
+
+
 
     // Constructors
     public AppUser() {

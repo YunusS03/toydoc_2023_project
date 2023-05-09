@@ -30,7 +30,10 @@ public class HomeController {
 
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName",loginName);
-       model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
+        if(loginName!="NOBODY"){
+            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+        }
 
 
         // Log de naam van de ingelogde gebruiker

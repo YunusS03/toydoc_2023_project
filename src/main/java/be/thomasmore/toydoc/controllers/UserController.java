@@ -64,6 +64,30 @@ public class UserController {
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
 
+        if(loginName!="NOBODY"){
+            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+        }
+
+        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+        if(optionalAppUser.isPresent()){
+            AppUser user =optionalAppUser.get();
+            model.addAttribute("user",user);
+        }
+
+        return "user/dashboard";
+    }
+
+    @GetMapping("/dashboard/{id}/profile")
+    public String dashboardProfile(Model model,Principal principal, @PathVariable(required = false)Integer id){
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+
+        if(loginName!="NOBODY"){
+            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+        }
+
         Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
         if(optionalAppUser.isPresent()){
             AppUser user =optionalAppUser.get();

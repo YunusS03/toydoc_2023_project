@@ -250,3 +250,17 @@ footer{
     color: black;
     font-size: 22px;
 }
+.sidebar{
+    background-color:white;
+}
+.sidebar{
+    background-color: #bec5e1;
+
+}
+.sidebar li a{
+    color: #412A55;
+}
+.profile-div{
+    background-color: #d5daec;
+    opacity: 0.7;
+}
