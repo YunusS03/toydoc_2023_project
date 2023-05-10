@@ -32,7 +32,7 @@
         <h2> <a th:href="@{'/postDetails/' + ${post.id}}"
                 th:text="${post.title}">Title</a>
         </h2>
-        <h5 th:text="'Published on' + ${post.date}"> Created At</h5>
+        <h5 th:text="'Published on ' + ${post.date}"> Created At</h5>
         <p th:text="${post.body}"> body text</p>
         <br />
     </div>

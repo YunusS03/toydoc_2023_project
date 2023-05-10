@@ -20,13 +20,20 @@ public class Post {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotNull
     private Date date;
 
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private AppUser appUser;
+
+    public Post(){
+
+    }
+
+    public Post(String title, String body, Date date) {
+        this.title = title;
+        this.body = body;
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;

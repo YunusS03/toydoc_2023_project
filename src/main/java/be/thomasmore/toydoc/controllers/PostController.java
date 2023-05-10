@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Post;
+import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.PostRepository;
 import be.thomasmore.toydoc.services.AppUserService;
 import be.thomasmore.toydoc.services.PostService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.ParseException;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
 
@@ -19,10 +21,7 @@ import java.util.Optional;
 public class PostController {
 
     @Autowired
-    private AppUserService appUserService;
-
-    @Autowired
-    private PostService postService;
+    private AppUserRepository appUserRepository;
     @Autowired
     private PostRepository postRepository;
 
@@ -45,22 +44,32 @@ public class PostController {
 
 
     @GetMapping("/posts/new")
-    public String createNewPost(Model model) {
-        model.addAttribute("post", new Post());
-        return "post_new";
-    }
-    @PostMapping("/posts/new")
-    public String saveNewPost(Model model, Principal principal,
-                              @RequestParam("title") String title,
-                              @RequestParam("body") String body,
-                              @RequestParam("date") Date date,
-                              @RequestParam("appuser") AppUser appUser) throws ParseException {
+    public String createNewPost(Model model, Principal principal) {
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
+
         Post post = new Post();
+        model.addAttribute("post", post);
+        return "post_new";
+    }
+
+    @PostMapping("/posts/postnew")
+    public String saveNewPost(Model model, Principal principal,
+                              @RequestParam(required = false) String title,
+                              @RequestParam(required = false) String body,
+                              @RequestParam(required = false) Date date){
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        // Voeg de naam van de ingelogde gebruiker toe aan het Model
+        model.addAttribute("loginName", loginName);
+        if (principal != null) {
+            AppUser appUser = appUserRepository.findByUsername(principal.getName());
+            model.addAttribute("client", appUser);
+        }
+
+        Post post = new Post(title, body, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
         postRepository.save(post);
-        return "redirect:/sendEmail";
+        return "redirect:/post-home";
     }
 
 }
