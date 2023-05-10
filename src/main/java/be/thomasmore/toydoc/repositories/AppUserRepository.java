@@ -44,5 +44,7 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByEmail(String email);
 
+    AppUser findByPasswordResetKey(String passwordResetKey);
+
 
 }

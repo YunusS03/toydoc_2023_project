@@ -2,6 +2,8 @@ package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
 
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Collection;
 
 @Entity
@@ -23,6 +25,8 @@ public class AppUser {
     private String country;
     private String speciality;
     private Role role;
+
+    private String passwordResetKey;
 
     @Column(length=50000)
     private String profileImage;
@@ -201,5 +205,27 @@ public class AppUser {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+
+    public void generateSecretPasswordResetKey(String userId) {
+        // Genereer een array van 16 bytes voor de secretkey
+        byte[] keyBytes = new byte[16];
+        new SecureRandom().nextBytes(keyBytes);
+
+        // Combineer de secretkey met de bytes van de gebruikers-ID
+        byte[] combinedBytes = new byte[keyBytes.length + userId.getBytes().length];
+        System.arraycopy(userId.getBytes(), 0, combinedBytes, 0, userId.getBytes().length);
+        System.arraycopy(keyBytes, 0, combinedBytes, userId.getBytes().length, keyBytes.length);
+
+        // Encodeer de gecombineerde bytes naar een secretkey in Base64-formaat
+        String secretKey = Base64.getUrlEncoder().withoutPadding().encodeToString(combinedBytes);
+
+        // Wijs de secretkey toe aan het huidige object
+        this.passwordResetKey = secretKey;
+    }
+
+    public String getPasswordResetKey() {
+        return passwordResetKey;
     }
 }

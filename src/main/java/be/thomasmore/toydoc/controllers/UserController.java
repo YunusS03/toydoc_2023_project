@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.security.Principal;
@@ -129,8 +127,11 @@ public class UserController {
         if (appUser != null){
             logger.info("=========FOUND===========");
             logger.info(appUser.getFirstName() + "  " + appUser.getLastName() + "  " + appUser.getPassword());
+            logger.info("Generating Secret One time Use PasswordResetKey");
+            appUser.generateSecretPasswordResetKey(appUser.getId().toString());
+            appUserRepository.save(appUser);
             logger.info("====================");
-            emailService.sendPasswordResetEmail(appUser.getEmail(),"THIS DOES NOT WORK AT THE MOMENT");
+            emailService.sendPasswordResetEmail(appUser.getEmail(),appUser.getPasswordResetKey());
         }
         else
         {
@@ -152,6 +153,26 @@ public class UserController {
         model.addAttribute("errorMessage", errorMessage);
 
         return "/user/forgotpassword";
+    }
+
+
+    @GetMapping("/password-reset/{secretKey}")
+    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+
+
+        if (appUserRepository.findByPasswordResetKey(secretKey) != null) {
+            AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
+            model.addAttribute("appuser", appuser);
+            String errorMessage = "PASSWORD RESET HTML MOET NOG AANGEMAAKT WORDEN SECRET KEY IS JUST";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error"; //wijzig nadien de passw reset html pagina is gemaakt
+        } else {
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
+        }
     }
 
 
