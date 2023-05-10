@@ -21,10 +21,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Upload file</title>
 <body>
-<form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+<form th:action="@{/uploadsubmit}" method="post" enctype="multipart/form-data">
   <div>
-    <label for="image" class="btn-primary">Image: </label>
-    <input type="file" id="image" class="" accept="image/*" name="image">
+    <label for="file" class="btn-primary">Image: </label>
+    <input type="file" id="file" class="" accept="image/*" name="file">
     <button type="submit" class="btn btn-primary">Upload</button>
   </div>
 </form>
