@@ -70,3 +70,10 @@ VALUES
 
 INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, client_id, doctor_id, toy_id)
 VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2, 1)
+
+INSERT INTO post (id, body, date, title)
+VALUES(10,'My 2-month hiatus is over!
+                However I recently became sick (not Covid) so it would have been hard to return full-blast.
+                To buy myself a little more time, I''m uploading this video that I made over a year ago but never published. Just a couple of tips that I''ve picked up over the years.
+                These are pretty minor tips, and some of these might be obvious to long-time hobbyists. But maybe not everybody knows them, so I thought, why not share?',
+                '2023-05-21', 'Little doll')
