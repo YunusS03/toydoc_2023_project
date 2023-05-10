@@ -50,32 +50,38 @@
         </div>
     </div>
 
-    <table class="table table-bordered table-striped bg-light">
-        <thead class="thead-dark">
-        <tr>
-            <th>Time</th>
-            <th th:each="day : ${calendar}" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tbody>
-        <tr th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}">
-            <td th:text="${timeSlot.hour} + ':00'"></td>
-            <td th:each="day : ${calendar}">
-                <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
-                    <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
-                    <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
-                    <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied()}"
-                            class="btn btn-primary cell-available" style="width: 100%;">Available
-                    </button>
-                    <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied()}"
-                          class="btn btn-secondary cell-occupied" style="width: 100%;">Occupied</span>
-                </form>
-            </td>
-        </tr>
-        </tbody>
 
-    </table>
+
+    <div class="calendar">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th th:each="day : ${calendar}" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}">
+                <td class="time-slot" th:text="${timeSlot.hour} + ':00'"
+                    th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></td>
+                <td th:each="day : ${calendar}">
+                    <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
+                        <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
+                        <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
+                        <div class="cell-wrapper">
+                            <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
+                                    class="btn cell-available">Book</button>
+                            <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
+                                  class="btn cell-occupied">Occupied</span>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
 </div>
 
 

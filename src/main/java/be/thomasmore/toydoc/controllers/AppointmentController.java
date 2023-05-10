@@ -4,17 +4,14 @@ import be.thomasmore.toydoc.model.*;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
 
+import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -23,14 +20,24 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/appointment")
 public class AppointmentController {
 
+    private final EmailService emailService;
 
-    String mailCurrent;
-    String dateCurrent;
-    String firstNameCurrent;
-    String lastnameCurrent;
-    int hourCurrent;
+    //constructor voor controller blijkbaar
+    @Autowired
+    public AppointmentController(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+
+    private String mailCurrent;
+    private String dateCurrent;
+    private String firstNameCurrent;
+    private String lastnameCurrent;
+    private String secretKey;
+    private int hourCurrent;
 
 
     private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
@@ -44,7 +51,7 @@ public class AppointmentController {
 //    private DoctorRepository doctorRepository;
 
 
-    @GetMapping("/appointment")
+    @GetMapping("/")
     public String appointment(Model model, Principal principal) {
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         logger.info(loginName);
@@ -70,16 +77,18 @@ public class AppointmentController {
         Appointment appointment = new Appointment();
         //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
         AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
-        logger.info("========= > doctor id is > "+doc.getId() + " name: " + doc.getFirstName());
+        logger.info("========= > doctor id is > " + doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
+            //client bestaat
             AppUser client = appUserRepository.findByUsername(principal.getName());
-            logger.info("========= > CLIENT id is > "+client.getId() + " name: " +client.getFirstName());
+            //client gevonden
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
             mailCurrent = client.getEmail();
             dateCurrent = date;
             hourCurrent = hour;
-            firstNameCurrent = client.getFirstName();
+            firstNameCurrent =client.getFirstName();
             lastnameCurrent = client.getLastName();
+            secretKey = appointment.getSecretKey();
 
 
         } else {
@@ -87,14 +96,43 @@ public class AppointmentController {
             appUserRepository.save(client);
 //            appointment.createAppointmentNonUser(stringToDate(date), hour, firstName, lastName, phone, email, doc);
             appointment.createAppointmentUser(stringToDate(date), hour, client, doc);
-            mailCurrent = client.getEmail();
+            mailCurrent = email;
             dateCurrent = date;
             hourCurrent = hour;
             firstNameCurrent = firstName;
             lastnameCurrent = lastName;
+            secretKey = appointment.getSecretKey();
         }
         appointmentRepository.save(appointment);
-        return "redirect:/sendEmail";
+        emailService.sendAppointmentConfirmation(mailCurrent, dateCurrent, hourCurrent, firstNameCurrent, lastnameCurrent, secretKey);
+
+        return "redirect:/home";
+    }
+
+
+    @GetMapping("/email/{secretKey}")
+    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+
+        // Check if the secretKey exists and is valid
+        System.out.println("SECRET KEY I GOT : " + secretKey);
+        if (isValidSecretKey(secretKey)) {
+            Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
+            model.addAttribute("appointment", appointment);
+            return "manage_appointment";
+        } else {
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
+        }
+    }
+
+
+    private boolean isValidSecretKey(String secretKey) {
+        Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
+        logger.info("SECRET KEY BESTAAT");
+        return appointment != null;
     }
 
 
@@ -106,31 +144,46 @@ public class AppointmentController {
         return date;
     }
 
-//==================================EMAIL SENDER============================================
-    @Autowired
-    private JavaMailSender javaMailSender;
 
-    @GetMapping("/sendEmail")
-    public String sendEmail(Model model, Principal principal) {
+    @GetMapping("/confirm/{appointmentId}")
+    public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model, Principal principal,RedirectAttributes redirectAttributes) {
+
         final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
 
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(mailCurrent);
-        msg.setSubject("Appointment " + dateCurrent + " at " + hourCurrent);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Dear ").append(firstNameCurrent).append(" ").append(lastnameCurrent).append(",\n\n")
-                .append("Thank you for scheduling an appointment with us. Your appointment is scheduled for ")
-                .append(dateCurrent).append(" at ").append(hourCurrent).append(":00. If you need to reschedule or cancel your appointment, please call us at ")
-                .append("+3200000000").append(".\n\n")
-                .append("We look forward to seeing you soon!\n\n")
-                .append("Best regards,\n")
-                .append("Your ToyDoc appointment team aka Yunus & Robin");
-        msg.setText(sb.toString());
-        logger.info("MAIL SENT TO : " + mailCurrent);
-        javaMailSender.send(msg);
-        return "/home";
+
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        if (optionalAppointment.isPresent()) {
+            Appointment appointment = optionalAppointment.get();
+            appointment.setConfirmed(true);
+            appointmentRepository.save(appointment);
+
+            System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
+        }
+
+        redirectAttributes.addAttribute("secretKey", optionalAppointment.get().getSecretKey());
+        return "redirect:/appointment/email/{secretKey}";
     }
-    //=============================EMAIL SENDER==============================================
+
+
+    @GetMapping("/cancel/{appointmentId}")
+    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Principal principal, Model model) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        AppUser appUser = optionalAppointment.get().getClient();
+        appointmentRepository.deleteById(appointmentId);
+        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+        //mailcurrent is fout hier!! als de email is veranderd wordt deze nergens opgeslagen dus word de oude mail gebruikt voor de cancelbericht
+        //voor nu test purposes is dit OK maar de moment dat 2 achter elkaar doen zullen er foute mails naar foute maileinden gestuurd worden
+        return "redirect:/home";
+    }
+
+
+
+
+
+
+
 }

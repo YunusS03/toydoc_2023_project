@@ -3,6 +3,8 @@ package be.thomasmore.toydoc.model;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Collection;
 
 @Entity
@@ -26,6 +28,9 @@ public class AppUser {
     private Role role;
 
     @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
+    private String passwordResetKey;
+
+    @Column(length=50000)
     private String profileImage;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
@@ -204,5 +209,27 @@ public class AppUser {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+
+    public void generateSecretPasswordResetKey(String userId) {
+        // Genereer een array van 16 bytes voor de secretkey
+        byte[] keyBytes = new byte[16];
+        new SecureRandom().nextBytes(keyBytes);
+
+        // Combineer de secretkey met de bytes van de gebruikers-ID
+        byte[] combinedBytes = new byte[keyBytes.length + userId.getBytes().length];
+        System.arraycopy(userId.getBytes(), 0, combinedBytes, 0, userId.getBytes().length);
+        System.arraycopy(keyBytes, 0, combinedBytes, userId.getBytes().length, keyBytes.length);
+
+        // Encodeer de gecombineerde bytes naar een secretkey in Base64-formaat
+        String secretKey = Base64.getUrlEncoder().withoutPadding().encodeToString(combinedBytes);
+
+        // Wijs de secretkey toe aan het huidige object
+        this.passwordResetKey = secretKey;
+    }
+
+    public String getPasswordResetKey() {
+        return passwordResetKey;
     }
 }
