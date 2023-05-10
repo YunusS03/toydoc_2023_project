@@ -4,15 +4,12 @@ import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Post;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.PostRepository;
-import be.thomasmore.toydoc.services.AppUserService;
-import be.thomasmore.toydoc.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.text.ParseException;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
