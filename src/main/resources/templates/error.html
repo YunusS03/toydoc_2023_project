@@ -19,6 +19,7 @@
 <div class="container text-center">
     <h1>Oops!</h1>
     <p class="lead">We're sorry, something went wrong.</p>
+    <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
     <p th:text="${error}"></p>
     <p th:text="${status}"></p>
     <a href="/home" class="btn btn-primary">Go back to homepage</a>

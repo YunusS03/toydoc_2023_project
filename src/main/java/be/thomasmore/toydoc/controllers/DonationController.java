@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class DonationController {
@@ -97,6 +98,8 @@ public class DonationController {
         model.addAttribute("localLastName",localLastName);
         model.addAttribute("localEmail",localEmail);
         model.addAttribute("localPhoneNumber",localPhoneNumber);
+
+
         return "donation";
     }
 

@@ -25,7 +25,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="/about">About Us</a>
                     </li>
 
                     <li class="nav-item">
@@ -52,31 +52,55 @@
                       <div th:if="${loginName == 'NOBODY'}" class="d-flex">
                           <li class="nav-item"  >
                               <form th:action="@{/user/login}" method="post">
-                                  <button  class="nav-link btn btn-outline-light" type="submit">Login</button>
+                                  <button  class="nav-link btn btn-outline-light login-btn" type="submit">Login</button>
                               </form>
                           </li>
                           <li class="nav-item ">
-                              <button type="button" class="nav-link btn btn-outline-light">Register</button>
+                              <button type="button" class="nav-link btn btn-outline-light register-btn">Register</button>
+                              <form th:action="@{/user/signup}" method="get">
+                              <button type="submit" class="nav-link btn btn-outline-light">Register</button>
+                              </form>
                           </li>
                       </div>
 
 
-                    <div th:if="${loginName != 'NOBODY'}" class="d-flex">
-                        <li class="nav-item">
-                            <p th:text="'Hello, ' + ${loginName}" class="nav-link"></p>
-                        </li>
 
-                        <li class="nav-item" >
-                            <form th:action="@{/user/logout}" method="post">
-                                <button  class="nav-link btn btn-outline-light" type="submit">Logout</button>
-                            </form>
+                            <div th:unless="${loginName == 'NOBODY'}" >
+
+
+                        <li  class="nav-item">
+                            <div class="dropdown">
+
+                                <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    <img th:src="${img}" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                                    <span th:text="|${loginName}|"></span>
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="my-profile text-decoration-none" th:href="@{'user/dashboard/' + ${id}}">My Profile</a>
+                                    <a class="my-profile text-decoration-none" >Reservations</a>
+                                    <div><hr class="dropdown-divider"></div>
+                                    <form th:action="@{/user/logout}" method="post">
+                                        <button  class="btn  logout-btn" type="submit">Logout</button></form>
+                                </div>
+                            </div>
                         </li>
-                    </div>
+                            </div>
+
+
+
+
 
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+
+
+
+
+
+
 </body>
 </html>

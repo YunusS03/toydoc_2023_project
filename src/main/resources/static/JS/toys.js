@@ -1,7 +1,7 @@
 // Dit is een stuk JavaScript-code dat speelgoedafbeeldingen op willekeurige posities op het scherm plaatst.
 
 // Het aantal speelgoedobjecten dat we willen maken.
-var numToys = 12;
+var numToys = 7;
 
 // Een array met de URL's van speelgoedafbeeldingen.
 var toyImages = [

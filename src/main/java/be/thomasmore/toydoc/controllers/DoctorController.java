@@ -68,6 +68,5 @@ public class DoctorController {
             model.addAttribute("next", appUserRepository.findFirstByOrderByIdAsc().get().getId());
         }
         return "doctordetail";
-
     }
 }
