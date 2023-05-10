@@ -10,7 +10,7 @@
 }
 .main{
     width: 350px;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
@@ -91,3 +91,28 @@ button:hover{
 .form-control{
     width: auto;
 }
+
+.forgot-password-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #999999;
+}
+
+.forgot-password-link:hover {
+    color: #555555;
+    text-decoration: underline;
+}
+
+
+
+.error-message {
+     color: red;
+     text-align: center;
+ }
+
+.error-message-green{
+    color: green;
+    text-align: center;
+}
+

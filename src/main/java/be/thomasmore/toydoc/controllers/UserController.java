@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.security.Principal;
@@ -23,6 +25,12 @@ public class UserController {
 
     // Logger voor deze klasse
     private Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    EmailService emailService;
+
+    public UserController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @Autowired
     AppUserRepository appUserRepository;
@@ -63,14 +71,23 @@ public class UserController {
 
 
     @PostMapping("/signup-user")
-    public String signUp(AppUser user,Principal principal,Model model) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+    public String signUp(AppUser user, Principal principal, Model model) {
+        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName", loginName);
+
+        AppUser existingUser = appUserRepository.findByUsername(user.getUsername());
+        if (existingUser != null) {
+            // Username already taken, provide appropriate message
+            model.addAttribute("errorMessage", "Username already taken");
+            return "user/signup"; // Return the signup page to display the error message
+        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole(Role.CLIENT);
         appUserRepository.save(user);
-        return "/home";
+
+        return "home";
     }
 
 
@@ -88,6 +105,55 @@ public class UserController {
         // Toon home pagina
         return "/home";
     }
+
+
+    // Uitloggen van gebruiker
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Principal principal, Model model) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+        String emailUser = "" ;
+        model.addAttribute("emailUser", emailUser);
+
+
+        return "/user/forgotpassword";
+    }
+
+
+    @PostMapping("/forgot-password/send-mail")
+    public String forgotPasswordSendMail(@RequestParam("emailUser") String emailUser, Principal principal, Model model) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+
+        AppUser appUser = appUserRepository.findByEmail(emailUser);
+        if (appUser != null){
+            logger.info("=========FOUND===========");
+            logger.info(appUser.getFirstName() + "  " + appUser.getLastName() + "  " + appUser.getPassword());
+            logger.info("====================");
+            emailService.sendPasswordResetEmail(appUser.getEmail(),"THIS DOES NOT WORK AT THE MOMENT");
+        }
+        else
+        {
+            logger.info("USER NOT FOUND");
+        }
+
+
+        return "redirect:/user/forgot-password/sent";
+    }
+
+
+
+    @GetMapping("/forgot-password/sent")
+    public String sendPasswordResetEmail(Model model,Principal principal) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
+
+        String errorMessage = "Email Has Been send";
+        model.addAttribute("errorMessage", errorMessage);
+
+        return "/user/forgotpassword";
+    }
+
 
 }
 

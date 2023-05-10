@@ -23,6 +23,11 @@ public class EmailService {
         return url;
     }
 
+    private String generatePasswordResetUrl(String secretKey){
+        String url = "http://" + websiteName + "/user/password-reset/" + secretKey;  //HTTPS WERKT NIET BIJ LOCALHOST
+        return url;
+    }
+
 
     public void sendAppointmentConfirmation(String recipientEmail, String date, int hour, String firstName, String lastName, String secretKey) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -95,6 +100,22 @@ public class EmailService {
         mailSender.send(message);
     }
 
+
+    public void sendPasswordResetEmail(String recipientEmail,String secretKey) {
+        String resetUrl = generatePasswordResetUrl(secretKey);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Password Reset");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear user,\n\n")
+                .append("You have requested to reset your password. Please click the link below to proceed:\n\n")
+                .append(resetUrl).append("\n\n")
+                .append("If you did not initiate this password reset, please ignore this email.\n\n")
+                .append("Best regards,\n")
+                .append("Your ToyDoc team");
+        message.setText(sb.toString());
+        mailSender.send(message);
+    }
 
 
 

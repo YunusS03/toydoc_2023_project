@@ -41,4 +41,8 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     Optional<AppUser> findFirstByOrderByIdDesc();
 
     Optional<AppUser> findFirstByOrderByIdAsc();
+
+    AppUser findByEmail(String email);
+
+
 }
