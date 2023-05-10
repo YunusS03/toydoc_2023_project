@@ -34,7 +34,7 @@
         <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
         <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
         <p class="lead">U kunt hieronder een afspraak maken.</p>
-        <form th:action="@{/create-appointment}" method="post">
+        <form th:action="@{/appointment/create-appointment}" method="post">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="firstName" class="form-label">Voornaam</label>
@@ -73,23 +73,23 @@
 
 <th:block th:if="${loginName != 'NOBODY'}">
 <div class="container mt-5">
-<form th:action="@{/create-appointment}" th:object="${client}" method="post">
+<form th:action="@{/appointment/create-appointment}" th:object="${client}" method="post">
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="firstName" class="form-label">Voornaam</label>
-            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Voornaam" required>
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Voornaam" readonly>
         </div>
         <div class="col-md-6 mb-3">
             <label for="lastName" class="form-label">Achternaam</label>
-            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Achternaam" required>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Achternaam" readonly>
         </div>
         <div class="col-md-6 mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
+            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" readonly>
         </div>
         <div class="col-md-6 mb-3">
             <label for="phone" class="form-label">Telefoonnummer</label>
-            <input type="tel" class="form-control" id="phone" th:field="*{phone}" placeholder="Telefoonnummer" required>
+            <input type="tel" class="form-control" id="phone" th:field="*{phone}" placeholder="Telefoonnummer" readonly>
         </div>
     </div>
     <div class="col-md-6 offset-md-3">
@@ -128,5 +128,11 @@
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <!-- Bootstrap JS -->
+
+<script src="/JS/toys.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

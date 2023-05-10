@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class DonationController {
@@ -97,6 +98,8 @@ public class DonationController {
         model.addAttribute("localLastName",localLastName);
         model.addAttribute("localEmail",localEmail);
         model.addAttribute("localPhoneNumber",localPhoneNumber);
+
+
         return "donation";
     }
 
@@ -122,7 +125,7 @@ public class DonationController {
         localExpiry = expiry;
         localCvv = cvv;
 
-        if(cardNumber.length()==15 && expiry.length() == 5 && cvv.length()==3){
+        if(cardNumber.length()==16 && expiry.length() == 5 && cvv.length()==3){
             String securityCardNumber = "*******" + cardNumber.substring(12,15) ;
             localSecurityCardNumber = securityCardNumber;
         }else{

@@ -1,0 +1,88 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--    CSS Link-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/login.css}" />
+    <!--    Google Fonts Link of Navbar-Brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <!--Font Awesome Link    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>login</title>
+
+
+
+<body>
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+<section class="body2">
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+
+    <div class="signup">
+        <form th:action="@{/user/signup-user}" method="post">
+
+            <!-- Add error message placeholder -->
+            <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+
+            <label for="chk" aria-hidden="true">sign up</label>
+            <input type="text" class="form-control" name="username" placeholder="username" required>
+            <input type="text" class="form-control" name="firstName" placeholder="firstname" required>
+            <input type="text" class="form-control" name="lastName" placeholder="lastname" required>
+            <input type="email" class="form-control" name="email" placeholder="email" required>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <button class="buttonLogin" type="submit">Sign up</button>
+
+        </form>
+    </div>
+
+
+
+    <div class="login">
+        <form th:action="@{/user/login}" method="post">
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <div th:if="${param.error}">
+                <p class="error mb-3">Invalid username or password. Please try again.</p>
+            </div>
+            <button class="buttonLogin" type="submit">Sign In</button>
+        </form>
+        <a href="/user/forgot-password" class="forgot-password-link">Forgot Password?</a>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+
+
+<script src="/JS/toys.js"></script>
+</body>
+
+</html>

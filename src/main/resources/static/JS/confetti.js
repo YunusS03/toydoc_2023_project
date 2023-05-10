@@ -61,6 +61,7 @@ initConfetti = () => {
 render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+
   confetti.forEach((confetto, index) => {
     let width = confetto.dimensions.x * confetto.scale.x;
     let height = confetto.dimensions.y * confetto.scale.y;
@@ -97,7 +98,8 @@ render = () => {
   });
 
   // Fire off another round of confetti
-  if (confetti.length <= 10) initConfetti();
+
+  //if (confetti.length <= 10) initConfetti();   //LOOP CONFETTI aan uit
 
   window.requestAnimationFrame(render);
 };
@@ -112,6 +114,6 @@ window.addEventListener('resize', function () {
 });
 
 //------------Click------------
-window.addEventListener('click', function () {
-  initConfetti();
-});
+// window.addEventListener('click', function () {
+//   initConfetti();
+// });

@@ -1,0 +1,241 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    Bootstrap CSS Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!--    Bootstrap JS Link-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <!--    CSS Link-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <!--    Google Fonts Link of Navbar-Brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <!--Font Awesome Link    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard</title>
+
+
+
+
+</head>
+
+<body>
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+<div class="container-fluid overflow-hidden">
+    <div class="row vh-100 overflow-auto">
+        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top sidebar">
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+                <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img th:src="${user.getProfileImage()}" width="200" height="200" class="rounded-circle">
+                </a>
+                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a onclick="showProfile()" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="showSettings()" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Settings</span> </a>
+                    </li>
+
+                    <li>
+                        <a onclick="showReservations()" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">My Reservations</span> </a>
+                    </li>
+
+                    <li>
+                        <a href="/test1" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">New Reservation</span></a>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+
+
+                    <li>
+                        <a href="#" class="nav-link px-sm-0 px-2">
+
+                            <form th:action="@{/user/logout}" method="post">
+                                        <button  class="btn" type="submit">Logout</button></form>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col d-flex d-block" id="profile">
+            <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
+                <img th:src="${user.getProfileImage()}" width="200" height="200" class="rounded-circle">
+                <h5 class="mt-3">First Name</h5><h4 th:text="${user.getFirstName()}"></h4>
+                <h5 class="mt-3">Last Name</h5><h4 th:text="${user.getLastName()}"></h4>
+                <h5 class="mt-3">Age</h5><h4 th:text="${user.getAge()}"></h4>
+                <h5 class="mt-3">User Name</h5><h4 th:text="${user.getUsername()}"></h4>
+                <h5 class="mt-3">Email</h5><h4 th:text="${user.getEmail()}"></h4>
+                <h5 class="mt-3">Phone Number</h5><h4 th:text="${user.getPhone()}"></h4>
+                <h5 class="mt-3">Address</h5><h4 th:text="|${user.getAddress()}  ${user.getPostalCode()} ${user.getCity()} / ${user.getCountry()}|"></h4>
+                <button onclick="showSettings()" class="btn btn-warning btn-block btn-lg">Edit</button>
+            </div>
+        </div>
+        <div class="col d-flex d-none" id="settings" th:object="${user}">
+            <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <img th:src="${user.getProfileImage()}" width="200" height="200" class="rounded-circle align-items-center justify-content-center text-center">
+                        <input type="file" th:field="*{profileImage}" name="profileImage" class="form-control" value="Change Profile Image" placeholder="Change Profile Image">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <h5 class="mt-3">First Name</h5>
+                        <input type="text" th:field="*{firstName}" name="firstName" class="form-control">
+                    </div>
+
+                    <div class="col">
+                        <h5 class="mt-3">Last Name</h5>
+                        <input type="text" th:field="*{lastName}" name="lastName" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <h5 class="mt-3">Age</h5>
+                        <input type="number" th:field="*{age}" name="age" class="form-control">
+                    </div>
+
+                    <div class="col">
+                        <h5 class="mt-3">User Name</h5>
+                        <input type="text" th:field="*{username}" name="userName" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <h5 class="mt-3">Email</h5>
+                        <input type="email" th:field="*{email}" name="email" class="form-control">
+                    </div>
+
+                    <div class="col">
+                        <h5 class="mt-3">Phone Number</h5>
+                        <input type="text" th:field="*{phone}" name="phone" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="mt-3">Address</h5>
+                        <input type="text" th:field="*{address}" name="address" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">Postal Code</h5>
+                        <input type="text" th:field="*{postalCode}" name="postalCode" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">City</h5>
+                        <input type="text" th:field="*{city}" name="city" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">Country</h5>
+                        <input type="text" th:field="*{country}" name="country"  class="form-control d-block">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="submit" name="save" value="Save" class=" mt-3 btn btn-lg btn-block btn-success p-2 me-3 d-inline align-items-center justify-content-center text-center">
+                    </div>
+                    <div class="col">
+                        <button name="delete" class=" mt-3 btn btn-lg btn-block btn-danger p-2 me-3 align-items-center justify-content-center text-center">Delete Account </button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <div class="col d-flex d-none" id="reservations" th:object="${user}">
+            <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
+             <div th:if="${user.role.DOCTOR}">
+                 <div th:each="appointment : ${user.getAppointments()}">
+                     <a th:text="|Reservation with : ${appointment.getClient().getFirstName()} ${appointment.getClient().getLastName()} on ${appointment.getDate()}|" ></a>
+             </div>
+
+                 <div th:unless="${user.role.DOCTOR}">
+                     <div th:each="appointment : ${user.getAppointments()}">
+                         <a th:text="|Reservation with :Dr. ${appointment.getDoctor().getFirstName()} ${appointment.getDoctor().getLastName()} on ${appointment.getDate()}|" ></a>
+             </div>
+
+        </div>
+
+
+</div>
+    </div>
+</div>
+
+
+
+
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script src="/JS/toys.js"></script>
+
+<script>
+
+    const profile = document.getElementById("profile");
+    const settings = document.querySelector("#settings");
+    const reservations = document.querySelector("#reservations");
+
+    function showProfile(){
+        profile.classList.replace("d-none","d-block");
+        settings.classList.replace("d-block","d-none");
+        reservations.classList.replace("d-block","d-none");
+
+    }
+
+
+
+    function showSettings(){
+        profile.classList.replace("d-block","d-none");
+        settings.classList.replace("d-none","d-block");
+        reservations.classList.replace("d-block","d-none");
+
+    }
+
+    function showReservations(){
+        profile.classList.replace("d-block","d-none");
+        settings.classList.replace("d-block","d-none");
+        reservations.classList.replace("d-none","d-block");
+
+    }
+</script>
+
+</body>
+</html>

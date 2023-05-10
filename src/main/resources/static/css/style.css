@@ -1,11 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+
+/*//============ACHTERGROND SPEELGOED//============//============*/
+body {
+    overflow-x: hidden;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+}
+
+
+.toy {
+    /*position: absolute;*/
+    opacity: 0.5;
+    display: block;
+    width: 200px;
+    height: 200px;
+    /*background-size: contain;*/
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1; /* Set z-index lower than other elements */
+
+
+    position: fixed;
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5px, 30px);
+
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/*//============*//*//============*//*//============*/
+
+
+
+
+
+
 *{
     margin: 0;
     padding: 0;
 }
 
 body{
-    background-image: url(background.jpg);
-    background-size: cover;
+    /*background-image: url(background.jpg);*/
+    /*background-size: cover;*/
 }
 div {
     display: block;
@@ -16,21 +67,59 @@ div {
 .navbar{
     /*background-color: #8B74AB;*/
     /*background-color: #5179AB;*/
-    background-color: #7D86AD;
+    /*background-color: #7D86AD;*/
     padding: 15px;
+
 }
+
+
+/**{*/
+/*    outline: 1px dashed black*/
+/*}*/
+
+
 
 .navigation-list li,.navigation-list a,.navigation-list button{
     padding: 3px;
     margin: 5px;
 }
+
 .navbar-brand{
     color: #412A55;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Darumadrop One', sans-serif;
     font-size: 28px;
     letter-spacing: 3px;
     font-weight: bolder;
 }
+
+
+.navbar-brand {
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-brand::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0);
+    transition: transform 0.5s ease-in-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.navbar-brand:hover::before {
+    transform: scale(1);
+}
+
+
+
+
 
 .navigation-list li a,.navigation-list li button,.navigation-list li p{
     font-size: 19px;
@@ -40,13 +129,16 @@ div {
 .navigation-list li a:hover{
     color: #412A55;
 }
-.navigation-list li button:hover{
+.login-btn:hover, .register-btn:hover{
     background-color: #412A55;
 }
 .card{
-    background: #7D86AD;
-    border-color: #7D86AD;
+    background: #8489d3;
+    border-color: #6a84ff;
+    opacity: 0.8;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
+
 .card-body h2{
     padding-top: 20px;
     color: #412A55;
@@ -105,6 +197,18 @@ article {
     min-width: 100%;
     padding-top: 25px;
 }
+.dropdown-menu{
+    background-color: #7D86AD;
+}
+.dropdown-toggle,.my-profile,.logout-btn{
+    color: #DDE0EA;
+}
+.dropdown-toggle:hover, .my-profile:hover,.logout-btn:hover{
+    color: #412A55;
+
+}
+
+
 
 /*Footer CSS*/
 
@@ -112,8 +216,9 @@ article {
     color: #412A55;
 }
 footer{
-    background-color: #d5daec;
+    background: linear-gradient(181deg, rgba(137,206,221,0) 0%, rgba(179,206,252,1) 45%);
 }
+
 
 /*Donation CSS*/
 .donate-img{
@@ -182,4 +287,108 @@ footer{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+
+.doctor-info{
+    color: #412A55;
+    font-size: 24px;
+}
+.doctor-info-label{
+    color: black;
+    font-size: 22px;
+}
+.sidebar{
+    background-color:white;
+}
+.sidebar{
+    background-color: #bec5e1;
+
+}
+.sidebar li a{
+    color: #412A55;
+}
+.profile-div{
+    background-color: #d5daec;
+    opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.calendar {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.table {
+    border: none;
+    border-collapse: separate;
+}
+
+.table thead th {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    border: none;
+    padding: 0;
+}
+
+.time-slot {
+    font-weight: bold;
+    color: #333;
+    padding: 8px;
+}
+
+.cell-wrapper {
+    position: relative;
+    padding: 8px;
+}
+
+.btn {
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.cell-available {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.cell-available:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.cell-occupied {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.btn:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
