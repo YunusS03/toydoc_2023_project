@@ -32,9 +32,6 @@ public class AppUser {
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
 
-    @OneToMany(mappedBy = "appUser")
-    List<Post> post;
-
     // Constructors
     public AppUser() {
 
@@ -205,13 +202,5 @@ public class AppUser {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
-    }
-
-    public List<Post> getPost() {
-        return post;
-    }
-
-    public void setPost(List<Post> post) {
-        this.post = post;
     }
 }

@@ -22,9 +22,6 @@ public class Post {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
-    @ManyToOne
-    private AppUser appUser;
-
     public Post(){
 
     }
@@ -65,13 +62,5 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public AppUser getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
     }
 }
