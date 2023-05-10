@@ -175,7 +175,7 @@
 
                  <div th:unless="${user.role.DOCTOR}">
                      <div th:each="appointment : ${user.getAppointments()}">
-                     <a th:text="|Reservation with :Dr. ${appointment.getDoctor().getFirstName()} ${appointment.getDoctor().getLastName()} on ${appointment.getDate()}|" ></a>
+                         <a th:text="|Reservation with :Dr. ${appointment.getDoctor().getFirstName()} ${appointment.getDoctor().getLastName()} on ${appointment.getDate()}|" ></a>
              </div>
 
         </div>

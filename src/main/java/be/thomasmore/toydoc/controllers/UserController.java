@@ -93,7 +93,6 @@ public class UserController {
             AppUser user =optionalAppUser.get();
             model.addAttribute("user",user);
         }
-
         return "user/dashboard";
     }
 }
