@@ -23,10 +23,14 @@
 </head>
 <body>
     <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
-    <h1>Blog</h1>
-
-        <a th:href="@{'/posts/new'}">New Post</a>
-
+<div class="container">
+    <div class="card-body text-center">
+        <h1>Doctor repair blog</h1>
+        <p>Hey there. Here you can find about all the repairs that there have been</p>
+    </div>
+    <a th:href="@{'/posts/new'}">
+        <button type="button" class="btn btn-primary btn-lg">Make new post</button></a>
+</div>
     <main class="container">
            <div class="card col m-xl-3 m-lg-1 mb-sm-2 p-0" th:each="post : ${posts}" >
            <div class="card-body">
