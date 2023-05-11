@@ -24,18 +24,38 @@
 <body>
     <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
     <h1>Blog</h1>
-    <ul>
-        <li><a th:href="@{'/posts/new'}">New Post</a></li>
-    </ul>
-<div class="container">
-    <div class="post" th:each="post : ${posts}">
-        <h2> <a th:href="@{'/postDetails/' + ${post.id}}"
-                th:text="${post.title}">Title</a>
-        </h2>
-        <h5 th:text="'Published on ' + ${post.date}"> Created At</h5>
-        <p th:text="${post.body}"> body text</p>
-        <br />
-    </div>
+
+        <a th:href="@{'/posts/new'}">New Post</a>
+
+    <main class="container">
+           <div class="card col m-xl-3 m-lg-1 mb-sm-2 p-0" th:each="post : ${posts}" >
+           <div class="card-body">
+               <div class="user-info">
+                   <h2><a th:href="@{'/postDetails/' + ${post.id}}"
+                          th:text="${post.title}">Title</a></h2>
+                   <div class="post-info">
+                          <span th:text="'Published on ' + ${post.date}"> Created At</span>
+                   </div>
+              </div>
+              <div class="post-content">
+                   <p th:text="${post.body}"> body text</p>
+              </div>
+           </div>
+           </div>
+    </main>
+</div>
+
+<div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="/JS/toys.js"></script>
 </div>
 </body>
 </html>

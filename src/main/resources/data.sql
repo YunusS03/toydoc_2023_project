@@ -72,5 +72,19 @@ INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, clien
 VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2, 1);
 
 INSERT INTO post(id, body, date, title)
-VALUES(10,'I hate Myself','2023-05-25','why so diffrent');
+VALUES(10,'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
+                        porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
+                        In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
+       '2023-05-25','The Life of a Doll');
+INSERT INTO post(id, body, date, title)
+VALUES(11,'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
+                        porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
+                        In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
+       '2023-05-26','We just fixed this');
+INSERT INTO post(id, body, date, title)
+VALUES(12,'Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, ' ||
+          'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café ' ||
+          'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, ' ||
+          'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
+       '2023-05-26','Don’t just throw away broken toys');
 
