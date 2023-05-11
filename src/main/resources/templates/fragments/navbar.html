@@ -49,7 +49,7 @@
                     </li>
 
 
-                      <div th:if="${loginName == 'NOBODY'}" class="d-flex">
+                      <div th:if="${loginName ==  null}" class="d-flex">
                           <li class="nav-item"  >
                               <form th:action="@{/user/login}" method="post">
                                   <button  class="nav-link btn btn-outline-light login-btn" type="submit">Login</button>
@@ -65,7 +65,7 @@
 
 
 
-                            <div th:unless="${loginName == 'NOBODY'}" >
+                            <div th:unless="${loginName == null}" >
 
 
                         <li  class="nav-item">

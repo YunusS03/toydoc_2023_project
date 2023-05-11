@@ -24,8 +24,7 @@ public class DoctorController {
                              @RequestParam(required = false)String keyword,
                              @RequestParam(required = false)String speciality){
 
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
 
         List<AppUser> allDoctors ;
 

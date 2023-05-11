@@ -53,8 +53,11 @@ public class AppointmentController {
 
     @GetMapping("/")
     public String appointment(Model model, Principal principal) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        logger.info(loginName);
+
+
+        String loginName = (String) model.getAttribute("loginName");
+
+
 //        AppUser appUser = new AppUser("email", "username","password", "firstName", "lastName", 25, "0451256232","adress", "city","2200","country", Role.CLIENT);
         AppUser appUser = appUserRepository.findByUsername(loginName);
         appUserRepository.save(appUser);
@@ -70,9 +73,7 @@ public class AppointmentController {
                                     @RequestParam("phone") String phone,
                                     @RequestParam("date") String date,
                                     @RequestParam("hour") int hour) throws ParseException {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
+
 
         Appointment appointment = new Appointment();
         //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
@@ -112,8 +113,7 @@ public class AppointmentController {
 
     @GetMapping("/email/{secretKey}")
     public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName", loginName);
+
 
         // Check if the secretKey exists and is valid
         System.out.println("SECRET KEY I GOT : " + secretKey);
@@ -148,9 +148,6 @@ public class AppointmentController {
     @GetMapping("/confirm/{appointmentId}")
     public String confirmAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model, Principal principal,RedirectAttributes redirectAttributes) {
 
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName", loginName);
-
 
 
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
@@ -169,8 +166,9 @@ public class AppointmentController {
 
     @GetMapping("/cancel/{appointmentId}")
     public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Principal principal, Model model) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName", loginName);
+
+
+
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
         AppUser appUser = optionalAppointment.get().getClient();
         appointmentRepository.deleteById(appointmentId);

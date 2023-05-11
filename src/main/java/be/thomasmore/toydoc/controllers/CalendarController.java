@@ -34,7 +34,7 @@ public class CalendarController {
     public String getCalendar(Model model, Principal principal) {
         CalendarService calendarService = new CalendarService();
         List<Day> calendar = calendarService.getCurrentWeek();
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
+        final String loginName = principal == null ? null : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
         List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAll();
@@ -55,9 +55,8 @@ public class CalendarController {
 
     @PostMapping("/nextWeek")
     public String nextWeek(Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
+
+
         count++;
         weekCount = count;
         System.out.println("next" + count);
@@ -75,9 +74,8 @@ public class CalendarController {
 
     @PostMapping("/previousWeek")
     public String prevWeek(Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
+
+
         weekCount = count;
         count--;
         System.out.println("prev " + count);
@@ -97,9 +95,7 @@ public class CalendarController {
     @PostMapping("/bookSlot")
     public String bookSlot(Model model, Principal principal, @RequestParam("date") String date,
                            @RequestParam("hour") int hour) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
+
 
         if (principal != null) {
             AppUser appUser = appUserRepository.findByUsername(principal.getName());

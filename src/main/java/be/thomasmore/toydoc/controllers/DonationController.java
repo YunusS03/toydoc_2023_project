@@ -52,8 +52,6 @@ public class DonationController {
 
     @GetMapping("/donation")
     public String donation(Model model, Principal principal){
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
         model.addAttribute("planForm",true);
         return "donation";
     }
@@ -83,10 +81,9 @@ public class DonationController {
             isAnoniem = true;
         }
 
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+        String loginName = (String) model.getAttribute("loginName");
 
-        if(loginName != "NOBODY"){
+        if(loginName != null){
             AppUser appuser = appUserRepository.findByUsername(principal.getName());
             localFirstName = appuser.getFirstName();
             localLastName = appuser.getLastName();
@@ -106,8 +103,7 @@ public class DonationController {
     @GetMapping("donation/info")
     public String donationInfoForm(Model model, Principal principal,@RequestParam(required=false)String title,String firstName,String lastName,String email,String phoneNumber){
 
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
 
         localTitle = title;
         localFirstName = firstName;
@@ -134,7 +130,7 @@ public class DonationController {
         }
 
 
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        final String loginName = principal==null ? null : principal.getName();
         model.addAttribute("loginName",loginName);
         model.addAttribute("invalidCard",inValidCard);
 

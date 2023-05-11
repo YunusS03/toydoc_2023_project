@@ -29,7 +29,7 @@
 
 
 
-<th:block th:if="${loginName == 'NOBODY'}">
+<th:block th:if="${loginName == null}">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Welkom bij de Speelgoedokter!!!</h1>
         <p class="lead">Onze deskundige dokters staan klaar om uw speelgoed te repareren.</p>
@@ -71,7 +71,7 @@
     </div>
 </th:block>
 
-<th:block th:if="${loginName != 'NOBODY'}">
+<th:block th:if="${loginName != null}">
 <div class="container mt-5">
 <form th:action="@{/appointment/create-appointment}" th:object="${client}" method="post">
     <div class="row">

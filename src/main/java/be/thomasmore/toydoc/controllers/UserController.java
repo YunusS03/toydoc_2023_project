@@ -39,8 +39,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String register(Principal principal, Model model) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
 
 
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
@@ -59,8 +58,7 @@ public class UserController {
 
     @GetMapping("/signup")
     public String loginReversed(Principal principal, Model model) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
 
 
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
@@ -74,8 +72,7 @@ public class UserController {
 
     @PostMapping("/signup-user")
     public String signUp(AppUser user, Principal principal, Model model) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName", loginName);
+
 
         AppUser existingUser = appUserRepository.findByUsername(user.getUsername());
         if (existingUser != null) {
@@ -100,8 +97,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(Principal principal, Model model) {
 
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
         // Als er geen gebruiker ingelogd is, ga dan naar home pagina
         if (principal == null) return "redirect:/home";
         // Toon home pagina
@@ -110,10 +106,12 @@ public class UserController {
 
     @GetMapping("/dashboard/{id}")
     public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
 
-        if(loginName!="NOBODY"){
+
+        String loginName = (String) model.getAttribute("loginName");
+
+        //hier komt nog andere manier van code
+        if(loginName!=null){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
             model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
         }
@@ -129,10 +127,10 @@ public class UserController {
 
     @GetMapping("/dashboard/{id}/profile")
     public String dashboardProfile(Model model,Principal principal, @PathVariable(required = false)Integer id){
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        final String loginName = principal==null ? null : principal.getName();
         model.addAttribute("loginName",loginName);
 
-        if(loginName!="NOBODY"){
+        if(loginName!=null){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
             model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
         }
@@ -148,8 +146,7 @@ public class UserController {
     // Uitloggen van gebruiker
     @GetMapping("/forgot-password")
     public String forgotPassword(Principal principal, Model model) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
         String emailUser = "" ;
         model.addAttribute("emailUser", emailUser);
 
@@ -160,8 +157,7 @@ public class UserController {
 
     @PostMapping("/forgot-password/send-mail")
     public String forgotPasswordSendMail(@RequestParam("emailUser") String emailUser, Principal principal, Model model) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+
 
         AppUser appUser = appUserRepository.findByEmail(emailUser);
         if (appUser != null){
@@ -186,8 +182,6 @@ public class UserController {
 
     @GetMapping("/forgot-password/sent")
     public String sendPasswordResetEmail(Model model,Principal principal) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
 
         String errorMessage = "Email Has Been send";
         model.addAttribute("errorMessage", errorMessage);
@@ -198,8 +192,7 @@ public class UserController {
 
     @GetMapping("/password-reset/{secretKey}")
     public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName", loginName);
+
 
 
         if (appUserRepository.findByPasswordResetKey(secretKey) != null) {
