@@ -7,6 +7,7 @@ import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,6 +104,8 @@ public class UserController {
         // Toon home pagina
         return "/home";
     }
+
+
 
     @GetMapping("/dashboard/{id}")
     public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){

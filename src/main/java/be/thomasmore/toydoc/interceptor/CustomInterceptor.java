@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,12 +28,15 @@ public class CustomInterceptor implements HandlerInterceptor {
                 if (principal instanceof UserDetails) {
                     String loginName = ((UserDetails) principal).getUsername();
 
+
                     if (principal != null){
                         modelAndView.addObject("loginName", loginName);
+
                     }
                     if (principal instanceof AppUser) {
                         String firstName = ((AppUser) principal).getFirstName();
                         modelAndView.addObject("firstName", firstName);
+
                     }
                 }
             }

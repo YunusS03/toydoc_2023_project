@@ -1,19 +1,17 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
-import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 
 import java.security.Principal;
+
 
 @Controller
 public class HomeController {
@@ -42,13 +40,18 @@ public class HomeController {
         // Laad de "home" pagina
         return "home";
     }
+
+
+
+
     @GetMapping({"/repair"})
-    public String repair(Model model, Principal principal) {
-
-
+    public String repair(Model model) {
         // Laad de "home" pagina
         return "repair";
     }
+
+
+
 
     @GetMapping("/about")
     public String about(Model model) {
