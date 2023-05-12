@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class HomeController {
 
     @Autowired
     private AppUserRepository appUserRepository;
+
+
+
 
     @GetMapping({"/" , "/home"})
     public String home(Model model) {
@@ -45,7 +49,13 @@ public class HomeController {
 
 
     @GetMapping({"/repair"})
-    public String repair(Model model) {
+    public String repair(Model model, HttpServletRequest request) {
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        String firstname = (String) request.getAttribute("firstName");
+        String loginName = (String) request.getAttribute("loginName2");
+//        System.out.println("appUser: " + appUser);
+//        System.out.println("firstName: " + firstname);
+//        System.out.println("loginname: " + loginName);
         // Laad de "home" pagina
         return "repair";
     }

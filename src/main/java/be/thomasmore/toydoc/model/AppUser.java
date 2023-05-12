@@ -40,6 +40,13 @@ public class AppUser implements UserDetails {
     private Collection<Toy> toys;
 
 
+    @Override
+    public String getUsername() {
+        // Return the username or identifier for the user
+        return username;
+    }
+
+
 
     // Constructors
     public AppUser() {
@@ -94,24 +101,25 @@ public class AppUser implements UserDetails {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        // Return true if the user's account is non-expired
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        // Return true if the user's account is non-locked
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        // Return true if the user's credentials are non-expired
+        return true;
     }
+
 
     @Override
     public boolean isEnabled() {
