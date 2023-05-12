@@ -185,6 +185,8 @@ public class UserController {
 
     @GetMapping("/forgot-password/sent")
     public String sendPasswordResetEmail(Model model,Principal principal) {
+        final String loginName = principal==null ? "NOBODY" : principal.getName();
+        model.addAttribute("loginName",loginName);
 
         String errorMessage = "Email Has Been send";
         model.addAttribute("errorMessage", errorMessage);

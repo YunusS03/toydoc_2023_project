@@ -25,11 +25,14 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     List<AppUser> findByRoleList(@Param("role") Role role);
 
     @Query("SELECT u FROM AppUser u " +
-            "WHERE ?2 IS NULL OR  LOWER (u.firstName) LIKE LOWER(CONCAT('%',?2,'%'))" +
-            "AND (?1 IS NULL OR u.role = ?1)" +
+            "WHERE ?1 IS NULL OR LOWER (u.firstName) LIKE LOWER(CONCAT('%',?1,'%'))" +
+            "AND  (?2 IS NULL OR u.role = ?2)" +
             "AND (?3 IS NULL OR u.speciality = ?3)"
     )
-    List<AppUser> findByDoctorWithFilter(Role role,String keyword,String speciality);
+    List<AppUser> findByDoctorWithFilter(String keyword,Role role,String speciality);
+
+
+
 
     @Query("SELECT u FROM AppUser u WHERE u.role = :role AND u.username = :username")
     AppUser findByRoleAndUsername(@Param("role") Role role, @Param("username") String username);

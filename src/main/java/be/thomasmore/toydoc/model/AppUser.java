@@ -32,7 +32,7 @@ public class AppUser implements UserDetails {
     @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String passwordResetKey;
 
-    @Column(length=50000)
+    @Column(length = 50000)
     private String profileImage;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
@@ -51,12 +51,13 @@ public class AppUser implements UserDetails {
 
     public AppUser(String firstName, String lastName, Role role) {
     }
-    public AppUser(String firstName,String lastName,String email,String phone){
+
+    public AppUser(String firstName, String lastName, String email, String phone) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPhone(phone);
-        role=Role.CLIENT;
+        role = Role.CLIENT;
     }
 
     public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
@@ -214,6 +215,8 @@ public class AppUser implements UserDetails {
         this.role = role;
     }
 
+
+
     public Collection<Appointment> getAppointments() {
         return appointments;
     }
@@ -259,4 +262,10 @@ public class AppUser implements UserDetails {
     public String getPasswordResetKey() {
         return passwordResetKey;
     }
+
+
+
 }
+
+
+

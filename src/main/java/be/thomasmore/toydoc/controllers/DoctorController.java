@@ -26,15 +26,15 @@ public class DoctorController {
 
 
 
+
         List<AppUser> allDoctors ;
 
         if(keyword == null && speciality == null){
             allDoctors = appUserRepository.findByRoleList(Role.DOCTOR);
-        }else{
-            allDoctors = appUserRepository.findByDoctorWithFilter(Role.DOCTOR,keyword,speciality.trim());
         }
-
-        System.out.println(speciality);
+        else{
+            allDoctors = appUserRepository.findByDoctorWithFilter(keyword,Role.DOCTOR,speciality.trim());
+        }
 
         model.addAttribute("keyword",keyword);
         model.addAttribute("speciality",speciality);
