@@ -7,6 +7,7 @@ import be.thomasmore.toydoc.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,9 +110,12 @@ public class UserController {
     }
 
     @GetMapping("/dashboard/{id}")
+
+
     public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
+        System.out.println(principal.hashCode());
 
         if(loginName!="NOBODY"){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
@@ -177,8 +181,6 @@ public class UserController {
         {
             logger.info("USER NOT FOUND");
         }
-
-
         return "redirect:/user/forgot-password/sent";
     }
 

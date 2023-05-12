@@ -2,14 +2,17 @@ package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 //@MappedSuperclass
-public class AppUser {
+public class AppUser   {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
@@ -30,13 +33,12 @@ public class AppUser {
     @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String passwordResetKey;
 
-    @Column(length=50000)
+    @Column(length = 50000)
     private String profileImage;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
     @OneToMany(mappedBy = "client")
     private Collection<Toy> toys;
-
 
 
     // Constructors
@@ -49,12 +51,13 @@ public class AppUser {
 
     public AppUser(String firstName, String lastName, Role role) {
     }
-    public AppUser(String firstName,String lastName,String email,String phone){
+
+    public AppUser(String firstName, String lastName, String email, String phone) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPhone(phone);
-        role=Role.CLIENT;
+        role = Role.CLIENT;
     }
 
     public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
@@ -95,9 +98,11 @@ public class AppUser {
         return username;
     }
 
+
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public String getPassword() {
         return password;
@@ -187,6 +192,8 @@ public class AppUser {
         this.role = role;
     }
 
+
+
     public Collection<Appointment> getAppointments() {
         return appointments;
     }
@@ -232,4 +239,10 @@ public class AppUser {
     public String getPasswordResetKey() {
         return passwordResetKey;
     }
+
+
+
 }
+
+
+
