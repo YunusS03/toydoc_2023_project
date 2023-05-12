@@ -4,6 +4,7 @@ import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,8 +109,11 @@ public class UserController {
 
 
     @GetMapping("/dashboard/{id}")
-    public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){
+    public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
 
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+
+        if (appUser.getId() == id){
 
         String loginName = (String) model.getAttribute("loginName");
 
@@ -126,24 +130,43 @@ public class UserController {
         }
 
         return "user/dashboard";
+        }
+
+        else{
+            String errorMessage = "You do not have acces to this page";
+            model.addAttribute("errorMessage", errorMessage);
+            return "/error";
+        }
     }
 
     @GetMapping("/dashboard/{id}/profile")
-    public String dashboardProfile(Model model,Principal principal, @PathVariable(required = false)Integer id){
-        final String loginName = principal==null ? null : principal.getName();
-        model.addAttribute("loginName",loginName);
+    public String dashboardProfile(Model model,Principal principal,HttpServletRequest request, @PathVariable(required = false)Integer id){
 
-        if(loginName!=null){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
-        }
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
-        if(optionalAppUser.isPresent()){
-            AppUser user =optionalAppUser.get();
-            model.addAttribute("user",user);
+        if (appUser.getId() == id) {
+
+
+            final String loginName = principal == null ? null : principal.getName();
+            model.addAttribute("loginName", loginName);
+
+            if (loginName != null) {
+                model.addAttribute("id", appUserRepository.findByUsername(loginName).getId());
+                model.addAttribute("img", appUserRepository.findByUsername(loginName).getProfileImage());
+            }
+
+            Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+            if (optionalAppUser.isPresent()) {
+                AppUser user = optionalAppUser.get();
+                model.addAttribute("user", user);
+            }
+            return "user/dashboard";
         }
-        return "user/dashboard";
+        else{
+            String errorMessage = "You do not have acces to this page";
+            model.addAttribute("errorMessage", errorMessage);
+            return "/error";
+        }
     }
 
     // Uitloggen van gebruiker

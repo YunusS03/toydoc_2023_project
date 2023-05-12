@@ -77,7 +77,7 @@
                                 </button>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="my-profile text-decoration-none" th:href="@{'user/dashboard/' + ${id}}">My Profile</a>
+                                    <a class="my-profile text-decoration-none" th:href="@{'user/dashboard/' + ${appUser.id}}">My Profile</a>
                                     <a class="my-profile text-decoration-none" >Reservations</a>
                                     <div><hr class="dropdown-divider"></div>
                                     <form th:action="@{/user/logout}" method="post">

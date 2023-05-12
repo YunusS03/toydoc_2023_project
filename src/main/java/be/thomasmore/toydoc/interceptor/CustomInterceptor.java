@@ -11,12 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-
 public class CustomInterceptor implements HandlerInterceptor {
 
+    private final AppUserRepository userRepository;
 
-
-
+    @Autowired
+    public CustomInterceptor(AppUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -26,25 +28,32 @@ public class CustomInterceptor implements HandlerInterceptor {
             Object principal = authentication.getPrincipal();
             System.out.println("Principal class: " + principal.getClass().getName());
             if (principal instanceof UserDetails) {
-                String loginName2 = ((UserDetails) principal).getUsername();
+                String loginName = ((UserDetails) principal).getUsername();
+                request.setAttribute("loginName", loginName);
+                System.out.println("LoginName CI: " + loginName);
 
 
-                request.setAttribute("loginName2", loginName2);
-                System.out.println("LoginName CI: " + loginName2);
-                if (principal instanceof AppUser) {
-                    System.out.println("APPUSER IS INSTANCE OF PRINCIPAL");
-                    AppUser appUser = (AppUser) principal;
-                    String firstName = appUser.getFirstName();
-                    System.out.println("FirstName: " + firstName);
-                    request.setAttribute("firstName", firstName);
-                }
+//                if (principal instanceof AppUser) {
+//                    System.out.println("APPUSER IS INSTANCE OF PRINCIPAL");
+//                    AppUser appUser = (AppUser) principal;
+//                    String firstName = appUser.getFirstName();
+//                    System.out.println("FirstName: " + firstName);
+//                    request.setAttribute("firstName", firstName);
+//                }
+//
+                    // If the principal is not an instance of AppUser, fetch the AppUser from the repository
+                    AppUser appUser = userRepository.findByUsername(loginName);
+                    if (appUser != null) {
+                        System.out.println("FETCHED PRINCIPAL FROM REP");
+//                        String firstName = appUser.getFirstName();
+//                        System.out.println("FirstName: " + firstName);
+//                        request.setAttribute("firstName", firstName);
+                        request.setAttribute("appUser", appUser);
+                    }
+
             }
         }
 
         return true;
     }
 }
-
-
-
-

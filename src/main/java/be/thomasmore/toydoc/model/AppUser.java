@@ -6,8 +6,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 //@MappedSuperclass
@@ -272,6 +274,9 @@ public class AppUser implements UserDetails {
     }
 
 
+    public List<Role> getRoles() {
+        return Arrays.asList(Role.values());
+    }
 
 }
 

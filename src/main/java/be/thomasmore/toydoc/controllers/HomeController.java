@@ -51,11 +51,17 @@ public class HomeController {
     @GetMapping({"/repair"})
     public String repair(Model model, HttpServletRequest request) {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
-        String firstname = (String) request.getAttribute("firstName");
-        String loginName = (String) request.getAttribute("loginName2");
-//        System.out.println("appUser: " + appUser);
-//        System.out.println("firstName: " + firstname);
-//        System.out.println("loginname: " + loginName);
+
+        System.out.println("===================LOGGED IN USER DETAILS=====================");
+        System.out.println("appUser: " + appUser.getEmail());
+        System.out.println("firstName: " + appUser.getFirstName());
+        System.out.println("loginname: " + appUser.getUsername());
+        System.out.println("passw: " + appUser.getPassword());
+        System.out.println("loginname: " + appUser.getUsername());
+        System.out.println("==================LOGGED IN USER DETAILS======================");
+
+
+
         // Laad de "home" pagina
         return "repair";
     }
