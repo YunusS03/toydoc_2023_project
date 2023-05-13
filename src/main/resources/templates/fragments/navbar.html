@@ -13,7 +13,8 @@
                 Speelgoed Dokter
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -45,50 +46,52 @@
                     </li>
 
                     <li class="nav-item">
-                        <a  class="nav-link" href="/donation">Donate</a>
+                        <a class="nav-link" href="/donation">Donate</a>
                     </li>
 
 
-                      <div th:if="${loginName ==  null}" class="d-flex">
-                          <li class="nav-item"  >
-                              <form th:action="@{/user/login}" method="post">
-                                  <button  class="nav-link btn btn-outline-light login-btn" type="submit">Login</button>
-                              </form>
-                          </li>
-                          <li class="nav-item ">
-                              <form th:action="@{/user/signup}" method="get">
-                              <button type="submit" class="nav-link btn btn-outline-light">Register</button>
-                              </form>
-                          </li>
+                    <div th:if="${loginName ==  null}" class="d-flex">
+                        <li class="nav-item">
+                            <form th:action="@{/user/login}" method="post">
+                                <button class="nav-link btn btn-outline-light login-btn" type="submit">Login</button>
+                            </form>
+                        </li>
+                        <li class="nav-item ">
+                            <form th:action="@{/user/signup}" method="get">
+                                <button type="submit" class="nav-link btn btn-outline-light">Register</button>
+                            </form>
+                        </li>
 
-                      </div>
-
-
-
-                            <div th:unless="${loginName == null}" >
+                    </div>
 
 
-                        <li  class="nav-item">
+                    <div th:unless="${loginName == null}">
+
+
+                        <li class="nav-item">
                             <div class="dropdown">
 
-                                <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                    <img th:src="${img}" alt="hugenerd" width="28" height="28" class="rounded-circle">
+                                <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="28" height="28" class="rounded-circle">
                                     <span th:text="|${loginName}|"></span>
                                 </button>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="my-profile text-decoration-none" th:href="@{'user/dashboard/' + ${appUser.id}}">My Profile</a>
-                                    <a class="my-profile text-decoration-none" >Reservations</a>
-                                    <div><hr class="dropdown-divider"></div>
+                                    <a class="my-profile text-decoration-none"
+                                       th:href="@{'user/dashboard/' + ${appUser.id}}">My Profile</a>
+                                    <a class="my-profile text-decoration-none">Reservations</a>
+                                    <div>
+                                        <hr class="dropdown-divider">
+                                    </div>
                                     <form th:action="@{/user/logout}" method="post">
-                                        <button  class="btn  logout-btn" type="submit">Logout</button></form>
+                                        <button class="btn  logout-btn" type="submit">Logout</button>
+                                    </form>
                                 </div>
                             </div>
                         </li>
-                            </div>
-
-
-
+                    </div>
 
 
                 </ul>
@@ -96,10 +99,6 @@
         </div>
     </nav>
 </div>
-
-
-
-
 
 
 </body>
