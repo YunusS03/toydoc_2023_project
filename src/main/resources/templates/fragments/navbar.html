@@ -74,19 +74,19 @@
                                 <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                    <div th:if="${appUser}">
-                                        <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
+
+                                        <img th:if="${appUser}" th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
                                              alt="ProfileImage" width="28" height="28" class="rounded-circle">
 
 
                                     <span th:text="|${loginName}|"></span>
-                                    </div>
+
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <div th:if="${appUser}">
-                                        <a class="my-profile text-decoration-none"
+
+                                        <a th:if="${appUser}" class="my-profile text-decoration-none"
                                            th:href="@{'dashboard/profile/' + ${appUser.id}}">My Profile</a>
-                                    </div>
+
 
                                     <a class="my-profile text-decoration-none">Reservations</a>
                                     <div>
