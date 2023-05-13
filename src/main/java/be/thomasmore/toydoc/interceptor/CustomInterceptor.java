@@ -44,7 +44,7 @@ public class CustomInterceptor implements HandlerInterceptor {
                     // If the principal is not an instance of AppUser, fetch the AppUser from the repository
                     AppUser appUser = userRepository.findByUsername(loginName);
                     if (appUser != null) {
-                        System.out.println("FETCHED PRINCIPAL FROM REP");
+                        System.out.println("FETCHED PRINCIPAL FROM REPO");
 //                        String firstName = appUser.getFirstName();
 //                        System.out.println("FirstName: " + firstName);
 //                        request.setAttribute("firstName", firstName);

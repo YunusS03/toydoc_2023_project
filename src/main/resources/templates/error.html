@@ -13,6 +13,7 @@
 
 
 <body>
+
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
 
@@ -22,7 +23,7 @@
     <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
     <p th:text="${error}"></p>
     <p th:text="${status}"></p>
-    <a href="/home" class="btn btn-primary">Go back to homepage</a>
+    <a href="javascript:history.back()" class="btn btn-primary">Go back</a>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
