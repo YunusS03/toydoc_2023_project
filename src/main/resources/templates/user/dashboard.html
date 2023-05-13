@@ -183,19 +183,27 @@
         <div class="col d-flex d-none" id="reservations">
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
 
-                 <div th:if="${appUser.role.name == 'DOCTOR'}">
-                      <div th:each="appointment : ${appUser.Appointments}">
-                          <span th:text="${appointment.id}"></span>
-<!--                        <a th:text="|Reservation with : ${appointment.getClient().getFirstName()} ${appointment.getClient().getLastName()} on ${appointment.getDate()}|" ></a>-->
-                      </div>
-                     <h1>DOCTOR BULDU</h1>
-                 </div>
+                <div th:if="${appUser.role.name == 'DOCTOR'}">
+                    <div th:each="appointment0 : ${appUser.appointments}">
+                        <span th:text="${appointment0.id}"></span>
+<!--                        <a th:text="'Reservation with: ' + ${appointment0.client.firstName} + ' ' + ${appointment0.client.lastName} + ' on ' + ${appointment0.date}"></a>-->
+                        <a th:text="|Reservation with :Dr. ${appointment0.doctor.firstName} ${appointment0.doctor.lastName} on ${appointment0.date}|" ></a>
+                    </div>
+
+                </div>
 
 
-                <div th:if="${appUser.role == 'CLIENT' }">
-                     <div th:each="appointment : ${appUser.getAppointments()}">
-                         <a th:text="|Reservation with :Dr. ${appointment.getDoctor().getFirstName()} ${appointment.getDoctor().getLastName()} on ${appointment.getDate()}|" ></a>
+                <div th:if="${appUser.role.name == 'CLIENT' }">
+                    <h1 th:text="${appUser.id}"></h1>
+                    <span th:text="${#lists.size(appUser.appointments)}"></span>
+                    <div th:each="appointment1 : ${appUser.appointments}">
+
+                         <h1>BULDUM</h1>
+
+                         <a th:text="|Reservation with :Dr. ${appointment1.doctor.firstName} ${appointment1.doctor.lastName} on ${appointment1.date}|" ></a>
                      </div>
+                    <h1>CLIENT BULDUM</h1>
+
                  </div>
 
             </div>

@@ -37,9 +37,12 @@ public class AppUser implements UserDetails {
 
     @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String profileImage;
-    @OneToMany(mappedBy = "doctor")
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private Collection<Appointment> appointments;
-    @OneToMany(mappedBy = "client")
+
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "client")
     private Collection<Toy> toys;
 
 
@@ -69,6 +72,9 @@ public class AppUser implements UserDetails {
         setPhone(phone);
         role = Role.CLIENT;
     }
+
+
+
 
     public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
         setEmail(email);
@@ -228,8 +234,9 @@ public class AppUser implements UserDetails {
 
 
 
+
     public Collection<Appointment> getAppointments() {
-        return appointments;
+        return this.appointments;
     }
 
     public void setAppointments(Collection<Appointment> appointments) {

@@ -125,8 +125,12 @@ public class UserController {
             model.addAttribute("user",user);
         }
 
-logger.info("=============================");
-        System.out.println(appUser.getRole().name());
+            logger.info("=============================");
+
+            for (Appointment a : appUser.getAppointments()) {
+
+                System.out.println(a.getDate());
+            }
             logger.info("=============================");
 
         return "user/dashboard";
