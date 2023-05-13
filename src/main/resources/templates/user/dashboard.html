@@ -86,26 +86,26 @@
         <div class="col d-flex d-block" id="profile">
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
                 <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="100" height="100" class="rounded-circle">
-                <h5 class="mt-3">First Name</h5><h4 th:text="${user.getFirstName()}"></h4>
-                <h5 class="mt-3">Last Name</h5><h4 th:text="${user.getLastName()}"></h4>
-                <h5 class="mt-3">Age</h5><h4 th:text="${user.getAge()}"></h4>
-                <h5 class="mt-3">User Name</h5><h4 th:text="${user.getUsername()}"></h4>
-                <h5 class="mt-3">Email</h5><h4 th:text="${user.getEmail()}"></h4>
-                <h5 class="mt-3">Phone Number</h5><h4 th:text="${user.getPhone()}"></h4>
-                <h5 class="mt-3">Address</h5><h4 th:text="|${user.getAddress()}  ${user.getPostalCode()} ${user.getCity()} / ${user.getCountry()}|"></h4>
+                <h5 class="mt-3">First Name</h5><h4 th:text="${appUser.getFirstName()}"></h4>
+                <h5 class="mt-3">Last Name</h5><h4 th:text="${appUser.getLastName()}"></h4>
+                <h5 class="mt-3">Age</h5><h4 th:text="${appUser.getAge()}"></h4>
+                <h5 class="mt-3">User Name</h5><h4 th:text="${appUser.getUsername()}"></h4>
+                <h5 class="mt-3">Email</h5><h4 th:text="${appUser.getEmail()}"></h4>
+                <h5 class="mt-3">Phone Number</h5><h4 th:text="${appUser.getPhone()}"></h4>
+                <h5 class="mt-3">Address</h5><h4 th:text="|${appUser.getAddress()}  ${appUser.getPostalCode()} ${appUser.getCity()} / ${appUser.getCountry()}|"></h4>
                 <button onclick="showSettings()" class="btn btn-warning btn-block btn-lg">Edit</button>
             </div>
         </div>
 
 <!--        Settings-->
 
-        <div class="col d-flex d-none" id="settings" th:object="${user}">
+        <div class="col d-flex d-none" id="settings" >
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
-            <form th:action="@{|/user/useredit/*{id}|}">
+                <form method="post" th:action="@{|/user/useredit/${appUser.id}|}">
                 <div class="row">
                     <div class="col">
                         <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="200" height="200" class="rounded-circle">
-                        <input type="file" th:field="*{profileImage}" name="profileImage" class="form-control" value="Change Profile Image" placeholder="Change Profile Image">
+                        <input type="file" th:value="${appUser.profileImage}" name="profileImage" class="form-control" value="Change Profile Image" placeholder="Change Profile Image">
                     </div>
                 </div>
 
@@ -113,57 +113,57 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="mt-3">First Name</h5>
-                        <input type="text" th:field="*{firstName}" name="firstName" class="form-control">
+                        <input type="text" th:value="${appUser.firstName}" name="firstName" class="form-control">
                     </div>
 
                     <div class="col">
                         <h5 class="mt-3">Last Name</h5>
-                        <input type="text" th:field="*{lastName}" name="lastName" class="form-control">
+                        <input type="text" th:value="${appUser.lastName}" name="lastName" class="form-control">
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col">
-                        <h5 class="mt-3">Age</h5>
-                        <input type="number" th:field="*{age}" name="age" class="form-control">
-                    </div>
+<!--                <div class="row">-->
+<!--                    <div class="col">-->
+<!--                        <h5 class="mt-3">Age</h5>-->
+<!--                        <input type="number" th:field="*{age}" name="age" class="form-control">-->
+<!--                    </div>-->
 
-                    <div class="col">
-                        <h5 class="mt-3">User Name</h5>
-                        <input type="text" th:field="*{username}" name="userName" class="form-control">
-                    </div>
-                </div>
+<!--                    <div class="col">-->
+<!--                        <h5 class="mt-3">User Name</h5>-->
+<!--                        <input type="text" th:field="*{username}" name="userName" class="form-control">-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="row">
-                    <div class="col">
-                        <h5 class="mt-3">Email</h5>
-                        <input type="email" th:field="*{email}" name="email" class="form-control">
-                    </div>
+<!--                <div class="row">-->
+<!--                    <div class="col">-->
+<!--                        <h5 class="mt-3">Email</h5>-->
+<!--                        <input type="email" th:field="*{email}" name="email" class="form-control">-->
+<!--                    </div>-->
 
-                    <div class="col">
-                        <h5 class="mt-3">Phone Number</h5>
-                        <input type="text" th:field="*{phone}" name="phone" class="form-control">
-                    </div>
-                </div>
+<!--                    <div class="col">-->
+<!--                        <h5 class="mt-3">Phone Number</h5>-->
+<!--                        <input type="text" th:field="*{phone}" name="phone" class="form-control">-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="row">
-                    <div class="col-3">
-                        <h5 class="mt-3">Address</h5>
-                        <input type="text" th:field="*{address}" name="address" class="form-control">
-                    </div>
-                    <div class="col-3">
-                        <h5 class="mt-3">Postal Code</h5>
-                        <input type="text" th:field="*{postalCode}" name="postalCode" class="form-control">
-                    </div>
-                    <div class="col-3">
-                        <h5 class="mt-3">City</h5>
-                        <input type="text" th:field="*{city}" name="city" class="form-control">
-                    </div>
-                    <div class="col-3">
-                        <h5 class="mt-3">Country</h5>
-                        <input type="text" th:field="*{country}" name="country"  class="form-control d-block">
-                    </div>
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-3">-->
+<!--                        <h5 class="mt-3">Address</h5>-->
+<!--                        <input type="text" th:field="*{address}" name="address" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="col-3">-->
+<!--                        <h5 class="mt-3">Postal Code</h5>-->
+<!--                        <input type="text" th:field="*{postalCode}" name="postalCode" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="col-3">-->
+<!--                        <h5 class="mt-3">City</h5>-->
+<!--                        <input type="text" th:field="*{city}" name="city" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="col-3">-->
+<!--                        <h5 class="mt-3">Country</h5>-->
+<!--                        <input type="text" th:field="*{country}" name="country"  class="form-control d-block">-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <div class="row">
                     <div class="col">
@@ -179,17 +179,21 @@
 
 
 <!--My Reservations-->
-        <div class="col d-flex d-none" id="reservations" th:object="${user}">
+
+        <div class="col d-flex d-none" id="reservations">
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
-                 <div th:if="${user.role.DOCTOR}">
-                      <div th:each="appointment : ${user.getAppointments()}">
-                        <a th:text="|Reservation with : ${appointment.getClient().getFirstName()} ${appointment.getClient().getLastName()} on ${appointment.getDate()}|" ></a>
+
+                 <div th:if="${appUser.role.name == 'DOCTOR'}">
+                      <div th:each="appointment : ${appUser.Appointments}">
+                          <span th:text="${appointment.id}"></span>
+<!--                        <a th:text="|Reservation with : ${appointment.getClient().getFirstName()} ${appointment.getClient().getLastName()} on ${appointment.getDate()}|" ></a>-->
                       </div>
+                     <h1>DOCTOR BULDU</h1>
                  </div>
 
 
-                <div th:unless="${user.role.DOCTOR}">
-                     <div th:each="appointment : ${user.getAppointments()}">
+                <div th:if="${appUser.role == 'CLIENT' }">
+                     <div th:each="appointment : ${appUser.getAppointments()}">
                          <a th:text="|Reservation with :Dr. ${appointment.getDoctor().getFirstName()} ${appointment.getDoctor().getLastName()} on ${appointment.getDate()}|" ></a>
                      </div>
                  </div>

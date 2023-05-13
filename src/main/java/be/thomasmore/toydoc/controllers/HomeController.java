@@ -49,8 +49,8 @@ public class HomeController {
 
 
     @GetMapping({"/repair"})
-    public String repair(Model model, HttpServletRequest request) {
-        AppUser appUser = (AppUser) request.getAttribute("appUser");
+    public String repair(Model model) {
+//        AppUser appUser = (AppUser) request.getAttribute("appUser");
 
 //          //try only when logged in
 //        System.out.println("===================LOGGED IN USER DETAILS=====================");

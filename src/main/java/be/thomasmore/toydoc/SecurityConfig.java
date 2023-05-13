@@ -57,7 +57,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    @Lazy
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

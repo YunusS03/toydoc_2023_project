@@ -117,17 +117,17 @@ public class UserController {
 
         String loginName = (String) model.getAttribute("loginName");
 
-        //hier komt nog andere manier van code
-        if(loginName!=null){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
-        }
+
 
         Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
         if(optionalAppUser.isPresent()){
             AppUser user =optionalAppUser.get();
             model.addAttribute("user",user);
         }
+
+logger.info("=============================");
+        System.out.println(appUser.getRole().name());
+            logger.info("=============================");
 
         return "user/dashboard";
         }
