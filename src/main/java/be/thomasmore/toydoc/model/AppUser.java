@@ -41,6 +41,9 @@ public class AppUser implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private Collection<Appointment> appointments;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    private Collection<Appointment> clientAppointments;
+
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "client")
     private Collection<Toy> toys;
@@ -57,6 +60,14 @@ public class AppUser implements UserDetails {
     // Constructors
     public AppUser() {
 
+    }
+
+    public Collection<Appointment> getClientAppointments() {
+        return clientAppointments;
+    }
+
+    public void setClientAppointments(Collection<Appointment> clientAppointments) {
+        this.clientAppointments = clientAppointments;
     }
 
     public AppUser(String username, String password, String firstName, String lastName, Role role) {

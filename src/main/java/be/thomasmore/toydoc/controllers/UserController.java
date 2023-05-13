@@ -114,28 +114,8 @@ public class UserController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
 
         if (appUser.getId() == id){
-
-        String loginName = (String) model.getAttribute("loginName");
-
-
-
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
-        if(optionalAppUser.isPresent()){
-            AppUser user =optionalAppUser.get();
-            model.addAttribute("user",user);
+            return "user/dashboard";
         }
-
-            logger.info("=============================");
-
-            for (Appointment a : appUser.getAppointments()) {
-
-                System.out.println(a.getDate());
-            }
-            logger.info("=============================");
-
-        return "user/dashboard";
-        }
-
         else{
             String errorMessage = "You do not have acces to this page";
             model.addAttribute("errorMessage", errorMessage);

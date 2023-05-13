@@ -122,48 +122,48 @@
                     </div>
                 </div>
 
-<!--                <div class="row">-->
-<!--                    <div class="col">-->
-<!--                        <h5 class="mt-3">Age</h5>-->
-<!--                        <input type="number" th:field="*{age}" name="age" class="form-control">-->
-<!--                    </div>-->
+                <div class="row">
+                    <div class="col">
+                        <h5 class="mt-3">Age</h5>
+                        <input type="number" th:value="${appUser.age}" name="age" class="form-control">
+                    </div>
 
-<!--                    <div class="col">-->
-<!--                        <h5 class="mt-3">User Name</h5>-->
-<!--                        <input type="text" th:field="*{username}" name="userName" class="form-control">-->
-<!--                    </div>-->
-<!--                </div>-->
+                    <div class="col">
+                        <h5 class="mt-3">User Name</h5>
+                        <input type="text" th:value="${appUser.username}" name="userName" class="form-control">
+                    </div>
+                </div>
 
-<!--                <div class="row">-->
-<!--                    <div class="col">-->
-<!--                        <h5 class="mt-3">Email</h5>-->
-<!--                        <input type="email" th:field="*{email}" name="email" class="form-control">-->
-<!--                    </div>-->
+                <div class="row">
+                    <div class="col">
+                        <h5 class="mt-3">Email</h5>
+                        <input type="email" th:value="${appUser.email}" name="email" class="form-control">
+                    </div>
 
-<!--                    <div class="col">-->
-<!--                        <h5 class="mt-3">Phone Number</h5>-->
-<!--                        <input type="text" th:field="*{phone}" name="phone" class="form-control">-->
-<!--                    </div>-->
-<!--                </div>-->
+                    <div class="col">
+                        <h5 class="mt-3">Phone Number</h5>
+                        <input type="text" th:value="${appUser.phone}" name="phone" class="form-control">
+                    </div>
+                </div>
 
-<!--                <div class="row">-->
-<!--                    <div class="col-3">-->
-<!--                        <h5 class="mt-3">Address</h5>-->
-<!--                        <input type="text" th:field="*{address}" name="address" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="col-3">-->
-<!--                        <h5 class="mt-3">Postal Code</h5>-->
-<!--                        <input type="text" th:field="*{postalCode}" name="postalCode" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="col-3">-->
-<!--                        <h5 class="mt-3">City</h5>-->
-<!--                        <input type="text" th:field="*{city}" name="city" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="col-3">-->
-<!--                        <h5 class="mt-3">Country</h5>-->
-<!--                        <input type="text" th:field="*{country}" name="country"  class="form-control d-block">-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="mt-3">Address</h5>
+                        <input type="text" th:value="${appUser.address}" name="address" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">Postal Code</h5>
+                        <input type="text" th:value="${appUser.postalCode}" name="postalCode" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">City</h5>
+                        <input type="text" th:value="${appUser.city}" name="city" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <h5 class="mt-3">Country</h5>
+                        <input type="text" th:value="${appUser.country}" name="country"  class="form-control d-block">
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col">
@@ -184,25 +184,18 @@
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
 
                 <div th:if="${appUser.role.name == 'DOCTOR'}">
-                    <div th:each="appointment0 : ${appUser.appointments}">
-                        <span th:text="${appointment0.id}"></span>
-<!--                        <a th:text="'Reservation with: ' + ${appointment0.client.firstName} + ' ' + ${appointment0.client.lastName} + ' on ' + ${appointment0.date}"></a>-->
-                        <a th:text="|Reservation with :Dr. ${appointment0.doctor.firstName} ${appointment0.doctor.lastName} on ${appointment0.date}|" ></a>
+                    <div th:each="appointment : ${appUser.appointments}">
+                        <span th:text="${appointment.id}"></span>
+                        <a th:text="'Reservation with: ' + ${appointment.client.firstName} + ' ' + ${appointment.client.lastName} + ' on ' + ${appointment.date}"></a>
                     </div>
 
                 </div>
 
 
                 <div th:if="${appUser.role.name == 'CLIENT' }">
-                    <h1 th:text="${appUser.id}"></h1>
-                    <span th:text="${#lists.size(appUser.appointments)}"></span>
-                    <div th:each="appointment1 : ${appUser.appointments}">
-
-                         <h1>BULDUM</h1>
-
-                         <a th:text="|Reservation with :Dr. ${appointment1.doctor.firstName} ${appointment1.doctor.lastName} on ${appointment1.date}|" ></a>
+                    <div th:each="appointment : ${appUser.clientAppointments}">
+                        <a th:text="|Reservation with :Dr. ${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date}|" ></a>
                      </div>
-                    <h1>CLIENT BULDUM</h1>
 
                  </div>
 
