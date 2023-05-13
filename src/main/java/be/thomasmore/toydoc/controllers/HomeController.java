@@ -46,7 +46,6 @@ public class HomeController {
 
     @GetMapping({"/repair"})
     public String repair(Model model) {
-        // Laad de "home" pagina
         return "repair";
     }
 
@@ -59,7 +58,10 @@ public class HomeController {
         return "about";
     }
 
-
+    @GetMapping({"/contact"})
+    public String contact(Model model) {
+        return "contact";
+    }
 
 
 
