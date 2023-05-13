@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
 
 /*//============ACHTERGROND SPEELGOED//============//============*/
+/*body {*/
+/*    overflow-x: hidden;*/
+/*    background-color: #8EC5FC;*/
+/*    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);*/
+
+/*}*/
+
 body {
     overflow-x: hidden;
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-
+    background: #e8cbc0;
+    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+    background: linear-gradient(to right, #e8cbc0, #636fa4);
+    min-height: 100vh;
 }
 
 
@@ -133,10 +141,16 @@ div {
     background-color: #412A55;
 }
 .card{
-    background: #8489d3;
-    border-color: #6a84ff;
-    opacity: 0.8;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    /*background: #8489d3;*/
+    /*border-color: #6a84ff;*/
+    /*opacity: 0.8;*/
+    /*box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);*/
+    background: transparent;
+    border: none
+}
+
+.card-body{
+    padding: 0px;
 }
 
 .card-body h2{
@@ -184,7 +198,6 @@ article {
 .post-info {
     float: left;
     font-size: 1em;
-    line-height: 1em;
     margin-top: 0;
     margin-left: 0;
 }
@@ -298,18 +311,17 @@ footer{
     font-size: 22px;
 }
 .sidebar{
-    background-color:white;
+    background-color: #160e2e;
+    opacity: 0.9;
 }
-.sidebar{
-    background-color: #bec5e1;
 
-}
 .sidebar li a{
-    color: #412A55;
+    color: white;
+    font-weight: bolder;
 }
 .profile-div{
     background-color: #d5daec;
-    opacity: 0.7;
+    opacity: 0.85;
 }
 
 
@@ -371,6 +383,19 @@ footer{
     transition: all 0.3s ease;
 }
 
+.btn-reservation {
+    /*width: 100%;*/
+    margin: 0;
+    padding: 8px;
+    /*font-size: 14px;*/
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+
+}
+
+
 .cell-available {
     background-color: #007bff;
     border-color: #007bff;
@@ -391,4 +416,49 @@ footer{
 
 .btn:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+/**{*/
+/*    outline: 1px dashed red;*/
+/*}*/
+
+
+
+
+
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+
+.doctorlist{
+
+    width: 100%;
+
+}
+
+.doctorlist img{
+    width: 100px;
+    height: 100px;
 }

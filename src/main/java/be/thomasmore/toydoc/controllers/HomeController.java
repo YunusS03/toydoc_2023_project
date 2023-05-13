@@ -52,14 +52,15 @@ public class HomeController {
     public String repair(Model model, HttpServletRequest request) {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-        System.out.println("===================LOGGED IN USER DETAILS=====================");
-        System.out.println("appUser: " + appUser.getEmail());
-        System.out.println("firstName: " + appUser.getFirstName());
-        System.out.println("loginname: " + appUser.getUsername());
-        System.out.println("passw: " + appUser.getPassword());
-        System.out.println("loginname: " + appUser.getUsername());
-        System.out.println("==================LOGGED IN USER DETAILS======================");
-
+//          //try only when logged in
+//        System.out.println("===================LOGGED IN USER DETAILS=====================");
+//        System.out.println("appUser: " + appUser.getEmail());
+//        System.out.println("firstName: " + appUser.getFirstName());
+//        System.out.println("loginname: " + appUser.getUsername());
+//        System.out.println("passw: " + appUser.getPassword());
+//        System.out.println("loginname: " + appUser.getUsername());
+//        System.out.println("==================LOGGED IN USER DETAILS======================");
+//
 
 
         // Laad de "home" pagina
