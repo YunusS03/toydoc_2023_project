@@ -199,19 +199,22 @@
 
                 <div th:if="${appUser.role.name == 'DOCTOR'}">
                     <div th:each="appointment : ${appUser.appointments}">
-                        <span th:text="${appointment.id}"></span>
-                        <a  th:text="'Reservation with: ' + ${appointment.client.firstName} + ' ' + ${appointment.client.lastName} + ' on ' + ${appointment.date}"></a>
+                        <a th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
+
+                        <button  class="btn btn-reservation-detail" th:text="|Reservation with: ${appointment.client.firstName} ${appointment.client.lastName} on ${appointment.date}|"></button>
+                        </a>
+
                     </div>
                 </div>
 
 
                 <div th:if="${appUser.role.name == 'CLIENT' }">
                     <div th:each="appointment : ${appUser.clientAppointments}">
-                        <a th:text="|Reservation with :Dr. ${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date}|" ></a>
+                        <a  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
+                            <button class="btn btn-reservation-detail mt-3" th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date}|"  ></button>
+                        </a>
                      </div>
-
-                 </div>
-
+                </div>
             </div>
         </div>
 

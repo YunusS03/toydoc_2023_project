@@ -462,3 +462,13 @@ footer{
     width: 100px;
     height: 100px;
 }
+.btn-reservation-detail{
+    margin: 0;
+    padding: 8px;
+    /*font-size: 14px;*/
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background-color: #412A55!important;
+    color: white;
+}

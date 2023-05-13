@@ -1,7 +1,9 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import be.thomasmore.toydoc.repositories.AppointmentRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class DashboardController {
 
     @Autowired
     private AppUserRepository appUserRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
 
     @GetMapping("profile/{id}")
     public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
@@ -65,10 +70,31 @@ public class DashboardController {
 
     @PostMapping("/profile/{id}/delete")
     public String userDelete( @PathVariable int id,@ModelAttribute AppUser appUser) {
-//        Optional<AppUser> willBeDeleted = appUserRepository.findById(id)
         System.out.println("isdeleted");
         appUserRepository.delete(appUser);
         return "redirect:/home";
+    }
+
+    @GetMapping("/reservationdetail/{id}")
+    public String manageAppointment(@PathVariable int id, Model model, Principal principal) {
+
+
+        // Check if the secretKey exists and is valid
+        System.out.println("SECRET KEY I GOT : " + id);
+        if (isValidId(id)) {
+            Optional<Appointment> appointment = appointmentRepository.findById(id);
+            model.addAttribute("appointment", appointment.get());
+            return "manage_appointment";
+        } else {
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
+        }
+    }
+
+    private boolean isValidId(Integer id) {
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        return appointment.get() != null;
     }
 
 
