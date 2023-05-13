@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -74,10 +74,10 @@
                                 <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                    <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="28" height="28" class="rounded-circle">
+                                    <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
+                                         alt="ProfileImage" width="28" height="28" class="rounded-circle">
                                     <span th:text="|${loginName}|"></span>
                                 </button>
-
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="my-profile text-decoration-none"
                                        th:href="@{'user/dashboard/' + ${appUser.id}}">My Profile</a>
@@ -92,8 +92,6 @@
                             </div>
                         </li>
                     </div>
-
-
                 </ul>
             </div>
         </div>
