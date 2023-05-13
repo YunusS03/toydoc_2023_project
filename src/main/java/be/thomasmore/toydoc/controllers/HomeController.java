@@ -27,19 +27,16 @@ public class HomeController {
 
 
     @GetMapping({"/" , "/home"})
-    public String home(Model model) {
+    public String home(Model model,HttpServletRequest request) {
 
 
-        String loginName = (String) model.getAttribute("loginName");
+//        String loginName = (String) model.getAttribute("loginName");
 
-        if(loginName!= null){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
-        }
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+
 
 
         // Log de naam van de ingelogde gebruiker
-        logger.info(loginName);
 
         // Laad de "home" pagina
         return "home";

@@ -64,7 +64,9 @@ public class DashboardController {
     }
 
     @PostMapping("/profile/{id}/delete")
-    public String userDelete( @PathVariable int id, AppUser appUser) {
+    public String userDelete( @PathVariable int id,@ModelAttribute AppUser appUser) {
+//        Optional<AppUser> willBeDeleted = appUserRepository.findById(id)
+        System.out.println("isdeleted");
         appUserRepository.delete(appUser);
         return "redirect:/home";
     }
