@@ -42,19 +42,16 @@ public class UserController {
     @GetMapping("/login")
     public String register(Principal principal, Model model) {
 
-
-
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
         List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
         AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
         model.addAttribute("APPUSERS",userArray);
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
 
-
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
-        model.addAttribute("user",new AppUser());
+//        model.addAttribute("user",new AppUser());
         return "user/login";
     }
 
@@ -153,7 +150,7 @@ public class UserController {
         }
     }
 
-    // Uitloggen van gebruiker
+
     @GetMapping("/forgot-password")
     public String forgotPassword(Principal principal, Model model) {
 
@@ -191,9 +188,7 @@ public class UserController {
 
 
     @GetMapping("/forgot-password/sent")
-    public String sendPasswordResetEmail(Model model,Principal principal) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+    public String sendPasswordResetEmail(Model model) {
 
         String errorMessage = "Email Has Been send";
         model.addAttribute("errorMessage", errorMessage);

@@ -52,7 +52,7 @@
 
                     <div th:if="${loginName ==  null}" class="d-flex">
                         <li class="nav-item">
-                            <form th:action="@{/user/login}" method="post">
+                            <form th:action="@{/user/login}" method="get">
                                 <button class="nav-link btn btn-outline-light login-btn" type="submit">Login</button>
                             </form>
                         </li>
