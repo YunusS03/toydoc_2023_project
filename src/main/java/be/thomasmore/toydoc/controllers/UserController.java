@@ -198,16 +198,45 @@ public class UserController {
 
 
     @GetMapping("/password-reset/{secretKey}")
-    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+    public String managepassword(@PathVariable String secretKey, Model model) {
 
+        AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
 
+        if (appuser != null) {
 
-        if (appUserRepository.findByPasswordResetKey(secretKey) != null) {
-            AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
-            model.addAttribute("appuser", appuser);
             String errorMessage = "PASSWORD RESET HTML MOET NOG AANGEMAAKT WORDEN SECRET KEY IS JUST";
             model.addAttribute("errorMessage", errorMessage);
-            return "error"; //wijzig nadien de passw reset html pagina is gemaakt
+            model.addAttribute("secretKey",secretKey);
+
+
+
+            return "/user/changepassword"; //wijzig nadien de passw reset html pagina is gemaakt
+        } else {
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
+        }
+    }
+
+    @PostMapping("/password-reset/{secretKey}/change-password")
+    public String managepasswordChange(@PathVariable String secretKey,
+                                       @RequestParam("newPassword") String newPassword,
+                                       @RequestParam("confirmPassword") String confirmPassword,
+                                       Model model) {
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
+        if (appuser != null) {
+            appuser.removePasswordResetKey();
+            appuser.setPassword(passwordEncoder.encode(confirmPassword));
+            appUserRepository.save(appuser);
+
+
+            return "redirect:/user/login?message=Password reset successful";
+
+
+
         } else {
             String errorMessage = "Invalid Key. Please contact support";
             model.addAttribute("errorMessage", errorMessage);
