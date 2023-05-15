@@ -108,8 +108,8 @@
             <label for="chk" aria-hidden="true">Login</label>
             <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
             <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-            <div th:if="${param.error}">
-                <p class="error mb-3">Invalid username or password. Please try again.</p>
+            <div th:if="${param.error}" style="margin: 10px 65px;">
+                <p class="error mb-3" style="color: red;">Invalid username or password. Please try again.</p>
             </div>
             <button class="buttonLogin" type="submit">Sign In</button>
         </form>

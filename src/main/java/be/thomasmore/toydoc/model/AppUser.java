@@ -295,6 +295,11 @@ public class AppUser implements UserDetails {
     }
 
 
+    public void removePasswordResetKey() {
+        passwordResetKey = null;
+    }
+
+
     public List<Role> getRoles() {
         return Arrays.asList(Role.values());
     }
