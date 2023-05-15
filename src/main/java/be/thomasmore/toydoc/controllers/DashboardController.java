@@ -5,7 +5,10 @@ import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -77,8 +80,17 @@ public class DashboardController {
     }
 
     @PostMapping("/profile/{id}/delete")
-    public String userDelete( @PathVariable int id,@ModelAttribute AppUser appUser,Principal principal) {
+    public String userDelete(@PathVariable int id, @ModelAttribute AppUser appUser, HttpServletRequest request, HttpServletResponse response) {
         System.out.println("isdeleted");
+        AppUser appUserPrincipal = (AppUser) request.getAttribute("appUser");
+
+
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        logoutHandler.setInvalidateHttpSession(true);
+        logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+
+
+//        appUserPrincipal.setId(null);
         appUserRepository.delete(appUser);
         return "redirect:/user/logout";
     }
@@ -88,7 +100,6 @@ public class DashboardController {
 
 
         // Check if the secretKey exists and is valid
-        System.out.println("SECRET KEY I GOT : " + id);
         if (isValidId(id)) {
             Optional<Appointment> appointment = appointmentRepository.findById(id);
             model.addAttribute("appointment", appointment.get());

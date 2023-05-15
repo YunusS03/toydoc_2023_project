@@ -26,7 +26,7 @@ public class CustomInterceptor implements HandlerInterceptor {
 
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            System.out.println("Principal class: " + principal.getClass().getName());
+
             if (principal instanceof UserDetails) {
                 String loginName = ((UserDetails) principal).getUsername();
                 request.setAttribute("loginName", loginName);
@@ -50,6 +50,8 @@ public class CustomInterceptor implements HandlerInterceptor {
 //                        request.setAttribute("firstName", firstName);
                         request.setAttribute("appUser", appUser);
                     }
+
+
 
             }
         }
