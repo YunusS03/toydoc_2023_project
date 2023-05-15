@@ -155,7 +155,7 @@ public class AppointmentController {
             Appointment appointment = optionalAppointment.get();
             appointment.setConfirmed(true);
             appointmentRepository.save(appointment);
-
+           // ERRORYUNUS //send confirmation missing
             System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
         }
 

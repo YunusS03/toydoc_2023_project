@@ -4,6 +4,7 @@ import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,19 +42,16 @@ public class UserController {
     @GetMapping("/login")
     public String register(Principal principal, Model model) {
 
-
-
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
         List<AppUser> userList = (List<AppUser>) appUserRepository.findAll();
         AppUser[] userArray = userList.toArray(new AppUser[userList.size()]);
         model.addAttribute("APPUSERS",userArray);
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
 
-
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
-        model.addAttribute("user",new AppUser());
+//        model.addAttribute("user",new AppUser());
         return "user/login";
     }
 
@@ -108,45 +106,51 @@ public class UserController {
 
 
     @GetMapping("/dashboard/{id}")
-    public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){
+    public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
 
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-        String loginName = (String) model.getAttribute("loginName");
-
-        //hier komt nog andere manier van code
-        if(loginName!=null){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+        if (appUser.getId() == id){
+            return "user/dashboard";
         }
-
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
-        if(optionalAppUser.isPresent()){
-            AppUser user =optionalAppUser.get();
-            model.addAttribute("user",user);
+        else{
+            String errorMessage = "You do not have acces to this page";
+            model.addAttribute("errorMessage", errorMessage);
+            return "/error";
         }
-
-        return "user/dashboard";
     }
 
     @GetMapping("/dashboard/{id}/profile")
-    public String dashboardProfile(Model model,Principal principal, @PathVariable(required = false)Integer id){
-        final String loginName = principal==null ? null : principal.getName();
-        model.addAttribute("loginName",loginName);
+    public String dashboardProfile(Model model,Principal principal,HttpServletRequest request, @PathVariable(required = false)Integer id){
 
-        if(loginName!=null){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
-        }
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-        Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
-        if(optionalAppUser.isPresent()){
-            AppUser user =optionalAppUser.get();
-            model.addAttribute("user",user);
+        if (appUser.getId() == id) {
+
+
+            final String loginName = principal == null ? null : principal.getName();
+            model.addAttribute("loginName", loginName);
+
+            if (loginName != null) {
+                model.addAttribute("id", appUserRepository.findByUsername(loginName).getId());
+                model.addAttribute("img", appUserRepository.findByUsername(loginName).getProfileImage());
+            }
+
+            Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
+            if (optionalAppUser.isPresent()) {
+                AppUser user = optionalAppUser.get();
+                model.addAttribute("user", user);
+            }
+            return "user/dashboard";
         }
-        return "user/dashboard";
+        else{
+            String errorMessage = "You do not have acces to this page";
+            model.addAttribute("errorMessage", errorMessage);
+            return "/error";
+        }
     }
 
-    // Uitloggen van gebruiker
+
     @GetMapping("/forgot-password")
     public String forgotPassword(Principal principal, Model model) {
 
@@ -184,9 +188,7 @@ public class UserController {
 
 
     @GetMapping("/forgot-password/sent")
-    public String sendPasswordResetEmail(Model model,Principal principal) {
-        final String loginName = principal==null ? "NOBODY" : principal.getName();
-        model.addAttribute("loginName",loginName);
+    public String sendPasswordResetEmail(Model model) {
 
         String errorMessage = "Email Has Been send";
         model.addAttribute("errorMessage", errorMessage);
@@ -196,16 +198,45 @@ public class UserController {
 
 
     @GetMapping("/password-reset/{secretKey}")
-    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+    public String managepassword(@PathVariable String secretKey, Model model) {
 
+        AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
 
+        if (appuser != null) {
 
-        if (appUserRepository.findByPasswordResetKey(secretKey) != null) {
-            AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
-            model.addAttribute("appuser", appuser);
             String errorMessage = "PASSWORD RESET HTML MOET NOG AANGEMAAKT WORDEN SECRET KEY IS JUST";
             model.addAttribute("errorMessage", errorMessage);
-            return "error"; //wijzig nadien de passw reset html pagina is gemaakt
+            model.addAttribute("secretKey",secretKey);
+
+
+
+            return "/user/changepassword"; //wijzig nadien de passw reset html pagina is gemaakt
+        } else {
+            String errorMessage = "Invalid Key. Please contact support";
+            model.addAttribute("errorMessage", errorMessage);
+            return "error";
+        }
+    }
+
+    @PostMapping("/password-reset/{secretKey}/change-password")
+    public String managepasswordChange(@PathVariable String secretKey,
+                                       @RequestParam("newPassword") String newPassword,
+                                       @RequestParam("confirmPassword") String confirmPassword,
+                                       Model model) {
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        AppUser appuser = appUserRepository.findByPasswordResetKey(secretKey);
+        if (appuser != null) {
+            appuser.removePasswordResetKey();
+            appuser.setPassword(passwordEncoder.encode(confirmPassword));
+            appUserRepository.save(appuser);
+
+
+            return "redirect:/user/login?message=Password reset successful";
+
+
+
         } else {
             String errorMessage = "Invalid Key. Please contact support";
             model.addAttribute("errorMessage", errorMessage);

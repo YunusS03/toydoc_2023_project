@@ -19,4 +19,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     List<Appointment> findByConfirmedFalse();
 
 
+
 }

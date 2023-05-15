@@ -6,8 +6,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 //@MappedSuperclass
@@ -29,21 +31,43 @@ public class AppUser implements UserDetails {
     private String speciality;
     private Role role;
 
-    @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
+
     private String passwordResetKey;
 
-    @Column(length = 50000)
+
+    @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String profileImage;
-    @OneToMany(mappedBy = "doctor")
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private Collection<Appointment> appointments;
-    @OneToMany(mappedBy = "client")
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    private Collection<Appointment> clientAppointments;
+
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "client")
     private Collection<Toy> toys;
+
+
+    @Override
+    public String getUsername() {
+        // Return the username or identifier for the user
+        return username;
+    }
 
 
 
     // Constructors
     public AppUser() {
 
+    }
+
+    public Collection<Appointment> getClientAppointments() {
+        return clientAppointments;
+    }
+
+    public void setClientAppointments(Collection<Appointment> clientAppointments) {
+        this.clientAppointments = clientAppointments;
     }
 
     public AppUser(String username, String password, String firstName, String lastName, Role role) {
@@ -59,6 +83,9 @@ public class AppUser implements UserDetails {
         setPhone(phone);
         role = Role.CLIENT;
     }
+
+
+
 
     public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
         setEmail(email);
@@ -94,24 +121,25 @@ public class AppUser implements UserDetails {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        // Return true if the user's account is non-expired
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        // Return true if the user's account is non-locked
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        // Return true if the user's credentials are non-expired
+        return true;
     }
+
 
     @Override
     public boolean isEnabled() {
@@ -217,8 +245,9 @@ public class AppUser implements UserDetails {
 
 
 
+
     public Collection<Appointment> getAppointments() {
-        return appointments;
+        return this.appointments;
     }
 
     public void setAppointments(Collection<Appointment> appointments) {
@@ -264,6 +293,14 @@ public class AppUser implements UserDetails {
     }
 
 
+    public void removePasswordResetKey() {
+        passwordResetKey = null;
+    }
+
+
+    public List<Role> getRoles() {
+        return Arrays.asList(Role.values());
+    }
 
 }
 

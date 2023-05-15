@@ -76,6 +76,11 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+
 
     </dependencies>
 
