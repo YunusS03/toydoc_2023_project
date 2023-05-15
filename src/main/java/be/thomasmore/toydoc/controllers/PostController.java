@@ -41,11 +41,7 @@ public class PostController {
 
 
     @GetMapping("/posts/new")
-    public String createNewPost(Model model, Principal principal) {
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
-
+    public String createNewPost(Model model) {
         Post post = new Post();
         model.addAttribute("post", post);
         return "post_new";
