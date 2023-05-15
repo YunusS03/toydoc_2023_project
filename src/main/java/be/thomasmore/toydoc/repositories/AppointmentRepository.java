@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.repositories;
 
+import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Appointment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     Appointment findBySecretKey(String secretKey);
     List<Appointment> findByDate(Date date);
     List<Appointment> findByConfirmedFalse();
+    List<Appointment> findByClient(AppUser Appuser);
 
 
 

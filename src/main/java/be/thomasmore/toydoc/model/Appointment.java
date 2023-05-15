@@ -9,6 +9,7 @@ import java.util.*;
 
 @Entity
 public class Appointment {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
@@ -30,15 +31,15 @@ public class Appointment {
     private Date time;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Toy toy;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private AppUser doctor;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private AppUser client;
 
 

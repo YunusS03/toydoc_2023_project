@@ -12,9 +12,13 @@ public class Toy {
     private Integer id;
     private String name;
     private String type;
-    @OneToOne
+
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Appointment appointment;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+
+
     private AppUser client;
 
 
