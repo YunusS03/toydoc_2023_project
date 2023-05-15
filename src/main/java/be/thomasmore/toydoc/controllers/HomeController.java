@@ -1,6 +1,5 @@
 package be.thomasmore.toydoc.controllers;
 
-import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -22,6 +21,7 @@ public class HomeController {
 
     @Autowired
     private AppUserRepository appUserRepository;
+
 
     @GetMapping({"/" , "/home"})
     public String home(Model model) {
@@ -77,8 +77,6 @@ public class HomeController {
     public String contact(Model model) {
         return "contact";
     }
-
-
 
 
 }

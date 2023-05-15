@@ -1,5 +1,6 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"><head>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,35 +19,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
     <!--Font Awesome Link    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>ToyDoc</title>
+    <title>post</title>
 </head>
-
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-<div class="container mt-5">
-    <div class="container">
-        <div class="card">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/css/toydoc.png" class="textballoon-one img-fluid" alt="tekstballon">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body text-center">
-                        <h1>Would you like to have your toys repaired<br>by our team of experts?</h1>
-                        <a th:href="@{/test1}">
-                            <button type="button" class="btn-reservation btn-primary ">Make a reservation</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="card-body text-center">
+        <h1>Doctor repair blog</h1>
+        <p>Hey there. Here you can find about all the repairs that there have been</p>
     </div>
+    <a th:href="@{'/posts/new'}">
+        <button type="button" class="btn btn-primary btn-lg">Make new post</button></a>
+</div>
+    <main class="container">
+           <div class="card col m-xl-3 m-lg-1 mb-sm-2 p-0" th:each="post : ${posts}" >
+           <div class="card-body">
+               <div class="user-info">
+                   <h2><a th:href="@{'/postDetails/' + ${post.id}}"
+                          th:text="${post.title}">Title</a></h2>
+                   <div class="post-info">
+                          <span th:text="'Published on ' + ${post.date}"> Created At</span>
+                   </div>
+              </div>
+              <div class="post-content">
+                   <p th:text="${post.body}"> body text</p>
+              </div>
+           </div>
+           </div>
+    </main>
 </div>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
-
+<div>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -55,7 +59,8 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="/JS/toys.js"></script>
 
+<script src="/JS/toys.js"></script>
+</div>
 </body>
 </html>

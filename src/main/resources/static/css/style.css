@@ -51,12 +51,6 @@ body {
 }
 
 /*//============*//*//============*//*//============*/
-
-
-
-
-
-
 *{
     margin: 0;
     padding: 0;
@@ -125,10 +119,6 @@ div {
     transform: scale(1);
 }
 
-
-
-
-
 .navigation-list li a,.navigation-list li button,.navigation-list li p{
     font-size: 19px;
     letter-spacing: 1px;
@@ -140,6 +130,9 @@ div {
 .login-btn:hover, .register-btn:hover{
     background-color: #412A55;
 }
+
+
+/*repair page*/
 .card{
     /*background: #8489d3;*/
     /*border-color: #6a84ff;*/
@@ -179,11 +172,6 @@ div {
 .container{
     padding-bottom: 40px;
 }
-.blog-content {
-    max-width: 1120px;
-    margin: 10px auto 50px;
-    z-index: 20;
-}
 article {
     width: 100%;
     margin: 0px 0px 25px;
@@ -192,14 +180,7 @@ article {
     padding: 15px 30px 30px;
     border-radius: 10px;
     border-image-slice: 33%;
-    background-color: #7D86AD;
     display: inline-block;
-}
-.user-info h1 {
-    font-family: 'Lato', sans-serif;
-    font-size: 35px;
-    font-weight: 700;
-    color: #412A55;
 }
 .post-info {
     float: left;
@@ -211,10 +192,13 @@ article {
     color: #412A55;
     font-weight: 700;
 }
-.blog-content .post-content {
+.post-content {
     display: table;
     min-width: 100%;
     padding-top: 25px;
+}
+.user-info h1{
+
 }
 .dropdown-menu{
     background-color: #7D86AD;
@@ -224,8 +208,11 @@ article {
 }
 .dropdown-toggle:hover, .my-profile:hover,.logout-btn:hover{
     color: #412A55;
-
 }
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
 
 
 /*Footer CSS*/
