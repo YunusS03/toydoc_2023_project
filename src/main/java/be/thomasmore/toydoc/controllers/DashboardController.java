@@ -86,7 +86,7 @@ public class DashboardController {
 
 
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-        logoutHandler.setInvalidateHttpSession(true);
+        logoutHandler.setInvalidateHttpSession(true);  //alles wordt geinvalideerd dat de gbr tot dan in de cache heeft
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
 
 

@@ -4,10 +4,14 @@ import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -92,9 +96,13 @@ public class UserController {
 
     // Uitloggen van gebruiker
     @GetMapping("/logout")
-    public String logout(Principal principal) {
+    public String logout(Principal principal, HttpServletRequest request, HttpServletResponse response) {
 
         // Als er geen gebruiker ingelogd is, ga dan naar home pagina
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        logoutHandler.setInvalidateHttpSession(true);
+        logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+
         if (principal == null) return "redirect:/home";
         // Toon home pagina
         return "/home";
