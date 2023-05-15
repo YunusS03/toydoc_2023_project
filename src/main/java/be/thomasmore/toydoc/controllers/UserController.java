@@ -95,8 +95,7 @@ public class UserController {
 
     // Uitloggen van gebruiker
     @GetMapping("/logout")
-    public String logout(Principal principal, Model model) {
-
+    public String logout(Principal principal) {
 
         // Als er geen gebruiker ingelogd is, ga dan naar home pagina
         if (principal == null) return "redirect:/home";

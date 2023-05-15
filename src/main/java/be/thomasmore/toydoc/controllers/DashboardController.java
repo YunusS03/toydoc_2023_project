@@ -26,12 +26,18 @@ public class DashboardController {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+    @Autowired
+    private UserController userController;
+
     @GetMapping("profile/{id}")
     public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
 
         AppUser appUser = (AppUser) request.getAttribute("appUser");
+        Integer counter = 0;
 
         if (appUser.getId() == id){
+            model.addAttribute("appUser",appUser);
+            model.addAttribute("counter",counter);
             return "dashboard/profile";
         }
         else{
@@ -39,6 +45,7 @@ public class DashboardController {
             model.addAttribute("errorMessage", errorMessage);
             return "/error";
         }
+
     }
 
     @PostMapping("/profile/{id}/edit")
@@ -46,7 +53,7 @@ public class DashboardController {
         Optional<AppUser> existingUser = appUserRepository.findById(id);
 
 
-        if(editedAppUser.getProfileImage()==null){
+        if(editedAppUser.getProfileImage()==""){
             existingUser.get().setProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
         }else{
             existingUser.get().setProfileImage(editedAppUser.getProfileImage());
@@ -54,6 +61,7 @@ public class DashboardController {
 
 
         // only update
+//        existingUser.get().setProfileImage(editedAppUser.getProfileImage());
         existingUser.get().setFirstName(editedAppUser.getFirstName());
         existingUser.get().setLastName(editedAppUser.getLastName());
         existingUser.get().setAge(editedAppUser.getAge());
@@ -69,10 +77,10 @@ public class DashboardController {
     }
 
     @PostMapping("/profile/{id}/delete")
-    public String userDelete( @PathVariable int id,@ModelAttribute AppUser appUser) {
+    public String userDelete( @PathVariable int id,@ModelAttribute AppUser appUser,Principal principal) {
         System.out.println("isdeleted");
         appUserRepository.delete(appUser);
-        return "redirect:/home";
+        return "redirect:/user/logout";
     }
 
     @GetMapping("/reservationdetail/{id}")

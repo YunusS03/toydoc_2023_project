@@ -34,7 +34,7 @@ public class HomeController {
 
         AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-
+model.addAttribute("appUser",appUser);
 
         // Log de naam van de ingelogde gebruiker
 
@@ -69,7 +69,7 @@ public class HomeController {
 
     @GetMapping("/about")
     public String about(Model model) {
-        System.out.println(model.getAttribute("loginName"));
+//        System.out.println(model.getAttribute("loginName"));
         return "about";
     }
 
