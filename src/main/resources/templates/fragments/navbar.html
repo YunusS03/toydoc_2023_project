@@ -83,14 +83,15 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                        <a th:if="${appUser}" class="my-profile text-decoration-none"
-                                           th:href="@{'dashboard/profile/' + ${appUser.id}}">My Profile</a>
+                                    <form th:action="@{'/dashboard/profile/' + ${appUser.id}}" method="get" class="my-profile text-white text-decoration-none">
+                                        <button class="btn btn-reservation" type="submit">My Profile</button>
+                                    </form>
 
-
-                                    <a class="my-profile text-decoration-none"   onclick="showReservations()">Reservations</a>
                                     <div>
                                         <hr class="dropdown-divider">
                                     </div>
+
+
                                     <form th:action="@{/user/logout}" method="post">
                                         <button class="btn  logout-btn" type="submit">Logout</button>
                                     </form>

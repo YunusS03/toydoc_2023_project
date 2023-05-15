@@ -19,14 +19,14 @@ body {
 
 .toy {
     /*position: absolute;*/
-    opacity: 0.5;
+    opacity: 0.2;
     display: block;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     /*background-size: contain;*/
-    animation: float 6s ease-in-out infinite;
+    animation: float 40s ease-in-out infinite;
     pointer-events: none;
-    z-index: -1; /* Set z-index lower than other elements */
+    z-index: -1;
 
 
     position: fixed;
@@ -49,6 +49,9 @@ body {
         transform: translate(0, 0);
     }
 }
+
+
+
 
 /*//============*//*//============*//*//============*/
 *{
