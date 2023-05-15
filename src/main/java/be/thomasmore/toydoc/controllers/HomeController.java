@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.controllers;
 
+import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -30,8 +31,7 @@ public class HomeController {
 //        String loginName = (String) model.getAttribute("loginName");
 
         AppUser appUser = (AppUser) request.getAttribute("appUser");
-
-model.addAttribute("appUser",appUser);
+        model.addAttribute("appUser",appUser);
 
         // Log de naam van de ingelogde gebruiker
 
