@@ -72,7 +72,7 @@
                     <li>
                         <a href="#" class="nav-link px-sm-0 px-2">
                             <form th:action="@{/user/logout}" method="post">
-                                <button  class="btn btn-danger" type="submit">Logout</button>
+                                <button  class="btn btn-block btn-danger" type="submit">Logout</button>
                             </form>
                         </a>
                     </li>
@@ -207,7 +207,7 @@
                     <div class="button-center" th:each="appointment : ${appUser.appointments}">
 
                         <a >
-                            <button  class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: ${appointment.client.firstName} ${appointment.client.lastName} on ${appointment.date}|"></button>
+                            <button  class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: ${appointment.client.firstName} ${appointment.client.lastName} on ${appointment.date} at ${appointment.time}|"></button>
                         </a>
                     </div>
                 </div>
@@ -217,7 +217,7 @@
                     <h1 class="text-center">Reservation with Doctors</h1>
                     <div class="button-center" th:each="appointment : ${appUser.clientAppointments}">
                         <a  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
-                            <button class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date}|"></button>
+                            <button class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date} at ${appointment.time}|"></button>
                         </a>
                      </div>
                 </div>
