@@ -4,6 +4,7 @@ import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Donation;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.DonationRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +58,7 @@ public class DonationController {
     }
 
     @GetMapping("donation/plan")
-    public String donationPlanForm(Model model, Principal principal,@RequestParam(required=false)String plan,Integer amount,Integer ownAmount,String anonymous){
+    public String donationPlanForm(Model model,  HttpServletRequest request,Principal principal, @RequestParam(required=false)String plan, Integer amount, Integer ownAmount, String anonymous){
 
         localPlan = plan;
 
@@ -81,9 +82,9 @@ public class DonationController {
             isAnoniem = true;
         }
 
-        String loginName = (String) model.getAttribute("loginName");
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
 
-        if(loginName != null){
+        if(appUser != null){
             AppUser appuser = appUserRepository.findByUsername(principal.getName());
             localFirstName = appuser.getFirstName();
             localLastName = appuser.getLastName();
@@ -126,7 +127,6 @@ public class DonationController {
             localSecurityCardNumber = securityCardNumber;
         }else{
             inValidCard = true;
-            System.out.println("hata");
         }
 
 

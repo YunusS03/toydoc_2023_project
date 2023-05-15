@@ -1,6 +1,5 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
-import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
@@ -8,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,8 +92,7 @@ public class UserController {
 
     // Uitloggen van gebruiker
     @GetMapping("/logout")
-    public String logout(Principal principal, Model model) {
-
+    public String logout(Principal principal) {
 
         // Als er geen gebruiker ingelogd is, ga dan naar home pagina
         if (principal == null) return "redirect:/home";
@@ -105,50 +102,9 @@ public class UserController {
 
 
 
-    @GetMapping("/dashboard/{id}")
-    public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
-
-        AppUser appUser = (AppUser) request.getAttribute("appUser");
-
-        if (appUser.getId() == id){
-            return "user/dashboard";
-        }
-        else{
-            String errorMessage = "You do not have acces to this page";
-            model.addAttribute("errorMessage", errorMessage);
-            return "/error";
-        }
-    }
-
-    @GetMapping("/dashboard/{id}/profile")
-    public String dashboardProfile(Model model,Principal principal,HttpServletRequest request, @PathVariable(required = false)Integer id){
-
-        AppUser appUser = (AppUser) request.getAttribute("appUser");
-
-        if (appUser.getId() == id) {
 
 
-            final String loginName = principal == null ? null : principal.getName();
-            model.addAttribute("loginName", loginName);
 
-            if (loginName != null) {
-                model.addAttribute("id", appUserRepository.findByUsername(loginName).getId());
-                model.addAttribute("img", appUserRepository.findByUsername(loginName).getProfileImage());
-            }
-
-            Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
-            if (optionalAppUser.isPresent()) {
-                AppUser user = optionalAppUser.get();
-                model.addAttribute("user", user);
-            }
-            return "user/dashboard";
-        }
-        else{
-            String errorMessage = "You do not have acces to this page";
-            model.addAttribute("errorMessage", errorMessage);
-            return "/error";
-        }
-    }
 
 
     @GetMapping("/forgot-password")

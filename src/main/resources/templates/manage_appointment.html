@@ -41,7 +41,7 @@
             <a class="btn btn-danger mt-3" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}"
                role="button" onclick="return confirm('Are you sure you want to cancel this appointment?');">Cancel Appointment</a>
 
-            <a class="btn btn-primary mt-3" th:if="${not appointment.confirmed}" th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}" role="button">Confirm Appointment</a>
+            <a  class="btn btn-primary mt-3" th:if="${not appointment.confirmed}" th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}" role="button">Confirm Appointment</a>
             <span th:if="${appointment != null}">
                     <span th:if="${appointment.confirmed}" class="text-success">Confirmed</span>
                     <span th:unless="${appointment.confirmed}" class="text-danger">Not Confirmed Yet</span>

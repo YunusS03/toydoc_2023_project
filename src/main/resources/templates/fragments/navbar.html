@@ -65,8 +65,7 @@
                     </div>
 
 
-                    <div th:unless="${loginName == null}">
-
+                    <div th:if="${loginName != null}">
 
                         <li class="nav-item">
                             <div class="dropdown">
@@ -74,14 +73,21 @@
                                 <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                    <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
-                                         alt="ProfileImage" width="28" height="28" class="rounded-circle">
+
+                                        <img th:if="${appUser}" th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
+                                             alt="ProfileImage" width="28" height="28" class="rounded-circle">
+
+
                                     <span th:text="|${loginName}|"></span>
+
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="my-profile text-decoration-none"
-                                       th:href="@{'user/dashboard/' + ${appUser.id}}">My Profile</a>
-                                    <a class="my-profile text-decoration-none">Reservations</a>
+
+                                        <a th:if="${appUser}" class="my-profile text-decoration-none"
+                                           th:href="@{'dashboard/profile/' + ${appUser.id}}">My Profile</a>
+
+
+                                    <a class="my-profile text-decoration-none"   onclick="showReservations()">Reservations</a>
                                     <div>
                                         <hr class="dropdown-divider">
                                     </div>
@@ -98,6 +104,7 @@
     </nav>
 </div>
 
+<script src="/JS/dashboard.js"></script>
 
 </body>
 </html>
