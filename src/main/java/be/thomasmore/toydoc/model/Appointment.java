@@ -30,16 +30,16 @@ public class Appointment {
     @NotNull
     private Date time;
 
+//
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Toy toy;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Toy toy;
 
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private AppUser doctor;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private AppUser client;
 
 
@@ -104,13 +104,13 @@ public class Appointment {
         this.time = time;
     }
 
-    public Toy getToy() {
-        return toy;
-    }
+//    public Toy getToy() {
+//        return toy;
+//    }
 
-    public void setToy(Toy toy) {
-        this.toy = toy;
-    }
+//    public void setToy(Toy toy) {
+//        this.toy = toy;
+//    }
 
     public AppUser getClient() {
         return client;
