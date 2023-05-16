@@ -40,7 +40,7 @@ public class UploadController {
     public String uploadSubmit(@RequestParam("file") MultipartFile file,
                                Model model, Principal principal) throws IOException, FirebaseAuthException {
         googleService.uploadFile(file, principal);
-        return "home";
+        return "redirect:/home";
     }
 
 }
