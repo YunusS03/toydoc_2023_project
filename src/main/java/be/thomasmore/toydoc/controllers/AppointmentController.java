@@ -172,6 +172,7 @@ public class AppointmentController {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
         AppUser appUser = optionalAppointment.get().getClient();
         appointmentRepository.deleteById(appointmentId);
+        model.addAttribute("appUser",appUser);
         emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
         //mailcurrent is fout hier!! als de email is veranderd wordt deze nergens opgeslagen dus word de oude mail gebruikt voor de cancelbericht
         //voor nu test purposes is dit OK maar de moment dat 2 achter elkaar doen zullen er foute mails naar foute maileinden gestuurd worden

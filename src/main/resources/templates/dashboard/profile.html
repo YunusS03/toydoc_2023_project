@@ -249,10 +249,10 @@
 
 
                 <div th:if="${appUser.role.name == 'CLIENT' }">
-                    <div th:unless="${appUser.clientAppointments}">
+                    <div th:if="${appUser.clientAppointments.isEmpty}">
                         <h3>You don't have any appoinment</h3>
                     </div>
-                    <div th:if="${appUser,clientAppointments}">
+                    <div th:if="${appUser.clientAppointments}">
 
 
                     <div th:each="appointment : ${appUser.clientAppointments}" >
