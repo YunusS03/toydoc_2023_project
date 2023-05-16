@@ -203,24 +203,60 @@
             <div class=" w-100 h-100 d-flex flex-column profile-div">
 
                 <div th:if="${appUser.role.name == 'DOCTOR'}">
-                    <h1 class="text-center">Reservation with Clients</h1>
-                    <div class="button-center" th:each="appointment : ${appUser.appointments}">
+                    <table id="example-table" class="table table-hover">
+                        <thead>
+                        <h3 class="text-left mb-3">Your schedule:</h3>
 
-                        <a >
-                            <button  class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: ${appointment.client.firstName} ${appointment.client.lastName} on ${appointment.date} at ${appointment.time}|"></button>
-                        </a>
-                    </div>
+                        <tr>
+                            <th  style="background: #281F3D;">Name (with)</th>
+                            <th style="background: #281F3D;">Date (on)</th>
+                            <th style="background: #281F3D;">Time (at)</th>
+                            <th style="background: #281F3D;">Edit</th>
+
+
+                        </tr>
+                        </thead>
+                        <div th:each="appointment : ${appUser.appointments}" >
+
+
+
+                            <tr>
+                                <td> <a class=" table-text"  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}" th:text="|${appointment.client.firstName} ${appointment.client.lastName} | "></a> </td>
+                                <td> <a  class=" table-text" th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}"  th:text="${appointment.date}"></a></td>
+                                <td> <a class="table-text "  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}" th:text="${appointment.time}"></a> </td>
+                                <td class="text-center">
+
+                                    <a class='btn d-inline' th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}">
+                                                <span th:if="${not appointment.confirmed}">
+                                                    <i class="fa-regular fa-pen-to-square fa-lg" style="color: #412A55;;"></i>
+                                                </span>
+                                    </a>
+                                    <a class='btn d-inline' th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}">
+                                                <span th:unless="${not appointment.confirmed}">
+                                                    <i class="fa-solid fa-check fa-lg" style="color: #1f861d;"></i>
+                                                </span>
+                                    </a>
+                                    <a th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn d-inline"><span ><i class="fa-solid fa-trash fa-lg" style="color: #af190e;">
+
+                                    </i>
+                                    </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </div>
+                    </table>
                 </div>
 
 
                 <div th:if="${appUser.role.name == 'CLIENT' }">
-<!--                    <div class="button-center" th:each="appointment : ${appUser.clientAppointments}">-->
-<!--                        <a  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">-->
-<!--                            <button class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date} at ${appointment.time}|"></button>-->
-<!--                        </a>-->
-<!--                     </div>-->
+                    <div th:unless="${appUser.clientAppointments}">
+                        <h3>You don't have any appoinment</h3>
+                    </div>
+                    <div th:if="${appUser,clientAppointments}">
 
-                            <table class="table table-hover">
+
+                    <div th:each="appointment : ${appUser.clientAppointments}" >
+                    <table class="table table-hover">
                                 <thead>
                                 <h3 class="text-left mb-3">Your reservation(s):</h3>
 
@@ -231,7 +267,9 @@
                                     <th style="background: #281F3D;">Edit</th>
                                 </tr>
                                 </thead>
-                                <div th:each="appointment : ${appUser.clientAppointments}" >
+
+
+
 
 
 
@@ -243,20 +281,20 @@
 
                                             <a class='btn d-inline' th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}">
                                                 <span th:if="${not appointment.confirmed}">
-                                                    <i class="fa-regular fa-pen-to-square" style="color: #d4ce16;"></i>
+                                                    <i class="fa-regular fa-pen-to-square fa-lg" style="color: #412A55;;"></i>
                                                 </span>
                                             </a>
-                                            <a>
+                                            <a class='btn d-inline' th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}">
                                                 <span th:unless="${not appointment.confirmed}">
-                                                    <i class="fa-solid fa-check" style="color: #1f861d;"></i>
+                                                    <i class="fa-solid fa-check fa-lg" style="color: #1f861d;"></i>
                                                 </span>
                                             </a>
-                                            <a href="#" class="btn d-inline"><span ><i class="fa-solid fa-trash" style="color: #af190e;"></i></span></a></td>
+                                            <a onclick="return confirm('Are you sure you want to cancel this appointment?');" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn d-inline"><span ><i class="fa-solid fa-trash fa-lg" style="color: #af190e;"></i></span></a></td>
                                     </tr>
 
-
-                                </div>
                             </table>
+                    </div>
+                    </div>
 
                 </div>
             </div>
@@ -288,6 +326,7 @@
 
 <script src="/JS/toys.js"></script>
 <script src="/JS/dashboard.js"></script>
+
 
 
 </body>
