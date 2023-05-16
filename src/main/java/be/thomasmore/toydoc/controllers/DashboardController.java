@@ -43,11 +43,21 @@ public class DashboardController {
         Integer counter = 0;
 
         if (appUser.getId() == id){
+
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
             Optional<Appointment> appointment = appointmentRepository.findById(id);
+            Appointment appointment0 = new Appointment();
 
-            model.addAttribute("appointment", appointment.get());
+            if (appointment.isPresent()) {
+                appointment0 = appointment.get();
+            } else {
+                System.out.println("No appointment found with id " + id);
+            }
+
+            model.addAttribute("appointment", appointment0);
+
+
 
             return "dashboard/profile";
         }
