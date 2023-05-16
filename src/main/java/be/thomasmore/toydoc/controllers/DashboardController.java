@@ -42,7 +42,7 @@ public class DashboardController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
 
-        if (appUser.getId() == id || appUser.getRole().equals("DOCTOR")){
+        if (appUser.getId() == id ){
 
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);

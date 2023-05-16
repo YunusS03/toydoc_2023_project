@@ -172,8 +172,11 @@ public class AppointmentController {
 
         System.out.println("Appointment ID is ok? : " + appointmentId);
 
-
         AppUser appUser = optionalAppointment.get().getClient();
+
+        mailCurrent = appUser.getEmail();
+
+        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
 
         appointmentRepository.deleteById(appointmentId);
         //do a try catch here
@@ -181,7 +184,7 @@ public class AppointmentController {
 
 
 
-         emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+
 
 
 
