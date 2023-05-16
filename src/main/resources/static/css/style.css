@@ -199,9 +199,9 @@ article {
     min-width: 100%;
     padding-top: 25px;
 }
-.user-info h1{
+input, textarea, button { margin-top:10px }
 
-}
+
 .dropdown-menu{
     background-color: #7D86AD;
 }

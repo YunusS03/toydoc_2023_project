@@ -23,42 +23,25 @@
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
 
-<div class="container">
+<div class="container mt-5">
 
+  <form action="#" th:action="@{'/posts/postnew'}" th:object="${post}" method="post" style="width:400px; margin: 0 auto;" >
+    <h1>Create post</h1>
+
+    <div class="required-field-block">
+      <label for="new-post-title">Title</label>
+      <input id="new-post-title" type="text"  th:field="*{title}" placeholder="Title" class="form-control"/>
+    </div>
+
+    <div class="required-field-block">
+      <label for="new-post-body">Body</label>
+      <textarea id="new-post-body"  type="text" th:field="*{body}" placeholder="Body" rows="3" class="form-control"></textarea>
+    </div>
+
+    <a th:href="@{/post-home}"><button type="submit">Publish Post</button></a>
+  </form>
 </div>
 
-
-  <div class="container mt-4">
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section">Make a new post</h2>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-12 mb-5">
-        <div class="wrapper">
-          <div class="row no-gutters">
-            <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
-              <div class="contact-wrap w-100 p-md-5 p-4">
-                <form action="#" th:action="@{'/posts/postnew'}" th:object="${post}" method="post">
-                  <h2>Write new Post</h2>
-                  <div>
-                    <label for="new-post-title">Title</label>
-                    <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
-                  </div>
-                  <div>
-                    <label for="new-post-body">Body</label>
-                    <input id="new-post-body" type="text" th:field="*{body}" placeholder="Body"/>
-                  </div>
-                  <a th:href="@{/post-home}"><button type="submit">Publish Post</button></a>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <div>
   <!-- jQuery library -->
