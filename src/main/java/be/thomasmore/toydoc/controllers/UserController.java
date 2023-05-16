@@ -1,6 +1,5 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
-import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.security.Principal;
@@ -109,13 +109,13 @@ public class UserController {
     }
 
     @GetMapping("/dashboard/{id}")
-    public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id){
+    public String dashboard(Model model,Principal principal, @PathVariable(required = false)Integer id, @RequestParam(required = false) MultipartFile image){
         final String loginName = principal==null ? "NOBODY" : principal.getName();
         model.addAttribute("loginName",loginName);
 
         if(loginName!="NOBODY"){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getImageUrl());
         }
 
         Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
@@ -134,7 +134,7 @@ public class UserController {
 
         if(loginName!="NOBODY"){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getImageUrl());
         }
 
         Optional<AppUser> optionalAppUser = appUserRepository.findById(id);
@@ -214,6 +214,7 @@ public class UserController {
             return "error";
         }
     }
+
 
 
 }

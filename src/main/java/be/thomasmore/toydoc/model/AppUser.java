@@ -1,7 +1,6 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.security.SecureRandom;
 import java.util.Base64;
@@ -31,7 +30,7 @@ public class AppUser {
     private String passwordResetKey;
 
     @Column(length=50000)
-    private String profileImage;
+    private String imageUrl;
     @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
     @OneToMany(mappedBy = "client")
@@ -203,12 +202,12 @@ public class AppUser {
         this.toys = toys;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setImageUrl(String profileImage) {
+        this.imageUrl = profileImage;
     }
 
 

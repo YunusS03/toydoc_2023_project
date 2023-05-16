@@ -1,7 +1,5 @@
 package be.thomasmore.toydoc.controllers;
 
-import be.thomasmore.toydoc.model.AppUser;
-import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +30,7 @@ public class HomeController {
         model.addAttribute("loginName",loginName);
         if(loginName!="NOBODY"){
             model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getProfileImage());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getImageUrl());
         }
 
 
