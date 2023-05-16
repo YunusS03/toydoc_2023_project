@@ -41,6 +41,8 @@ public class AppointmentController {
 
 
     private Logger logger = LoggerFactory.getLogger(AppointmentController.class);
+
+
     @Autowired
     private AppUserRepository appUserRepository;
 
@@ -112,7 +114,7 @@ public class AppointmentController {
 
 
     @GetMapping("/email/{secretKey}")
-    public String manageAppointment(@PathVariable String secretKey, Model model, Principal principal) {
+    public String manageAppointment(@PathVariable String secretKey, Model model) {
 
 
         // Check if the secretKey exists and is valid
@@ -159,22 +161,33 @@ public class AppointmentController {
            // ERRORYUNUS //send confirmation missing
             System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
         }
-
-        redirectAttributes.addAttribute("secretKey", optionalAppointment.get().getSecretKey());
-        return "redirect:/appointment/email/{secretKey}";
+        return "redirect:/dashboard/reservationdetail/"+appointmentId;
     }
 
 
     @GetMapping("/cancel/{appointmentId}")
-    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Principal principal, Model model) {
+    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model) {
 
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+        System.out.println("Appointment ID is ok? : " + appointmentId);
+
+
         AppUser appUser = optionalAppointment.get().getClient();
+
         appointmentRepository.deleteById(appointmentId);
-        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+        //do a try catch here
+
+
+
+
+        // emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+
+
+
         //mailcurrent is fout hier!! als de email is veranderd wordt deze nergens opgeslagen dus word de oude mail gebruikt voor de cancelbericht
         //voor nu test purposes is dit OK maar de moment dat 2 achter elkaar doen zullen er foute mails naar foute maileinden gestuurd worden
-        return "redirect:/home";
+        return "redirect:/dashboard/profile/" + appUser.getId();
     }
 
 

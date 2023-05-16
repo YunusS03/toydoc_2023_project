@@ -40,15 +40,15 @@ public class AppUser implements UserDetails {
 //    @Column(columnDefinition = "varchar(5000) default 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\n' ")
     private String profileImage;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor",cascade = CascadeType.REMOVE)
     private Collection<Appointment> appointments;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.REMOVE)
     private Collection<Appointment> clientAppointments;
 
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "client")
-    private Collection<Toy> toys;
+//
+//    @OneToMany(fetch = FetchType.EAGER,mappedBy = "client")
+//    private Collection<Toy> toys;
 
 
     @Override
@@ -256,13 +256,13 @@ public class AppUser implements UserDetails {
         this.appointments = appointments;
     }
 
-    public Collection<Toy> getToys() {
-        return toys;
-    }
-
-    public void setToys(Collection<Toy> toys) {
-        this.toys = toys;
-    }
+//    public Collection<Toy> getToys() {
+//        return toys;
+//    }
+//
+//    public void setToys(Collection<Toy> toys) {
+//        this.toys = toys;
+//    }
 
     public String getProfileImage() {
         return profileImage;

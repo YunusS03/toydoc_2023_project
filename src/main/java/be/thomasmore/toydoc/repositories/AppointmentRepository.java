@@ -19,6 +19,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     List<Appointment> findByDate(Date date);
     List<Appointment> findByConfirmedFalse();
     List<Appointment> findByClient(AppUser Appuser);
+    void deleteById(Integer id);
 
 
 
