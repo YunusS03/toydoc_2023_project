@@ -25,14 +25,15 @@
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-    <div class="container mt-4 pt-5">
+<div class="container">
+    <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
                 <h2 class="heading-section">We would love to help</h2>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-12 mb-5">
                 <div class="wrapper">
                     <div class="row no-gutters">
                         <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
@@ -115,11 +116,11 @@
                 </div>
             </div>
         </div>
+        <iframe class="responsive-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10036.870145787942!2d4.491328286508183!3d51.03060283197053!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3e4358063521b%3A0xb1d5f863c26f2fb6!2sSpeelgoedmuseum!5e0!3m2!1sen!2sbe!4v1683987133644!5m2!1sen!2sbe"
+                 height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <div class="row justify-content-center">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10036.870145787942!2d4.491328286508183!3d51.03060283197053!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3e4358063521b%3A0xb1d5f863c26f2fb6!2sSpeelgoedmuseum!5e0!3m2!1sen!2sbe!4v1683987133644!5m2!1sen!2sbe"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+
+</div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
