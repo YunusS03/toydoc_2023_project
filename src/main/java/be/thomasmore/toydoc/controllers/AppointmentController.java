@@ -5,6 +5,7 @@ import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
 
 import be.thomasmore.toydoc.service.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,9 +167,11 @@ public class AppointmentController {
 
 
     @GetMapping("/cancel/{appointmentId}")
-    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model) {
+    public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Model model, HttpServletRequest request) {
 
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+        AppUser appUserCurrent = (AppUser) request.getAttribute("appUser");
 
         System.out.println("Appointment ID is ok? : " + appointmentId);
 
@@ -179,18 +182,14 @@ public class AppointmentController {
         emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
 
         appointmentRepository.deleteById(appointmentId);
-        //do a try catch here
+
+        if (appUser.getUsername() != null) {
+
+            return "redirect:/dashboard/profile/" + appUserCurrent.getId();
+        }
 
 
-
-
-
-
-
-
-        //mailcurrent is fout hier!! als de email is veranderd wordt deze nergens opgeslagen dus word de oude mail gebruikt voor de cancelbericht
-        //voor nu test purposes is dit OK maar de moment dat 2 achter elkaar doen zullen er foute mails naar foute maileinden gestuurd worden
-        return "redirect:/dashboard/profile/" + appUser.getId();
+        return "redirect:/home";
     }
 
 

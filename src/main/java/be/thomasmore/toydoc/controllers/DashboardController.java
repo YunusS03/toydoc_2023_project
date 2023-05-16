@@ -42,7 +42,7 @@ public class DashboardController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
 
-        if (appUser.getId() == id ){
+        if (appUser != null && appUser.getId() == id){
 
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
@@ -61,6 +61,7 @@ public class DashboardController {
 
             return "dashboard/profile";
         }
+
         else{
             String errorMessage = "You do not have acces to this page";
             model.addAttribute("errorMessage", errorMessage);
