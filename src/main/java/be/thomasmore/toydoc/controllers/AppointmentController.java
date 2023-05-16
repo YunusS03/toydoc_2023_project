@@ -168,8 +168,6 @@ public class AppointmentController {
     @GetMapping("/cancel/{appointmentId}")
     public String cancelAppointment(@PathVariable("appointmentId") Integer appointmentId, Principal principal, Model model) {
 
-
-
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
         AppUser appUser = optionalAppointment.get().getClient();
         appointmentRepository.deleteById(appointmentId);

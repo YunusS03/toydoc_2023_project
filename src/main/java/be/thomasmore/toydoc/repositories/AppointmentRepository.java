@@ -22,4 +22,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 
 
 
+
 }

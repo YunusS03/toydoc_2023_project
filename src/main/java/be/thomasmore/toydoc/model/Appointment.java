@@ -35,11 +35,11 @@ public class Appointment {
     private Toy toy;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private AppUser doctor;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private AppUser client;
 
 
