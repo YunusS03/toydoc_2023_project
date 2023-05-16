@@ -119,7 +119,6 @@ public class AppointmentController {
         System.out.println("SECRET KEY I GOT : " + secretKey);
         if (isValidSecretKey(secretKey)) {
             Appointment appointment = appointmentRepository.findBySecretKey(secretKey);
-
             model.addAttribute("appointment", appointment);
             return "manage_appointment";
         } else {

@@ -25,7 +25,7 @@
 
 
 </head>
->
+
 
 <body>
 
@@ -214,12 +214,50 @@
 
 
                 <div th:if="${appUser.role.name == 'CLIENT' }">
-                    <h1 class="text-center">Reservation with Doctors</h1>
-                    <div class="button-center" th:each="appointment : ${appUser.clientAppointments}">
-                        <a  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
-                            <button class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date} at ${appointment.time}|"></button>
-                        </a>
-                     </div>
+<!--                    <div class="button-center" th:each="appointment : ${appUser.clientAppointments}">-->
+<!--                        <a  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">-->
+<!--                            <button class="btn btn-block btn-reservation-detail mt-3 " th:text="|Reservation with: Dr.${appointment.doctor.firstName} ${appointment.doctor.lastName} on ${appointment.date} at ${appointment.time}|"></button>-->
+<!--                        </a>-->
+<!--                     </div>-->
+
+                            <table class="table table-hover">
+                                <thead>
+                                <h3 class="text-left mb-3">Your reservation(s):</h3>
+
+                                <tr>
+                                    <th  style="background: #281F3D;">Name (with)</th>
+                                    <th style="background: #281F3D;">Date (on)</th>
+                                    <th style="background: #281F3D;">Time (at)</th>
+                                    <th style="background: #281F3D;">Edit</th>
+                                </tr>
+                                </thead>
+                                <div th:each="appointment : ${appUser.clientAppointments}" >
+
+
+
+                                    <tr>
+                                        <td> <a class=" table-text"  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}" th:text="|Dr. ${appointment.doctor.firstName} ${appointment.doctor.lastName} | "></a> </td>
+                                        <td> <a  class=" table-text" th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}"  th:text="${appointment.date}"></a></td>
+                                        <td> <a class="table-text "  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}" th:text="${appointment.time}"></a> </td>
+                                        <td class="text-center">
+
+                                            <a class='btn d-inline' th:href="@{/appointment/confirm/{appointmentId}(appointmentId=${appointment.id})}">
+                                                <span th:if="${not appointment.confirmed}">
+                                                    <i class="fa-regular fa-pen-to-square" style="color: #d4ce16;"></i>
+                                                </span>
+                                            </a>
+                                            <a>
+                                                <span th:unless="${not appointment.confirmed}">
+                                                    <i class="fa-solid fa-check" style="color: #1f861d;"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="btn d-inline"><span ><i class="fa-solid fa-trash" style="color: #af190e;"></i></span></a></td>
+                                    </tr>
+
+
+                                </div>
+                            </table>
+
                 </div>
             </div>
         </div>

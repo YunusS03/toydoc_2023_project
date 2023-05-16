@@ -45,6 +45,10 @@ public class DashboardController {
         if (appUser.getId() == id){
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
+            Optional<Appointment> appointment = appointmentRepository.findById(id);
+
+            model.addAttribute("appointment", appointment.get());
+
             return "dashboard/profile";
         }
         else{
