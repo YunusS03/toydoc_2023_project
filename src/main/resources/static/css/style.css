@@ -149,9 +149,8 @@ div {
     padding: 0px;
 }
 .wrapper{
-    background: #8489d3;
-    border-color: #6a84ff;
-    opacity: 0.8;
+    background: white;
+    border-color: #6a84ff;opacity: 0.8;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -216,6 +215,15 @@ a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
 a:hover {text-decoration: none;}
 a:active {text-decoration: none;}
+
+.responsive-iframe {
+    position: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
 
 
 /*Footer CSS*/
