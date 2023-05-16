@@ -1,8 +1,6 @@
 package be.thomasmore.toydoc.service;
-
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
-import com.google.auth.Credentials;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
 import com.google.firebase.FirebaseApp;
@@ -12,21 +10,15 @@ import com.google.firebase.auth.SessionCookieOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.Principal;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -36,25 +28,14 @@ import java.util.logging.Logger;
 public class GoogleService {
     private Logger logger = Logger.getLogger(GoogleService.class.getName());
     @Autowired
-    private ResourceLoader resourceLoader;
-    @Autowired
     private AppUserRepository appUserRepository;
     @Value("${firebase.toydoc.json}")
     private String jsonFile;
     @Value("${firebase.bucket.images}")
     private String imageBucket;
 
-    public String toFirebase(File file, String fileName) throws IOException {
-        BlobId blobId = BlobId.of(imageBucket, fileName);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-        Resource resource = resourceLoader.getResource("classpath:" + jsonFile);
-        Credentials credentials = GoogleCredentials.fromStream(new FileInputStream(resource.getFile()));
-        Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
-        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-        return String.format("https://firebasestorage.googleapis.com/v0/b/tm-speelgoeddokter.appspot.com/o/%s?alt=media", URLEncoder.encode(fileName, StandardCharsets.UTF_8));
-    }
 
-    public String uploadFile(MultipartFile file, Principal principal) throws IOException {
+    public void uploadFile(MultipartFile file, Principal principal) throws IOException {
 
         // Create a storage client
         StorageOptions options = StorageOptions.newBuilder()
@@ -81,16 +62,13 @@ public class GoogleService {
 
         // Close the input stream
         inputStream.close();
-        // Get the logged in user's username
+        // Get the logged-in user's username
         String username = principal.getName();
         // Get the AppUser object from the repository based on the username
         AppUser appUser = appUserRepository.findByUsername(username);
-        if (principal != null) {
-            appUser.setImageUrl(imageUrl);
-            appUserRepository.save(appUser);
-        }
+        appUser.setImageUrl(imageUrl);
+        appUserRepository.save(appUser);
         logger.info("File uploaded successfully." + imageUrl);
-        return imageUrl;
     }
 //    public void uploadFile(MultipartFile file) throws IOException, FirebaseAuthException {
 //        // Retrieve the authenticated user's username
@@ -103,7 +81,7 @@ public class GoogleService {
 //        // Initialize Firebase Admin SDK
 //        FirebaseApp firebaseApp = FirebaseApp.initializeApp();  // Initialize the default app
 //        String uid = appUser.getId().toString(); // Replace with the user ID associated with the file access
-////        String fileId = "<file-id>"; // Replace with the specific file ID or resource name
+//        String fileId = file.getOriginalFilename(); // Replace with the specific file ID or resource name
 //        long expiresInMinutes = 60; // Set the expiration time of the token in minutes
 //        long expiresInMilliSeconds = expiresInMinutes * 60 * 1000; // Set the expiration time of the token in seconds
 //
