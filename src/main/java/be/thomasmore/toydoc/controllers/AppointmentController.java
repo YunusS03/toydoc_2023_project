@@ -181,7 +181,7 @@ public class AppointmentController {
 
 
 
-        // emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+         emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
 
 
 
