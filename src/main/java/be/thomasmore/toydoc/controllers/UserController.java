@@ -62,8 +62,6 @@ public class UserController {
     @GetMapping("/signup")
     public String loginReversed(Principal principal, Model model) {
 
-
-
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
         // Toon de login pagina
@@ -109,12 +107,6 @@ public class UserController {
         // Toon home pagina
         return "/home";
     }
-
-
-        if(loginName!="NOBODY"){
-            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
-            model.addAttribute("img",appUserRepository.findByUsername(loginName).getImageUrl());
-        }
 
 
 

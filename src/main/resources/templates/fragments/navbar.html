@@ -74,8 +74,8 @@
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
 
-                                        <img th:if="${appUser}" th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
-                                             alt="ProfileImage" width="28" height="28" class="rounded-circle">
+                                        <img th:if="${appUser}" th:src="${appUser.imageUrl != null ? appUser.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
+                                             alt="imageUrl" width="28" height="28" class="rounded-circle">
 
 
                                     <span th:text="|${loginName}|"></span>

@@ -77,16 +77,16 @@ public class DashboardController {
     public String profileEdit( @PathVariable int id,@ModelAttribute AppUser editedAppUser) {
         Optional<AppUser> existingUser = appUserRepository.findById(id);
 
-
-        if(editedAppUser.getProfileImage()==""){
-            existingUser.get().setProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-        }else{
-            existingUser.get().setProfileImage(editedAppUser.getProfileImage());
-        }
+//
+//        if(editedAppUser.getImageUrl()==""){
+//            existingUser.get().setImageUrl("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+//        }else{
+            existingUser.get().setImageUrl(editedAppUser.getImageUrl());
+//        }
 
 
         // only update
-//        existingUser.get().setProfileImage(editedAppUser.getProfileImage());
+//        existingUser.get().setimageUrl(editedAppUser.getImageUrl());
         existingUser.get().setFirstName(editedAppUser.getFirstName());
         existingUser.get().setLastName(editedAppUser.getLastName());
         existingUser.get().setAge(editedAppUser.getAge());

@@ -74,7 +74,7 @@
 
             <!--      <div class="card-body">-->
             <!--        <a th:href="@{'/doctordetail/' + ${doctor.getId()}}" class="text-decoration-none" >-->
-            <!--          <img class="card-img-top" th:src="${doctor.getProfileImage()}"  alt="profile_image" style="height: 300px;">-->
+            <!--          <img class="card-img-top" th:src="${doctor.getImageUrl()}"  alt="profile_image" style="height: 300px;">-->
             <!--          <div class="card-body">-->
             <!--            <span><h5 class="card-title text-center text-black"  th:text="|${doctor.getFirstName()} ${doctor.getLastName()}| ">Card title</h5></span>-->
             <!--            <p class="text-center text-black" th:text="|(${doctor.getSpeciality()})|"></p>-->
@@ -91,7 +91,7 @@
 
                     <div class="bg-white rounded shadow-sm py-5 px-4 doctorlist">
                         <div class="text-center"> <!-- Added a container div with text-center class -->
-                            <img th:src="${doctor.getProfileImage()}" alt="Profile picture" width="100"
+                            <img th:src="${doctor.getImageUrl()}" alt="Profile picture" width="100"
                                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm mx-auto">
                             <!-- Added mx-auto class for horizontal centering -->
                             <h5 th:text="|${doctor.getFirstName()} ${doctor.getLastName()}|" class="mb-0">Doctor

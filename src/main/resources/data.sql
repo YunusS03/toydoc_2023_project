@@ -40,39 +40,51 @@ VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI
 
 
 -- Inserts for toy
-INSERT INTO toy (name, type, appointment_id, client_id)
-VALUES ('Teddy Bear', 'Stuffed Animal', NULL, 1);
+-- INSERT INTO toy (name, type, appointment_id, client_id)
+-- VALUES ('Teddy Bear', 'Stuffed Animal', NULL, 1);
 
-INSERT INTO toy (name, type, appointment_id, client_id)
-VALUES ('Lego Set', 'Building Blocks', NULL, 1);
+-- INSERT INTO toy (name, type, appointment_id, client_id)
+-- VALUES ('Lego Set', 'Building Blocks', NULL, 1);
 
 
-INSERT INTO appointment (confirmed,creation_time, date, time, client_id, doctor_id, toy_id)
+INSERT INTO appointment (confirmed,creation_time, date, time, client_id, doctor_id)
 VALUES
-    (false,'2023-05-07', '2023-05-08', '08:00:00', 1, 2, 1),
-    (false,'2023-05-08', '2023-05-09', '08:00:00', 1, 2, 1),
-    (false,'2023-05-9', '2023-05-10', '09:00:00', 1, 2, 1),
-    (false,'2023-05-8', '2023-05-11', '10:00:00', 2, 2, 1),
-    (false,'2023-05-11', '2023-05-12', '11:00:00', 3, 2, 1),
-    (false,'2023-05-12', '2023-05-13', '12:00:00', 4, 2, 1),
-    (false,'2023-05-14', '2023-05-14', '13:00:00', 5, 2, 1),
-    (false,'2023-05-15', '2023-05-15', '14:00:00', 6, 2, 1),
-    (false,'2023-05-16', '2023-05-16', '15:00:00', 7, 2, 1),
-    (false,'2023-05-17', '2023-05-17', '16:00:00', 8, 2, 1),
-    (false,'2023-05-18', '2023-05-18', '17:00:00', 1, 2, 1),
-    (false,'2023-05-19', '2023-05-19', '08:00:00', 1, 2, 1),
-    (false,'2023-05-20', '2023-05-20', '09:00:00', 2, 2, 1),
-    (false,'2023-05-21', '2023-05-21', '10:00:00', 3, 2, 1),
-    (false,'2023-05-22', '2023-05-22', '11:00:00', 4, 2, 1),
-    (false,'2023-05-23', '2023-05-23', '12:00:00', 5, 2, 1),
-    (false,'2023-05-24', '2023-05-24', '13:00:00', 6, 2, 1),
-    (false,'2023-05-25', '2023-05-25', '14:00:00', 7, 2, 1);
+    (false,'2023-05-07', '2023-05-08', '08:00:00', 1, 2),
+    (false,'2023-05-08', '2023-05-09', '08:00:00', 1, 2),
+    (false,'2023-05-9', '2023-05-10', '09:00:00', 13, 5),
+    (false,'2023-05-8', '2023-05-11', '10:00:00', 2, 2),
+    (false,'2023-05-11', '2023-05-12', '11:00:00', 13, 2),
+    (false,'2023-05-12', '2023-05-13', '12:00:00', 4, 2),
+    (false,'2023-05-14', '2023-05-14', '13:00:00', 5, 2),
+    (false,'2023-05-15', '2023-05-15', '14:00:00', 13, 5),
+    (false,'2023-05-16', '2023-05-16', '15:00:00', 7, 5),
+    (false,'2023-05-17', '2023-05-17', '16:00:00', 8, 2),
+    (false,'2023-05-18', '2023-05-18', '17:00:00', 1, 2),
+    (false,'2023-05-19', '2023-05-19', '08:00:00', 13, 2),
+    (false,'2023-05-20', '2023-05-20', '09:00:00', 13, 5),
+    (false,'2023-05-21', '2023-05-21', '10:00:00', 3, 2),
+    (false,'2023-05-22', '2023-05-22', '11:00:00', 4, 5),
+    (false,'2023-05-23', '2023-05-23', '12:00:00', 5, 2),
+    (false,'2023-05-24', '2023-05-24', '13:00:00', 13, 5),
+    (false,'2023-05-25', '2023-05-25', '14:00:00', 7, 2);
 
+INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, client_id, doctor_id)
+VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2);
 
+INSERT INTO post(id, body, date, title)
+VALUES(10,'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
+                        porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
+                        In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
+       '2023-05-25','The Life of a Doll');
+INSERT INTO post(id, body, date, title)
+VALUES(11,'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
+                        porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
+                        In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
+       '2023-05-26','We just fixed this');
+INSERT INTO post(id, body, date, title)
+VALUES(12,'Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, ' ||
+          'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café ' ||
+          'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, ' ||
+          'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
+       '2023-05-26','Don’t just throw away broken toys');
 
-
-
-
-
-INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, client_id, doctor_id, toy_id)
-VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2, 1)
