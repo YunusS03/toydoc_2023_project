@@ -527,3 +527,11 @@ footer{
 }
 
 
+.table-head{
+    background: #281F3D;
+}
+.table-text{
+    text-decoration: none;
+    color:black;
+    text-align: center;
+}

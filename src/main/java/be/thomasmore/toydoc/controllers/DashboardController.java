@@ -42,11 +42,26 @@ public class DashboardController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
 
-        if (appUser.getId() == id){
+        if (appUser != null && appUser.getId() == id){
+
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
+            Optional<Appointment> appointment = appointmentRepository.findById(id);
+            Appointment appointment0 = new Appointment();
+
+            if (appointment.isPresent()) {
+                appointment0 = appointment.get();
+            } else {
+                System.out.println("No appointment found with id " + id);
+            }
+
+            model.addAttribute("appointment", appointment0);
+
+
+
             return "dashboard/profile";
         }
+
         else{
             String errorMessage = "You do not have acces to this page";
             model.addAttribute("errorMessage", errorMessage);
