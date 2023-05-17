@@ -41,6 +41,9 @@ public class AppUser implements UserDetails {
     private String profileImage;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor",cascade = CascadeType.REMOVE)
+    @Column(length=50000)
+    private String imageUrl;
+    @OneToMany(mappedBy = "doctor")
     private Collection<Appointment> appointments;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.REMOVE)
@@ -264,12 +267,12 @@ public class AppUser implements UserDetails {
 //        this.toys = toys;
 //    }
 
-    public String getProfileImage() {
-        return profileImage;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setImageUrl(String profileImage) {
+        this.imageUrl = profileImage;
     }
 
 

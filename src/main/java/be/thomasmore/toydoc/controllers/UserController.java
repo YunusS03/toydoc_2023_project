@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.security.Principal;
@@ -109,6 +111,10 @@ public class UserController {
     }
 
 
+        if(loginName!="NOBODY"){
+            model.addAttribute("id",appUserRepository.findByUsername(loginName).getId());
+            model.addAttribute("img",appUserRepository.findByUsername(loginName).getImageUrl());
+        }
 
 
 
@@ -207,6 +213,7 @@ public class UserController {
             return "error";
         }
     }
+
 
 
 }
