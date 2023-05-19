@@ -1,5 +1,6 @@
 package be.thomasmore.toydoc.controllers;
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Appointment;
 import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.service.EmailService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.security.Principal;
@@ -59,8 +61,6 @@ public class UserController {
 
     @GetMapping("/signup")
     public String loginReversed(Principal principal, Model model) {
-
-
 
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
@@ -107,8 +107,6 @@ public class UserController {
         // Toon home pagina
         return "/home";
     }
-
-
 
 
 
@@ -207,6 +205,7 @@ public class UserController {
             return "error";
         }
     }
+
 
 
 }

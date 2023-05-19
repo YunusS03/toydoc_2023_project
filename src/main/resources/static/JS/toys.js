@@ -1,4 +1,4 @@
-var numToys = 1;
+var numToys = 5;
 
 
 var toyImages = [

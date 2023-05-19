@@ -40,7 +40,7 @@
         <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top sidebar">
             <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
                 <a href="/static" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="200" height="200" class="rounded-circle">
+                    <img th:src="${appUser.imageUrl != null ? appUser.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="imageUrl" width="200" height="200" class="rounded-circle">
 
                 </a>
                 <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
@@ -86,7 +86,7 @@
 
         <div class="col d-flex d-block" id="profile">
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
-                <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="ProfileImage" width="100" height="100" class="rounded-circle">
+                <img th:src="${appUser.imageUrl != null ? appUser.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="imageUrl" width="100" height="100" class="rounded-circle">
                 <h5 class="mt-3">First Name</h5><h4 th:text="${appUser.firstName != '' || appUser.firstName != null ? appUser.firstName : '-'}"></h4>
                 <h5 class="mt-3">Last Name</h5><h4 th:text="${appUser.lastName != '' || appUser.lastName != null ? appUser.lastName : '-'}"></h4>
                 <h5 class="mt-3">Age</h5><h4 th:text="${appUser.age != '' || appUser.age != null ? appUser.age : '-'}"></h4>
@@ -102,18 +102,19 @@
 
         <div class="col d-flex d-none" id="settings" >
             <div class="justify-content-center text-align-center align-items-center w-100 h-100 d-flex flex-column profile-div">
-                <form method="post" th:action="@{|/dashboard/profile/${appUser.id}/edit|}"   >
-                <div class="row">
 
-                    <div class="profile-pic">
-                        <label class="-label" for="file">
-                            <span class="glyphicon glyphicon-camera"></span>
-                            <span>Change Image</span>
-                        </label>
-                        <input id="file" type="file" th:value="${appUser.profileImage}" name="profileImage" onchange="loadFile(event)" />
-                        <img th:src="${appUser.profileImage != null ? appUser.profileImage : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" id="output" width="200" />
+
+                <form th:action="@{/user/uploadsubmit}" method="post" enctype="multipart/form-data">
+                    <div class="">
+                        <div th:if="${appUser.imageUrl}"><img th:src="${appUser.imageUrl}" alt="profile picture" width="200" height="200"
+                                                           class="rounded-circle align-items-center justify-content-center text-center"></div>
+<!--                        <label for="image" class="info">Image: </label>-->
+                        <input type="file" id="image" class="d-block mt-3 p-2 me-3 align-items-center justify-content-center text-center" accept="image/*" name="file" placeholder="Choose a image">
+                        <small class="text-center">(Your file must be maximum 1 Mb)</small>
+                        <button type="submit" class="mt-3 btn btn-lg  btn-success p-2 me-3 d-inline align-items-center justify-content-center text-center" >Upload</button>
                     </div>
-                </div>
+                </form>
+                <form method="post" th:action="@{|/dashboard/profile/${appUser.id}/edit|}"   >
 
 
                 <div class="row">
