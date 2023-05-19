@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thank You for Your Donation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <!--    Google Fonts Link of Navbar-Brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <!--Font Awesome Link    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            overflow: hidden; /* Hide scrollbars */
+        }
+        .confetti {
+            position: fixed;
+            z-index: 1; /* Set z-index to be above other elements */
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Ignore pointer events so it doesn't interfere with other elements */
+        }
+        h1, p {
+            color: #fff;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
+
+
+
+
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="display-4 mb-3">Thank You for making an appointment</h1>
+            <p class="lead mb-3">You will get an email with a link for your appointment confirmation</p>
+            <img src="https://media4.giphy.com/media/hVZHfr0ugZIAYekfl4/200w.webp?cid=ecf05e47rotjfdko2xdo8a89t1ob2umrp16gdgtesqlgp0mu&ep=v1_stickers_search&rid=200w.webp&ct=s">
+            <a href="/home" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
