@@ -83,9 +83,17 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                    <form th:action="@{'/dashboard/profile/' + ${appUser.id}}" method="get" class="my-profile text-white text-decoration-none">
-                                        <button class="btn btn-reservation" type="submit">My Profile</button>
-                                    </form>
+         <form th:action="@{'/dashboard/profile/' + ${appUser.id}}" method="get" class="my-profile text-white text-decoration-none">
+             <button class="btn btn-reservation" type="submit">My Profile</button>
+         </form>
+
+
+
+    <form th:action="@{'/dashboard/myAppointments/' + ${appUser.id}}" method="get" class="my-profile text-white text-decoration-none">
+        <button class="btn btn-reservation" type="submit">My Appointments</button>
+    </form>
+
+
 
                                     <div>
                                         <hr class="dropdown-divider">
@@ -105,7 +113,6 @@
     </nav>
 </div>
 
-<script src="/JS/dashboard.js"></script>
 
 </body>
 </html>
