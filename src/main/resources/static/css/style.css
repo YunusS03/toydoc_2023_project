@@ -149,7 +149,7 @@ div {
     padding: 0px;
 }
 .wrapper{
-    background: white;
+    background: rgba(255, 255, 255, 0.18);
     border-color: #6a84ff;opacity: 0.8;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
