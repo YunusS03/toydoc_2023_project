@@ -23,6 +23,22 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Make Appointment</title>
 
+
+    <style>
+
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 50px;
+            grid-template-areas: "time-slot monday tuesday wednesday thursday friday satuday sunday";
+        }
+
+
+        
+
+    </style>
+
 <body>
 
 
@@ -51,34 +67,33 @@
     </div>
 
 
+    <div class="">
 
-    <div class="calendar">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th></th>
-                <th th:each="day : ${calendar}" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}">
-                <td class="time-slot" th:text="${timeSlot.hour} + ':00'"
-                    th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></td>
-                <td th:each="day : ${calendar}">
+        <div class="grid-row">
+            <div class="time-slot">Time Slot</div>
+            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></div>
+        </div>
+        <div>
+            <div th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}"
+                 class="grid-row">
+                <div class="time-slot" th:text="${timeSlot.hour} + ':00'"
+                     th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></div>
+                <div th:each="day : ${calendar}">
                     <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
                         <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
                         <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
-                        <div class="cell-wrapper">
-                            <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
-                                    class="btn cell-available">Book</button>
+                        <div>
+                            <button type="submit"
+                                    th:if="${not day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
+                                    class="btn cell-available">Book
+                            </button>
                             <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
                                   class="btn cell-occupied">Occupied</span>
                         </div>
                     </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 
