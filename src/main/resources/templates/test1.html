@@ -28,14 +28,50 @@
 
 
         .grid-row {
+            height: 41px;
+            font-size: 20px;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 50px;
             grid-template-areas: "time-slot monday tuesday wednesday thursday friday satuday sunday";
+            align-items: center;
+        }
+
+        .grid-row * {
+            max-font-size: 25px;
+        }
+
+        .btn {
+            width: 90%;
+            padding: 0px;
         }
 
 
-        
+        .daysastxt {
+            display: grid
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-row {
+                height: 30px;
+                font-size: 10px;
+            }
+
+            .btn {
+                width: 90%;
+                padding: 0px;
+                font-size: 2vw;
+            }
+
+
+            .daysastxt {
+                display: none;
+                align-items: center;
+            }
+
+        }
+
 
     </style>
 
@@ -68,11 +104,18 @@
 
 
     <div class="">
-
-        <div class="grid-row">
+        <div class="grid-row daysastxt">
             <div class="time-slot">Time Slot</div>
-            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></div>
+            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEEE')}"></div>
+
         </div>
+        <div class="grid-row daysasnr">
+            <div class="time-slot">Time Slot</div>
+
+            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'dd/MM')}"></div>
+        </div>
+
+
         <div>
             <div th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}"
                  class="grid-row">
@@ -88,15 +131,13 @@
                                     class="btn cell-available">Book
                             </button>
                             <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
-                                  class="btn cell-occupied">Occupied</span>
+                                  class="btn cell-occupied">Book</span>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
 
