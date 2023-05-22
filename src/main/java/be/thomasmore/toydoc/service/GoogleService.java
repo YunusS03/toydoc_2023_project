@@ -58,7 +58,7 @@ public class GoogleService {
         // Upload the file to Firebase Storage
         Blob blob = storage.create(blobInfo, inputStream);
         // Generate a URL for the file
-        String imageUrl = blob.signUrl(1, TimeUnit.HOURS).toString();
+        String imageUrl = blob.signUrl(9999, TimeUnit.DAYS).toString();
 
         // Close the input stream
         inputStream.close();
