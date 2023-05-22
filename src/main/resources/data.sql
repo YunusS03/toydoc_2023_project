@@ -1,6 +1,6 @@
 -- Inserts for app_user
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,short_description)
-VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'dummy1', '123 Main St', 30, 'New York', 'USA', 'john.doe@example.com', '555-123-4567', '10001', NULL, 'I am so good');
+VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'dummy1', '123 Main St', 30, 'New York', 'USA', 'john.doe@example.com', '555-123-4567', '10001', NULL, 'I am John.I am studying computer science');
 --Insert Doctors
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality, image_url,job)
 VALUES ('Jane', 'Smith', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dummy2', '456 Second St', 40, 'Antwerpen', 'Belgium', 'jane.smith@example.com', '555-987-6543', '90001', 'Cars' ,'https://thumbs.dreamstime.com/b/happy-young-male-doctor-man-smile-handsome-14181289.jpg','Doctor');
@@ -37,6 +37,9 @@ VALUES ('Christopher', 'Gupta', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code)
 VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'yusa', '234 Ninth St', 48, 'Brussels', 'Belgium', 'r0930908@student.thomasmore.be', '555-234-5678', '100');
+
+INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code)
+VALUES ('Ahmet', 'Uygun', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 0, 'ahmet', 'Smedenstraat', 32, 'Antwerp', 'Belgium', 'r0937207@student.thomasmore.be', '555-234-5678', '100');
 
 
 -- Inserts for toy
