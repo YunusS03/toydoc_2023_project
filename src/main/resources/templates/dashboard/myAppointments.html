@@ -32,6 +32,27 @@
 <!--Navbar-->
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
+<!--Modal-->
+<div class="modal fade" id="deleteAppointment" tabindex="999999"  aria-labelledby="deleteLabel" aria-hidden="true" data-bs-backdrop="true">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteLabel">Cancel Your Appointment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="align-items-center justify-content-center text-align-center" method="post"  th:action="@{'/dashboard/profile/' + ${appUser.id} + '/delete'}"  >
+          <h4>Are you sure you want to cancel your appointment?</h4>
+          <div class="modal-footer mx-auto">
+            <button type="button" class="btn close-btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
+            <a  type="submit"   class="btn btn-danger close-btn" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--Page Opening Divs-->
 <div class="container overflow-hidden profile-page ">
   <div class="row  vh-100  overflow-auto mt-5">
@@ -168,25 +189,7 @@
 
 
 
-                    <div class="modal fade" id="deleteAppointment" tabindex="999999"  aria-labelledby="deleteLabel" aria-hidden="true" data-bs-backdrop="false">
-                      <div class="modal-dialog" >
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="deleteLabel">Cancel Your Appointment</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="align-items-center justify-content-center text-align-center" method="post"  th:action="@{'/dashboard/profile/' + ${appUser.id} + '/delete'}"  >
-                              <h4>Are you sure you want to cancel your appointment?</h4>
-                              <div class="modal-footer mx-auto">
-                                <button type="button" class="btn close-btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
-                                <a  type="submit"   class="btn btn-danger close-btn" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}">Cancel</a>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
 
 
 
