@@ -117,8 +117,6 @@ public class AppUser implements UserDetails {
         setRole(role);
     }
 
-
-
     // Getters and Setters
 
     public Integer getId() {
@@ -138,38 +136,13 @@ public class AppUser implements UserDetails {
     }
 
 
-    @Override
-    public boolean isAccountNonExpired() {
-        // Return true if the user's account is non-expired
-        return true;
-    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        // Return true if the user's account is non-locked
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        // Return true if the user's credentials are non-expired
-        return true;
-    }
-
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+
 
     public String getPassword() {
         return password;
@@ -332,6 +305,38 @@ public class AppUser implements UserDetails {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // Return true if the user's account is non-expired
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // Return true if the user's account is non-locked
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // Return true if the user's credentials are non-expired
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // Return true if the user is enabled
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Return the authorities/roles granted to the user
+        // You need to implement this method based on your specific logic
+        return null;
     }
 }
 
