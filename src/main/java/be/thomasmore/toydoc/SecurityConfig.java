@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc;
 
 
+import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.service.AppUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,9 +41,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                .anyRequest().permitAll()
-                .and()
+                .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.toString()).anyRequest().authenticated().and()
                 .formLogin()
                 .loginPage("/user/login")
                 .and()
@@ -50,6 +49,9 @@ public class SecurityConfig {
                 .logoutUrl("/user/logout");
         return http.build();
     }
+
+
+
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {

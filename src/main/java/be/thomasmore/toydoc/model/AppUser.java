@@ -117,6 +117,8 @@ public class AppUser implements UserDetails {
         setRole(role);
     }
 
+
+
     // Getters and Setters
 
     public Integer getId() {
