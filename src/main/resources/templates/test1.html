@@ -105,7 +105,7 @@
 
     <div class="">
         <div class="grid-row daysastxt">
-            <div class="time-slot">Time Slot</div>
+            <div class="time-slot"></div>
             <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEEE')}"></div>
 
         </div>
