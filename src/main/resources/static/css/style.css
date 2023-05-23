@@ -577,7 +577,7 @@ footer{
     max-height: 100%;
 }
 .btn-edit{
-    width: 50%;
+    width: 40%;
     margin: 0;
     padding: 8px;
     /*font-size: 14px;*/
@@ -596,4 +596,17 @@ footer{
 #clickEdit:hover{
     border-radius: 50%;
     background: white;
+}
+.modal-backdrop{
+    opacity: 0;
+}
+.close-btn{
+    width: 40%;
+    margin: 0;
+    padding: 8px;
+    /*font-size: 14px;*/
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
 }

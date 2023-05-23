@@ -153,15 +153,45 @@
                   </div>
 
                   <td>
-                    <a class=" table-text"  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
+                    <a class="table-text d-inline"  th:href="@{'/dashboard/reservationdetail/' + ${appointment.id}}">
                       <i class="fa-solid fa-pen-to-square" style="color: #690fd7;"></i>
                     </a>
 
-                    <a th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn d-inline">
+                    <a  class="btn d-inline" data-bs-toggle="modal" data-bs-target="#deleteAppointment" >
                       <span><i class="fa-solid fa-trash fa-lg text-center" style="color: #af190e;"></i></span>
                     </a>
-
                   </td>
+<!--                    <a th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn d-inline">-->
+<!--                      <span><i class="fa-solid fa-trash fa-lg text-center" style="color: #af190e;"></i></span>-->
+<!--                    </a>-->
+
+
+
+
+                    <div class="modal fade" id="deleteAppointment" tabindex="999999"  aria-labelledby="deleteLabel" aria-hidden="true" data-bs-backdrop="false">
+                      <div class="modal-dialog" >
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteLabel">Cancel Your Appointment</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="align-items-center justify-content-center text-align-center" method="post"  th:action="@{'/dashboard/profile/' + ${appUser.id} + '/delete'}"  >
+                              <h4>Are you sure you want to cancel your appointment?</h4>
+                              <div class="modal-footer mx-auto">
+                                <button type="button" class="btn close-btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
+                                <a  type="submit"   class="btn btn-danger close-btn" th:href="@{/appointment/cancel/{appointmentId}(appointmentId=${appointment.id})}">Cancel</a>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
                 </tr>
               </div>
             </table>
