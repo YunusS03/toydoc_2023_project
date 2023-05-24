@@ -45,7 +45,7 @@ public class DoctorController {
     @GetMapping({"/doctordetail/{id}","/doctordetail"})
     public String movieDetails(Model model, @PathVariable(required = false)Integer id){
         if(id==null){
-            return "doctordetail";
+            return "doctorlist";
         }
 
         Optional<AppUser> optionalDoctor = appUserRepository.findById(id);

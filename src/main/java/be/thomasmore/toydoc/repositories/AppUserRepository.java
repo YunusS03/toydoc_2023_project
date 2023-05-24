@@ -48,6 +48,14 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByPasswordResetKey(String passwordResetKey);
 
+
+
+    @Query("SELECT u FROM AppUser u " +
+            "WHERE ?1 IS NULL OR LOWER (u.firstName) LIKE LOWER(CONCAT('%',?1,'%'))" +
+            "AND  (?2 IS NULL OR u.role = ?2)"
+    )
+    List<AppUser> findByFirstNameContainingIgnoreCase(String keyword,Role role);
+
     List<AppUser> findByFirstName(String firstName);
     List<AppUser> findByLastName(String lastName);
     List<AppUser> findByCity(String city);
