@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Sidebar</title>
+</head>
+<body>
+
+<div th:fragment="sidebarAdmin">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+      <div class="sidebar-brand-icon">
+        <img style="width: 100px" th:src="@{/css/toydoctorHeader.png}">
+      </div>
+      <div class="sidebar-brand-text mx-3">Admin</div>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item active">
+      <a class="nav-link" href="admin/dashboard">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+      Actions
+    </div>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBootstrap"
+         aria-expanded="true" aria-controls="collapseBootstrap">
+        <i class="fas fa-user-md"></i>
+        <span>Doctors</span>
+      </a>
+      <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-bs-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="/admin/searchDoctor" >Search Doctor</a>
+          <a class="collapse-item" href="/admin/addDoctor">Add Doctor</a>
+          <a class="collapse-item" href="/admin/deleteDoctor">Delete Doctor</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="true"
+         aria-controls="collapseForm">
+        <i class="fas fa-users"></i>
+        <span>Clients</span>
+      </a>
+      <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-bs-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="form_basics.html">Search Client</a>
+          <a class="collapse-item" href="form_advanceds.html">Add Client</a>
+          <a class="collapse-item" href="form_advanceds.html">Delete Client</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTable" aria-expanded="true"
+         aria-controls="collapseTable">
+        <i class="fas fa-calendar  "></i>
+        <span>Appointments</span>
+      </a>
+      <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-bs-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="simple-tables.html">Search Appointment</a>
+          <a class="collapse-item" href="datatables.html">Confirm Appointment</a>
+          <a class="collapse-item" href="datatables.html">Cancel Appointment</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBootstrap"
+         aria-expanded="true" aria-controls="collapseBootstrap">
+        <i class="fas fa-comments"></i>
+        <span>Posts</span>
+      </a>
+      <div id="collapsePosts" class="collapse" aria-labelledby="headingBootstrap" data-bs-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="alerts.html">Search Post</a>
+          <a class="collapse-item" href="buttons.html">Add Post</a>
+          <a class="collapse-item" href="dropdowns.html">Delete Post</a>
+        </div>
+      </div>
+    </li>
+
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+      Examples
+    </div>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePage" aria-expanded="true"
+         aria-controls="collapsePage">
+        <i class="fas fa-fw fa-columns"></i>
+        <span>Pages</span>
+      </a>
+      <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-bs-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Example Pages</h6>
+          <a class="collapse-item" href="/login">Login</a></form>
+          <a class="collapse-item" href="signup">Register</a></form>
+          <a class="collapse-item" href="/error">Error Page</a>
+          <a class="collapse-item" href="/about">About Us Page</a>
+          <a class="collapse-item" href="/test1">Appointment</a>
+          <a class="collapse-item" href="/doctorlist">Doctor List</a>
+          <a class="collapse-item" href="/doctordetail">Doctor Detail</a>
+          <a class="collapse-item" href="/post-home">Repair</a>
+          <a class="collapse-item" href="/donation">Donation</a>
+          <a class="collapse-item" href="/contact">Contact Us</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="charts.html">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Analytics</span>
+      </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <div class="version" id="version-ruangadmin"></div>
+  </ul>
+  <!-- Sidebar -->
+</div>
+
+
+</body>
+</html>
