@@ -22,7 +22,59 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Make Appointment</title>
-</head>
+
+
+    <style>
+
+
+        .grid-row {
+            height: 41px;
+            font-size: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 50px;
+            grid-template-areas: "time-slot monday tuesday wednesday thursday friday satuday sunday";
+            align-items: center;
+        }
+
+        .grid-row * {
+            max-font-size: 25px;
+        }
+
+        .btn {
+            width: 90%;
+            padding: 0px;
+        }
+
+
+        .daysastxt {
+            display: grid
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-row {
+                height: 30px;
+                font-size: 10px;
+            }
+
+            .btn {
+                width: 90%;
+                padding: 0px;
+                font-size: 2vw;
+            }
+
+
+            .daysastxt {
+                display: none;
+                align-items: center;
+            }
+
+        }
+
+
+    </style>
+
 <body>
 
 
@@ -51,37 +103,41 @@
     </div>
 
 
+    <div class="">
+        <div class="grid-row daysastxt">
+            <div class="time-slot"></div>
+            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEEE')}"></div>
 
-    <div class="calendar">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th></th>
-                <th th:each="day : ${calendar}" th:text="${#dates.format(day.date, 'EEE dd/MM')}"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}">
-                <td class="time-slot" th:text="${timeSlot.hour} + ':00'"
-                    th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></td>
-                <td th:each="day : ${calendar}">
+        </div>
+        <div class="grid-row daysasnr">
+            <div class="time-slot">Time Slot</div>
+
+            <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'dd/MM')}"></div>
+        </div>
+
+
+        <div>
+            <div th:each="timeSlot : ${calendar[0].hours}" th:if="${timeSlot.hour >= 8 and timeSlot.hour < 18}"
+                 class="grid-row">
+                <div class="time-slot" th:text="${timeSlot.hour} + ':00'"
+                     th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></div>
+                <div th:each="day : ${calendar}">
                     <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
                         <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
                         <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
-                        <div class="cell-wrapper">
-                            <button type="submit" th:if="${not day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
-                                    class="btn cell-available">Book</button>
+                        <div>
+                            <button type="submit"
+                                    th:if="${not day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
+                                    class="btn cell-available">Book
+                            </button>
                             <span th:if="${day.hours[__${timeSlot.hour}__].isOccupied() and timeSlot.hour != 12}"
-                                  class="btn cell-occupied">Occupied</span>
+                                  class="btn cell-occupied">Book</span>
                         </div>
                     </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 </div>
 
 

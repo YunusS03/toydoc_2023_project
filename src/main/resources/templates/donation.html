@@ -28,7 +28,7 @@
 <div class="container mt-3">
   <div class="row">
 
-    <div class="d-flex justify-content-center align-items-center flex-column col-5 ">
+    <div class="d-flex justify-content-center align-items-center flex-column col-md-12 col-lg-5  d-none d-md-block ">
       <div>
         <img class="donate-img" th:src="@{/css/donate.jpg}" alt="party-image"  />
       </div>
@@ -37,11 +37,11 @@
       </div>
     </div>
 
-    <div class="col-2">
+    <div class="d-none d-md-block col-md-2 col-lg-2 ">
 
     </div>
     <!--  Form 1-->
-    <div class="form col-5" th:if="${planForm}">
+    <div class="form col-12 col-md-12  col-lg-5 mr-3 m-sm-1 m-md-0" th:if="${planForm}">
       <form th:action="@{/donation/plan}" class="needs-validation" name="myForm"  novalidate  onsubmit="requiredFunction()">
         <h3 class="mt-3">How would you like to donate?</h3>
 
@@ -77,7 +77,7 @@
       </form>
     </div>
 
-    <div class="form col-5" th:if="${openContactInfo}" >
+    <div class="form col-12 col-md-12  col-lg-5 mr-3 m-sm-1 m-md-0" th:if="${openContactInfo}" >
       <h3 class="mt-3">Personal Info</h3>
       <form th:action="@{/donation/info}" class="needs-validation"  novalidate >
         <div class="mt-3">
@@ -142,7 +142,7 @@
       </form>
     </div>
 
-    <div class="form col-5" th:if="${openCheckout}">
+    <div class="form col-12 col-md-12  col-lg-5 mr-3 m-sm-1 m-md-0" th:if="${openCheckout}">
       <h3 class="mt-3">Card Details</h3>
       <form th:action="@{/donation/checkout}" class="needs-validation" novalidate >
         <div class="mt-3">
@@ -192,7 +192,7 @@
 
     </div>
 
-    <div class="form col-5" th:if="${openSave}" th:object="${donation}">
+    <div class="form col-12 col-md-12  col-lg-5 mr-3 m-sm-1 m-md-0" th:if="${openSave}" th:object="${donation}">
       <form th:action="@{/donation/save}" method="post">
 
         <div th:if="${invalidCard}" class="mt-3">

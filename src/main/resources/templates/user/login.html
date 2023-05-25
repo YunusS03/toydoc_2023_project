@@ -160,7 +160,7 @@
                             <td>test</td>
                             <td th:text="${user.firstName}"></td>
                             <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : 'Unknown'}"></td>
+                            <td th:text="${user.role == T(be.thomasmore.toydoc.model.Role).DOCTOR ? 'Doctor' : user.role == T(be.thomasmore.toydoc.model.Role).CLIENT ? 'Client' : user.role == T(be.thomasmore.toydoc.model.Role).ADMIN ? 'Admin' : 'Unknown' }"></td>
                         </tr>
                         </tbody>
                     </table>
