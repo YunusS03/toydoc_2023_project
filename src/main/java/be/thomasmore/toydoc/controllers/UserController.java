@@ -53,7 +53,11 @@ public class UserController {
         //===========CREDENTIALS VOOR DE DEVELOPERS OP DE LOGIN PAGE
 
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
+
         if (principal != null) return "redirect:/home";
+
+
+
         // Toon de login pagina
 //        model.addAttribute("user",new AppUser());
         return "user/login";
@@ -62,8 +66,11 @@ public class UserController {
     @GetMapping("/signup")
     public String loginReversed(Principal principal, Model model) {
 
+
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
         if (principal != null) return "redirect:/home";
+
+
         // Toon de login pagina
         model.addAttribute("user",new AppUser());
         return "user/signup";
@@ -81,6 +88,8 @@ public class UserController {
             model.addAttribute("errorMessage", "Username already taken");
             return "user/signup"; // Return the signup page to display the error message
         }
+
+
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));

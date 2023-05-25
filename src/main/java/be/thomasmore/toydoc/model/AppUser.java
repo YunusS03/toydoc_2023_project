@@ -42,6 +42,15 @@ public class AppUser implements UserDetails {
 
 
 
+    @Column(length = 5000)
+
+    private String shortDescription;
+
+
+    private String job;
+
+
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor",cascade = CascadeType.REMOVE)
     private Collection<Appointment> appointments;
@@ -307,6 +316,21 @@ public class AppUser implements UserDetails {
         return Arrays.asList(Role.values());
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 }
 
 

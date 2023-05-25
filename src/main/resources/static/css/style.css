@@ -203,12 +203,21 @@ article {
 
 .dropdown-menu{
     background-color: #7D86AD;
+    width:max-content;
 }
 .dropdown-toggle,.my-profile,.logout-btn{
     color: #DDE0EA;
+
 }
 .dropdown-toggle:hover, .my-profile:hover,.logout-btn:hover{
     color: #412A55;
+}
+.dropdown-text{
+    color: white;
+    font-size: 1px;
+}
+.dropdown-appointment-button{
+    width: 20px;
 }
 a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
@@ -312,15 +321,7 @@ footer{
     color: black;
     font-size: 22px;
 }
-.sidebar{
-    background-color: #160e2e;
-    opacity: 0.9;
-}
 
-.sidebar li a{
-    color: white;
-    font-weight: bolder;
-}
 .profile-div{
     background-color: #d5daec;
     opacity: 0.85;
@@ -534,4 +535,77 @@ footer{
     text-decoration: none;
     color:black;
     text-align: center;
+}
+.profile-page{
+
+}
+.profile-page-text{
+    color: #412A55;
+    text-align: center;
+
+}
+.summary{
+    background: #412A55;
+    border-radius: 7px;
+}
+.profile-div{
+   border-radius: 7px;
+    background-color: #e0cde0;
+    opacity: 0.85;
+    width: max-content;
+    height: 70%;
+}
+.bio-div,.reservation-div{
+    border-radius:10px;
+    background-color: #e0cde0;
+    opacity: 0.75;
+    max-height: 70%;
+}
+.edit-div{
+    border-radius:10px;
+    background-color: #e0cde0;
+    opacity: 0.95;
+    max-height: 100%;
+    width: max-content;
+}
+.edit-profile-div{
+    border-radius: 7px;
+    background-color: #e0cde0;
+    opacity: 0.95;
+    width: max-content;
+    max-height: 100%;
+}
+.btn-edit{
+    width: 40%;
+    margin: 0;
+    padding: 8px;
+    /*font-size: 14px;*/
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+.appointments-div{
+    border-radius:10px;
+    background-color: #e0cde0;
+    opacity: 0.95;
+    max-height: 100%;
+    max-width: 100%;
+}
+#clickEdit:hover{
+    border-radius: 50%;
+    background: white;
+}
+.modal-backdrop{
+    opacity: 0;
+}
+.close-btn{
+    width: 40%;
+    margin: 0;
+    padding: 8px;
+    /*font-size: 14px;*/
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
 }
