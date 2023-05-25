@@ -64,7 +64,7 @@
             <h5 class="card-title" th:text="|${doctor.firstName} ${doctor.lastName}|" ></h5>
             <div class="d-flex">
               <a th:href="@{'/doctordetail/' + ${doctor.getId()}}" class="btn btn-primary">Go Doctor</a>
-              <form th:action="@{'/admin/deleteDoctor/' + ${doctor.id}}">
+              <form method="post" th:action="@{'/admin/removeDoctor/' + ${doctor.id}}">
                 <button type="submit"  class="btn btn-danger ms-3" >Delete Doctor</button>
               </form>
             </div>
