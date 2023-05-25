@@ -93,7 +93,7 @@ public class AdminDashboardController {
         appointmentRepository.saveAll(appointments);
         appUserRepository.delete(doctor.get());
 
-        return "redirect:/admin/dashboard";
+        return "redirect:/admin/deleteDoctor";
     }
 
 
