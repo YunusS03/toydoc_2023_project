@@ -30,45 +30,50 @@ public class GoogleService {
     @Autowired
     private AppUserRepository appUserRepository;
     @Value("${firebase.toydoc.json}")
-    private String jsonFile;
+    private String jsonFile; // The path to the json file that contains the Firebase credentials.
     @Value("${firebase.bucket.images}")
-    private String imageBucket;
+    private String imageBucket; // The name of the Firebase Storage bucket.
+
+    private String signedUrl; // The signed URL of the uploaded file.
 
 
-    public void uploadFile(MultipartFile file, Principal principal) throws IOException {
+    public void uploadFile(MultipartFile file) throws IOException {
+        // MultipartFile file is the file that is requested by @RequestParam("file") in the controller.
 
         // Create a storage client
-        StorageOptions options = StorageOptions.newBuilder()
-                .setCredentials(GoogleCredentials.fromStream(new FileInputStream(jsonFile)))
-                .build();
-        Storage storage = options.getService();
+        StorageOptions options = StorageOptions.newBuilder() // StorageOptions is a class from the Google Cloud Storage library.
+                .setCredentials(GoogleCredentials.fromStream(new FileInputStream(jsonFile))) // Set the Firebase credentials (jsonFile is the path to the json file that contains the credentials)
+                .build(); // Build the storage client
+        Storage storage = options.getService(); // Get the storage client service (Storage is a class from the Google Cloud Storage library)
 
         // Get the input stream from the uploaded file
-        InputStream inputStream = file.getInputStream();
+        InputStream inputStream = file.getInputStream(); // Get the input stream from the uploaded file. InputStream contains the file data.
 
         // Define the file name and destination path
-        String fileName = file.getOriginalFilename();
-        String destinationPath = "uploads/" + fileName;
+        String fileName = file.getOriginalFilename(); // Get the original file name
+        String destinationPath = "uploads/" + fileName; // Define the destination path
 
         // Define the blob info
         BlobInfo blobInfo = BlobInfo.newBuilder(BlobId.of(imageBucket, destinationPath))
-                .setContentType(file.getContentType())
-                .build();
+                // BlobInfo is a class from the Google Cloud Storage library. That class contains the information about the file that "will be uploaded".
+                // newBuilder() is a method from the BlobInfo class that creates a new BlobInfo.Builder object. The BlobInfo.Builder class is used to build a BlobInfo object.
+                // BlobId is a class from the Google Cloud Storage library. The BlobId class contains the bucket name and the file name of the file "that will be uploaded".
+                .setContentType(file.getContentType()) // Set the content type of the file that "will be uploaded."
+                .build(); // Build the blob info (BlobInfo object) that will be used to upload the file.
 
         // Upload the file to Firebase Storage
-        Blob blob = storage.create(blobInfo, inputStream);
+        Blob blob = storage.create(blobInfo, inputStream); // Upload the file to Firebase Storage. The create() method is a method from the Storage class.
+        // Blob is a class from the Google Cloud Storage library. The Blob class contains the information about the "uploaded file".
         // Generate a URL for the file
-        String imageUrl = blob.signUrl(9999, TimeUnit.DAYS).toString();
+        signedUrl = blob.signUrl(9999, TimeUnit.DAYS).toString(); // Generate a signed URL for the file. The signUrl() method is a method from the Blob class. The signed URL is valid for 9999 days. And is converted to a string.
 
         // Close the input stream
-        inputStream.close();
-        // Get the logged-in user's username
-        String username = principal.getName();
-        // Get the AppUser object from the repository based on the username
-        AppUser appUser = appUserRepository.findByUsername(username);
-        appUser.setImageUrl(imageUrl);
-        appUserRepository.save(appUser);
-        logger.info("File uploaded successfully." + imageUrl);
+        inputStream.close(); // Close the input stream when the file is uploaded.
+
+    }
+
+    public String getSignedUrl() {
+        return signedUrl;
     }
 //    public void uploadFile(MultipartFile file) throws IOException, FirebaseAuthException {
 //        // Retrieve the authenticated user's username
