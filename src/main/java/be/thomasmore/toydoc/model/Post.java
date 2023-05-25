@@ -1,7 +1,6 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -21,6 +20,9 @@ public class Post {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
+
+    private String beforeUrl;
+    private String afterUrl;
 
     public Post(){
 
@@ -62,5 +64,21 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getBeforeUrl() {
+        return beforeUrl;
+    }
+
+    public void setBeforeUrl(String beforeUrl) {
+        this.beforeUrl = beforeUrl;
+    }
+
+    public String getAfterUrl() {
+        return afterUrl;
+    }
+
+    public void setAfterUrl(String afterUrl) {
+        this.afterUrl = afterUrl;
     }
 }
