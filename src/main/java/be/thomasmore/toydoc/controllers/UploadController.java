@@ -1,24 +1,20 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Post;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import be.thomasmore.toydoc.repositories.PostRepository;
 import be.thomasmore.toydoc.service.GoogleService;
-import com.google.firebase.auth.FirebaseAuthException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 
@@ -31,6 +27,9 @@ public class UploadController {
     @Autowired
     private AppUserRepository appUserRepository;
 
+    @Autowired
+    private PostRepository postRepository;
+
     public UploadController(GoogleService googleService) {
         this.googleService = googleService;
     }
@@ -41,6 +40,7 @@ public class UploadController {
         model.addAttribute("file", file);
         return "upload";
     }
+
     // Upload postmapping for the user pfp.
     @PostMapping("/user/uploadsubmit")
     public String uploadSubmit(@RequestParam("file") MultipartFile file,
@@ -60,5 +60,17 @@ public class UploadController {
         return "redirect:/home"; // Redirects to the home page.
     }
 
+    @PostMapping("/user/uploadbefore")
+    public String uploadSubmitBefore(@RequestParam("file") MultipartFile file,
+                               HttpServletRequest request) throws IOException {
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        Post post = new Post();
+        googleService.uploadFile(file); // Uploads the file to Firebase Storage. See GoogleService.
+        post.setBeforeUrl(googleService.getSignedUrl()); // Sets the `imageUrl` of the `appUser` to the signed URL of the uploaded file as returned by GoogleService method `getSignedUrl`.
+        appUserRepository.save(appUser); // Saves the `appUser` to the database.
+        postRepository.save(post);
+        logger.info("File uploaded successfully." + googleService.getSignedUrl()); // Logs the signed URL of the uploaded file.
+        return "redirect:/post-home"; // Redirects to the home page.
+    }
 
 }

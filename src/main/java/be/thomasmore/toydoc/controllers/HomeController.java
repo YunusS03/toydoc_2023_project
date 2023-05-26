@@ -6,12 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.security.Principal;
 
 
 @Controller
@@ -74,6 +71,11 @@ public class HomeController {
     public String contact(Model model) {
         return "contact";
     }
+    @GetMapping("/thank-email")
+    public String thankEmail(Model model) {
+        return "thank-email";
+    }
+
 
 
 }

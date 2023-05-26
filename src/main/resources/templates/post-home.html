@@ -34,7 +34,7 @@
 </div>
     <main class="container">
            <div class="card col m-xl-3 m-lg-1 mb-sm-2 p-0" th:each="post : ${posts}" >
-           <div class="card-body">
+           <div class="wrapper">
                <div class="user-info">
                    <h2><a th:href="@{'/postDetails/' + ${post.id}}"
                                                   th:text="${post.title}" style="color: #ffffff;">Title</a></h2>
