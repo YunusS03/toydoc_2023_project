@@ -192,6 +192,50 @@ public class AppointmentController {
         return "redirect:/home";
     }
 
+    @GetMapping("/admin/confirm/{appointmentId}")
+    public String confirmAppointmentAdmin(@PathVariable("appointmentId") Integer appointmentId, Model model, Principal principal,RedirectAttributes redirectAttributes) {
+
+
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        if (optionalAppointment.isPresent()) {
+            Appointment appointment = optionalAppointment.get();
+            appointment.setConfirmed(true);
+            appointmentRepository.save(appointment);
+            // ERRORYUNUS //send confirmation missing
+            System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
+        }
+        return "redirect:/admin/confirmAppointment";
+
+    }
+
+
+    @GetMapping("/admin/cancel/{appointmentId}")
+    public String cancelAppointmentAdmin(@PathVariable("appointmentId") Integer appointmentId, Model model, HttpServletRequest request) {
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+        AppUser appUserCurrent = (AppUser) request.getAttribute("appUser");
+
+        System.out.println("Appointment ID is ok? : " + appointmentId);
+
+        AppUser appUser = optionalAppointment.get().getClient();
+
+        mailCurrent = appUser.getEmail();
+
+        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+
+        appointmentRepository.deleteById(appointmentId);
+
+        if (appUser.getUsername() != null) {
+
+           return "redirect:/admin/deleteAppointment";
+        }
+
+
+        return "redirect:/home";
+    }
+
 
 
 

@@ -46,35 +46,39 @@
 
       <div th:replace="~{fragments/adminNavbar :: adminNavbar}"></div>
 
-  <div class="mx-3">
+      <div class="mx-3">
 
 
-    <form class="form align-items-center justify-content-center text-align-center" id="modalForm">
-      <label for="firstName" class="mb-2">First Name</label>
-      <input type="text" id="firstName" name="firstName" class="form-control mb-2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" th:value="${firstName}" placeholder="Search a doctor with first name">
-      <label for="lastName" class="mb-2">Last Name</label>
-      <input type="text" id="lastName" name="lastName" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" th:value="${lastName}" placeholder="Search a doctor with last name">
-      <div class="mx-auto">
-        <input type="submit" class="button-save-admin mx-auto mt-3" value="Search" >
-      </div>
-    </form>
+        <form class="form align-items-center justify-content-center text-align-center" id="modalForm">
+          <label for="firstName" class="mb-2">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control mb-2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" th:value="${firstName}" placeholder="Search a client with first name">
+          <label for="lastName" class="mb-2">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control mb-2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" th:value="${lastName}" placeholder="Search a client with last name">
+          <label for="id" class="mb-2">Id</label>
+          <input type="text" id="id" name="id" class="form-control mb-2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" th:value="${id}" placeholder="Search a client with id">
+          <div class="mx-auto">
+            <input type="submit" class="button-save-admin btn-primary  close-btn mx-auto" value="Search" >
+          </div>
+        </form>
 
 
 
-        <div class="card my-3 mx-auto" th:each="doctor : ${doctors}">
-          <div class="card-header" th:text="|Speciality: ${doctor.speciality}|" >
+        <div class="card my-3 mx-auto" th:each="client : ${clients}">
+          <div class="card-header" th:text="|Client Id: ${client.id}|" >
 
           </div>
           <div class="card-body d-flex flex-row justify-content-between">
-            <h5 class="card-title" th:text="|${doctor.firstName} ${doctor.lastName}|" ></h5>
+            <h5 class="card-title" th:text="|${client.firstName} ${client.lastName}|" ></h5>
             <div class="d-flex">
-              <form method="post" th:action="@{'/admin/removeDoctor/' + ${doctor.id}}">
-                <button type="submit"  class="btn btn-danger ms-3" >Delete Doctor</button>
+              <form method="post" th:action="@{'/admin/removeClient/' + ${client.id}}">
+                <button type="submit"  class="btn btn-danger ms-3" >Delete Client</button>
               </form>
+              <!--            <a th:href="@{'/doctordetail/' + ${doctor.getId()}}" class="btn btn-primary">Go Doctor</a>-->
+
             </div>
           </div>
         </div>
-  </div>
+      </div>
 
 
 

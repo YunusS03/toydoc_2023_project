@@ -68,7 +68,11 @@ public class UserController {
 
 
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
-        if (principal != null) return "redirect:/home";
+        if (principal != null){
+            return "redirect:/home";
+        }
+
+
 
 
         // Toon de login pagina
