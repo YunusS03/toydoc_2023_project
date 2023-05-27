@@ -1,13 +1,12 @@
 package be.thomasmore.toydoc.controllers;
 
 
-import be.thomasmore.toydoc.model.AppUser;
-import be.thomasmore.toydoc.model.Appointment;
-import be.thomasmore.toydoc.model.Post;
-import be.thomasmore.toydoc.model.Role;
+import be.thomasmore.toydoc.model.*;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
+import be.thomasmore.toydoc.repositories.ContactMessageRepository;
 import be.thomasmore.toydoc.repositories.PostRepository;
+import be.thomasmore.toydoc.service.EmailService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,19 @@ public class AdminDashboardController {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private ContactMessageRepository contactMessageRepository;
+
+    private final EmailService emailService;
+
+    private ContactMessage localMessage;
+
+    @Autowired
+    public AdminDashboardController(EmailService emailService){
+        this.emailService = emailService;
+
+    }
+
     @GetMapping("/dashboard")
     public String admin(Model model) {
 
@@ -45,13 +57,15 @@ public class AdminDashboardController {
         List<AppUser> listOfAllClients = appUserRepository.findByRoleList(Role.CLIENT);
         List<Appointment> listOfAllAppointments = appointmentRepository.findAllBy();
         List<Post> listOfAllPost = postRepository.findAllBy();
-        System.out.println("heeey");
+        List<ContactMessage> listOfAllMessages = contactMessageRepository.findByIsRead(false);
 
 
         model.addAttribute("amountOfDoctors", listOfAllDoctors.size());
         model.addAttribute("amountOfClients", listOfAllClients.size());
         model.addAttribute("amountOfAppointments", listOfAllAppointments.size());
         model.addAttribute("amountOfPosts", listOfAllPost.size());
+        model.addAttribute("messages",listOfAllMessages);
+        model.addAttribute("amountOfMessage",listOfAllMessages.size());
 
         return "admin/dashboard";
     }
@@ -336,6 +350,49 @@ public class AdminDashboardController {
 
         return "redirect:/admin/dashboard";
     }
+
+    @GetMapping({"/detailClientMessage/{id}","/detailClientMessage"})
+    public String detailMessage(Model model,@PathVariable(required = false)Integer id){
+        Optional<ContactMessage> contactMessage = contactMessageRepository.findById(id);
+
+        model.addAttribute("message",contactMessage.get());
+        return "/admin/detailClientMessage";
+    }
+
+    @PostMapping("/messageReply/{id}")
+    public String messageReply(@PathVariable int id,@ModelAttribute ContactMessage contactMessage,@RequestParam String reply) {
+        Optional<ContactMessage> existingMessage = contactMessageRepository.findById(id);
+        ContactMessage cm = existingMessage.get();
+        cm.setRead(true);
+        cm.setReplyMessage(reply);
+        contactMessageRepository.save(cm);
+        emailService.sendReply(cm.getEmail(),cm.getName(),cm.getReplyMessage());
+        return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping({"/allMessages", "/allMessages/{filter}"})
+    public String searchMessage(Model model, @RequestParam(required = false) String senderName, String isRead) {
+        List<ContactMessage> allMessages;
+
+        if (senderName == null && isRead == null ) {
+            allMessages = contactMessageRepository.findAllBy();
+        }
+        else {
+            allMessages  = contactMessageRepository.findMessageWithFilter(senderName,
+                    ((isRead==null || isRead.equals("All")) ? null : (isRead.equals("Read") ? true : false)
+                    ));
+
+        }
+
+
+        model.addAttribute("messages", allMessages);
+        model.addAttribute("senderName",senderName);
+        model.addAttribute("isRead",isRead);
+
+        return "admin/allMessages";
+    }
+
+
 
 
 }

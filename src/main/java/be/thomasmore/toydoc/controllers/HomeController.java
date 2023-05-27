@@ -1,27 +1,43 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.ContactMessage;
+import be.thomasmore.toydoc.model.Donation;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import be.thomasmore.toydoc.repositories.ContactMessageRepository;
+import be.thomasmore.toydoc.service.EmailService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
 
 @Controller
 public class HomeController {
+    private final EmailService emailService;
 
+    @Autowired
+    public HomeController(EmailService emailService){
+        this.emailService = emailService;
+
+    }
 
     private Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
     private AppUserRepository appUserRepository;
+
+    @Autowired
+    private ContactMessageRepository contactMessageRepository;
 
 
     @GetMapping({"/" , "/home"})
@@ -70,9 +86,21 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping({"/contact"})
-    public String contact(Model model) {
+    @GetMapping("/contact")
+    public String contact(Model model,HttpServletRequest request) {
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        if(appUser!=null){
+            model.addAttribute("appUser",appUser);
+        }
         return "contact";
+    }
+
+    @PostMapping("/message/save")
+    public String newMessage(Model model, ContactMessage contactMessage) {
+         emailService.sendContactConfirm(contactMessage.getEmail(),contactMessage.getName());
+         contactMessage.setRead(false);
+         contactMessageRepository.save(contactMessage);
+         return "redirect:/home";
     }
 
 

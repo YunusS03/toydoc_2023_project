@@ -43,37 +43,37 @@
                                     Your message was sent, thank you!
                                 </div>
 
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                <form method="post" th:action="@{/message/save}"  id="contactForm" name="contactForm" class="contactForm">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="name">Full Name</label>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                                <input type="text" th:value="*{name}"  class="form-control" name="name" id="name" placeholder="Name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="label" for="email">Email Address</label>
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                                <input type="email" th:value="*{email}"  class="form-control" name="email" id="email" placeholder="Email">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Subject</label>
-                                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                                                <input type="text" th:value="*{subject}" class="form-control" name="subject" id="subject" placeholder="Subject">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="message">Message</label>
-                                                <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+                                                <textarea name="message" th:value="*{message}" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <a th:href="@{/thankyou}">
-                                                    <button type="button" class="btn-reservation btn-primary ">Send message</button>
-                                                </a>
+
+                                                    <input type="submit" class="btn-reservation btn-primary " value="Send message">
+
                                             </div>
                                         </div>
                                     </div>

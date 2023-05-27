@@ -91,3 +91,22 @@ VALUES(12,'Many people don’t like to throw toys away. Children (and parents) a
           'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
        '2023-05-26','Don’t just throw away broken toys');
 
+--
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('John Doe', 'johndoe@example.com', 'Inquiry about Product', 'Hi, I have some questions regarding your product. Can you provide me with more information?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Jane Smith', 'janesmith@example.com', 'Feedback', 'Hello, I wanted to provide some feedback regarding your services. Is there a way I can reach out to someone for further discussion?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Michael Johnson', 'michaeljohnson@example.com', 'Technical Support', 'Hi, I''m experiencing some issues with your software. Can you please assist me in resolving this matter?',true);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Sarah Thompson', 'sarahthompson@example.com', 'Collaboration Opportunity', 'Greetings! I represent a company interested in exploring potential collaboration opportunities with your organization. Can we discuss this further?',true);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Robert Lee', 'robertlee@example.com', 'Job Application', 'Dear Hiring Manager, I am interested in applying for a software engineer position at your company. Could you please provide me with the necessary details?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Emily Davis', 'emilydavis@example.com', 'Partnership Inquiry', 'Hi there, I am reaching out to inquire about potential partnership opportunities. Is there a dedicated person I can connect with to discuss this further?',false);
+
