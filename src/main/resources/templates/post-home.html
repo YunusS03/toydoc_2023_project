@@ -44,6 +44,10 @@
               </div>
               <div class="post-content">
                   <p th:text="${post.intro}"> intro text</p>
+                  <img th:src="${post.beforeUrl}" alt="profile picture" width="200" height="200"
+                       class="align-items-center justify-content-center text-center">
+                  <img th:src="${post.afterUrl}" alt="profile picture" width="200" height="200"
+                       class="align-items-center justify-content-center text-center">
               </div>
            </div>
            </div>

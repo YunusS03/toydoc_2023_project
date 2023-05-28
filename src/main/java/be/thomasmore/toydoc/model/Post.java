@@ -33,7 +33,9 @@ public class Post {
 
     }
 
-    public Post(String title, String intro, String body, Date date) {
+    public Post(String title, String beforeUrl, String afterUrl, String intro, String body, Date date) {
+        this.beforeUrl = beforeUrl;
+        this.afterUrl = afterUrl;
         this.title = title;
         this.intro = intro;
         this.body = body;

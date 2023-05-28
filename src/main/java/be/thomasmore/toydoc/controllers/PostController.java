@@ -52,6 +52,8 @@ public class PostController {
                               @RequestParam(required = false) String title,
                               @RequestParam(required = false) String intro,
                               @RequestParam(required = false) String body,
+                              @RequestParam(required = false) String beforeUrl,
+                              @RequestParam(required = false) String afterUrl,
                               @RequestParam(required = false) Date date){
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
@@ -61,7 +63,7 @@ public class PostController {
             model.addAttribute("client", appUser);
         }
 
-        Post post = new Post(title, intro, body, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+        Post post = new Post(title, beforeUrl, afterUrl, intro, body, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
         postRepository.save(post);
         return "redirect:/post-home";
     }

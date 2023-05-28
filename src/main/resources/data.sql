@@ -74,26 +74,29 @@ VALUES
 INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, client_id, doctor_id)
 VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2);
 
-INSERT INTO post(id, body, date, title)
-VALUES(10,'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
+
+
+INSERT INTO post(id,after_url, before_url, body, date, intro, title)
+VALUES(10,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg', 'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
                         porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
                         In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
-       '2023-05-16','The Life of a Doll');
-INSERT INTO post(id, body, date, title)
-VALUES(11,' Introduction:
-As a doctor who specializes in fixing board games, I''ve seen my fair share of broken games. One game that I was recently asked to fix was "Goose Board". For those who may not know, "Goose Board" is a classic board game that has been around for centuries. However, over time, the game has lost some of its charm and has become outdated. That''s where I came in. In this blog post, I''m going to talk about how I fixed "Goose Board" and brought it back to life.
-Background:Before I dive into how I fixed "Goose Board", let me give you some background on the game. "Goose Board" is a race game where players move their pieces along a track by rolling dice. Along the way, there are spaces with special instructions, such as "Goose" which allows the player to move again or "Inn" which requires the player to miss a turn. The first player to reach the final space wins.
-Challenges:The biggest challenge with "Goose Board" was that it lacked excitement. Players simply rolled dice and moved along the track without any real strategy. In addition, the game had a lot of "dead" spaces where nothing happened, which made the game drag on. My goal was to add some excitement to the game and make it more engaging for players.
-Solution:To solve the issues with "Goose Board", I added some new elements to the game. First, I added some new spaces with unique instructions. For example, I added a space called "Shortcut" which allowed players to skip ahead a few spaces. I also added a space called "Trap" which required players to go back a few spaces. These new spaces added some unpredictability to the game and gave players some tough decisions to make.
-Another change I made was to the movement of the pieces. Instead of simply moving along the track, players could now move their pieces in any direction they wanted. This added a strategic element to the game and made it more challenging.
-Finally, I added some new game pieces to "Goose Board". Instead of the traditional game pieces, I added some unique pieces such as a car, a spaceship, and a dragon. These new pieces added some visual interest to the game and made it more appealing to players.
-Conclusion:In the end, my changes to "Goose Board" were a success. Players now had to think strategically about their moves and the game had some unpredictable moments that kept players engaged. The new game pieces also added some visual interest to the game and made it more appealing. If you''re a fan of "Goose Board", I encourage you to try out the new and improved version of the game. ' ||
-          'It''s sure to bring some excitement back to this classic game.',
-       '2023-05-06','We just fixed this');
-INSERT INTO post(id, body, date, title)
-VALUES(12,'Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, ' ||
-          'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café ' ||
-          'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, ' ||
-          'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
-       '2023-04-28','Don’t just throw away broken toys');
+       '2023-05-16','help me pls','The Life of a Doll');
+
+-- INSERT INTO post(id, body, date, title)
+--VALUES(11,' Introduction:
+--As a doctor who specializes in fixing board games, I''ve seen my fair share of broken games. One game that I was recently asked to fix was "Goose Board". For those who may not know, "Goose Board" is a classic board game that has been around for centuries. However, over time, the game has lost some of its charm and has become outdated. That''s where I came in. In this blog post, I''m going to talk about how I fixed "Goose Board" and brought it back to life.
+--Background:Before I dive into how I fixed "Goose Board", let me give you some background on the game. "Goose Board" is a race game where players move their pieces along a track by rolling dice. Along the way, there are spaces with special instructions, such as "Goose" which allows the player to move again or "Inn" which requires the player to miss a turn. The first player to reach the final space wins.
+--Challenges:The biggest challenge with "Goose Board" was that it lacked excitement. Players simply rolled dice and moved along the track without any real strategy. In addition, the game had a lot of "dead" spaces where nothing happened, which made the game drag on. My goal was to add some excitement to the game and make it more engaging for players.
+--Solution:To solve the issues with "Goose Board", I added some new elements to the game. First, I added some new spaces with unique instructions. For example, I added a space called "Shortcut" which allowed players to skip ahead a few spaces. I also added a space called "Trap" which required players to go back a few spaces. These new spaces added some unpredictability to the game and gave players some tough decisions to make.
+--Another change I made was to the movement of the pieces. Instead of simply moving along the track, players could now move their pieces in any direction they wanted. This added a strategic element to the game and made it more challenging.
+--Finally, I added some new game pieces to "Goose Board". Instead of the traditional game pieces, I added some unique pieces such as a car, a spaceship, and a dragon. These new pieces added some visual interest to the game and made it more appealing to players.
+--Conclusion:In the end, my changes to "Goose Board" were a success. Players now had to think strategically about their moves and the game had some unpredictable moments that kept players engaged. The new game pieces also added some visual interest to the game and made it more appealing. If you''re a fan of "Goose Board", I encourage you to try out the new and improved version of the game. ' ||
+        --'It''s sure to bring some excitement back to this classic game.',
+       --'2023-05-06','We just fixed this');
+--INSERT INTO post(id, body, date, title)
+--VALUES(12,'Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, ' ||
+          --'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café ' ||
+          --'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, ' ||
+          --'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
+       --'2023-04-28','Don’t just throw away broken toys');
 
