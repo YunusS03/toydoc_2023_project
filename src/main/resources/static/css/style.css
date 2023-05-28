@@ -127,23 +127,17 @@ div {
     letter-spacing: 1px;
     font-weight: bold;
 }
-.navigation-list li a:hover, .user-info a{
+.navigation-list li a:hover{
     color: #412A55;
 }
 .login-btn:hover, .register-btn:hover{
     background-color: #412A55;
 }
 
-user-info a{
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-    font-size: 40px;
-    color: #412A55;
-}
 
 
-/*repair page*/
+
+/* ------------------------ repair page ------------------------ */
 .card{
     /*background: #8489d3;*/
     /*border-color: #6a84ff;*/
@@ -163,43 +157,27 @@ user-info a{
     padding: 20px;
 }
 
-.card-body h2{
-    padding-top: 20px;
-    color: #412A55;
-    font-family: 'Lato', sans-serif;
-    font-size: 35px;
-}
-.card-body h1{
-    padding-top: 90px;
-    color: #412A55;
-    font-family: 'Lato', sans-serif;
-    font-size: 35px;
-}
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #412A55 !important;
-    border-color: #7D86AD;
-    text-decoration: none;
-}
 .container{
     padding-bottom: 40px;
 }
-article {
-    width: 100%;
-    margin: 0px 0px 25px;
-    color: black;
-    border: 10px solid transparent;
-    padding: 15px 30px 30px;
-    border-radius: 10px;
-    border-image-slice: 33%;
-    display: inline-block;
-}
+/*article {*/
+/*    width: 100%;*/
+/*    margin: 0px 0px 25px;*/
+/*    color: black;*/
+/*    border: 10px solid transparent;*/
+/*    padding: 15px 30px 30px;*/
+/*    border-radius: 10px;*/
+/*    border-image-slice: 33%;*/
+/*    display: inline-block;*/
+/*}*/
+
 .post-info {
     float: left;
     font-size: 1em;
     margin-top: 0;
     margin-left: 0;
 }
-.post-date, .author{
+.post-date{
     color: #412A55;
     font-weight: 700;
 }
@@ -208,6 +186,31 @@ article {
     min-width: 100%;
     padding-top: 25px;
 }
+.user-info a{
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    font-size: 30px;
+    color: #412A55;
+    text-decoration: underline overline #492b60 !important;
+}
+.user-info a:hover{
+    color: rgba(165, 140, 182, 0.38);
+}
+.blog p{
+    font-size: 18px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #412A55 !important;
+    border-color: #7D86AD;
+    text-decoration: none;
+}
+
+
+
+
+
 
 
 .dropdown-menu{

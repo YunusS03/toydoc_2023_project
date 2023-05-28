@@ -24,11 +24,12 @@
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
+<div class="blog">
 <div class="container-fluid mt-3">
     <div class="row justify-content-center">
-        <div class="card-body text-center">
-            <h1>Doctor repair blog</h1>
-            <p>Hey there. Here you can find about all the repairs that there have been</p>
+        <div class="card-body text-center mb-3">
+            <h1>The Doctor repair blog</h1>
+            <p>Here you can find all the repairs that the doctors have done<br>To see the after pictures, please open the individual blog
         </div>
 
            <div class="card col-xl-4 col-lg-5 col-sm-12 m-xl-3 m-lg-1 mb-sm-2" th:each="post : ${posts}" >
@@ -50,6 +51,7 @@
                </div>
            </div>
     </div>
+</div>
 </div>
 
 <a th:href="@{'/posts/new'}">
