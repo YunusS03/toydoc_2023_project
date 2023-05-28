@@ -40,6 +40,11 @@
 
                 <div class="required-field-block">
                   <label for="new-post-body">Body</label>
+                  <textarea id="new-post-into"  type="text" th:field="*{intro}" placeholder="intro" rows="2" class="form-control"></textarea>
+                </div>
+
+                <div class="required-field-block">
+                  <label for="new-post-body">Body</label>
                   <textarea id="new-post-body"  type="text" th:field="*{body}" placeholder="Body" rows="5" class="form-control"></textarea>
                 </div>
 

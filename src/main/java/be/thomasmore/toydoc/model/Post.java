@@ -15,7 +15,12 @@ public class Post {
     private String title;
 
     @Column(columnDefinition = "TEXT")
+    private String intro;
+
+    @Column(columnDefinition = "TEXT")
     private String body;
+
+
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -28,8 +33,9 @@ public class Post {
 
     }
 
-    public Post(String title, String body, Date date) {
+    public Post(String title, String intro, String body, Date date) {
         this.title = title;
+        this.intro = intro;
         this.body = body;
         this.date = date;
     }
@@ -48,6 +54,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public String getBody() {

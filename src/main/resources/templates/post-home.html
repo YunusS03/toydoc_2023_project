@@ -37,13 +37,13 @@
            <div class="wrapper">
                <div class="user-info">
                    <h2><a th:href="@{'/postDetails/' + ${post.id}}"
-                                                  th:text="${post.title}" style="color: #ffffff;">Title</a></h2>
+                          th:text="${post.title}" style="color: #ffffff;">Title</a></h2>
                    <div class="post-info">
                           <span th:text="'Published on ' + ${post.date}"> Created At</span>
                    </div>
               </div>
               <div class="post-content">
-                   <p th:text="${post.body}"> body text</p>
+                  <p th:text="${post.intro}"> intro text</p>
               </div>
            </div>
            </div>

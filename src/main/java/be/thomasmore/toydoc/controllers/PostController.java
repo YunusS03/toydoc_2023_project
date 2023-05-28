@@ -50,6 +50,7 @@ public class PostController {
     @PostMapping("/posts/postnew")
     public String saveNewPost(Model model, Principal principal,
                               @RequestParam(required = false) String title,
+                              @RequestParam(required = false) String intro,
                               @RequestParam(required = false) String body,
                               @RequestParam(required = false) Date date){
         final String loginName = principal == null ? "NOBODY" : principal.getName();
@@ -60,7 +61,7 @@ public class PostController {
             model.addAttribute("client", appUser);
         }
 
-        Post post = new Post(title, body, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+        Post post = new Post(title, intro, body, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
         postRepository.save(post);
         return "redirect:/post-home";
     }
