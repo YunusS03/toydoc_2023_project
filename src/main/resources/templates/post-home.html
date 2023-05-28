@@ -19,23 +19,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
     <!--Font Awesome Link    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Repair Blog</title>
+    <title>post</title>
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
-<div class="full-width mt-3">
+<div class="container-fluid mt-3">
     <div class="row justify-content-center">
         <div class="card-body text-center">
             <h1>Doctor repair blog</h1>
             <p>Hey there. Here you can find about all the repairs that there have been</p>
         </div>
 
-           <div class="card col-xl-4 m-xl-4 m-lg-1 mb-sm-2 p-0" th:each="post : ${posts}" >
-               <div class="wrapper">
+           <div class="card col-xl-4 col-lg-5 col-sm-12 m-xl-3 m-lg-1 mb-sm-2" th:each="post : ${posts}" >
+               <div class="wrapper m-2">
                    <div class="user-info">
                        <h2><a th:href="@{'/postDetails/' + ${post.id}}"
-                              th:text="${post.title}" style="color: #ffffff;">Title</a></h2>
+                              th:text="${post.title}">Title</a></h2>
                        <div class="post-info">
                               <span th:text="'Published on ' + ${post.date}"> Created At</span>
                        </div>

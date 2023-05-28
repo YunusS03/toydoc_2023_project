@@ -122,16 +122,24 @@ div {
     transform: scale(1);
 }
 
-.navigation-list li a,.navigation-list li button,.navigation-list li p{
+.navigation-list li a,.navigation-list li button,.navigation-list li p {
     font-size: 19px;
     letter-spacing: 1px;
     font-weight: bold;
 }
-.navigation-list li a:hover{
+.navigation-list li a:hover, .user-info a{
     color: #412A55;
 }
 .login-btn:hover, .register-btn:hover{
     background-color: #412A55;
+}
+
+user-info a{
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    font-size: 40px;
+    color: #412A55;
 }
 
 
@@ -149,9 +157,9 @@ div {
     padding: 0px;
 }
 .wrapper{
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(236, 229, 241, 0.87);
     border-color: #6a84ff;opacity: 0.8;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.39);
     padding: 20px;
 }
 
@@ -609,12 +617,4 @@ footer{
     transition: all 0.3s ease;
     text-decoration: none;
     color: white;
-}
-.full-width {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
 }
