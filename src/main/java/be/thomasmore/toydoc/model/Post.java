@@ -15,6 +15,9 @@ public class Post {
     private String title;
 
     @Column(columnDefinition = "TEXT")
+    private String intro;
+
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     @Temporal(TemporalType.DATE)
@@ -24,14 +27,21 @@ public class Post {
     private String beforeUrl;
     private String afterUrl;
 
+    private String specialty;
+
+
     public Post(){
 
     }
 
-    public Post(String title, String body, Date date) {
+    public Post( String title, String beforeUrl, String afterUrl, String intro, String body, String specialty, Date date){
         this.title = title;
+        this.intro = intro;
         this.body = body;
         this.date = date;
+        this.beforeUrl = beforeUrl;
+        this.afterUrl = afterUrl;
+        this.specialty = specialty;
     }
 
     public Integer getId() {
@@ -48,6 +58,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public String getBody() {
@@ -81,4 +99,9 @@ public class Post {
     public void setAfterUrl(String afterUrl) {
         this.afterUrl = afterUrl;
     }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
 }
