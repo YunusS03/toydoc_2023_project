@@ -253,6 +253,9 @@ a:active {text-decoration: none;}
     right: 0;
     width: 100%;
 }
+.btn a{
+    color: #492b60;
+}
 
 
 /*Footer CSS*/

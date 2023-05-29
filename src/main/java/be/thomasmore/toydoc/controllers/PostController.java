@@ -22,19 +22,34 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("/postlist")
+    @GetMapping({"/postlist", "/postlist{something}"})
     public String postList(Model model) {
         Iterable<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
         return "postlist";
     }
 
-    @GetMapping("/postdetail/{id}")
+    @GetMapping({"/postdetail/{id}" , "/postdetail"})
     public String postDetails(Model model, @PathVariable(required = false) Integer id) {
         if (id == null) return "postdetail";
         Optional<Post> optionalPost = postRepository.findById(id);
+        Optional<Post> optionalPrev = postRepository.findFirstByIdLessThanOrderByIdDesc(id);
+        Optional<Post> optionalNext = postRepository.findFirstByIdGreaterThanOrderById(id);
+
         if (optionalPost.isPresent()) {
             model.addAttribute("post", optionalPost.get());
+        }
+
+        if (optionalPrev.isPresent()){
+            model.addAttribute("prev", optionalPrev.get().getId());
+        }else {
+            model.addAttribute("prev", postRepository.findFirstByOrderByIdDesc().get().getId());
+        }
+
+        if (optionalNext.isPresent()){
+            model.addAttribute("next", optionalNext.get().getId());
+        }else {
+            model.addAttribute("next", postRepository.findFirstByOrderByIdAsc().get().getId());
         }
         return "postdetail";
     }
@@ -54,7 +69,7 @@ public class PostController {
                               @RequestParam(required = false) String body,
                               @RequestParam(required = false) String beforeUrl,
                               @RequestParam(required = false) String afterUrl,
-                              @RequestParam String specialty,
+                              @RequestParam(required = false) String specialty,
                               @RequestParam(required = false) Date date){
         final String loginName = principal == null ? "NOBODY" : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model

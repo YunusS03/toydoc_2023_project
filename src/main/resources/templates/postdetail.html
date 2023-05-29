@@ -25,9 +25,22 @@
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
 
 <div class="container mt-3">
+    <div class="row justify-content-between align-items-center mb-3" th:if="${post}">
+    <div class="col-auto">
+        <div th:if="${prev!=null}" class="btn btn-outline-light">
+            <a th:href="@{'/postdetail/' + ${prev}}">Previous post</a>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div th:if="${next!=null}" class="btn btn-outline-light">
+            <a th:href="@{'/postdetail/' + ${next}}">Next post</a>
+        </div>
+    </div>
+    </div>
+
     <div class="wrapper pb-5">
             <div class="card-body">
-                <div th:if="${post}" >
+                <div th:if="${post}">
                     <h1 th:text="${post.title}" style="padding-top: 0">Title</h1><br>
                     <h5 th:text="'Published on ' + ${post.date}"> date of post</h5>
                     <p> Introduction:</p>

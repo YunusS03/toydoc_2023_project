@@ -3,17 +3,22 @@ package be.thomasmore.toydoc.repositories;
 
 import be.thomasmore.toydoc.model.Post;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
-@Repository
+
 public interface PostRepository extends CrudRepository<Post, Integer> {
+    List<Post> findAllBy();
 
     @Override
     Optional<Post> findById(Integer integer);
 
-    @Override
-    Iterable<Post> findAll();
+    Optional<Post> findFirstByIdLessThanOrderByIdDesc(int id);
+
+    Optional<Post> findFirstByIdGreaterThanOrderById(int id);
+    Optional<Post> findFirstByOrderByIdDesc();
+    Optional<Post> findFirstByOrderByIdAsc();
+
 }
