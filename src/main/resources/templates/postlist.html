@@ -69,7 +69,7 @@
            <div class="card col-xl-4 col-lg-5 col-sm-12 m-xl-3 m-lg-1 mb-sm-2" th:each="post : ${posts}" >
                <div class="wrapper m-2">
                    <div class="user-info">
-                       <h2><a th:href="@{'/postDetails/' + ${post.id}}"
+                       <h2><a th:href="@{'/postdetail/' + ${post.id}}"
                               th:text="${post.title}">Title</a></h2>
                        <div class="post-info">
                               <span th:text="'Published on ' + ${post.date}"> Created At</span>
@@ -77,9 +77,8 @@
                   </div>
                   <div class="post-content">
                       <p th:text="'Introduction: ' + ${post.intro}"> intro text</p>
-                      <img th:src="${post.beforeUrl}" alt="before picture" width="200" height="200"
-                           class="align-items-center justify-content-center text-center">
-                      <img th:src="${post.afterUrl}" alt="after picture" width="200" height="200"
+                      <h3 style="font-size: 22px">Before:</h3>
+                      <img th:src="${post.beforeUrl}" alt="before picture" width="200" height="230"
                            class="align-items-center justify-content-center text-center">
                   </div>
                </div>

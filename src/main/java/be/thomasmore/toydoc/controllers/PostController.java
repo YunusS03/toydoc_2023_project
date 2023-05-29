@@ -29,14 +29,14 @@ public class PostController {
         return "postlist";
     }
 
-    @GetMapping("/postDetails/{id}")
+    @GetMapping("/postdetail/{id}")
     public String postDetails(Model model, @PathVariable(required = false) Integer id) {
-        if (id == null) return "postDetails";
+        if (id == null) return "postdetail";
         Optional<Post> optionalPost = postRepository.findById(id);
         if (optionalPost.isPresent()) {
             model.addAttribute("post", optionalPost.get());
         }
-        return "postDetails";
+        return "postdetail";
     }
 
 

@@ -23,13 +23,32 @@
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: header}">Hier komt de navbar</div>
-
-    <div th:if="${post}" >
-        <h1 th:text="${post.title}">Title</h1><br>
-        <h5 th:text="'Published on' + ${post.date}"> date of post</h5>
-        <p th:text="${post.intro}"> intro text</p>
-        <p th:text="${post.body}"> body text</p>
+<div class="container mt-3">
+    <div class="wrapper m-2">
+        <div class="row">
+            <div class="card-body">
+                <div th:if="${post}" >
+                    <h1 th:text="${post.title}" style="padding-top: 0">Title</h1><br>
+                    <h5 th:text="'Published on ' + ${post.date}"> date of post</h5>
+                    <p> Introduction:</p>
+                    <p th:text="${post.intro}"> intro text</p>
+                    <p>Full story:</p>
+                    <p th:text="${post.body}"> body text</p>
+                    <div class="col">
+                        <p>Before:</p>
+                        <img th:src="${post.beforeUrl}" alt="before picture" width="500" height="530"
+                             class="align-items-center justify-content-center text-center">
+                    </div>
+                    <div class="col">
+                        <p>After:</p>
+                        <img th:src="${post.afterUrl}" alt="before picture" width="500" height="530"
+                             class="align-items-center justify-content-center text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 </body>
 </html>
