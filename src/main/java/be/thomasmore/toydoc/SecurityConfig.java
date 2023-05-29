@@ -43,7 +43,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .requestMatchers("/admin/**").hasAuthority(Role.ADMIN.toString()).anyRequest().permitAll().and()
                 .formLogin()
-                .loginPage("/user/login").defaultSuccessUrl("/test1", true)
+                .loginPage("/user/login")
                 .and()
                 .logout()
                 .logoutUrl("/user/logout");

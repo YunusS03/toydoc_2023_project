@@ -291,6 +291,8 @@ public class AppUser implements UserDetails {
         return Arrays.asList(Role.values());
     }
 
+
+
     public String getShortDescription() {
         return shortDescription;
     }

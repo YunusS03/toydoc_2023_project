@@ -30,15 +30,33 @@ public class CalendarController {
         this.calendarService = calendarService;
     }
 
-    @GetMapping("/test1")
-    public String getCalendar(Model model, Principal principal) {
+    @GetMapping("/test1/{doctorId}")
+    public String getCalendar(@PathVariable("doctorId") int id, Model model, Principal principal) {
+
+
+        //make a list of all id that are doctors
+        List<Integer> doctorIds = new ArrayList<>();
+        for (AppUser appUser : appUserRepository.findAll()) {
+            if (appUser.getRole().equals(Role.DOCTOR)) {
+                doctorIds.add(appUser.getId());
+            }
+        }
+        if  (!doctorIds.contains(id)) id = doctorIds.get(0);
+
+        AppUser aud = appUserRepository.findById(id).get();
+
+
+
+
         if (principal == null) return "redirect:/user/login";
         CalendarService calendarService = new CalendarService();
         List<Day> calendar = calendarService.getCurrentWeek();
         final String loginName = principal == null ? null : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
-        List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAll();
+
+        List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAllByDoctorId(id);
+
         for (Appointment ap : appointments) {
             calendarService.setOccupiedOnCalender(ap.getDate(), ap.getTime().getHours());
         }
@@ -47,6 +65,8 @@ public class CalendarController {
         calendarService.setOccupiedOnCalender(date1, 9);
 
         model.addAttribute("calendar", calendar);
+        model.addAttribute("doctor", aud);
+
 
         return "test1";
     }
@@ -93,10 +113,23 @@ public class CalendarController {
     }
 
 
-    @PostMapping("/bookSlot")
-    public String bookSlot(Model model, Principal principal, @RequestParam("date") String date,
-                           @RequestParam("hour") int hour) {
 
+    @PostMapping("/bookSlot/{id}")
+    public String bookSlot(@PathVariable("id") int id,Model model, Principal principal,
+                           @RequestParam("date") String date,
+                           @RequestParam("hour") int hour){
+
+
+        //make a list of all id that are doctors
+        List<Integer> doctorIds = new ArrayList<>();
+        for (AppUser appUser : appUserRepository.findAll()) {
+            if (appUser.getRole().equals(Role.DOCTOR)) {
+                doctorIds.add(appUser.getId());
+            }
+        }
+        if  (!doctorIds.contains(id)) id = doctorIds.get(0);
+
+        AppUser aud = appUserRepository.findById(id).get();
 
         if (principal != null) {
             AppUser appUser = appUserRepository.findByUsername(principal.getName());
@@ -109,6 +142,7 @@ public class CalendarController {
                 hour);
         model.addAttribute("date", date);
         model.addAttribute("hour", hour);
+        model.addAttribute("doctor", aud);
         return "appointment";
     }
 

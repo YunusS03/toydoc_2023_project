@@ -83,6 +83,7 @@
 
 <div class="container mt-5">
     <div class="row justify-content-between align-items-center mb-3">
+
         <div class="col-auto">
             <form method="post" th:action="@{/previousWeek}" th:object="${calendarForm}">
                 <input type="hidden" name="count" th:value="${count }"/>
@@ -105,7 +106,7 @@
 
     <div class="">
         <div class="grid-row daysastxt">
-            <div class="time-slot"></div>
+            <div class="time-slot"> <span th:text="${doctor.FirstName + ' ' + doctor.LastName}"></span> </div>
             <div th:each="day : ${calendar}" class="" th:text="${#dates.format(day.date, 'EEEE')}"></div>
 
         </div>
@@ -122,7 +123,7 @@
                 <div class="time-slot" th:text="${timeSlot.hour} + ':00'"
                      th:classappend="${timeSlot.hour == 12} ? 'cell-empty' : ''"></div>
                 <div th:each="day : ${calendar}">
-                    <form method="post" th:action="@{/bookSlot}" th:object="${bookingForm}">
+                    <form method="post" th:action="@{/bookSlot/{doctorId}(doctorId=${doctor.id})}" th:object="${bookingForm}">
                         <input type="hidden" name="date" th:value="${#dates.format(day.date, 'yyyy-MM-dd')}"/>
                         <input type="hidden" name="hour" th:value="${timeSlot.hour}"/>
                         <div>

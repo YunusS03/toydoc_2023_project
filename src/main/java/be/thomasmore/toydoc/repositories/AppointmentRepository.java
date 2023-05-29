@@ -36,10 +36,9 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 
 
     void deleteById(Integer id);
+    List<Appointment> findAllByDoctor(AppUser appUser);
 
 
-
-
-
-
+    @Query("SELECT a FROM Appointment a WHERE a.doctor.id = :doctorId")
+    List<Appointment> findAllByDoctorId(Integer doctorId);
 }

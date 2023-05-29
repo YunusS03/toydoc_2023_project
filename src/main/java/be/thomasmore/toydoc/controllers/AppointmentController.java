@@ -68,8 +68,9 @@ public class AppointmentController {
         return "appointment";
     }
 
-    @PostMapping("/create-appointment")
+    @PostMapping("/create-appointment/{doctorId}")
     public String createAppointment(Model model, Principal principal,
+                                    @PathVariable("doctorId") int doctorId,
                                     @RequestParam("firstName") String firstName,
                                     @RequestParam("lastName") String lastName,
                                     @RequestParam("email") String email,
@@ -80,7 +81,10 @@ public class AppointmentController {
 
         Appointment appointment = new Appointment();
         //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
-        AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
+        AppUser doc = appUserRepository.findById(doctorId).get();
+
+
+
         logger.info("========= > doctor id is > " + doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
             //client bestaat
