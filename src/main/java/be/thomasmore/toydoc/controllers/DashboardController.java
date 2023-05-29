@@ -9,7 +9,9 @@ import be.thomasmore.toydoc.repositories.ToyRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,9 +129,11 @@ public class DashboardController {
     }
 
 
+    private LogoutHandler logoutHandler;
+
 
     @PostMapping("/profile/{id}/edit")
-    public String profileEdit( @PathVariable int id,@ModelAttribute AppUser editedAppUser) {
+    public String profileEdit( @PathVariable int id,@ModelAttribute AppUser editedAppUser,HttpServletRequest request, HttpServletResponse response) {
         Optional<AppUser> existingUserOptional = appUserRepository.findById(id);
        AppUser existingUser = existingUserOptional.get();
 
@@ -150,6 +154,9 @@ public class DashboardController {
             existingUser.setAge(existingUser.getAge());
         }else{
             existingUser.setAge(editedAppUser.getAge());
+//            SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+//            logoutHandler.setInvalidateHttpSession(true);
+//            logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         }
 
         if(editedAppUser.getPhone()==null){
@@ -168,6 +175,7 @@ public class DashboardController {
             existingUser.setUsername(existingUser.getUsername());
         }else{
             existingUser.setUsername(editedAppUser.getUsername());
+
         }
 
         if(editedAppUser.getAddress()==null){

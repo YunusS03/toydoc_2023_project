@@ -111,7 +111,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(Principal principal, HttpServletRequest request, HttpServletResponse response) {
 
-        // Als er geen gebruiker ingelogd is, ga dan naar home pagina
+        //
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.setInvalidateHttpSession(true);
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
