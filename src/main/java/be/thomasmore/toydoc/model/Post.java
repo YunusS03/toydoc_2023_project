@@ -34,13 +34,13 @@ public class Post {
 
     }
 
-    public Post(String title, String beforeUrl, String afterUrl, String intro, String body, String specialty, Date date) {
-        this.beforeUrl = beforeUrl;
-        this.afterUrl = afterUrl;
+    public Post( String title, String beforeUrl, String afterUrl, String intro, String body, String specialty, Date date){
         this.title = title;
         this.intro = intro;
         this.body = body;
         this.date = date;
+        this.beforeUrl = beforeUrl;
+        this.afterUrl = afterUrl;
         this.specialty = specialty;
     }
 
@@ -99,4 +99,9 @@ public class Post {
     public void setAfterUrl(String afterUrl) {
         this.afterUrl = afterUrl;
     }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
 }

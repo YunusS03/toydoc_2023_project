@@ -70,7 +70,19 @@ public class UploadController {
         appUserRepository.save(appUser); // Saves the `appUser` to the database.
         postRepository.save(post);
         logger.info("File uploaded successfully." + googleService.getSignedUrl()); // Logs the signed URL of the uploaded file.
-        return "redirect:/post-home"; // Redirects to the home page.
+        return "redirect:/postlist"; // Redirects to the home page.
+    }
+    @PostMapping("/user/uploadafter")
+    public String uploadSubmitAfter(@RequestParam("file") MultipartFile file,
+                                     HttpServletRequest request) throws IOException {
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        Post post = new Post();
+        googleService.uploadFile(file); // Uploads the file to Firebase Storage. See GoogleService.
+        post.setAfterUrl(googleService.getSignedUrl()); // Sets the `imageUrl` of the `appUser` to the signed URL of the uploaded file as returned by GoogleService method `getSignedUrl`.
+        appUserRepository.save(appUser); // Saves the `appUser` to the database.
+        postRepository.save(post);
+        logger.info("File uploaded successfully." + googleService.getSignedUrl()); // Logs the signed URL of the uploaded file.
+        return "redirect:/postlist"; // Redirects to the home page.
     }
 
 }

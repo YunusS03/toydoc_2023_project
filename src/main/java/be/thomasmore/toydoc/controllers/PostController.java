@@ -94,9 +94,10 @@ public class PostController {
             model.addAttribute("client", appUser);
         }
 
+
         Post post = new Post(title, beforeUrl, afterUrl, intro, body, specialty, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
         postRepository.save(post);
-        return "redirect:/post-home";
+        return "redirect:/postlist";
     }
 
 }
