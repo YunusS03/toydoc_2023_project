@@ -208,9 +208,18 @@ div {
 }
 
 
-
-
-
+.card-body h1{
+    padding-top: 90px;
+    color: #412A55;
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+}
+.card-body h2{
+    padding-top: 20px;
+    color: #412A55;
+    font-family: 'Lato', sans-serif;
+    font-size: 35px;
+}
 
 
 .dropdown-menu{

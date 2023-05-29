@@ -75,44 +75,31 @@ INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, clien
 VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2);
 
 
+-- Post SQL --
+INSERT INTO post(id, date, title, intro, body, before_url, after_url, specialty)
+VALUES(13, '2023-04-02', ' Restoring Magic: Repairing a Broken Plush Unicorn', 'In the realm of toys, few creatures are as enchanting and beloved as the plush unicorn. With its soft, whimsical charm, it has the power to ignite a child''s imagination and bring joy to people of all ages. But what happens when your treasured plush unicorn suffers a tear or loses its sparkle? Fear not, for there are skilled artisans known as toy doctors who specialize in restoring the magic of broken toys. In this blog post, we delve into the heartwarming journey of repairing a broken plush unicorn and witness the revival of its enchantment',
+       'Discovering the Damage:The tale begins with the unfortunate discovery of a tear in your cherished plush unicorn. Perhaps it was an accident during playtime or the result of years of faithful companionship. Nevertheless, the once vibrant and huggable creature now lies in need of repair. This is where the expertise of a toy doctor comes into play.
+        The Consultation:Upon seeking the services of a toy doctor, you embark on a journey to restore your plush unicorn''s magic. During the consultation, the toy doctor carefully examines the extent of the damage, taking note of any loose threads, missing stuffing, or worn-out features. They provide you with a detailed assessment of the necessary repairs and discuss the available options to ensure the unicorn''s restoration is tailored to your preferences.
+        The Magical Restoration Process:With the consultation complete, the toy doctor commences the delicate restoration process. Every stitch is woven with precision and care, breathing new life into the unicorn''s torn fabric. Any missing stuffing is replenished, restoring its shape and ensuring a soft, huggable companion once again. The toy doctor''s skilled hands work like magic, reattaching lost limbs and mending the once-frayed seams. This careful artistry and attention to detail bring back the unicorn''s original splendor.Witness the Magic: Live Repair Experience:As an additional touch of enchantment, some toy doctors offer the option to witness the repair process live. By scheduling a date and time, ' ||
+       'you can observe the transformation unfold before your eyes. This unique opportunity allows you to witness the skill and dedication of the toy doctor, forging a deeper connection with your beloved plush unicorn as it is restored to its former glory. It also provides an educational experience, as you can ask questions and gain insights into the techniques used to repair and revive toys.',
+       'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg',
+       'https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg',
+       'Cuddly toys');
 
-INSERT INTO post(id,after_url, before_url, body, date, intro, title)
-VALUES(10,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg', 'Dolls have been a part of human culture for hundreds of years. While early dolls were made of materials such as wood, clay or wax,
-                        porcelain became a popular material to use in doll construction in the 19th century. The Chinese and the French began making china heads for dolls in the 1840s.
-                        In 1880, the French popularized the "bebe,” which was one of the first dolls made to represent a child. Though beautiful, porcelain dolls are fragile and need to be repaired from time to time.',
-       '2023-05-16','help me pls','The Life of a Doll');
+INSERT INTO post(id, date, title, intro, body, before_url, after_url, specialty)
+VALUES(14, '2023-03-24', 'Don’t just throw away broken toys', 'Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys',
+        'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café '
+        'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, '
+        'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
+        'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg',
+        'https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg',
+        'Wooden Toy');
 
-INSERT INTO post(id, after_url, before_url, body, date, intro, title)
-VALUES(11,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg','
-Background:Before I dive into how I fixed "Goose Board", let me give you some background on the game. "Goose Board" is a race game where players move their pieces along a track by rolling dice. Along the way, there are spaces with special instructions, such as "Goose" which allows the player to move again or "Inn" which requires the player to miss a turn. The first player to reach the final space wins.
-Challenges:The biggest challenge with "Goose Board" was that it lacked excitement. Players simply rolled dice and moved along the track without any real strategy. In addition, the game had a lot of "dead" spaces where nothing happened, which made the game drag on. My goal was to add some excitement to the game and make it more engaging for players.
-Solution:To solve the issues with "Goose Board", I added some new elements to the game. First, I added some new spaces with unique instructions. For example, I added a space called "Shortcut" which allowed players to skip ahead a few spaces. I also added a space called "Trap" which required players to go back a few spaces. These new spaces added some unpredictability to the game and gave players some tough decisions to make.
-Another change I made was to the movement of the pieces. Instead of simply moving along the track, players could now move their pieces in any direction they wanted. This added a strategic element to the game and made it more challenging.
-Finally, I added some new game pieces to "Goose Board". Instead of the traditional game pieces, I added some unique pieces such as a car, a spaceship, and a dragon. These new pieces added some visual interest to the game and made it more appealing to players.
-Conclusion:In the end, my changes to "Goose Board" were a success. Players now had to think strategically about their moves and the game had some unpredictable moments that kept players engaged. The new game pieces also added some visual interest to the game and made it more appealing. If you''re a fan of "Goose Board", I encourage you to try out the new and improved version of the game. ' ||
-        'It''s sure to bring some excitement back to this classic game',
-       '2023-05-06', 'Introduction:
-As a doctor who specializes in fixing board games, I''ve seen my fair share of broken games. One game that I was recently asked to fix was "Goose Board". For those who may not know, "Goose Board" is a classic board game that has been around for centuries. However, over time, the game has lost some of its charm and has become outdated. That''s where I came in. In this blog post, I''m going to talk about how I fixed "Goose Board" and brought it back to life'
-,'We just fixed this');
-
-INSERT INTO post(id, after_url, before_url, body, date, intro, title)
-VALUES(12,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg','Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, '
-          'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café '
-          'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, '
-          'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
-       '2023-04-28', 'Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as aria-label="breadcrumb" to describe the type of navigation provided in the <nav> element, as well as applying an aria-current="page" to the last item of the set to indicate that it represents the current page.', 'Don’t just throw away broken toys');
-INSERT INTO post(id, after_url, before_url, body, date, intro, title)
-VALUES(13,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg','Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, '
-    'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café '
-    'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, '
-    'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
-       '2023-04-28', 'Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as aria-label="breadcrumb" to describe the type of navigation provided in the <nav> element, as well as applying an aria-current="page" to the last item of the set to indicate that it represents the current page.', 'Don’t just throw away broken toys');
-INSERT INTO post(id, after_url, before_url, body, date, intro, title)
-VALUES(14,'https://thumbs.dreamstime.com/z/yellow-sport-car-isolated-over-white-background-38690470.jpg','https://thumbs.dreamstime.com/z/broken-toy-car-pieces-98628041.jpg','Many people don’t like to throw toys away. Children (and parents) are often attached to specific dolls or cuddly toys, '
-    'a battery-operated train or a remote-controlled car. Fortunately, in many cases, toys can be repaired very well. Bring your broken things to a Repair Café '
-    'and find out for yourself! We successfully repair electric and electronic toys in 70 per cent of cases, according to our RepairMonitor, '
-    'an online system where repairers keep track of what they fix. For non-electric toys, the number is as high as 76 per cent. So, it’s a shame to throw broken toys away.',
-       '2023-04-28', 'Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as aria-label="breadcrumb" to describe the type of navigation provided in the <nav> element, as well as applying an aria-current="page" to the last item of the set to indicate that it represents the current page.', 'Don’t just throw away broken toys');
-
+INSERT INTO post(id, date, title, intro, body, before_url, after_url, specialty)
+VALUES (15, '2023-03-05', 'Everything is worth keeping', 'If you ever wanted to trow something away you should rethink it cause after seeing this you will be impressed',
+        'When typing, copying, or pasting in IntelliJ IDEA editor, you can toggle multiple cursors so that your actions apply in several places simultaneously. Advanced editor actions, such as code completion and live templates are supported as well and will apply to each caret. When typing, copying, or pasting in IntelliJ IDEA editor, you can toggle multiple cursors so that your actions apply in several places simultaneously. Advanced editor actions, such as code completion and live templates are supported as well and will apply to each caret.',
+        'https://i.pinimg.com/736x/54/36/c1/5436c1b37ba64149318cc5e367c28b29.jpg',
+        'https://i.pinimg.com/736x/49/4b/75/494b75f4bf18ff156317640e751e6de6.jpg',
+        'Cars')
 
 

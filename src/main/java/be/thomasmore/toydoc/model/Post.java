@@ -20,8 +20,6 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-
-
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
@@ -29,17 +27,21 @@ public class Post {
     private String beforeUrl;
     private String afterUrl;
 
+    private String specialty;
+
+
     public Post(){
 
     }
 
-    public Post(String title, String beforeUrl, String afterUrl, String intro, String body, Date date) {
+    public Post(String title, String beforeUrl, String afterUrl, String intro, String body, String specialty, Date date) {
         this.beforeUrl = beforeUrl;
         this.afterUrl = afterUrl;
         this.title = title;
         this.intro = intro;
         this.body = body;
         this.date = date;
+        this.specialty = specialty;
     }
 
     public Integer getId() {
