@@ -32,6 +32,7 @@ public class CalendarController {
 
     @GetMapping("/test1")
     public String getCalendar(Model model, Principal principal) {
+        if (principal == null) return "redirect:/user/login";
         CalendarService calendarService = new CalendarService();
         List<Day> calendar = calendarService.getCurrentWeek();
         final String loginName = principal == null ? null : principal.getName();
