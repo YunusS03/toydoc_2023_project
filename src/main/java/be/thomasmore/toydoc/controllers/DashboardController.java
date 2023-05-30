@@ -80,10 +80,22 @@ public class DashboardController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
 
-        if (appUser != null && appUser.getId() == id || appUser.getRole().equals(Role.ADMIN)){
+        if ((appUser != null && appUser.getId() == id ) || appUser.getRole().equals(Role.ADMIN)){
 
-            model.addAttribute("appUser",appUser);
-            model.addAttribute("counter",counter);
+            if (appUser.getRole().equals(Role.ADMIN)){
+            System.out.println("DIT IS EEN ADMIN");
+                Optional<AppUser> appUserUser = appUserRepository.findById(id);
+                AppUser appUserX = appUserUser.get();
+                System.out.println(appUserUser.get().getFirstName() + " " + appUserUser.get().getLastName());
+                model.addAttribute("appUserX",appUserX);
+                model.addAttribute("counter",counter);
+            }
+            else{
+                model.addAttribute("appUserX",appUser);
+                model.addAttribute("counter",counter);
+            }
+
+
             Optional<Appointment> appointment = appointmentRepository.findById(id);
             Appointment appointment0 = new Appointment();
 

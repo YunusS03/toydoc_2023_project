@@ -37,7 +37,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="align-items-center justify-content-center text-align-center" method="post"  th:action="@{'/dashboard/profile/' + ${appUser.id} + '/delete'}"  >
+        <form class="align-items-center justify-content-center text-align-center" method="post"  th:action="@{'/dashboard/profile/' + ${appUserX.id} + '/delete'}"  >
           <h4>Your account will be deleted permanently.Are you sure you want to cancel your account?</h4>
           <div class="modal-footer mx-auto">
             <button type="button" class="btn close-btn btn-secondary me-3" data-bs-dismiss="modal">Close</button>
@@ -57,26 +57,26 @@
     <div class="col-10  col-md-8 px-sm-2 px-0 d-flex d-none d-lg-block  edit-profile-div mt-4 mx-auto  mb-5 mb-md-3 ">
       <div class="d-flex flex-column align-items-center text-center pt-2 ">
         <div>
-          <img th:src="${appUser.imageUrl != null ? appUser.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="imageUrl" width="200" height="200" class="rounded-circle mt-3 ">
+          <img th:src="${appUserX.imageUrl != null ? appUserX.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}" alt="imageUrl" width="200" height="200" class="rounded-circle mt-3 ">
         </div>
 
         <div class="justify-content-center text-center mt-2">
-          <h4 class="text-center text-black" th:text="|${appUser.firstName} ${appUser.lastName}|"></h4>
+          <h4 class="text-center text-black" th:text="|${appUserX.firstName} ${appUserX.lastName}|"></h4>
         </div>
 
         <div class="justify-content-center text-center mt-2">
-          <h6 class="text-center profile-page-text"  th:text="${appUser.job}"></h6>
+          <h6 class="text-center profile-page-text"  th:text="${appUserX.job}"></h6>
         </div>
 
         <div class="summary p-1 rounded mt-4 mb-5 mx-3 text-left">
           <h6 class="text-white text-left">Age:<span class="text-light" th:text="${age}"></span></h6>
-          <h6 class="text-white text-left">Location:<span class="text-light" th:text="${appUser.city}"></span></h6>
-          <h6 class="text-white text-left">Mail:<span class="text-light" th:text="${appUser.email}"></span></h6>
-          <h6 class="text-white text-left">Phone Number:<span class="text-light" th:text="${appUser.phone}"></span></h6>
+          <h6 class="text-white text-left">Location:<span class="text-light" th:text="${appUserX.city}"></span></h6>
+          <h6 class="text-white text-left">Mail:<span class="text-light" th:text="${appUserX.email}"></span></h6>
+          <h6 class="text-white text-left">Phone Number:<span class="text-light" th:text="${appUserX.phone}"></span></h6>
         </div>
 
          <div class="mt-3">
-           <div  th:if="${appUser.role.name == 'CLIENT'}">
+           <div  th:if="${appUserX.role.name == 'CLIENT'}">
              <a type="button" class="mt-3 btn btn-lg btn-block btn-danger p-2 me-3 d-inline align-items-center justify-content-center text-center" data-bs-toggle="modal" data-bs-target="#deleteAccount" >
              Delete Account
            </a>
@@ -99,8 +99,8 @@
 <!--Change Profile Picture Form-->
         <form th:action="@{/user/uploadsubmit}" method="post" enctype="multipart/form-data">
           <div class="mt-5 mt-md-0" >
-            <div th:if="${appUser.imageUrl}">
-              <img th:src="${appUser.imageUrl}" alt="profile picture" width="200" height="200"
+            <div th:if="${appUserX.imageUrl}">
+              <img th:src="${appUserX.imageUrl}" alt="profile picture" width="200" height="200"
                                                   class="rounded-circle align-items-center justify-content-center text-center">
             </div>
             <input type="file" id="image" class="d-block mt-3 p-2 me-3 align-items-center justify-content-center text-center" accept="image/*" name="file" placeholder="Choose a image">
@@ -110,55 +110,55 @@
         </form>
 
 <!--        Change Informations Form-->
-        <form method="post" th:action="@{|/dashboard/profile/${appUser.id}/edit|}">
+        <form method="post" th:action="@{|/dashboard/profile/${appUserX.id}/edit|}">
           <div class="row">
             <div class="col-12 col-md-6">
               <h5 class="mt-3">First Name</h5>
-              <input type="text" th:value="${appUser.firstName}" name="firstName" class="form-control">
+              <input type="text" th:value="${appUserX.firstName}" name="firstName" class="form-control">
             </div>
 
             <div class="col-12 col-md-6">
               <h5 class="mt-3">Last Name</h5>
-              <input type="text" th:value="${appUser.lastName}" name="lastName" class="form-control">
+              <input type="text" th:value="${appUserX.lastName}" name="lastName" class="form-control">
             </div>
           </div>
 
           <div class="row">
             <div class="col-12 col-md-6">
               <h5 class="mt-3">Password</h5>
-              <input type="password" th:value="${appUser.password}" name="password" class="form-control">
+              <input type="password" th:value="${appUserX.password}" name="password" class="form-control">
             </div>
 
             <div class="col-12 col-md-6">
               <h5 class="mt-3">Job</h5>
-              <input type="text" th:value="${appUser.job}" name="job" class="form-control">
+              <input type="text" th:value="${appUserX.job}" name="job" class="form-control">
             </div>
           </div>
 
           <div class="row">
-            <div th:unless="${appUser.birthDate}">
+            <div th:unless="${appUserX.birthDate}">
               <div class="col-12 col-md-6">
                 <h5 class="mt-3">Birth Date</h5>
-                <input type="number" th:value="${appUser.age}" name="age" class="form-control">
+                <input type="number" th:value="${appUserX.age}" name="age" class="form-control">
               </div>
             </div>
 
 
             <div class="col-12 col-md-6">
               <h5 class="mt-3">Phone Number</h5>
-              <input type="text" th:value="${appUser.phone}" name="phone" class="form-control">
+              <input type="text" th:value="${appUserX.phone}" name="phone" class="form-control">
             </div>
           </div>
 
           <div class="row">
             <div class="col-12 col-md-6">
               <h5 class="mt-3">Email</h5>
-              <input type="email" th:value="${appUser.email}" name="email" class="form-control" readonly>
+              <input type="email" th:value="${appUserX.email}" name="email" class="form-control" readonly>
             </div>
 
             <div class="col-12 col-md-6">
               <h5 class="mt-3">User Name</h5>
-              <input type="text" th:value="${appUser.username}" name="username" class="form-control" readonly>
+              <input type="text" th:value="${appUserX.username}" name="username" class="form-control" readonly>
             </div>
 
           </div>
@@ -166,19 +166,19 @@
           <div class="row">
             <div class="col-6 col-md-3">
               <h5 class="mt-3">Address</h5>
-              <input type="text" th:value="${appUser.address}" name="address" class="form-control">
+              <input type="text" th:value="${appUserX.address}" name="address" class="form-control">
             </div>
             <div class="col-6 col-md-3">
               <h5 class="mt-3">Postal Code</h5>
-              <input type="text" th:value="${appUser.postalCode}" name="postalCode" class="form-control">
+              <input type="text" th:value="${appUserX.postalCode}" name="postalCode" class="form-control">
             </div>
             <div class="col-6 col-md-3">
               <h5 class="mt-3">City</h5>
-              <input type="text" th:value="${appUser.city}" name="city" class="form-control">
+              <input type="text" th:value="${appUserX.city}" name="city" class="form-control">
             </div>
             <div class="col-6 col-md-3">
               <h5 class="mt-3">Country</h5>
-              <input type="text" th:value="${appUser.country}" name="country"  class="form-control d-block">
+              <input type="text" th:value="${appUserX.country}" name="country"  class="form-control d-block">
             </div>
           </div>
 
