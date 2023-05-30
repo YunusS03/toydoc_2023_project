@@ -17,12 +17,13 @@ import java.util.*;
 
 @Controller
 public class CalendarController {
+
+    int count;
     private CalendarService calendarService;
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-//    @Autowired
-//    private ClientRepository clientRepository;
+
     @Autowired
     private AppUserRepository appUserRepository;
 
@@ -31,8 +32,9 @@ public class CalendarController {
     }
 
     @GetMapping("/test1/{doctorId}")
-    public String getCalendar(@PathVariable("doctorId") int id, Model model, Principal principal) {
+    public String getCalendar(@PathVariable("doctorId") int id, Model model, Principal principal ,@RequestParam(value = "count", defaultValue = "0") int count) {
 
+        model.addAttribute("count", count);
 
         //make a list of all id that are doctors
         List<Integer> doctorIds = new ArrayList<>();
@@ -50,7 +52,7 @@ public class CalendarController {
 
         if (principal == null) return "redirect:/user/login";
         CalendarService calendarService = new CalendarService();
-        List<Day> calendar = calendarService.getCurrentWeek();
+        List<Day> calendar = count == 0 ?  calendarService.getCurrentWeek() : calendarService.getNextWeek(count);
         final String loginName = principal == null ? null : principal.getName();
         // Voeg de naam van de ingelogde gebruiker toe aan het Model
         model.addAttribute("loginName", loginName);
@@ -64,6 +66,8 @@ public class CalendarController {
         Date date1 = new GregorianCalendar(2023, Calendar.MAY, 1).getTime();
         calendarService.setOccupiedOnCalender(date1, 9);
 
+
+
         model.addAttribute("calendar", calendar);
         model.addAttribute("doctor", aud);
 
@@ -74,42 +78,38 @@ public class CalendarController {
 
     private int weekCount = 0;
 
-    @PostMapping("/nextWeek")
-    public String nextWeek(Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
-
-
+    @PostMapping("/test1/{doctorId}/nextWeek")
+    public String nextWeek(@PathVariable("doctorId") int id,Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
         count++;
-        weekCount = count;
-        System.out.println("next" + count);
+        System.out.println("========next " + count);
         model.addAttribute("count", count);
+
         CalendarService calendarService = new CalendarService();
-        List<Day> calendar = calendarService.getNextWeek(weekCount);
+        List<Day> calendar = calendarService.getNextWeek(count);
         List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAll();
         for (Appointment ap : appointments) {
             calendarService.setOccupiedOnCalender(ap.getDate(), ap.getTime().getHours());
         }
-
         model.addAttribute("calendar", calendar);
-        return "test1";
+        return "redirect:/test1/"+id + "?count=" + count;
     }
 
-    @PostMapping("/previousWeek")
-    public String prevWeek(Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
+    @PostMapping("/test1/{doctorId}/previousWeek")
+    public String prevWeek(@PathVariable("doctorId") int id,Model model, Principal principal, @RequestParam(value = "count", defaultValue = "0") int count) {
 
 
-        weekCount = count;
         count--;
-        System.out.println("prev " + count);
+
         model.addAttribute("count", count);
         CalendarService calendarService = new CalendarService();
-        List<Day> calendar = calendarService.getPreviousWeek(weekCount);
+        List<Day> calendar = calendarService.getPreviousWeek(count);
         List<Appointment> appointments = (List<Appointment>) appointmentRepository.findAll();
         for (Appointment ap : appointments) {
             calendarService.setOccupiedOnCalender(ap.getDate(), ap.getTime().getHours());
         }
 
         model.addAttribute("calendar", calendar);
-        return "test1";
+        return "redirect:/test1/"+id + "?count=" + count;
     }
 
 
