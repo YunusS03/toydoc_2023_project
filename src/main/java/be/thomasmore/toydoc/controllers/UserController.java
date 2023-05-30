@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 import java.security.Principal;
@@ -56,8 +59,6 @@ public class UserController {
 
         if (principal != null) return "redirect:/home";
 
-
-
         // Toon de login pagina
 //        model.addAttribute("user",new AppUser());
         return "user/login";
@@ -75,6 +76,8 @@ public class UserController {
 
 
 
+
+
         // Toon de login pagina
         model.addAttribute("user",new AppUser());
         return "user/signup";
@@ -83,8 +86,19 @@ public class UserController {
 
 
     @PostMapping("/signup-user")
-    public String signUp(AppUser user, Principal principal, Model model) {
+    public String signUp(@RequestParam("birthDateStr") String birthDateStr, AppUser user, Model model) {
 
+        Date birthDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            birthDate = dateFormat.parse(birthDateStr);
+        } catch (ParseException e) {
+            // Handle parsing exception
+            return "error";
+        }
+
+
+        user.setBirthDate(birthDate);
 
         AppUser existingUser = appUserRepository.findByUsername(user.getUsername());
         if (existingUser != null) {

@@ -76,8 +76,8 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     List<AppUser> findByLastName(String lastName);
     List<AppUser> findByCity(String city);
     List<AppUser> findByCountry(String country);
-    List<AppUser> findByAgeGreaterThan(int age);
-    List<AppUser> findByAgeLessThan(int age);
+//    List<AppUser> findByAgeGreaterThan(int age);
+//    List<AppUser> findByAgeLessThan(int age);
     List<AppUser> findByRoleAndCity(Role role, String city);
     List<AppUser> findBySpeciality(String speciality);
     List<AppUser> findByFirstNameAndLastName(String firstName, String lastName);

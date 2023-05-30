@@ -1,7 +1,7 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
+
+import java.util.Date;
 
 @Entity
 //@MappedSuperclass
@@ -22,7 +24,10 @@ public class AppUser implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    private Integer age;
+
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date birthDate;
     private String phone;
     private String address;
     private String city;
@@ -101,13 +106,13 @@ public class AppUser implements UserDetails {
 
 
 
-    public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
+    public AppUser(String email, String username, String password, String firstName, String lastName, Date age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
         setEmail(email);
         setUsername(username);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
-        setAge(age);
+        setBirthDate(age);
         setPhone(phone);
         setAddress(address);
         setCity(city);
@@ -168,12 +173,12 @@ public class AppUser implements UserDetails {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthDate(Date age) {
+        this.birthDate = age;
     }
 
     public String getPhone() {
