@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +83,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/postnew")
-    public String saveNewPost(Model model, Principal principal,
+    public String saveNewPost(Model model, HttpServletRequest request,
                               @RequestParam(required = false) String title,
                               @RequestParam(required = false) String intro,
                               @RequestParam(required = false) String body,
@@ -92,15 +91,7 @@ public class PostController {
                               @RequestParam(required = false) String afterUrl,
                               @RequestParam(required = false) String specialty,
                               @RequestParam(required = false) Date date){
-        final String loginName = principal == null ? "NOBODY" : principal.getName();
-        // Voeg de naam van de ingelogde gebruiker toe aan het Model
-        model.addAttribute("loginName", loginName);
-        if (principal != null) {
-            AppUser appUser = appUserRepository.findByUsername(principal.getName());
-            model.addAttribute("client", appUser);
-        }
-
-
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
         Post post = new Post(title, beforeUrl, afterUrl, intro, body, specialty, Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
         postRepository.save(post);
         return "redirect:/postlist";
