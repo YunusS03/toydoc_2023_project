@@ -47,7 +47,7 @@ public class DashboardController {
 
 
 
-        if (appUser != null && appUser.getId() == id){
+        if (appUser != null && appUser.getId() == id || appUser.getRole().equals(Role.ADMIN)){
 
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
@@ -80,7 +80,7 @@ public class DashboardController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
 
-        if (appUser != null && appUser.getId() == id){
+        if (appUser != null && appUser.getId() == id || appUser.getRole().equals(Role.ADMIN)){
 
             model.addAttribute("appUser",appUser);
             model.addAttribute("counter",counter);
