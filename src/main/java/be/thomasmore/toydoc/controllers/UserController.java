@@ -56,8 +56,6 @@ public class UserController {
 
         if (principal != null) return "redirect:/home";
 
-
-
         // Toon de login pagina
 //        model.addAttribute("user",new AppUser());
         return "user/login";

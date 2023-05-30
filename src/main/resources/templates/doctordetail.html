@@ -46,7 +46,7 @@
                 <div class="card-body text-left ">
                     <p class="card-text doctor-info-label">First Name: <span class="doctor-info" th:text="|${doctor.getFirstName()}|"> </span></p>
                     <p class="card-text doctor-info-label">Last Name:  <span class="doctor-info" th:text="|${doctor.getLastName()}|" ></span></p>
-                    <p class="card-text doctor-info-label">Age: <span class="doctor-info" th:text="|${doctor.getAge()}|"> </span></p>
+                    <p class="card-text doctor-info-label">Age: <span class="doctor-info" th:text="|${age}|"> </span></p>
                     <p class="card-text doctor-info-label">Speciality: <span class="doctor-info" th:text="|${doctor.getSpeciality()}|"></span></p>
                     <a class="text-decoration-none" th:href="@{/test1}"><button type="button" class="btn btn-primary d-block mx-auto">Make a reservation</button></a>
 
