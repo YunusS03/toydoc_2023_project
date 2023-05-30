@@ -54,8 +54,27 @@ VALUES
     ('Noah', 'Thomas', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'noah.thomas', '123 Seventh Ave', '1998-04-21', 'San Antonio', 'USA', 'noah.thomas@example.com', '555-777-7777', '70001', 'Student'),
     ('Mia', 'Jackson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'mia.jackson', '456 Eighth St', '1991-06-30', 'San Diego', 'USA', 'mia.jackson@example.com', '555-888-8888', '80001', 'Student'),
     ('Lucas', 'White', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'lucas.white', '789 Ninth Ave', '1999-08-16', 'Dallas', 'USA', 'lucas.white@example.com', '555-999-9999', '90001', 'Student'),
-    ('Charlotte', 'Taylor', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'charlotte.taylor', '234 Tenth St', '1997-12-05', 'Austin', 'USA', 'charlotte.taylor@example.com', '555-000-0000', '10001', 'Student');
-
+    ('Charlotte', 'Taylor', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'charlotte.taylor', '234 Tenth St', '1997-12-05', 'Austin', 'USA', 'charlotte.taylor@example.com', '555-000-0000', '10001', 'Student'),
+('Emily', 'Brown', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'emily.brown', '123 Main St', '1995-05-12', 'New York', 'USA', 'emily.brown@example.com', '555-111-1111', '10001', 'Student'),
+    ('Olivia', 'Davis', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'olivia.davis', '456 Second St', '1997-07-18', 'Los Angeles', 'USA', 'olivia.davis@example.com', '555-222-2222', '20001', 'Student'),
+    ('Mason', 'Wilson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'mason.wilson', '789 Third Ave', '1993-03-25', 'Chicago', 'USA', 'mason.wilson@example.com', '555-333-3333', '30001', 'Student'),
+    ('Evelyn', 'Johnson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'evelyn.johnson', '234 Fourth St', '1994-09-08', 'Houston', 'USA', 'evelyn.johnson@example.com', '555-444-4444', '40001', 'Student'),
+    ('William', 'Martinez', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'william.martinez', '567 Fifth Ave', '1996-11-02', 'Philadelphia', 'USA', 'william.martinez@example.com', '555-555-5555', '50001', 'Student'),
+    ('Sofia', 'Anderson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'sofia.anderson', '890 Sixth St', '1992-01-14', 'Phoenix', 'USA', 'sofia.anderson@example.com', '555-666-6666', '60001', 'Student'),
+    ('James', 'Thomas', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'james.thomas', '123 Seventh Ave', '1998-04-21', 'San Antonio', 'USA', 'james.thomas@example.com', '555-777-7777', '70001', 'Student'),
+    ('Harper', 'Jackson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'harper.jackson', '456 Eighth St', '1991-06-30', 'San Diego', 'USA', 'harper.jackson@example.com', '555-888-8888', '80001', 'Student'),
+    ('Benjamin', 'White', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'benjamin.white', '789 Ninth Ave', '1999-08-16', 'Dallas', 'USA', 'benjamin.white@example.com', '555-999-9999', '90001', 'Student'),
+    ('Amelia', 'Taylor', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'amelia.taylor', '234 Tenth St', '1997-12-05', 'Austin', 'USA', 'amelia.taylor@example.com', '555-000-0000', '10001', 'Student'),
+    ('Alexander', 'Harris', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'alexander.harris', '345 Eleventh Ave', '1995-03-18', 'Denver', 'USA', 'alexander.harris@example.com', '555-111-2222', '11001', 'Student'),
+    ('Mia', 'Martin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'mia.martin', '456 Twelfth St', '1993-05-22', 'Seattle', 'USA', 'mia.martin@example.com', '555-222-3333', '12001', 'Student'),
+    ('Henry', 'Clark', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'henry.clark', '567 Thirteenth Ave', '1997-09-14', 'Portland', 'USA', 'henry.clark@example.com', '555-333-4444', '13001', 'Student'),
+    ('Ella', 'Lewis', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'ella.lewis', '678 Fourteenth St', '1994-11-07', 'San Francisco', 'USA', 'ella.lewis@example.com', '555-444-5555', '14001', 'Student'),
+    ('Daniel', 'Lee', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'daniel.lee', '789 Fifteenth Ave', '1992-02-28', 'Boston', 'USA', 'daniel.lee@example.com', '555-555-6666', '15001', 'Student'),
+    ('Scarlett', 'Walker', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'scarlett.walker', '890 Sixteenth St', '1998-06-09', 'Miami', 'USA', 'scarlett.walker@example.com', '555-666-7777', '16001', 'Student'),
+    ('Logan', 'Hall', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'logan.hall', '123 Seventeenth Ave', '1996-08-02', 'Atlanta', 'USA', 'logan.hall@example.com', '555-777-8888', '17001', 'Student'),
+    ('Chloe', 'Young', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'chloe.young', '234 Eighteenth St', '1991-10-25', 'Las Vegas', 'USA', 'chloe.young@example.com', '555-888-9999', '18001', 'Student'),
+    ('Sebastian', 'King', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'sebastian.king', '345 Nineteenth Ave', '1999-12-18', 'Nashville', 'USA', 'sebastian.king@example.com', '555-999-0000', '19001', 'Student'),
+    ('Lily', 'Wright', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'lily.wright', '456 Twentieth St', '1997-02-11', 'New Orleans', 'USA', 'lily.wright@example.com', '555-000-1111', '20001', 'Student');
 
 
 INSERT INTO appointment (confirmed, creation_time, date, time, client_id, doctor_id)
@@ -110,7 +129,7 @@ VALUES
   (true, NULL, '2023-06-02', '15:00:00', 17, 7),
   (false, NULL, '2023-06-03', '16:00:00', 18, 8),
   (true, NULL, '2023-06-03', '08:00:00', 19, 9),
-  (true, NULL, '2023-06-03', '09:00:00', 20, 10),
+  (true, NULL, '2023-06-03', '09:00:00', 2, 10),
   (false, NULL, '2023-06-03', '10:00:00', 21, 11),
   (true, NULL, '2023-06-04', '11:00:00', 22, 12),
   (false, NULL, '2023-06-04', '12:00:00', 23, 2),
@@ -120,7 +139,7 @@ VALUES
   (true, NULL, '2023-06-05', '16:00:00', 15, 6),
   (false, NULL, '2023-06-05', '08:00:00', 16, 7),
   (true, NULL, '2023-06-05', '09:00:00', 17, 8),
-  (false, NULL, '2023-06-06', '10:00:00', 18, 9),
+  (false, NULL, '2023-06-06', '10:00:00', 1, 9),
   (false, NULL, '2023-06-06', '11:00:00', 19, 10),
     (true, NULL, '2023-06-06', '12:00:00', 20, 11),
     (false, NULL, '2023-06-07', '13:00:00', 21, 12),
@@ -131,7 +150,7 @@ VALUES
     (false, NULL, '2023-06-09', '09:00:00', 14, 6),
     (true, NULL, '2023-06-10', '10:00:00', 15, 7),
     (false, NULL, '2023-06-10', '11:00:00', 16, 8),
-    (true, NULL, '2023-06-11', '12:00:00', 17, 9),
+    (true, NULL, '2023-06-11', '12:00:00', 1, 9),
     (true, NULL, '2023-06-11', '13:00:00', 18, 10),
     (false, NULL, '2023-06-12', '14:00:00', 19, 11),
     (true, NULL, '2023-06-12', '15:00:00', 20, 12),
@@ -141,7 +160,13 @@ VALUES
     (true, NULL, '2023-06-14', '11:00:00', 24, 5),
     (false, NULL, '2023-06-15', '12:00:00', 13, 6),
     (false, NULL, '2023-06-15', '13:00:00', 14, 7),
-    (true, NULL, '2023-06-16', '14:00:00', 15, 8);
+    (true, NULL, '2023-06-16', '14:00:00', 15, 8),
+    (true, NULL, '2023-06-2', '08:00:00', 20, 2),
+    (false, NULL, '2023-06-2', '10:00:00', 1, 2),
+    (true, NULL, '2023-06-2', '12:00:00', 1, 2),
+    (false, NULL, '2023-06-2', '14:00:00', 2, 2),
+    (true, NULL, '2023-06-2', '15:00:00', 18, 2),
+    (false, NULL, '2023-06-2', '16:00:00', 19, 2);
 
 
 
