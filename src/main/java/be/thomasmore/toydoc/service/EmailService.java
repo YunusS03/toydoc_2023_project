@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    String websiteName = "localhost:8080";
+    String websiteName = "localhost:8080";  // gebruik dit voor de lokale versie
+    // String websiteName = "https://speelgoeddokter.onrender.com/"; // gebruik dit voor de online versie
 
     private final JavaMailSender mailSender;
 
@@ -69,7 +70,7 @@ public class EmailService {
     public void sendContactConfirm(String email,String name){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        message.setSubject("Thank you for reaching us");
+        message.setSubject("[SUPPORT] Thank you for reaching us");
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(name).append(",\n\n")
                 .append("We appreciate you taking the time to reach out to our team. ").append(".\n\n")
@@ -84,7 +85,7 @@ public class EmailService {
     public void sendReply(String email,String name,String reply){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        message.setSubject("ToyDoc Message");
+        message.setSubject("[SUPPORT] ToyDoc Message");
         StringBuilder sb = new StringBuilder();
         sb.append("Dear ").append(name).append(",\n\n")
                 .append(reply).append(".\n\n")

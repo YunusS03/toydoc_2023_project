@@ -51,7 +51,14 @@ public class AdminDashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String admin(Model model) {
+    public String admin(Model model,HttpServletRequest request) {
+
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        if (!appUser.getRole().equals(Role.ADMIN)) {
+            String errorMessage = "You do not have acces to this page";
+            model.addAttribute("errorMessage", errorMessage);
+            return "/error";
+        }
 
         List<AppUser> listOfAllDoctors = appUserRepository.findByRoleList(Role.DOCTOR);
         List<AppUser> listOfAllClients = appUserRepository.findByRoleList(Role.CLIENT);

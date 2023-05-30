@@ -46,6 +46,26 @@ public class UserController {
     @Autowired
     AppUserRepository appUserRepository;
 
+
+    @PostMapping("/login/success")
+    public String loginSuccess(Principal principal, Model model,HttpServletRequest request) {
+
+        AppUser loggedinUser = (AppUser) request.getAttribute("appUser");
+
+        if(loggedinUser.getRole().equals(Role.ADMIN)){
+            return "redirect:/admin/dashboard";
+        }
+        if (loggedinUser.getRole().equals(Role.DOCTOR)){
+            return "redirect:/dashboard/profile/" + loggedinUser.getId();
+        }
+        if (loggedinUser.getRole().equals(Role.CLIENT)){
+            return "redirect:/dashboard/profile/" + loggedinUser.getId();
+        }
+
+        model.addAttribute("user",new AppUser());
+        return "/home";
+    }
+
     @GetMapping("/login")
     public String register(Principal principal, Model model) {
 

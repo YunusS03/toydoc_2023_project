@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Appointment;
+import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.model.Toy;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
@@ -36,11 +37,15 @@ public class DashboardController {
     @Autowired
     private UserController userController;
 
+
+
     @GetMapping("profile/{id}")
     public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
 
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
+
+
 
         if (appUser != null && appUser.getId() == id){
 
