@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.repositories;
 
 
 import be.thomasmore.toydoc.model.Post;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public interface PostRepository extends CrudRepository<Post, Integer> {
 
     @Override
     Optional<Post> findById(Integer integer);
+
+    @Query("SELECT p.likeCount FROM Post p WHERE p.id = : postId")
+    Integer findLikeCountById(int postId);
 
     Optional<Post> findFirstByIdLessThanOrderByIdDesc(int id);
 

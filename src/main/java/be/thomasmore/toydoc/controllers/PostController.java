@@ -1,10 +1,14 @@
 package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Liking;
 import be.thomasmore.toydoc.model.Post;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
+import be.thomasmore.toydoc.repositories.LikingRepository;
 import be.thomasmore.toydoc.repositories.PostRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +29,8 @@ public class PostController {
     private AppUserRepository appUserRepository;
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private LikingRepository likingRepository;
 
     @GetMapping({"/postlist", "/postlist{something}", "/postlist/{filter}"})
     public String postList(Model model, @RequestParam(required = false)String keyword,
@@ -100,4 +106,39 @@ public class PostController {
         return "redirect:/postlist";
     }
 
+    @PostMapping("/like")
+    public ResponseEntity<Integer> likeUpload(@RequestParam("postId") int postId, HttpServletRequest request){
+
+        AppUser appUser = (AppUser) request.getAttribute("appUser");
+        Post post = postRepository.findById(postId).orElse(null);
+
+        //Upload upload = uploadRepository.findById(uploadId).orElse(null);
+        boolean alreadyLiked = likingRepository.existsByPostIdAndAppUser(post.getId(), appUser.getId());
+        //boolean alreadyLiked = likeRepository.existsByUploadIdAndUserId(upload.getId(), loggedInUser.getId());
+
+        if (alreadyLiked) {
+
+            // Delete the Like entities
+            List<Liking> likes = likingRepository.findByPostIdAndAppUser(post.getId(), appUser.getId());
+            likingRepository.deleteAll(likes);
+            post.setLikeCount(post.getLikeCount() - 1);
+            System.out.println("-1");
+            post.setLikedByCurrentUser(false);
+
+        } else {
+
+            // Create a new Like entity
+            Liking like = new Liking();
+            like.setAppUser(appUser);
+            like.setPost(post);
+            likingRepository.save(like);
+            post.setLikeCount(post.getLikeCount() + 1);
+            System.out.println("+1");
+            post.setLikedByCurrentUser(true);
+
+        }
+        postRepository.save(post);
+        int updatedLikeCount = postRepository.findLikeCountById(postId);
+        return ResponseEntity.ok().body(updatedLikeCount);
+    }
 }

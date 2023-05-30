@@ -24,6 +24,16 @@ public class Post {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser appUser;
+
+    @Transient
+    private boolean likedByCurrentUser;
+
+    @Column(nullable = false)
+    private Integer likeCount = 0;
+
     private String beforeUrl;
     private String afterUrl;
 
@@ -102,6 +112,16 @@ public class Post {
 
     public String getSpecialty() {
         return specialty;
+    }
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
+    }
+    public void setLikedByCurrentUser(boolean likedByCurrentUser) {
+        this.likedByCurrentUser = likedByCurrentUser;
     }
 
 }

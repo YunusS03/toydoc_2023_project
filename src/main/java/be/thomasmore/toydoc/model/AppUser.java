@@ -1,7 +1,6 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -48,6 +47,9 @@ public class AppUser implements UserDetails {
 
 
     private String job;
+
+    @OneToMany(mappedBy = "appUser")
+    private List<Liking> likes;
 
 
 
@@ -330,6 +332,14 @@ public class AppUser implements UserDetails {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public List<Liking> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Liking> likes) {
+        this.likes = likes;
     }
 }
 

@@ -12,6 +12,9 @@ public class Liking {
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private AppUser appUser;
+
     public Liking() {
     }
 
@@ -29,5 +32,13 @@ public class Liking {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }
