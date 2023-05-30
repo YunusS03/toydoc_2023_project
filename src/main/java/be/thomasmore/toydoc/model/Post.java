@@ -29,7 +29,7 @@ public class Post {
     private AppUser appUser;
 
     @Transient
-    private boolean likedByCurrentUser;
+    private boolean likedByCurrentAppUser;
 
     @Column(nullable = false)
     private Integer likeCount = 0;
@@ -97,7 +97,6 @@ public class Post {
     public String getBeforeUrl() {
         return beforeUrl;
     }
-
     public void setBeforeUrl(String beforeUrl) {
         this.beforeUrl = beforeUrl;
     }
@@ -105,14 +104,15 @@ public class Post {
     public String getAfterUrl() {
         return afterUrl;
     }
-
     public void setAfterUrl(String afterUrl) {
         this.afterUrl = afterUrl;
     }
 
+
     public String getSpecialty() {
         return specialty;
     }
+    public void setSpecialty(String specialty) {this.specialty = specialty;}
 
     public Integer getLikeCount() {
         return likeCount;
@@ -120,8 +120,20 @@ public class Post {
     public void setLikeCount(Integer likeCount) {
         this.likeCount = likeCount;
     }
-    public void setLikedByCurrentUser(boolean likedByCurrentUser) {
-        this.likedByCurrentUser = likedByCurrentUser;
+
+    public boolean isLikedByCurrentAppUser() {
+        return likedByCurrentAppUser;
+    }
+    public void setLikedByCurrentAppUser(boolean likedByCurrentAppUser) {
+        this.likedByCurrentAppUser = likedByCurrentAppUser;
+    }
+
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
 }

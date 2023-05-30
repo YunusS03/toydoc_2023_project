@@ -117,25 +117,20 @@ public class PostController {
         //boolean alreadyLiked = likeRepository.existsByUploadIdAndUserId(upload.getId(), loggedInUser.getId());
 
         if (alreadyLiked) {
-
-            // Delete the Like entities
             List<Liking> likes = likingRepository.findByPostIdAndAppUser(post.getId(), appUser.getId());
             likingRepository.deleteAll(likes);
             post.setLikeCount(post.getLikeCount() - 1);
             System.out.println("-1");
-            post.setLikedByCurrentUser(false);
+            post.setLikedByCurrentAppUser(false);
 
         } else {
-
-            // Create a new Like entity
             Liking like = new Liking();
             like.setAppUser(appUser);
             like.setPost(post);
             likingRepository.save(like);
             post.setLikeCount(post.getLikeCount() + 1);
             System.out.println("+1");
-            post.setLikedByCurrentUser(true);
-
+            post.setLikedByCurrentAppUser(true);
         }
         postRepository.save(post);
         int updatedLikeCount = postRepository.findLikeCountById(postId);
