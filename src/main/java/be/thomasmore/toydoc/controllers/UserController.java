@@ -121,19 +121,21 @@ public class UserController {
         user.setBirthDate(birthDate);
 
         AppUser existingUser = appUserRepository.findByUsername(user.getUsername());
+        AppUser existingUserEmail = appUserRepository.findByEmail(user.getEmail());
+
         if (existingUser != null) {
-            // Username already taken, provide appropriate message
             model.addAttribute("errorMessage", "Username already taken");
-            return "user/signup"; // Return the signup page to display the error message
+            return "user/signup";
         }
-
-
+        if (existingUserEmail != null) {
+            model.addAttribute("errorMessage", "Email already taken");
+            return "user/signup";
+        }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRole(Role.CLIENT);
         appUserRepository.save(user);
-
         return "home";
     }
 
