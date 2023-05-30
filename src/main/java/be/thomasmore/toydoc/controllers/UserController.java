@@ -76,6 +76,8 @@ public class UserController {
 
 
 
+
+
         // Toon de login pagina
         model.addAttribute("user",new AppUser());
         return "user/signup";
@@ -86,8 +88,6 @@ public class UserController {
     @PostMapping("/signup-user")
     public String signUp(@RequestParam("birthDateStr") String birthDateStr, AppUser user, Model model) {
 
-        System.out.println("=====================================");
-        System.out.println(birthDateStr );
         Date birthDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -96,9 +96,7 @@ public class UserController {
             // Handle parsing exception
             return "error";
         }
-        System.out.println(birthDate );
 
-        System.out.println("=====================================");
 
         user.setBirthDate(birthDate);
 

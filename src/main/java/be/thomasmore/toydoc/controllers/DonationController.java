@@ -178,8 +178,6 @@ public class DonationController {
         }
 
 
-
-
         donation.setCardHolder(localCardHolder);
         donation.setExpiry(localExpiry);
         donation.setCvv(localCvv);
