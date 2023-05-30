@@ -126,7 +126,7 @@ VALUES (15, '2023-03-05', 'Beauty Resurrected', 'Barbie dolls have long been ico
          Witnessing the Transformation: Live Restoration Experience:For an extraordinary experience, some toy doctors offer the opportunity to witness the restoration process live. By scheduling a date and time, you can be present as the rusted Barbie figurine undergoes its miraculous transformation. This unique opportunity allows you to witness the artistry and passion of the toy doctor firsthand, gaining a deeper appreciation for the meticulous steps involved in restoring a beloved doll. It becomes a shared journey, as you witness the doll''s renaissance and the memories it holds come flooding back.',
         'https://i.ebayimg.com/images/g/uCUAAOSwhYlhqtJ1/s-l1600.jpg',
         'https://content.syndigo.com/asset/5355305d-d912-44b3-9ae3-d3021852889f/480.jpeg',
-        'Action Figures', 10, 2)
+        'Action Figures', 10, 2);
 
 
 --
