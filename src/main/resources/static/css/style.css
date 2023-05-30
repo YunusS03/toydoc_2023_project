@@ -274,10 +274,11 @@ footer{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    border-radius: 5px;
 }
 .donate-text{
     align-items: center;
-    color:antiquewhite ;
+    color: #2d3ca0 ;
 }
 .form{
     background-color: white;
@@ -633,3 +634,22 @@ footer{
     text-decoration: none;
     color: white;
 }
+.button-save-admin{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+.nav-link{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 18px;
+}
+

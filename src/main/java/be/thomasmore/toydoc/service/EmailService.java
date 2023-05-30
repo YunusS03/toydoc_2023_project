@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    String websiteName = "localhost:8080";
+    String websiteName = "localhost:8080";  // gebruik dit voor de lokale versie
+    // String websiteName = "https://speelgoeddokter.onrender.com/"; // gebruik dit voor de online versie
 
     private final JavaMailSender mailSender;
 
@@ -66,6 +67,36 @@ public class EmailService {
         mailSender.send(message);
     }
 
+    public void sendContactConfirm(String email,String name){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("[SUPPORT] Thank you for reaching us");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(name).append(",\n\n")
+                .append("We appreciate you taking the time to reach out to our team. ").append(".\n\n")
+                .append("Don't worry — we've received your request and one of our team members will be in touch shortly.").append(".\n\n")
+                .append("This is a auto-reply message.Please do not answer this message.\n\n")
+                .append("Best regards,\n")
+                .append("Your ToyDoc appointment team");
+        message.setText(sb.toString());
+        mailSender.send(message);
+    }
+
+    public void sendReply(String email,String name,String reply){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("[SUPPORT] ToyDoc Message");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dear ").append(name).append(",\n\n")
+                .append(reply).append(".\n\n")
+                .append("Best regards,\n")
+                .append("Your ToyDoc appointment team");
+        message.setText(sb.toString());
+        mailSender.send(message);
+    }
+
+
+
 
     public void sendAutoCanceledAppointmentNotification(String recipientEmail, String firstName, String lastName) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -116,6 +147,8 @@ public class EmailService {
         message.setText(sb.toString());
         mailSender.send(message);
     }
+
+
 
 
 

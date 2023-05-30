@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/adminDashboard.css}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Delete Message</title>
+</head>
+<body id="page-top">
+<div id="wrapper">
+
+  <div th:replace="~{fragments/adminSidebar :: sidebarAdmin}">Hier komt de navbar</div>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <!-- TopBar -->
+      <div class="topbar-divider d-none d-sm-block"></div>
+
+      <div th:replace="~{fragments/adminNavbar :: adminNavbar}"></div>
+
+      <div class="mx-5">
+
+      <h1>Detail Message</h1>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+           <h5 class="d-inline">Sender Name</h5> <input type="text" th:value="${message.name}" class="form-control border " readonly>
+          </div>
+          <div class="col-6">
+            <h5>Subject</h5> <input type="text" th:value="${message.subject}" class="form-control border" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <h5>Message</h5> <textarea  th:value="${message.message}" th:text="${message.message}" cols="30" rows="4" class="form-control border" readonly> </textarea>
+          </div>
+        </div>
+
+        <div class="row mt-3" >
+          <form method="post" th:action="@{|/admin/messageReply/${message.id}|}" >
+            <h5 >Write a reply</h5>
+            <textarea name="reply" th:value="${message.replyMessage}"  class="form-control mt-3"  cols="30" rows="4" placeholder="Message"></textarea>
+            <input type="submit" value="Reply" class="button-save-admin mt-3">
+          </form>
+        </div>
+      </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha512-bnIvzh6FU75ZKxp0GXLH9bewza/OIw6dLVh9ICg0gogclmYGguQJWl8U30WpbsGTqbIiAwxTsbe76DErLq5EDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+      <script src="/JS/adminDashboard.js"></script>
+
+</body>
+</html>

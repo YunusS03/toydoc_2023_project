@@ -37,12 +37,18 @@
                     <img src="/css/toydoc.png" class="textballoon-one img-fluid" alt="tekstballon">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body text-center">
+                    <div th:if="${loginName != null}" class="card-body text-center">
                         <h1>Would you like to have your toys repaired<br>by our team of experts?</h1>
-                        <a th:href="@{/test1}">
+                        <a th:href="@{/doctorlist}">
                             <button type="button" class="btn-reservation btn-primary ">Make a reservation</button>
                         </a>
                     </div>
+                <div th:if="${loginName == null}" class="card-body text-center">
+                <h1>Would you like to have your toys repaired<br>by our team of experts?</h1>
+                <a th:href="@{/user/login}">
+                    <button type="button" class="btn-reservation btn-primary ">Login to Make a reservation</button>
+                </a>
+            </div>
                 </div>
             </div>
         </div>

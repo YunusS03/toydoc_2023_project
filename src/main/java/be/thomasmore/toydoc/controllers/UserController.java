@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 import java.security.Principal;
@@ -43,6 +46,26 @@ public class UserController {
     @Autowired
     AppUserRepository appUserRepository;
 
+
+    @PostMapping("/login/success")
+    public String loginSuccess(Principal principal, Model model,HttpServletRequest request) {
+
+        AppUser loggedinUser = (AppUser) request.getAttribute("appUser");
+
+        if(loggedinUser.getRole().equals(Role.ADMIN)){
+            return "redirect:/admin/dashboard";
+        }
+        if (loggedinUser.getRole().equals(Role.DOCTOR)){
+            return "redirect:/dashboard/profile/" + loggedinUser.getId();
+        }
+        if (loggedinUser.getRole().equals(Role.CLIENT)){
+            return "redirect:/dashboard/profile/" + loggedinUser.getId();
+        }
+
+        model.addAttribute("user",new AppUser());
+        return "/home";
+    }
+
     @GetMapping("/login")
     public String register(Principal principal, Model model) {
 
@@ -56,8 +79,6 @@ public class UserController {
 
         if (principal != null) return "redirect:/home";
 
-
-
         // Toon de login pagina
 //        model.addAttribute("user",new AppUser());
         return "user/login";
@@ -68,7 +89,13 @@ public class UserController {
 
 
         // Als er al een gebruiker ingelogd is, ga dan naar home pagina
-        if (principal != null) return "redirect:/home";
+        if (principal != null){
+            return "redirect:/home";
+        }
+
+
+
+
 
 
         // Toon de login pagina
@@ -79,8 +106,19 @@ public class UserController {
 
 
     @PostMapping("/signup-user")
-    public String signUp(AppUser user, Principal principal, Model model) {
+    public String signUp(@RequestParam("birthDateStr") String birthDateStr, AppUser user, Model model) {
 
+        Date birthDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            birthDate = dateFormat.parse(birthDateStr);
+        } catch (ParseException e) {
+            // Handle parsing exception
+            return "error";
+        }
+
+
+        user.setBirthDate(birthDate);
 
         AppUser existingUser = appUserRepository.findByUsername(user.getUsername());
         if (existingUser != null) {
@@ -107,7 +145,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(Principal principal, HttpServletRequest request, HttpServletResponse response) {
 
-        // Als er geen gebruiker ingelogd is, ga dan naar home pagina
+        //
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.setInvalidateHttpSession(true);
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());

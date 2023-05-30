@@ -68,8 +68,9 @@ public class AppointmentController {
         return "appointment";
     }
 
-    @PostMapping("/create-appointment")
+    @PostMapping("/create-appointment/{doctorId}")
     public String createAppointment(Model model, Principal principal,
+                                    @PathVariable("doctorId") int doctorId,
                                     @RequestParam("firstName") String firstName,
                                     @RequestParam("lastName") String lastName,
                                     @RequestParam("email") String email,
@@ -80,7 +81,10 @@ public class AppointmentController {
 
         Appointment appointment = new Appointment();
         //momenteel wordt naam van doctor genomen, later moet dit nog aangepast worden dat deze gekozen kan worden.
-        AppUser doc = appUserRepository.findByRoleAndUsername(Role.DOCTOR, "dkim");
+        AppUser doc = appUserRepository.findById(doctorId).get();
+
+
+
         logger.info("========= > doctor id is > " + doc.getId() + " name: " + doc.getFirstName());
         if (principal != null) {
             //client bestaat
@@ -186,6 +190,50 @@ public class AppointmentController {
         if (appUser.getUsername() != null) {
 
             return "redirect:/dashboard/profile/" + appUserCurrent.getId();
+        }
+
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/admin/confirm/{appointmentId}")
+    public String confirmAppointmentAdmin(@PathVariable("appointmentId") Integer appointmentId, Model model, Principal principal,RedirectAttributes redirectAttributes) {
+
+
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        if (optionalAppointment.isPresent()) {
+            Appointment appointment = optionalAppointment.get();
+            appointment.setConfirmed(true);
+            appointmentRepository.save(appointment);
+            // ERRORYUNUS //send confirmation missing
+            System.out.println("Appointment is confirmed? : " + appointment.getConfirmed());
+        }
+        return "redirect:/admin/confirmAppointment";
+
+    }
+
+
+    @GetMapping("/admin/cancel/{appointmentId}")
+    public String cancelAppointmentAdmin(@PathVariable("appointmentId") Integer appointmentId, Model model, HttpServletRequest request) {
+
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+        AppUser appUserCurrent = (AppUser) request.getAttribute("appUser");
+
+        System.out.println("Appointment ID is ok? : " + appointmentId);
+
+        AppUser appUser = optionalAppointment.get().getClient();
+
+        mailCurrent = appUser.getEmail();
+
+        emailService.sendAppointmentCancellation(mailCurrent,appUser.getFirstName(),appUser.getLastName());
+
+        appointmentRepository.deleteById(appointmentId);
+
+        if (appUser.getUsername() != null) {
+
+           return "redirect:/admin/deleteAppointment";
         }
 
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class DoctorController {
     @GetMapping({"/doctordetail/{id}","/doctordetail"})
     public String movieDetails(Model model, @PathVariable(required = false)Integer id){
         if(id==null){
-            return "doctordetail";
+            return "doctorlist";
         }
 
         Optional<AppUser> optionalDoctor = appUserRepository.findById(id);
@@ -54,6 +55,7 @@ public class DoctorController {
         if (optionalDoctor.isPresent()) {
             AppUser doctor = optionalDoctor.get();
             model.addAttribute("doctor", doctor);
+            model.addAttribute("age",calculateAge(doctor));
         }
 
         if (optionalPrev.isPresent()) {
@@ -67,5 +69,10 @@ public class DoctorController {
             model.addAttribute("next", appUserRepository.findFirstByOrderByIdAsc().get().getId());
         }
         return "doctordetail";
+    }
+
+    private int calculateAge(AppUser appUser){
+        Date date = new Date();
+        return date.getYear() - appUser.getBirthDate().getYear() ;
     }
 }

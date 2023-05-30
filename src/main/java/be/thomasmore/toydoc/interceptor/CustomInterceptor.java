@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc.interceptor;
 
 import be.thomasmore.toydoc.model.AppUser;
+import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -49,6 +50,7 @@ public class CustomInterceptor implements HandlerInterceptor {
 //                        System.out.println("FirstName: " + firstName);
 //                        request.setAttribute("firstName", firstName);
                         request.setAttribute("appUser", appUser);
+
                     }
 
 

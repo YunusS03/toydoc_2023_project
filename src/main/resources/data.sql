@@ -1,45 +1,45 @@
 -- Inserts for app_user
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,short_description)
-VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'dummy1', '123 Main St', 30, 'New York', 'USA', 'john.doe@example.com', '555-123-4567', '10001', NULL, 'I am John.I am studying computer science');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,short_description,job)
+VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'dummy1', '123 Main St', '1975-06-25', 'New York', 'USA', 'john.doe@example.com', '555-123-4567', '10001', NULL, 'I am John.I am studying computer science','Student');
 --Insert Doctors
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality, image_url,job)
-VALUES ('Jane', 'Smith', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dummy2', '456 Second St', 40, 'Antwerpen', 'Belgium', 'jane.smith@example.com', '555-987-6543', '90001', 'Cars' ,'https://thumbs.dreamstime.com/b/happy-young-male-doctor-man-smile-handsome-14181289.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality, image_url,job)
+VALUES ('Jane', 'Smith', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dummy2', '456 Second St', '1977-06-25', 'Antwerpen', 'Belgium', 'jane.smith@example.com', '555-987-6543', '90001', 'Cars' ,'https://thumbs.dreamstime.com/b/happy-young-male-doctor-man-smile-handsome-14181289.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'jdoe', '123 Main St', 30, 'Brussels', 'Belgium', 'john.doe@example.com', '555-123-4567', '1000', 'Cuddly toys','https://img.freepik.com/free-photo/portrait-smiling-handsome-male-doctor-man_171337-5055.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('John', 'Doe', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'jdoe', '123 Main St', '1978-06-25', 'Brussels', 'Belgium', 'john.doe@example.com', '555-123-4567', '1000', 'Cuddly toys','https://img.freepik.com/free-photo/portrait-smiling-handsome-male-doctor-man_171337-5055.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Alice', 'Lee', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'alee', '789 Third Ave', 45, 'Amsterdam', 'Nederland', 'alice.lee@example.com', '555-234-5678', '1012', 'Cars', 'https://www.shape.com/thmb/q-mU0BCcgv9JhCkETuSILva8yfg=/1500x0/filters:no_upscale():max_bytes(200000):strip_icc()/black-female-doctor-6d6a6c2ec3ae48ceaeeae61f78b7038e.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Alice', 'Lee', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'alee', '789 Third Ave', '1980-06-25', 'Amsterdam', 'Nederland', 'alice.lee@example.com', '555-234-5678', '1012', 'Cars', 'https://www.shape.com/thmb/q-mU0BCcgv9JhCkETuSILva8yfg=/1500x0/filters:no_upscale():max_bytes(200000):strip_icc()/black-female-doctor-6d6a6c2ec3ae48ceaeeae61f78b7038e.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Michael', 'Chen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'mchen', '456 Fourth St', 35, 'Antwerp', 'Belgium', 'michael.chen@example.com', '555-345-6789', '2000', 'Wooden toy','https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Michael', 'Chen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'mchen', '456 Fourth St', '1983-06-25', 'Antwerp', 'Belgium', 'michael.chen@example.com', '555-345-6789', '2000', 'Wooden toy','https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Sarah', 'Wong', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'swong', '567 Fifth Ave', 50, 'Rotterdam', 'Nederland', 'sarah.wong@example.com', '555-456-7890', '3012', 'Cuddly toys','https://img.freepik.com/free-photo/content-young-female-doctor-posing-camera_1262-18213.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Sarah', 'Wong', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'swong', '567 Fifth Ave', '1968-06-25', 'Rotterdam', 'Nederland', 'sarah.wong@example.com', '555-456-7890', '3012', 'Cuddly toys','https://img.freepik.com/free-photo/content-young-female-doctor-posing-camera_1262-18213.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('David', 'Kim', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dkim', '234 First St', 28, 'Brussels', 'Belgium', 'david.kim@example.com', '555-567-8901', '1000', 'Action Figures', 'https://media.istockphoto.com/id/1346124900/photo/confident-successful-mature-doctor-at-hospital.jpg?b=1&s=170667a&w=0&k=20&c=vUq0J-LgD4FPEV1Ua_0NeQBcJ2xb8EjGe5fdcR1K2x0=','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('David', 'Kim', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dkim', '234 First St', '1980-06-25', 'Brussels', 'Belgium', 'david.kim@example.com', '555-567-8901', '1000', 'Action Figures', 'https://media.istockphoto.com/id/1346124900/photo/confident-successful-mature-doctor-at-hospital.jpg?b=1&s=170667a&w=0&k=20&c=vUq0J-LgD4FPEV1Ua_0NeQBcJ2xb8EjGe5fdcR1K2x0=','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Daniel', 'Nguyen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dnguyen', '678 Sixth St', 42, 'Amsterdam', 'Nederland', 'daniel.nguyen@example.com', '555-678-9012', '1012', 'Wooden Toy','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvYZGAy-gS7jCxv9lhYs7ciMD94Z4nfo_6HEeILCh62IrGUOmBTNa5UXxpZZ8d1WZCmBo&usqp=CAU','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Daniel', 'Nguyen', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'dnguyen', '678 Sixth St', '1976-06-25', 'Amsterdam', 'Nederland', 'daniel.nguyen@example.com', '555-678-9012', '1012', 'Wooden Toy','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvYZGAy-gS7jCxv9lhYs7ciMD94Z4nfo_6HEeILCh62IrGUOmBTNa5UXxpZZ8d1WZCmBo&usqp=CAU','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Jennifer', 'Liu', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'jliu', '789 Seventh Ave', 33, 'Brussels', 'Belgium', 'jennifer.liu@example.com', '555-789-0123', '1000', 'Cars','https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Jennifer', 'Liu', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'jliu', '789 Seventh Ave', '1979-06-25', 'Brussels', 'Belgium', 'jennifer.liu@example.com', '555-789-0123', '1000', 'Cars','https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Kevin', 'Park', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'kpark', '123 Second St', 25, 'Antwerp', 'Belgium', 'kevin.park@example.com', '555-890-1234', '2000', 'Action Figures','https://t4.ftcdn.net/jpg/00/58/33/17/360_F_58331714_RO7gYyfIE19CcD9MzJZxwEqqeetvtyhA.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Kevin', 'Park', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'kpark', '123 Second St', '1981-06-25', 'Antwerp', 'Belgium', 'kevin.park@example.com', '555-890-1234', '2000', 'Action Figures','https://t4.ftcdn.net/jpg/00/58/33/17/360_F_58331714_RO7gYyfIE19CcD9MzJZxwEqqeetvtyhA.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Stephanie', 'Tran', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'stran', '456 Eighth St', 37, 'Rotterdam', 'Nederland', 'stephanie.tran@example.com', '555-901-2345', '3012', 'Cuddly toys','https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Stephanie', 'Tran', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'stran', '456 Eighth St', '1972-06-25', 'Rotterdam', 'Nederland', 'stephanie.tran@example.com', '555-901-2345', '3012', 'Cuddly toys','https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code, speciality,image_url,job)
-VALUES ('Christopher', 'Gupta', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'cgupta', '234 Ninth St', 48, 'Brussels', 'Belgium', 'christopher.gupta@example.com', '555-234-5678', '100','Board games','https://us.123rf.com/450wm/opolja/opolja1904/opolja190400678/121991996-cheerful-mature-doctor-posing-and-smiling-at-camera-healthcare-and-medicine.jpg?ver=6','Doctor');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, speciality,image_url,job)
+VALUES ('Christopher', 'Gupta', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'cgupta', '234 Ninth St', '1984-06-25', 'Brussels', 'Belgium', 'christopher.gupta@example.com', '555-234-5678', '100','Board games','https://us.123rf.com/450wm/opolja/opolja1904/opolja190400678/121991996-cheerful-mature-doctor-posing-and-smiling-at-camera-healthcare-and-medicine.jpg?ver=6','Doctor');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code)
-VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'yusa', '234 Ninth St', 48, 'Brussels', 'Belgium', 'r0930908@student.thomasmore.be', '555-234-5678', '100');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code,job)
+VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'yusa', '234 Ninth St', '1983-06-25', 'Brussels', 'Belgium', 'r0930908@student.thomasmore.be', '555-234-5678', '100','Student');
 
-INSERT INTO app_user (first_name, last_name, password, role, username, address, age, city, country, email, phone, postal_code)
-VALUES ('Ahmet', 'Uygun', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 0, 'ahmet', 'Smedenstraat', 32, 'Antwerp', 'Belgium', 'r0937207@student.thomasmore.be', '555-234-5678', '100');
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code,job)
+VALUES ('Ahmet', 'Uygun', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 0, 'ahmet', 'Smedenstraat', '1987-06-25', 'Antwerp', 'Belgium', 'r0937207@student.thomasmore.be', '555-234-5678', '100','Developer');
 
 
 -- Inserts for toy
@@ -128,4 +128,23 @@ VALUES (15, '2023-03-05', 'Beauty Resurrected', 'Barbie dolls have long been ico
         'https://content.syndigo.com/asset/5355305d-d912-44b3-9ae3-d3021852889f/480.jpeg',
         'Action Figures', 10, 2)
 
+
+--
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('John Doe', 'johndoe@example.com', 'Inquiry about Product', 'Hi, I have some questions regarding your product. Can you provide me with more information?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Jane Smith', 'janesmith@example.com', 'Feedback', 'Hello, I wanted to provide some feedback regarding your services. Is there a way I can reach out to someone for further discussion?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Michael Johnson', 'michaeljohnson@example.com', 'Technical Support', 'Hi, I''m experiencing some issues with your software. Can you please assist me in resolving this matter?',true);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Sarah Thompson', 'sarahthompson@example.com', 'Collaboration Opportunity', 'Greetings! I represent a company interested in exploring potential collaboration opportunities with your organization. Can we discuss this further?',true);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Robert Lee', 'robertlee@example.com', 'Job Application', 'Dear Hiring Manager, I am interested in applying for a software engineer position at your company. Could you please provide me with the necessary details?',false);
+
+INSERT INTO contact_message (name, email, subject, message,is_read)
+VALUES ('Emily Davis', 'emilydavis@example.com', 'Partnership Inquiry', 'Hi there, I am reaching out to inquire about potential partnership opportunities. Is there a dedicated person I can connect with to discuss this further?',false);
 

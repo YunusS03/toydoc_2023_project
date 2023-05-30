@@ -32,6 +32,22 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     List<AppUser> findByDoctorWithFilter(String keyword,Role role,String speciality);
 
 
+    @Query("SELECT u FROM AppUser u " +
+            "WHERE ?1 IS NULL OR LOWER (u.firstName) LIKE LOWER(CONCAT('%',?1,'%'))" +
+            "AND (?2 IS NULL OR LOWER (u.lastName) LIKE LOWER(CONCAT('%',?2,'%')))" +
+            "AND  (?3 IS NULL OR u.role = ?3)"
+
+    )
+    List<AppUser> findByDoctorAdminFilter(String firstName,String lastName,Role role);
+    @Query("SELECT u FROM AppUser u " +
+            "WHERE ?1 IS NULL OR LOWER (u.firstName) LIKE LOWER(CONCAT('%',?1,'%'))" +
+            "AND (?2 IS NULL OR LOWER (u.lastName) LIKE LOWER(CONCAT('%',?2,'%')))" +
+            "AND  (?3 IS NULL OR u.role = ?3)" +
+            "AND (?4 IS NULL OR u.id = ?4)"
+    )
+    List<AppUser> findByClientWithFilter(String firstName,String lastName,Role role,Integer id);
+
+
 
     @Query("SELECT u FROM AppUser u WHERE u.role = :role AND u.username = :username")
     AppUser findByRoleAndUsername(@Param("role") Role role, @Param("username") String username);
@@ -48,12 +64,20 @@ public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
 
     AppUser findByPasswordResetKey(String passwordResetKey);
 
+
+
+    @Query("SELECT u FROM AppUser u " +
+            "WHERE ?1 IS NULL OR LOWER (u.firstName) LIKE LOWER(CONCAT('%',?1,'%'))" +
+            "AND  (?2 IS NULL OR u.role = ?2)"
+    )
+    List<AppUser> findByFirstNameContainingIgnoreCase(String keyword,Role role);
+
     List<AppUser> findByFirstName(String firstName);
     List<AppUser> findByLastName(String lastName);
     List<AppUser> findByCity(String city);
     List<AppUser> findByCountry(String country);
-    List<AppUser> findByAgeGreaterThan(int age);
-    List<AppUser> findByAgeLessThan(int age);
+//    List<AppUser> findByAgeGreaterThan(int age);
+//    List<AppUser> findByAgeLessThan(int age);
     List<AppUser> findByRoleAndCity(Role role, String city);
     List<AppUser> findBySpeciality(String speciality);
     List<AppUser> findByFirstNameAndLastName(String firstName, String lastName);

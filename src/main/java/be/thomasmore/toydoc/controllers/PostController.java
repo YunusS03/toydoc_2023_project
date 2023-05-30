@@ -75,6 +75,8 @@ public class PostController {
     }
 
 
+
+
     @GetMapping("/posts/new")
     public String createNewPost(Model model) {
         Post post = new Post();

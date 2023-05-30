@@ -1,6 +1,7 @@
 package be.thomasmore.toydoc.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,8 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
+
+import java.util.Date;
 
 @Entity
 //@MappedSuperclass
@@ -21,7 +24,10 @@ public class AppUser implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    private Integer age;
+
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date birthDate;
     private String phone;
     private String address;
     private String city;
@@ -103,13 +109,13 @@ public class AppUser implements UserDetails {
 
 
 
-    public AppUser(String email, String username, String password, String firstName, String lastName, Integer age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
+    public AppUser(String email, String username, String password, String firstName, String lastName, Date age, String phone, String address, String city, String postalCode, String country, String speciality, Role role) {
         setEmail(email);
         setUsername(username);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
-        setAge(age);
+        setBirthDate(age);
         setPhone(phone);
         setAddress(address);
         setCity(city);
@@ -138,38 +144,13 @@ public class AppUser implements UserDetails {
     }
 
 
-    @Override
-    public boolean isAccountNonExpired() {
-        // Return true if the user's account is non-expired
-        return true;
-    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        // Return true if the user's account is non-locked
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        // Return true if the user's credentials are non-expired
-        return true;
-    }
-
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+
 
     public String getPassword() {
         return password;
@@ -195,12 +176,12 @@ public class AppUser implements UserDetails {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthDate(Date age) {
+        this.birthDate = age;
     }
 
     public String getPhone() {
@@ -318,6 +299,8 @@ public class AppUser implements UserDetails {
         return Arrays.asList(Role.values());
     }
 
+
+
     public String getShortDescription() {
         return shortDescription;
     }
@@ -332,6 +315,38 @@ public class AppUser implements UserDetails {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // Return true if the user's account is non-expired
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // Return true if the user's account is non-locked
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // Return true if the user's credentials are non-expired
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // Return true if the user is enabled
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Return the authorities/roles granted to the user
+        // You need to implement this method based on your specific logic
+        return null;
     }
 
     public List<Liking> getLikes() {

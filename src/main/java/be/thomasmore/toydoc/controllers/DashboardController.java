@@ -2,6 +2,7 @@ package be.thomasmore.toydoc.controllers;
 
 import be.thomasmore.toydoc.model.AppUser;
 import be.thomasmore.toydoc.model.Appointment;
+import be.thomasmore.toydoc.model.Role;
 import be.thomasmore.toydoc.model.Toy;
 import be.thomasmore.toydoc.repositories.AppUserRepository;
 import be.thomasmore.toydoc.repositories.AppointmentRepository;
@@ -9,7 +10,9 @@ import be.thomasmore.toydoc.repositories.ToyRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +20,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/dashboard")
-
-
-
 public class DashboardController {
 
     @Autowired
@@ -36,11 +37,15 @@ public class DashboardController {
     @Autowired
     private UserController userController;
 
+
+
     @GetMapping("profile/{id}")
     public String dashboard(Model model, Principal principal, HttpServletRequest request, @PathVariable(required = false)Integer id){
 
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         Integer counter = 0;
+
+
 
         if (appUser != null && appUser.getId() == id){
 
@@ -55,7 +60,9 @@ public class DashboardController {
                 System.out.println("No appointment found with id " + id);
             }
 
+
             model.addAttribute("appointment", appointment0);
+            model.addAttribute("age",calculateAge(appUser));
 
             return "dashboard/profile";
         }
@@ -87,7 +94,7 @@ public class DashboardController {
             }
 
             model.addAttribute("appointment", appointment0);
-
+            model.addAttribute("age",calculateAge(appUser));
             return "dashboard/editProfile";
         }
 
@@ -118,7 +125,7 @@ public class DashboardController {
             }
 
             model.addAttribute("appointment", appointment0);
-
+            model.addAttribute("age",calculateAge(appUser));
             return "dashboard/myAppointments";
         }
 
@@ -130,9 +137,11 @@ public class DashboardController {
     }
 
 
+    private LogoutHandler logoutHandler;
+
 
     @PostMapping("/profile/{id}/edit")
-    public String profileEdit( @PathVariable int id,@ModelAttribute AppUser editedAppUser) {
+    public String profileEdit( @PathVariable int id,@ModelAttribute AppUser editedAppUser,HttpServletRequest request, HttpServletResponse response) {
         Optional<AppUser> existingUserOptional = appUserRepository.findById(id);
        AppUser existingUser = existingUserOptional.get();
 
@@ -149,10 +158,13 @@ public class DashboardController {
             existingUser.setLastName(editedAppUser.getLastName());
         }
 
-        if(editedAppUser.getAge()==null){
-            existingUser.setAge(existingUser.getAge());
+        if(editedAppUser.getBirthDate()==null){
+            existingUser.setBirthDate(existingUser.getBirthDate());
         }else{
-            existingUser.setAge(editedAppUser.getAge());
+//            SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+//            logoutHandler.setInvalidateHttpSession(true);
+//            logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+            existingUser.setBirthDate(editedAppUser.getBirthDate());
         }
 
         if(editedAppUser.getPhone()==null){
@@ -171,6 +183,7 @@ public class DashboardController {
             existingUser.setUsername(existingUser.getUsername());
         }else{
             existingUser.setUsername(editedAppUser.getUsername());
+
         }
 
         if(editedAppUser.getAddress()==null){
@@ -297,6 +310,11 @@ public class DashboardController {
     private boolean isValidId(Integer id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
         return appointment.get() != null;
+    }
+
+    private int calculateAge(AppUser appUser){
+        Date date = new Date();
+        return  date.getYear() - appUser.getBirthDate().getYear() ;
     }
 
 
