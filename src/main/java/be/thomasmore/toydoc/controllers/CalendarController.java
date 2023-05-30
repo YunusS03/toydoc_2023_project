@@ -91,7 +91,7 @@ public class CalendarController {
             calendarService.setOccupiedOnCalender(ap.getDate(), ap.getTime().getHours());
         }
         model.addAttribute("calendar", calendar);
-        return "redirect:/test1/"+id + "?page=" + count;
+        return "redirect:/test1/"+id + "?count=" + count;
     }
 
     @PostMapping("/test1/{doctorId}/previousWeek")
@@ -109,7 +109,7 @@ public class CalendarController {
         }
 
         model.addAttribute("calendar", calendar);
-        return "redirect:/test1/"+id + "?page=" + count;
+        return "redirect:/test1/"+id + "?count=" + count;
     }
 
 
