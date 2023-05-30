@@ -67,6 +67,11 @@
               <a  th:href="@{/appointment/admin/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn btn-danger">Delete Appointment</a>
             </div>
 
+            <div class="d-flex flex-column" th:unless="${not appointment.confirmed}">
+              <a  th:href="@{/appointment/admin/cancel/{appointmentId}(appointmentId=${appointment.id})}" class="btn btn-danger">Delete Appointment</a>
+              <p class="text-primary">Confirmed</p>
+            </div>
+
           </div>
         </div>
 
