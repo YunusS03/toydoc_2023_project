@@ -19,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -134,8 +136,20 @@ public class AdminDashboardController {
     }
 
     @PostMapping("/addDoctor")
-    public String addDoctorPost(@ModelAttribute("appUser") AppUser appUserNew, Model model) {
-        
+    public String addDoctorPost(@ModelAttribute("appUser") AppUser appUserNew, @RequestParam("birthDateStr") String birthDateStr,Model model) {
+
+        Date birthDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            birthDate = dateFormat.parse(birthDateStr);
+        } catch (ParseException e) {
+            // Handle parsing exception
+            return "error";
+        }
+
+        appUserNew.setBirthDate(birthDate);
+
+
         //write me a check if username already exists
         
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -175,7 +189,19 @@ public class AdminDashboardController {
     }
 
     @PostMapping("/addClient")
-    public String addClientPost(@ModelAttribute("appUser") AppUser appUserNew, Model model) {
+    public String addClientPost(@ModelAttribute("appUser") AppUser appUserNew,@RequestParam("birthDateStr") String birthDateStr, Model model) {
+
+
+        Date birthDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            birthDate = dateFormat.parse(birthDateStr);
+        } catch (ParseException e) {
+            // Handle parsing exception
+            return "error";
+        }
+
+        appUserNew.setBirthDate(birthDate);
 
         //write me a check if username already exists
 

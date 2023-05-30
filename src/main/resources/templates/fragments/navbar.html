@@ -61,11 +61,39 @@
                                 <button type="submit" class="nav-link btn btn-outline-light">Register</button>
                             </form>
                         </li>
-
                     </div>
 
 
-                    <div th:if="${loginName != null}">
+                 <div th:if="${loginName != null}" class="d-flex">
+
+
+                    <div th:if="${appUser.role.name == 'ADMIN' }">
+                        <li class="nav-item">
+                            <div class="dropdown">
+
+                                <button class="btn btn-donate btn-lg btn-block dropdown-toggle" type="button"
+                                        id="dropdownMenuButtonAdmin" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <img th:if="${appUser}" th:src="${appUser.imageUrl != null ? appUser.imageUrl : 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'}"
+                                         alt="imageUrl" width="28" height="28" class="rounded-circle">
+
+                                    <span th:text="|${loginName}|"></span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
+                                    <a class="btn btn-reservation my-profile text-white text-decoration-none" href="/admin/dashboard">Go Dashboard</a>
+                                    <div>
+                                        <hr class="dropdown-divider">
+                                    </div>
+                                    <form th:action="@{/user/logout}" method="post">
+                                        <button class="btn  logout-btn" type="submit">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+
+
+                    <div th:if="${appUser.role.name == 'CLIENT' || appUser.role.name == 'DOCTOR'}">
 
                         <li class="nav-item">
                             <div class="dropdown">
@@ -107,6 +135,8 @@
                             </div>
                         </li>
                     </div>
+                 </div>
+
                 </ul>
             </div>
         </div>

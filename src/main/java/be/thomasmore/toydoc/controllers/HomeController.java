@@ -46,6 +46,7 @@ public class HomeController {
         AppUser appUser = (AppUser) request.getAttribute("appUser");
         model.addAttribute("appUser",appUser);
 
+
         // Log de naam van de ingelogde gebruiker
 
         // Laad de "home" pagina
