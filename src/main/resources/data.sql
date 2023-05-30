@@ -36,40 +36,114 @@ INSERT INTO app_user (first_name, last_name, password, role, username, address, 
 VALUES ('Christopher', 'Gupta', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 2, 'cgupta', '234 Ninth St', '1984-06-25', 'Brussels', 'Belgium', 'christopher.gupta@example.com', '555-234-5678', '100','Board games','https://us.123rf.com/450wm/opolja/opolja1904/opolja190400678/121991996-cheerful-mature-doctor-posing-and-smiling-at-camera-healthcare-and-medicine.jpg?ver=6','Doctor');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code,job)
-VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'yusa', '234 Ninth St', '1983-06-25', 'Brussels', 'Belgium', 'r0930908@student.thomasmore.be', '555-234-5678', '100','Student');
+VALUES ('Yunus', 'Sahin', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 0, 'yusa', '234 Ninth St', '1983-06-25', 'Brussels', 'Belgium', 'r0930908@student.thomasmore.be', '555-234-5678', '100','Student');
 
 INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code,job)
 VALUES ('Ahmet', 'Uygun', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 0, 'ahmet', 'Smedenstraat', '1987-06-25', 'Antwerp', 'Belgium', 'r0937207@student.thomasmore.be', '555-234-5678', '100','Developer');
 
 
--- Inserts for toy
--- INSERT INTO toy (name, type, appointment_id, client_id)
--- VALUES ('Teddy Bear', 'Stuffed Animal', NULL, 1);
-
--- INSERT INTO toy (name, type, appointment_id, client_id)
--- VALUES ('Lego Set', 'Building Blocks', NULL, 1);
-
-
-INSERT INTO appointment (confirmed,creation_time, date, time, client_id, doctor_id)
+--NEW DATA
+INSERT INTO app_user (first_name, last_name, password, role, username, address, birth_date, city, country, email, phone, postal_code, job)
 VALUES
-    (false,'2023-05-07', '2023-05-08', '08:00:00', 1, 2),
-    (false,'2023-05-08', '2023-05-09', '08:00:00', 1, 2),
-    (false,'2023-05-9', '2023-05-10', '09:00:00', 13, 5),
-    (false,'2023-05-8', '2023-05-11', '10:00:00', 2, 2),
-    (false,'2023-05-11', '2023-05-12', '11:00:00', 13, 2),
-    (false,'2023-05-12', '2023-05-13', '12:00:00', 4, 2),
-    (false,'2023-05-14', '2023-05-14', '13:00:00', 5, 2),
-    (false,'2023-05-15', '2023-05-15', '14:00:00', 13, 5),
-    (false,'2023-05-16', '2023-05-16', '15:00:00', 7, 5),
-    (false,'2023-05-17', '2023-05-17', '16:00:00', 8, 2),
-    (false,'2023-05-18', '2023-05-18', '17:00:00', 1, 2),
-    (false,'2023-05-19', '2023-05-19', '08:00:00', 13, 2),
-    (false,'2023-05-20', '2023-05-20', '09:00:00', 13, 5),
-    (false,'2023-05-21', '2023-05-21', '10:00:00', 3, 2),
-    (false,'2023-05-22', '2023-05-22', '11:00:00', 4, 5),
-    (false,'2023-05-23', '2023-05-23', '12:00:00', 5, 2),
-    (false,'2023-05-24', '2023-05-24', '13:00:00', 13, 5),
-    (false,'2023-05-25', '2023-05-25', '14:00:00', 7, 2);
+    ('Emma', 'Johnson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'emma.johnson', '123 Main St', '1995-05-12', 'New York', 'USA', 'emma.johnson@example.com', '555-111-1111', '10001', 'Student'),
+    ('Sophia', 'Smith', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'sophia.smith', '456 Second St', '1997-07-18', 'Los Angeles', 'USA', 'sophia.smith@example.com', '555-222-2222', '20001', 'Student'),
+    ('Oliver', 'Davis', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'oliver.davis', '789 Third Ave', '1993-03-25', 'Chicago', 'USA', 'oliver.davis@example.com', '555-333-3333', '30001', 'Student'),
+    ('Ava', 'Wilson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'ava.wilson', '234 Fourth St', '1994-09-08', 'Houston', 'USA', 'ava.wilson@example.com', '555-444-4444', '40001', 'Student'),
+    ('Liam', 'Martinez', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'liam.martinez', '567 Fifth Ave', '1996-11-02', 'Philadelphia', 'USA', 'liam.martinez@example.com', '555-555-5555', '50001', 'Student'),
+    ('Isabella', 'Anderson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'isabella.anderson', '890 Sixth St', '1992-01-14', 'Phoenix', 'USA', 'isabella.anderson@example.com', '555-666-6666', '60001', 'Student'),
+    ('Noah', 'Thomas', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'noah.thomas', '123 Seventh Ave', '1998-04-21', 'San Antonio', 'USA', 'noah.thomas@example.com', '555-777-7777', '70001', 'Student'),
+    ('Mia', 'Jackson', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'mia.jackson', '456 Eighth St', '1991-06-30', 'San Diego', 'USA', 'mia.jackson@example.com', '555-888-8888', '80001', 'Student'),
+    ('Lucas', 'White', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'lucas.white', '789 Ninth Ave', '1999-08-16', 'Dallas', 'USA', 'lucas.white@example.com', '555-999-9999', '90001', 'Student'),
+    ('Charlotte', 'Taylor', '$2a$12$NzQP7G0NTWFwaUjRZgf09.IHgc5gRq17BzGZREa9/n1DUI9v.fTNG', 3, 'charlotte.taylor', '234 Tenth St', '1997-12-05', 'Austin', 'USA', 'charlotte.taylor@example.com', '555-000-0000', '10001', 'Student');
+
+
+
+INSERT INTO appointment (confirmed, creation_time, date, time, client_id, doctor_id)
+VALUES
+    (false, NULL, '2023-05-30', '08:00:00', 13, 2),
+    (false, NULL, '2023-05-30', '09:00:00', 14, 3),
+    (false, NULL, '2023-05-30', '10:00:00', 15, 4),
+    (false, NULL, '2023-05-30', '11:00:00', 16, 5),
+    (false, NULL, '2023-05-30', '12:00:00', 17, 6),
+    (false, NULL, '2023-05-31', '13:00:00', 18, 7),
+    (false, NULL, '2023-05-31', '14:00:00', 19, 8),
+    (false, NULL, '2023-05-31', '15:00:00', 20, 9),
+    (false, NULL, '2023-05-31', '16:00:00', 21, 10),
+    (false, NULL, '2023-06-01', '08:00:00', 22, 11),
+    (false, NULL, '2023-06-01', '09:00:00', 23, 12),
+    (false, NULL, '2023-06-01', '10:00:00', 24, 2),
+    (false, NULL, '2023-06-01', '11:00:00', 13, 3),
+    (false, NULL, '2023-06-02', '12:00:00', 14, 4),
+    (false, NULL, '2023-06-02', '13:00:00', 15, 5),
+    (false, NULL, '2023-06-02', '14:00:00', 16, 6),
+    (false, NULL, '2023-06-02', '15:00:00', 17, 7),
+    (false, NULL, '2023-06-03', '16:00:00', 18, 8),
+    (false, NULL, '2023-06-03', '08:00:00', 19, 9),
+    (false, NULL, '2023-06-03', '09:00:00', 20, 10),
+    (false, NULL, '2023-06-03', '10:00:00', 21, 11),
+    (false, NULL, '2023-06-04', '11:00:00', 22, 12),
+    (false, NULL, '2023-06-04', '12:00:00', 23, 2),
+    (false, NULL, '2023-06-04', '13:00:00', 24, 3),
+    (false, NULL, '2023-06-04', '14:00:00', 13, 4),
+    (false, NULL, '2023-06-05', '15:00:00', 14, 5),
+    (false, NULL, '2023-06-05', '16:00:00', 15, 6),
+    (false, NULL, '2023-06-05', '08:00:00', 16, 7),
+    (false, NULL, '2023-06-05', '09:00:00', 17, 8),
+    (false, NULL, '2023-06-06', '10:00:00', 18, 9),
+    (false, NULL, '2023-06-06', '11:00:00', 19, 10),
+    (true, NULL, '2023-05-30', '08:00:00', 13, 2),
+  (false, NULL, '2023-05-30', '09:00:00', 14, 3),
+  (true, NULL, '2023-05-30', '10:00:00', 15, 4),
+  (true, NULL, '2023-05-30', '11:00:00', 16, 5),
+  (false, NULL, '2023-05-30', '12:00:00', 17, 6),
+  (false, NULL, '2023-05-31', '13:00:00', 18, 7),
+  (true, NULL, '2023-05-31', '14:00:00', 19, 8),
+  (true, NULL, '2023-05-31', '15:00:00', 20, 9),
+  (true, NULL, '2023-05-31', '16:00:00', 21, 10),
+  (false, NULL, '2023-06-01', '08:00:00', 22, 11),
+  (true, NULL, '2023-06-01', '09:00:00', 23, 12),
+  (false, NULL, '2023-06-01', '10:00:00', 24, 2),
+  (true, NULL, '2023-06-01', '11:00:00', 13, 3),
+  (true, NULL, '2023-06-02', '12:00:00', 14, 4),
+  (true, NULL, '2023-06-02', '13:00:00', 15, 5),
+  (false, NULL, '2023-06-02', '14:00:00', 16, 6),
+  (true, NULL, '2023-06-02', '15:00:00', 17, 7),
+  (false, NULL, '2023-06-03', '16:00:00', 18, 8),
+  (true, NULL, '2023-06-03', '08:00:00', 19, 9),
+  (true, NULL, '2023-06-03', '09:00:00', 20, 10),
+  (false, NULL, '2023-06-03', '10:00:00', 21, 11),
+  (true, NULL, '2023-06-04', '11:00:00', 22, 12),
+  (false, NULL, '2023-06-04', '12:00:00', 23, 2),
+  (false, NULL, '2023-06-04', '13:00:00', 24, 3),
+  (true, NULL, '2023-06-04', '14:00:00', 13, 4),
+  (true, NULL, '2023-06-05', '15:00:00', 14, 5),
+  (true, NULL, '2023-06-05', '16:00:00', 15, 6),
+  (false, NULL, '2023-06-05', '08:00:00', 16, 7),
+  (true, NULL, '2023-06-05', '09:00:00', 17, 8),
+  (false, NULL, '2023-06-06', '10:00:00', 18, 9),
+  (false, NULL, '2023-06-06', '11:00:00', 19, 10),
+    (true, NULL, '2023-06-06', '12:00:00', 20, 11),
+    (false, NULL, '2023-06-07', '13:00:00', 21, 12),
+    (true, NULL, '2023-06-07', '14:00:00', 22, 2),
+    (true, NULL, '2023-06-08', '15:00:00', 23, 3),
+    (false, NULL, '2023-06-08', '16:00:00', 24, 4),
+    (true, NULL, '2023-06-09', '08:00:00', 13, 5),
+    (false, NULL, '2023-06-09', '09:00:00', 14, 6),
+    (true, NULL, '2023-06-10', '10:00:00', 15, 7),
+    (false, NULL, '2023-06-10', '11:00:00', 16, 8),
+    (true, NULL, '2023-06-11', '12:00:00', 17, 9),
+    (true, NULL, '2023-06-11', '13:00:00', 18, 10),
+    (false, NULL, '2023-06-12', '14:00:00', 19, 11),
+    (true, NULL, '2023-06-12', '15:00:00', 20, 12),
+    (false, NULL, '2023-06-13', '08:00:00', 21, 2),
+    (true, NULL, '2023-06-13', '09:00:00', 22, 3),
+    (true, NULL, '2023-06-14', '10:00:00', 23, 4),
+    (true, NULL, '2023-06-14', '11:00:00', 24, 5),
+    (false, NULL, '2023-06-15', '12:00:00', 13, 6),
+    (false, NULL, '2023-06-15', '13:00:00', 14, 7),
+    (true, NULL, '2023-06-16', '14:00:00', 15, 8);
+
+
 
 INSERT INTO appointment (confirmed ,creation_time,secret_key , date, time, client_id, doctor_id)
 VALUES(false, '2023-05-07', 'testkey','2023-04-29', '13:00:00', 3, 2);
